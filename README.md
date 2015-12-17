@@ -11,8 +11,9 @@ gradebook2 - minimal testing, currently must run in iframe
   csev is working on the portal problem
 
 OSP (metaobj, osp)
-   OSP wizards and presentations start and show the initial
-screen. No other testing done. Currently portal and warehouse
-are not included.
+   The tools are start and show in the screen, inline.
+No other testing done. 
+   Currently portal and warehouse are not included.
+
 
 
