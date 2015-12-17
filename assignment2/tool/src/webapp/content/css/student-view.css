@@ -1,0 +1,30 @@
+
+.studentSubsection {
+    margin: 10px;
+}
+
+.honorPledgeLabel {
+    font-weight: bold;
+    font-size: 95%;
+}
+
+.honorPledgeSection {
+    margin-top: 10px;
+}
+
+.header {
+height:auto;
+padding-top:8px !important;
+}
+.headerSortUp {
+background: url(/library/image/sakai/sortascending.gif) no-repeat left;
+background-position: 40px;
+height:auto;
+padding-top:8px !important;
+}
+.headerSortDown {
+background: url(/library/image/sakai/sortdescending.gif) no-repeat left;
+background-position: 40px;
+height:auto;
+padding-top:8px !important;
+}

@@ -1,0 +1,14 @@
+.gradingSection {
+    border:2px solid #DCDCDC;
+    padding:10px;
+}
+
+.gradingLabel {
+    font-weight:bold;
+    margin-top: 7px;
+    color:#585858;
+}
+
+.gradeInput {
+    margin-left:20px;
+}

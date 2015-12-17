@@ -1,0 +1,18 @@
+<#setting number_format = "#"/>
+You received this email because the topic "${topic.title}" in Discussion and Private Messages of site ${siteTitle} has a reply since your last visit. You will not get more notifications until you read the topic. 
+<br /><br />
+You may review the topic below. To reply to the topic, log on to the site: 
+<br /><br />
+<a href="${siteToolUrl}"><b>${siteTitle}</b></a> 
+<br /><br />
+-----------------------------
+<br />
+From: ${postfrom} 
+<br />
+Subject: "${post.subject}"
+<br /><br />
+${post.text}
+<br /><br />
+----------------------------- 
+<br /><br />
+If you no longer want to receive notifications for this topic, go to the site where this topic is listed, and click on "unwatch" at the top of the screen.

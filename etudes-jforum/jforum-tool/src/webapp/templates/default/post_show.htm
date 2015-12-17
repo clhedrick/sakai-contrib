@@ -1,0 +1,483 @@
+<#--
+/**********************************************************************************
+ * $URL: https://source.sakaiproject.org/contrib/etudes/sakai-jforum/tags/2.9.11/jforum-tool/src/webapp/templates/default/post_show.htm $
+ * $Id: post_show.htm 83559 2013-04-30 19:03:29Z murthy@etudes.org $ 
+ *********************************************************************************** 
+ * 
+ * Copyright (c) 2008, 2009, 2010, 2011, 2012, 2013 Etudes, Inc. 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * 
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License. 
+ * 
+ * Portions completed before July 1, 2004 Copyright (c) 2003, 2004 Rafael Steil, All rights reserved, licensed under the BSD license. 
+ * http://www.opensource.org/licenses/bsd-license.php 
+ * 
+ * Redistribution and use in source and binary forms, 
+ * with or without modification, are permitted provided 
+ * that the following conditions are met: 
+ * 
+ * 1) Redistributions of source code must retain the above 
+ * copyright notice, this list of conditions and the 
+ * following disclaimer. 
+ * 2) Redistributions in binary form must reproduce the 
+ * above copyright notice, this list of conditions and 
+ * the following disclaimer in the documentation and/or 
+ * other materials provided with the distribution. 
+ * 3) Neither the name of "Rafael Steil" nor 
+ * the names of its contributors may be used to endorse 
+ * or promote products derived from this software without 
+ * specific prior written permission. 
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT 
+ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, 
+ * BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
+ * THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE 
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER 
+ * IN CONTRACT, STRICT LIABILITY, OR TORT 
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE 
+ ***********************************************************************************/
+ -->
+<#include "header.htm"/>
+<#import "../macros/pagination.ftl" as pagination/>
+<#import "../macros/presentation.ftl" as presentation/>
+
+<script type="text/javascript" src="${contextPath}/templates/${templateName}/js/post_show.js"></script>
+<script type="text/javascript" src="${contextPath}/templates/${templateName}/js/post.js"></script>
+<script type="text/javascript">
+<#include "js/karma.js">
+
+function confirmDelete()
+{
+	if (confirm("${I18n.getMessage("Moderation.ConfirmPostDelete")}")) {
+		return true;
+	}
+
+	return false;
+}
+
+function gradeForum(fid, uid)
+{
+	var features = "height=480,width=620,left=60,top=40,toolbar=no,directories=no,status=no,location=no,menubar=no,scrollbars=yes,resizable=no";
+	var winHandle = window.open("${contextPath}/gradeForum/showEvalForumUser/"+ fid +"/"+ uid +"${extension}",null, features);
+	winHandle.focus();
+}
+
+function gradeTopic(tid, uid)
+{
+	var features = "height=480,width=620,left=60,top=40,toolbar=no,directories=no,status=no,location=no,menubar=no,scrollbars=yes,resizable=no";
+	var winHandle = window.open("${contextPath}/gradeForum/showEvalTopicUser/"+ tid +"/"+ uid +"${extension}",null, features);
+	winHandle.focus();
+}
+
+function gradeCategory(cid, uid)
+{
+	var features = "height=480,width=620,left=60,top=40,toolbar=no,directories=no,status=no,location=no,menubar=no,scrollbars=yes,resizable=no";
+	var winHandle = window.open("${contextPath}/gradeForum/showEvalCategoryUser/"+ cid +"/"+ uid +"${extension}",null, features);
+		
+	winHandle.focus();
+
+}
+
+function sendPM(uid)
+{
+	var features = "height=560,width=670,left=60,top=40,toolbar=no,directories=no,status=no,location=no,menubar=no,scrollbars=yes,resizable=no";
+	var winHandle = window.open("${contextPath}/pm/sendTo/"+ uid +"${extension}",null, features);
+	winHandle.focus();
+}
+
+function postQuickReply()
+{
+	var f = document.post;
+	
+	if (validatePostForm(f))
+	{
+		f.submit();
+	}
+}
+
+function validatePostForm(f)
+{
+	if (f.quickmessage.value.replace(/^\s*|\s*$/g, "").length == 0) 
+	{
+		alert("${I18n.getMessage("PostForm.textEmpty")}");
+		f.quickmessage.focus();
+
+		return false;
+	}
+
+	return true;
+}
+
+//for postbody div tag width
+var divPostContentWidth = document.body.offsetWidth - (32 + 32 + 128 + 8);
+
+if (divPostContentWidth < 450)
+{
+	divPostContentWidth = 450;
+}
+</script>
+<table cellspacing="0" cellpadding="10" width="100%" align="center" border="0">
+	<tr>
+		<td>
+			<table cellspacing="2" cellpadding="2" width="100%" border="0">
+				<tr>
+					<td valign="middle" align="left" colspan="2">
+						<span class="maintitle"><a href="${JForumContext.encodeURL("/posts/list/${topic.id}")}" name="top" class="maintitle" id="top">${topic.title?html}</a></span>
+						<#if topic.grade?? && topic.grade.isMinimumPostsRequired()>
+						<span class="genmedmaroon">
+							</br>(${I18n.getMessage("Grade.MinPostRepliesNumber.Show", topic.grade.minimumPosts)})							
+						</span>
+						</#if>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" height="10"><img src="${contextPath}/templates/${templateName}/images/spacer.gif" alt="" width="1" height="10" /></td>
+				</tr>
+				<tr>
+					
+					<td valign="middle" align="left" width="85%">
+						<span class="gen">
+						<a class="gen" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")} </a>
+						-&gt; <a class="gen" href="${JForumContext.encodeURL("/forums/list")}#${category.id}">${category.title} </a>
+            			-&gt; <a class="gen" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name} </a>
+						</span>
+					</td>
+					<td valign="middle" align="right" width="15%" nowrap="nowrap"><@pagination.doPagination "list", topic.id/></td>
+				</tr>
+				<tr>
+					<td colspan="2" height="2"><img src="${contextPath}/templates/${templateName}/images/spacer.gif" alt="" width="1" height="2" /></td>
+				</tr>
+			</table>
+
+			<table class="forumline" cellspacing="1" cellpadding="3" width="100%" border="0">
+				<#if errorMessage?exists>
+					<tr>
+						<td colspan="2" align="center"><span class="redclass">${errorMessage}</span></td>
+					</tr>
+				</#if>
+				<tr>
+					<td align="left" valign="middle" nowrap="nowrap">
+						<#if !isAdmin && !topic.mayPost()>
+							<span class="nav">
+							<img class="imgicon" src="${contextPath}/templates/${templateName}/images/topic_lock.png" alt="${I18n.getMessage("locked-description")}" title="${I18n.getMessage("locked-description")}"/>${I18n.getMessage("locked")}
+							</span>
+						<#else>
+							<span class="nav">
+								<a class="gen" href="${JForumContext.encodeURL("/jforum${extension}?module=posts&action=insert&topic_id=${topic.id}&forum_id=${topic.forumId}&start=${start}", "")}" rel="nofollow" accesskey="${I18n.getMessage("post-reply-access")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/message_add.png" alt="${I18n.getMessage("post-reply-description")}" title="${I18n.getMessage("post-reply-access-description")}"/>${I18n.getMessage("ForumListing.postReply")}</a>
+							</span>
+						</#if>
+					</td>
+					
+					<td align="right" valign="top" nowrap="nowrap">
+						<span class="gen">
+						<#assign watch = "watch"/>
+						<#assign watchMessage = I18n.getMessage("PostShow.watch")/>
+						<#if watching>
+							<#assign watch = "unwatch"/>
+							<#assign watchMessage = I18n.getMessage("PostShow.unwatch")/>
+						</#if>
+						</span>
+						<span class="gen">
+						<a class="gen" href="${JForumContext.encodeURL("/posts/${watch}/${start}/${topic.id}")}" rel="nofollow"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/find.png" alt="watch icon" title="${watchMessage}"/>${watchMessage}</a>
+
+						<#if bookmarksEnabled>
+							&nbsp;
+							<a class="gen" href="javascript:addBookmark(2, ${topic.id});"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/bookmark_it.png" alt="bookmark icon" title="${I18n.getMessage("Bookmarks.addTo")}"/>${I18n.getMessage("Bookmarks.addTo")}</a>
+						</#if>
+						&nbsp;
+						<a class="gen" id="updateTopicReadFlags" href="${JForumContext.encodeURL("/posts/updateTopicReadFlags/${topic.id}")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/refresh.png" alt="mark topic unread icon"/>${I18n.getMessage("PostShow.markTopicUnread")}</a>&nbsp; 
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<th class="thLeft" nowrap="nowrap" width="15%" height="26">${I18n.getMessage("PostShow.author")}</th>
+					<th class="thRight" nowrap="nowrap" width="85%">${I18n.getMessage("PostShow.messageTitle")}</th>
+				</tr>
+
+				<!-- POST LISTING -->
+				<#assign rowColor = ""/>
+				<#list posts as post>
+					<#if compareDate?? && (post.getTime().getTime() < compareDate.getTime())>
+					  <#if post_index % 2 == 0>
+						<#assign rowColor = "row1">
+					  <#else>
+					    <#assign rowColor = "row2">
+					  </#if>
+					<#else>
+					    <#assign rowColor = "rowUnread">  
+					</#if>
+
+					<#assign user = post.getPostedBy()/>
+					<tr>
+						<td colspan="2" width="100%">
+							<#include "post_show_action_buttons_inc.htm"/>
+						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+						<#assign rowspan = "3"/>
+						<#assign useSignature = (user.signature?exists && user.signature?length > 0 && user.getAttachSignatureEnabled() && post.isSignatureEnabled())/>
+
+						<#if useSignature>
+							<#assign rowspan = "3"/>
+						<#else>
+							<#assign rowspan = "2"/>
+						</#if>
+						<#if sju?exists && !sju.isUserActive(user.sakaiUserId)>
+						<#assign userInactive = true/>
+						<#else>
+						<#assign userInactive = false/>
+						</#if>
+						<td class="${rowColor}" valign="top" align="left" rowspan="${rowspan}">
+							<#include "post_show_user_inc.htm"/>
+						</td>
+
+						<!-- Message -->
+						<td class="${rowColor}" valign="top">							
+							<script>
+							document.write ('<div class="postbody" style="width:'+ divPostContentWidth +'px; overflow:auto;">');
+							</script>
+							<span class="postbody">${post.text?default("")}</span>
+							<script>
+							document.write ('</div>');
+							</script>
+							<!-- Attachments -->
+							<#if post.hasAttachments() && (canDownloadAttachments || attachmentsEnabled)>
+								<#--assign attachments = am.getAttachments(post.id, post.forumId)/-->
+								<#assign attachments = post.attachments/>
+								<#include "post_show_attachments_inc.htm"/>
+							</#if>
+						</td>
+					</tr>
+
+					<#if useSignature>
+						<tr>
+							<td colspan="2" class="${rowColor}" width="100%" height="28"><hr/><span class="gensmall">${user.signature}</span></td>
+						</tr>
+					</#if>
+
+					<tr>
+						<td class="${rowColor}" valign="bottom" nowrap="nowrap" height="28" width="100%" colspan="2">
+							<#include "post_show_user_profile_inc.htm"/>
+						</td>
+					</tr>
+
+					<tr>
+						<td class="spaceRow" colspan="2" height="1"><img src="${contextPath}/templates/${templateName}/images/spacer.gif" alt="" width="1" height="1" /></td>
+					</tr>
+				</#list>
+				<!-- END OF POST LISTING -->
+				<tr align="center">
+					<td class="catBottom" colspan="2" height="28">
+						<table cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td align="center"><span class="gensmall">&nbsp;</span></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="8%" align="left" valign="middle" nowrap="nowrap">
+						<#if !isAdmin && !topic.mayPost()>
+							<span class="nav">
+							<img class="imgicon" src="${contextPath}/templates/${templateName}/images/topic_lock.png" alt="${I18n.getMessage("locked-description")}" title="${I18n.getMessage("locked-description")}"/>${I18n.getMessage("locked")}
+							</span>
+						<#else>
+							<span class="nav">
+								<a class="gen" href="${JForumContext.encodeURL("/jforum${extension}?module=posts&action=insert&topic_id=${topic.id}&forum_id=${topic.forumId}&start=${start}", "")}" rel="nofollow" accesskey="${I18n.getMessage("post-reply-access")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/message_add.png" alt="${I18n.getMessage("post-reply-description")}" title="${I18n.getMessage("post-reply-access-description")}"/>${I18n.getMessage("ForumListing.postReply")}</a>
+							</span>
+						</#if>
+					</td>
+					
+					<td align="right" valign="top" nowrap="nowrap">
+						<span class="gen">
+						<#assign watch = "watch"/>
+						<#assign watchMessage = I18n.getMessage("PostShow.watch")/>
+						<#if watching>
+							<#assign watch = "unwatch"/>
+							<#assign watchMessage = I18n.getMessage("PostShow.unwatch")/>
+						</#if>
+						</span>
+						<span class="gen">
+						<a class="gen" href="${JForumContext.encodeURL("/posts/${watch}/${start}/${topic.id}")}" rel="nofollow"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/find.png" alt="watch icon" title="${watchMessage}"/>${watchMessage}</a>
+
+						<#if bookmarksEnabled>
+							&nbsp;
+							<a class="gen" href="javascript:addBookmark(2, ${topic.id});"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/bookmark_it.png" alt="bookmark icon" title="${I18n.getMessage("Bookmarks.addTo")}"/>${I18n.getMessage("Bookmarks.addTo")}</a>
+						</#if>
+						&nbsp;
+						<a class="gen" id="updateTopicReadFlags" href="${JForumContext.encodeURL("/posts/updateTopicReadFlags/${topic.id}")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/refresh.png" alt="mark topic unread icon"/>${I18n.getMessage("PostShow.markTopicUnread")}</a>&nbsp; 
+						</span>
+					</td>
+				</tr>			
+			</table>
+						
+			<table cellspacing="2" cellpadding="2" width="100%" align="center" border="0">
+				
+				<tr>
+					<td height="2" width="100%" colspan="2"><img src="${contextPath}/templates/${templateName}/images/spacer.gif" alt="" width="1" height="2" /></td>
+				</tr>
+				<tr>					
+					<td valign="middle" align="left" width="85%">
+						<span class="gen">
+						<a class="gen" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")} </a>
+						-&gt; <a class="gen" href="${JForumContext.encodeURL("/forums/list")}#${category.id}">${category.title} </a>
+            			-&gt; <a class="gen" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name} </a>
+						</span>
+					</td>
+					<td valign="middle" width="15%" align="right" nowrap="nowrap"><@pagination.doPagination "list", topic.id/></td>
+				</tr>
+
+				<tr>
+					<td colspan="2"><img src="${contextPath}/templates/${templateName}/images/spacer.gif" alt="" width="1" height="1" /></td>
+				</tr>
+				
+
+				<#if (logged || anonymousPosts) && (isAdmin || topic.status != STATUS_LOCKED)>
+				<script language="javascript">
+				var quick = false;
+
+				function activateQuickReply()
+				{
+					quick = !quick;
+
+					document.getElementById("trQuickBody").style.display = (quick ? "" : "none");
+					document.getElementById("trQuickSubmit").style.display = (quick ? "" : "none");
+
+					if (quick) {
+						document.location = "#quick";
+					}
+				}
+
+				function validatePostForm(f)
+				{
+					if (f.quickmessage.value.replace(/^\s*|\s*$/g, "").length == 0) {
+						alert("${I18n.getMessage("PostForm.textEmpty")}");
+						f.quickmessage.focus();
+
+						return false;
+					}
+
+					return true;
+				}
+				</script>
+
+				<#--form action="${JForumContext.encodeURL("/jforum")}" method="post" name="post" id="post" onsubmit="return validatePostForm(this);" enctype="multipart/form-data"  accept-charset="${encoding}"-->
+				<form action="${JForumContext.encodeURL("/jforum")}" method="post" name="post" id="post" enctype="multipart/form-data"  accept-charset="${encoding}">
+					<input type="hidden" name="action" value="insertSave" />
+					<input type="hidden" name="module" value="posts" />
+					<input type="hidden" name="securityHash" value="${securityHash}" />
+					<input type="hidden" name="forum_id" value="${forum.id}" />
+					<input type="hidden" name="start" value="${start?default("")}" />
+					<input type="hidden" name="topic_id" value="${topic.id}" />
+					<!--input type="hidden" name="notify" value="1" /-->
+					<input type="hidden" name="attach_sig" value="1" />
+					<input type="hidden" name="disable_html" value="0" />
+
+				<tr>
+					<td colspan="2">
+						<table width="100%">
+							<tr>
+								<td align="center">
+									<span class="gen">
+										<#--a href="${JForumContext.encodeURL("/recentTopics/list")}" title="${I18n.getMessage("recent-topics-description")}"><img src="${contextPath}/templates/${templateName}/images/${imagesI18n}/recent-topics.gif" align="middle" alt="${I18n.getMessage("recent-topics-description")}" title="${I18n.getMessage("recent-topics-description")}"/></a-->
+										<a id="latest" class="gen" href="${JForumContext.encodeURL("/recentTopics/list")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/recent_topics.png" alt="recent topics icon" title="${I18n.getMessage("recent-topics-description")}"/>${I18n.getMessage("ForumBase.recentTopics")}</a> &nbsp;
+									</span>
+									<#if !isAdmin && !topic.mayPost()>
+								    	&nbsp;
+								    <#else>
+									    <#if !isAdmin && topic.status == STATUS_LOCKED>
+							 				<#assign colspan = "2"/>
+							 			<#else>
+				                            <#if !isAdmin>
+				                            	<#if (specialAccessUser?? && specialAccessUser)>
+													<#if (!specialAccessUserAccess)>
+														&nbsp;
+													<#else>
+														<span class="gen">
+															<#--a href="javascript:activateQuickReply()" accesskey="${I18n.getMessage("quick-reply-access")}" title="${I18n.getMessage("quick-reply-access-description")}"><img src="${contextPath}/templates/${templateName}/images/${imagesI18n}/quick-reply.gif" align="middle" alt="${I18n.getMessage("quick-reply-description")}" title="${I18n.getMessage("quick-reply-access-description")}"/></a-->
+															<a href="javascript:activateQuickReply()" accesskey="${I18n.getMessage("quick-reply-access")}" title="${I18n.getMessage("quick-reply-access-description")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/comment_add.png" alt="${I18n.getMessage("quick-reply-description")}" title="${I18n.getMessage("quick-reply-access-description")}"/>${I18n.getMessage("ForumListing.quickReply")}</a>
+														</span>
+													</#if>
+												<#else>
+													<#if ((category.endDate?exists && category.endDate?time <= nowDate?time && category.lockCategory) ||
+															(forum.endDate?exists && forum.endDate?datetime <= nowDate?datetime && forum.lockForum))>
+														&nbsp;
+													<#else>
+													   	<span class="gen">
+															<#--a href="javascript:activateQuickReply()" accesskey="${I18n.getMessage("quick-reply-access")}" title="${I18n.getMessage("quick-reply-access-description")}"><img src="${contextPath}/templates/${templateName}/images/${imagesI18n}/quick-reply.gif" align="middle" alt="${I18n.getMessage("quick-reply-description")}" title="${I18n.getMessage("quick-reply-access-description")}"/></a-->
+															<a href="javascript:activateQuickReply()" accesskey="${I18n.getMessage("quick-reply-access")}" title="${I18n.getMessage("quick-reply-access-description")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/comment_add.png" alt="${I18n.getMessage("quick-reply-description")}" title="${I18n.getMessage("quick-reply-access-description")}"/>${I18n.getMessage("ForumListing.quickReply")}</a>
+														</span>
+													</#if>							
+												</#if>
+											<#else>
+												  <span class="gen">
+												  	<#--a href="javascript:activateQuickReply()" accesskey="${I18n.getMessage("quick-reply-access")}" title="${I18n.getMessage("quick-reply-access-description")}"><img src="${contextPath}/templates/${templateName}/images/${imagesI18n}/quick-reply.gif" align="middle" alt="${I18n.getMessage("quick-reply-description")}" title="${I18n.getMessage("quick-reply-access-description")}"/></a-->
+												  	<a href="javascript:activateQuickReply()" accesskey="${I18n.getMessage("quick-reply-access")}" title="${I18n.getMessage("quick-reply-access-description")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/comment_add.png" alt="${I18n.getMessage("quick-reply-description")}" title="${I18n.getMessage("quick-reply-access-description")}"/>${I18n.getMessage("ForumListing.quickReply")}</a>
+												  </span>
+											</#if>
+										</#if>
+									</#if>
+								</td>
+							</tr>
+							<tr style="display: none;" id="trQuickBody">
+								<td align="center">
+									<textarea class="post" style="width: 350px" name="quickmessage" rows="10" wrap="virtual" cols="35" onkeyup="enterText(this);" onclick="enterText(this);" onselect="enterText(this);" onBlur="leaveText();"></textarea>
+								</td>
+							</tr>
+
+							<tr style="display: none;" id="trQuickSubmit">
+								<td align="center">
+									<#--input type="submit" value="${I18n.getMessage("PostForm.submit")}" class="mainoption" accesskey="${I18n.getMessage("save-access")}" title="${I18n.getMessage("save-access-description")}"/-->
+									<span class="gen">
+									<#--a class="gen" href="#" onclick="postQuickReply();return false;" rel="nofollow" accesskey="${I18n.getMessage("save-access")}" title="${I18n.getMessage("save-access-description")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/save.png" alt="save icon" title="${I18n.getMessage("save-access-description")}"/>${I18n.getMessage("PostForm.submit")}</a-->
+									<input type="button" name="postquickreply" value="${I18n.getMessage("PostForm.submit")}" onclick="postQuickReply();return false;" style="padding-left:2em;background: #eee url('${contextPath}/templates/${templateName}/images/return_sm.png') .2em no-repeat;" accesskey="${I18n.getMessage("save-access")}" title="${I18n.getMessage("save-post-access-description")}"/>
+									</span>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				</form>
+
+
+				</#if>
+				<tr>
+					<td colspan="2"><img src="${contextPath}/templates/${templateName}/images/spacer.gif" alt="" width="1" height="1" /></td>
+				</tr>
+				<tr>
+					<td align="center" colspan="2">
+						<span class="gen">
+						  <#--img src="${contextPath}/templates/${templateName}/images/icon_mini_register.gif" align="middle" width="12" height="13" border="0" alt="mark topic as unread"/-->
+		                  <a class="gen" id="updateTopicReadFlags" href="${JForumContext.encodeURL("/posts/updateTopicReadFlags/${topic.id}")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/refresh.png" alt="mark topic unread icon"/>${I18n.getMessage("PostShow.markTopicUnread")}</a>&nbsp; 
+		                </span>  
+	                </td>
+                </tr>						
+			</table>
+
+			<@presentation.forumsComboTable/>
+	</tr>
+</table>
+
+<#include "bottom.htm"/>

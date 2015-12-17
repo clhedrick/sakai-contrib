@@ -1,0 +1,8 @@
+ASNN-844; fix assignment 2 for inline / morpheus
+--This line, and those below, will be ignored--
+
+M    tool/src/webapp/content/js/assignment.js
+M    tool/src/webapp/content/js/viewSubmissions.js
+M    tool/src/webapp/content/js/thickbox.js
+M    tool/src/webapp/content/js/list.js
+M    tool/src/webapp/content/templates/grade.html

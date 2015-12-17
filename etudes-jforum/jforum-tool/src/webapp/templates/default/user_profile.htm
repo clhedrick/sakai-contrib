@@ -1,0 +1,238 @@
+<#--
+/**********************************************************************************
+ * $URL: https://source.sakaiproject.org/contrib/etudes/sakai-jforum/tags/2.9.11/jforum-tool/src/webapp/templates/default/user_profile.htm $
+ * $Id: user_profile.htm 83559 2013-04-30 19:03:29Z murthy@etudes.org $ 
+ *********************************************************************************** 
+ * 
+ * Copyright (c) 2008, 2009, 2010, 2011, 2012, 2013 Etudes, Inc. 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * 
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License. 
+ * 
+ * Portions completed before July 1, 2004 Copyright (c) 2003, 2004 Rafael Steil, All rights reserved, licensed under the BSD license. 
+ * http://www.opensource.org/licenses/bsd-license.php 
+ * 
+ * Redistribution and use in source and binary forms, 
+ * with or without modification, are permitted provided 
+ * that the following conditions are met: 
+ * 
+ * 1) Redistributions of source code must retain the above 
+ * copyright notice, this list of conditions and the 
+ * following disclaimer. 
+ * 2) Redistributions in binary form must reproduce the 
+ * above copyright notice, this list of conditions and 
+ * the following disclaimer in the documentation and/or 
+ * other materials provided with the distribution. 
+ * 3) Neither the name of "Rafael Steil" nor 
+ * the names of its contributors may be used to endorse 
+ * or promote products derived from this software without 
+ * specific prior written permission. 
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT 
+ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, 
+ * BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
+ * THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE 
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER 
+ * IN CONTRACT, STRICT LIABILITY, OR TORT 
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE 
+ ***********************************************************************************/
+ -->
+<#include "header.htm"/>
+
+<script type="text/javascript">
+function sendPM(uid)
+{
+	var features = "height=560,width=670,left=60,top=40,toolbar=no,directories=no,status=no,location=no,menubar=no,scrollbars=yes,resizable=no";
+	var winHandle = window.open("${contextPath}/pm/sendTo/"+ uid +"${extension}",null, features);
+	winHandle.focus();
+}
+</script>
+
+<table class="forumline" cellspacing="1" cellpadding="3" width="100%" align="center" border="0">
+	<tr>
+		<th class="thHead" nowrap="nowrap" colspan="2" height="25">${I18n.getMessage("UserProfile.profileFor")} :: ${u.firstName?default("")}&nbsp;${u.lastName?default("")}</th>
+	</tr>
+
+	<tr>
+		<td class="catLeft" align="center" width="40%" height="28"><b><span class="gen">${I18n.getMessage("UserProfile.avatar")}</span></b></td>
+		<td class="catRight" align="left" width="60%"><b><span class="gen">${I18n.getMessage("UserProfile.allAbout")} ${u.firstName?default("")}&nbsp;${u.lastName?default("")}</span></b></td>
+    </tr>
+
+	<tr>
+		<td class="row1" valign="top" align="middle" height="6">
+			<#if !(userInactive?? && userInactive)>
+				<#if (u.avatar?exists && u.avatar?length > 0)>
+					<#if u.isExternalAvatar() || u.avatar.startsWith("http://")>
+						<img src="${u.avatar}" border="0" alt="avatar" width="130" height="130">
+					<#else>
+						<img src="${imageContextPath}/images/avatar/${u.avatar}" border="0" alt="avatar"/><br />
+					</#if>
+				</#if>
+			</#if>
+		</td>
+
+		<td class="row1" valign="top" rowspan="3">
+			<table cellspacing="1" cellpadding="3" width="100%" border="0">
+				<tr>
+					<td valign="top" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.totalMessages")}:&nbsp;</span></td>
+					<td valign="top" width="100%"><b><span class="gen">${u.totalSitePosts}</span></b><br /></span></td>
+				</tr>
+				<#if !(userInactive?? && userInactive)>
+					<#if (u.location?exists && u.location?length > 0)>
+					<tr>
+						<td valign="center" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("PostShow.userFrom")}:&nbsp;</span></td>
+						<td><b><span class="gen">${u.location}</span></b></td>
+					</tr>
+					</#if>
+	            
+					<#if (u.webSite?exists && u.webSite?length > 0)>
+					<tr>
+						<td valign="center" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.webSite")}:&nbsp;</span></td>
+						<td><span class="gen"><b><a href="${u.webSite}" target="_new">${u.webSite}</a></b></span></td>
+					</tr>
+					</#if>
+	            
+					<#if (u.occupation?exists && u.occupation?length > 0)>
+					<tr>
+						<td valign="center" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.occupation")}:&nbsp;</span></td>
+						<td><b><span class="gen">${u.occupation}</span></b></td>
+					</tr>
+					</#if>
+	            
+					<#if (u.interests?exists && u.interests?length > 0)>
+					<tr>
+						<td valign="top" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.interests")}:</span></td>
+						<td><b><span class="gen">${u.interests}</span></b></td>
+					</tr>
+					</#if>
+				</#if>
+			</table>
+		</td>
+	</tr>
+    
+	<tr>
+		<td class="catLeft" align="middle" height="28"><b><span class="gen">${I18n.getMessage("UserProfile.contact")} ${u.firstName?default("")}&nbsp;${u.lastName?default("")}</span></b></td>
+	</tr>
+    <#if !(userInactive?? && userInactive)>
+	<tr>
+		<td class="row1" valign="top">
+			<table cellspacing="1" cellpadding="3" width="100%" border="0">
+			<#if (u.isViewEmailEnabled() && u.email?exists && u.email?trim?length > 0)>
+			<tr>
+				<td valign="center" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.emailAddress")}:</span></td>
+				<td class="row1" valign="center" width="100%">
+					<b><span class="gen">
+					<#assign e = u.email.split("@")/>
+					<a class="gensmall" href="#" onClick="document.location = 'mailto:' + showEmail('${e[0]?default("")}', '${e[1]?default("")}');" title="${I18n.getMessage("PrivateMessage.userEmailTitle")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/email_go.png" alt="${I18n.getMessage("User.Email")}"/>${I18n.getMessage("User.Email")}</a>
+					</span></b>
+				</td>
+			</tr>
+			</#if>
+
+			<#if u.id != 1>
+			<tr>
+				<td valign="center" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.privateMessage")}:</span></td>
+				<td class="row1" valign="center">
+					<b><span class="gen">
+					<a class="gensmall" href="#" onclick="sendPM(${u.id})" rel="nofollow" title="${I18n.getMessage("user-pm-title")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/email_edit.png" alt="${I18n.getMessage("User.PM")}"/>${I18n.getMessage("User.PM")}</a>
+					</span></b>
+				</td>
+			</tr>
+			</#if>
+            
+			<#if (u.msnm?exists && u.msnm?length > 0)>
+			<tr>
+				<td valign="center" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("User.msn")}:</span></td>
+				<td class="row1" valign="center">
+					<a target="_new" href="${I18n.getMessage("serviceurl.msnim")}"><img src="${contextPath}/templates/${templateName}/images/msn.jpg" border="0" alt="msn icon"/></a>
+				</td>
+			</tr>
+			</#if>
+            
+			<#if (u.yim?exists && u.yim?length > 0)>
+			<tr>
+				<td valign="center" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("User.yahoo")}:</span></td>
+				<td class="row1" valign="center">
+					<a target="_new" href="${I18n.getMessage("serviceurl.yahooim")}${u.yim}"><img src="${contextPath}/templates/${templateName}/images/yahoo.jpg" border="0" alt="yahoo icon"/></a>
+				</td>
+			</tr>
+			</#if>
+
+			<#if (u.faceBookAccount?exists && u.faceBookAccount?length > 0)>
+			<tr>
+				<td valign="center" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("User.facebook")}:</span></td>
+				<td class="row1" valign="center">
+					<a target="_new" href="${I18n.getMessage("serviceurl.facebook")}${u.faceBookAccount}"><img src="${contextPath}/templates/${templateName}/images/facebook.jpg" border="0" alt="facebook icon"/></a>
+				</td>
+			</tr>
+			</#if>
+			
+			<#if (u.twitterAccount?exists && u.twitterAccount?length > 0)>
+			<tr>
+				<td valign="center" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("User.twitter")}:</span></td>
+				<td class="row1" valign="center">
+					<a target="_new" href="${I18n.getMessage("serviceurl.twitter")}${u.twitterAccount}"><img src="${contextPath}/templates/${templateName}/images/twitter.gif" border="0" alt="twitter icon"/></a>
+				</td>
+			</tr>
+			</#if>
+			
+			<#if (u.aim?exists && u.aim?length > 0)>
+			<tr>
+				<td valign="center" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("User.aim")}:</span></td>
+				<td class="row1" valign="center">
+					<a target="_new" href="${I18n.getMessage("serviceurl.aolim")}"><img src="${contextPath}/templates/${templateName}/images/aim.jpg" border="0" alt="aim icon"/></a>
+				</td>
+			</tr>
+			</#if>
+			
+			<#if (u.googlePlus?exists && u.googlePlus?length > 0)>
+			<tr>
+				<td valign="center" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("User.googlePlus")}:</span></td>
+				<td class="row1" valign="center">
+					<a target="_new" href="${I18n.getMessage("serviceurl.googleplus")}"><img src="${contextPath}/templates/${templateName}/images/google-plus.png" border="0" alt="google plus icon"/></a>
+				</td>
+			</tr>
+			</#if>
+			
+			<#if (u.skype?exists && u.skype?length > 0)>
+			<tr>
+				<td valign="center" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("User.skype")}:</span></td>
+				<td class="row1" valign="center">
+					<a target="_new" href="${I18n.getMessage("serviceurl.skype")}"><img src="${contextPath}/templates/${templateName}/images/skype-icon.png" border="0" alt="skype icon"/></a>
+				</td>
+			</tr>
+			</#if>
+			
+			<#if (u.linkedIn?exists && u.linkedIn?length > 0)>
+			<tr>
+				<td valign="center" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("User.linkedIn")}:</span></td>
+				<td class="row1" valign="center">
+					<a target="_new" href="${I18n.getMessage("serviceurl.linkedIn")}"><img src="${contextPath}/templates/${templateName}/images/linkedin-icon.png" border="0" alt="linkedIn icon"/></a>
+				</td>
+			</tr>
+			</#if>
+			</table>
+		</td>
+	</tr>
+	</#if>
+</table>
+<#include "bottom.htm"/>

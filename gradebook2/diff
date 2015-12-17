@@ -1,0 +1,13 @@
+rm -f ~/diff.gb2
+svn diff client/src/java/org/sakaiproject/gradebook/gwt/client/GradebookApplication.java >>~/diff.gb2
+svn diff client/src/java/org/sakaiproject/gradebook/gwt/client/gxt/settings/LogDisplay.java >>~/diff.gb2
+svn diff client/src/java/org/sakaiproject/gradebook/gwt/client/gxt/view/components/Viewport.java >>~/diff.gb2
+svn diff client/src/java/org/sakaiproject/gradebook/gwt/client/gxt/view/ImportExportView.java >>~/diff.gb2
+svn diff client/src/java/org/sakaiproject/gradebook/gwt/client/gxt/view/AppView.java >>~/diff.gb2
+svn diff client/src/java/org/sakaiproject/gradebook/gwt/client/gxt/controller/StartupController.java >>~/diff.gb2
+svn diff war/WEB-INF/rest.xml >>~/diff.gb2
+svn diff war/WEB-INF/web.xml >>~/diff.gb2
+svn diff war/GradebookApplication.css >>~/diff.gb2
+svn diff war/pom.xml >>~/diff.gb2
+svn diff war/GradebookApplication.html >>~/diff.gb2
+svn diff pom.xml >>~/diff.gb2

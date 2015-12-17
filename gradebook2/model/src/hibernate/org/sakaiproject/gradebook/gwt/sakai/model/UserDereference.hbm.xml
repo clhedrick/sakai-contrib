@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-cascade="none" package="org.sakaiproject.gradebook.gwt.sakai.model" default-lazy="false">
+
+	<class name="org.sakaiproject.gradebook.gwt.sakai.model.UserDereference" table="GB_USER_DEREFERENCE_T">
+
+		<id name="id" column="ID" type="long">
+			<generator class="native">
+				<param name="sequence">GB_USER_DEREFERENCE_S</param>
+			</generator>
+		</id>
+
+		<property name="userUid" column="USER_UID" not-null="true"/>
+
+		<property name="eid" column="EID" />
+
+		<property name="displayId" column="DISPLAY_ID" />
+		
+		<property name="displayName" column="DISPLAY_NAME" />
+
+		<property name="lastNameFirst" column="LAST_NAME_FIRST" />
+
+		<property name="sortName" column="SORT_NAME" />
+		
+		<property name="email" column="EMAIL"/>
+		
+  		<property name="createdOn" column="CREATED_ON" type="timestamp" />
+  
+  	</class>
+  
+  
+  	<database-object>
+		<create>create unique index GB_USER_DEREF_USER_IDX on GB_USER_DEREFERENCE_T(USER_UID)</create>
+		<drop></drop>
+		<dialect-scope name="org.hibernate.dialect.Oracle9Dialect"/>
+		<dialect-scope name="org.hibernate.dialect.OracleDialect"/>
+	</database-object>
+	
+	<database-object>
+		<create>create index GB_USER_DEREF_SORT_NM_IDX on GB_USER_DEREFERENCE_T(SORT_NAME)</create>
+		<drop></drop>
+		<dialect-scope name="org.hibernate.dialect.Oracle9Dialect"/>
+		<dialect-scope name="org.hibernate.dialect.OracleDialect"/>
+	</database-object>
+	
+	<database-object>
+		<create>create index GB_USER_DEREF_EMAIL_IDX on GB_USER_DEREFERENCE_T(EMAIL)</create>
+		<drop></drop>
+		<dialect-scope name="org.hibernate.dialect.Oracle9Dialect"/>
+		<dialect-scope name="org.hibernate.dialect.OracleDialect"/>
+	</database-object>
+ 	
+</hibernate-mapping>

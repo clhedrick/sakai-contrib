@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:rsf="http://ponder.org.uk/rsf" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+   <title rsf:id="msg=assignment2.title">Assignments</title>
+    <link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all"/>
+    <link href="/library/skin/default/tool.css" type="text/css" rel="stylesheet" media="all"/>
+   <link href="/sakai-assignment2-tool/content/css/assignmentsv4.css" type="text/css" rel="stylesheet" media="all" />
+</head>
+
+<body>
+<!--  everything outside of rsf:id="page:" is set in Layout.html using outerPageTemplates -->
+
+<div rsf:id="page:" class="portletBody">
+
+   <ul class="breadCrumb">
+      <li><a rsf:id="breadcrumb">Assignment List</a></li>
+      <li rsf:id="last_breadcrumb" class="lastCrumb">Submissions for "{0}"</li>
+   </ul>
+
+   <div class="generalErrors">
+      <ul rsf:id="message-for:*" style="margin:0px;">
+         <li>Message for user here</li>
+      </ul>
+   </div>
+
+      <p rsf:id="no_gb_item" class="alertMessage">Gb item deleted!</p>
+      <p rsf:id="deleted_group" class="alertMessage">Group deleted!</p>
+
+      <ul class="navIntraTool" rsf:id="navIntraTool">
+         <li rsf:id="release_grades_li">
+            <a rsf:id="release_grades_link">Release Grades</a>
+            <form rsf:id="release_grades_form" style="display: none;">
+                <input id="release_grades" rsf:id="release_grades" type="submit" />
+            </form>
+            <span rsf:id="release_grades_sep" id="release_grades_sep" class="separator"></span>
+         </li>
+         <li>
+            <a href="" rsf:id="release-feedback-link">Release All Feedback</a>
+            <form rsf:id="release-feedback-form" style="display: none;">
+                <input id="release_feedback" rsf:id="release_feedback" type="submit" />
+            </form>
+            <span rsf:id="release_feedback_disabled" class="inactive">Release All Feedback</span>
+            <span rsf:id="release_feedback_sep" id="release_feedback_sep" class="separator"></span>
+         </li>
+         <li>
+            <span id="download_all_span">
+                <a rsf:id="downloadall">Download All</a>
+            </span>
+            <span rsf:id="downloadall_disabled" class="inactive">Download All</span>
+            <span rsf:id="downloadall_sep" id="downloadall_sep" class="separator"></span>
+         </li>
+         <li>
+            <a rsf:id="uploadall">Upload All</a>
+         </li>
+      </ul>
+
+   <br />
+
+   <!-- The view by sections filter -->
+
+   <div class="viewFilter" >
+       <div class="groupFilterContainer">
+           <form rsf:id="group_filter_form" method="get">
+                <label rsf:id="msg=assignment2.assignment_grade.filter.label" for="group_filter">View</label>
+                <select rsf:id="group_filter" id="group_filter">
+                </select>
+           </form>
+       </div>
+   </div> 
+
+   <div style="display:none" id="release-feedback-dialog">
+          <h3 rsf:id="msg=assignment2.dialogs.release_all_feedback.title">Title for Release Feedback</h3>
+        <ul class="ui-dialog-msg-list">
+            <li rsf:id="msg=assignment2.dialogs.release_all_feedback.message" class="alertMessage">Are you sure you want to release all student feedback?</li>
+        </ul>
+        <fieldset class="submit">
+            <input id="" rsf:id="release-feedback-confirm" accesskey="s" type="button" class="active" value="Yes, Continue"/>
+            <input id="" rsf:id="release-feedback-cancel" accesskey="x" type="button" value="No, Return to Assignment"/>
+        </fieldset>
+    </div>
+
+   <div style="display:none" id="retract-feedback-dialog">
+          <h3 rsf:id="msg=assignment2.dialogs.retract_all_feedback.title">Title for Retract Feedback</h3>
+        <ul class="ui-dialog-msg-list">
+            <li rsf:id="msg=assignment2.dialogs.retract_all_feedback.message" class="alertMessage">Are you sure you want to release all student feedback?</li>
+        </ul>
+        <fieldset class="submit">
+            <input id="" rsf:id="retract-feedback-confirm" accesskey="s" type="button" class="active" value="Yes, Continue"/>
+            <input id="" rsf:id="retract-feedback-cancel" accesskey="x" type="button" value="No, Return to Assignment"/>
+        </fieldset>
+    </div>
+
+    <div style="display:none" id="release-grades-dialog">
+        <h3 rsf:id="release-grades-title">Title for Release Grades</h3>
+        <ul class="ui-dialog-msg-list">
+            <li rsf:id="release-grades-message" class="alertMessage">Are you sure you want to release all student grades?</li>
+        </ul>
+
+        <div rsf:id="release-grades-counted">
+           <input id="release-and-count" type="checkbox" />
+               <label for="release-and-count" rsf:id="msg=assignment2.dialogs.release_grades.include_in_course_grade"> Include in Course Grade?</label>
+            </div>
+
+        <p id="checkbox-error" rsf:id="msg=assignment2.dialogs.retract_grades.groups.confirmcheckbox.error" style="display:none;" class="alertMessage">You must select the checkbox to continue!</p>
+
+        <div rsf:id="confirm-checkbox-area">
+            <input type="checkbox" id="confirm-checkbox"/>
+            <label rsf:id="confirm-checkbox-label" for="confirm-checkbox">Yes, release the grades for all students in the site</label>
+        </div>
+
+        <fieldset class="submit">
+            <input id="" rsf:id="release-grades-confirm" accesskey="s" type="button" class="active" value="Release All Grades"/>
+            <input id="" rsf:id="release-grades-cancel" accesskey="x" type="button" value="Cancel"/>
+        </fieldset>
+    </div>
+
+  <!-- If there are no gradeable students we just display a message -->
+  <div style="display: none" id="no-students-area">
+    <p rsf:id="msg=assignment2.assignment_grade.no_students">There are no students to grade.</p> 
+  </div>
+
+   <!-- New Fluid Table -->
+   <div style="display: none" id="submissions-table-area">
+
+<div class="pager-sort-area">
+    <div id="pager-top" class="fl-pager-top flc-pager-top">
+      <ul id="page-list" style="display:none" class="fl-pager-links pager-links flc-pager-links">
+        <li class="flc-pager-pageLink"><a href="#">1</a></li>
+        <li class="flc-pager-pageLink-disabled">2</li>
+        <li class="flc-pager-pageLink-skip">...</li>
+        <li class="flc-pager-pageLink"><a href="#">3</a></li>
+      </ul>
+      <p id="page-size">Show <span>
+        <select class="flc-pager-page-size">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+          <option value="200">200</option>
+        </select></span> per page
+      </p>
+      <p id="page-arrows">
+      <span class="fl-pager-previous flc-pager-previous"><a href="#">&lt; previous</a></span>
+      <span class="fl-pager-next flc-pager-next"><a href="#">next &gt;</a></span>
+      </p>
+    </div>
+</div>
+
+    <form rsf:id="unassigned-apply-form0:" method="post">
+       <div class="unassigned-apply">
+          <p>
+             <input rsf:id="new-grade-value" type="text" size="4" value="0" />
+             <input rsf:id="apply-button" id="apply-button" type="submit" value="Apply" class="unassigned-apply-button"/>
+          </p>
+      </div>
+    </form>
+
+      <table id="asnn-submissions-table" class="listHier lines nolines fl-pager-data" cellpadding="0" cellspacing="0" summary="" xmlns:rsf="http://ponder.org.uk">
+         <thead>
+             <tr class="sub-table-header">
+                 <th class="flc-pager-sort-header">
+                   <a class="student-name-sort" title="Click to sort" href="#">Student Name</a>
+                   <img class="student-name-sort-img" src="/library/image/sakai/sortascending.gif" />
+                 </th>
+                 <th class="flc-pager-sort-header">
+                   <a class="submitted-time-sort" title="Click to sort" href="#">Submitted</a>
+                   <img class="submitted-time-sort-img" src="/library/image/sakai/sortascending.gif" />
+                 </th>
+                 <th class="flc-pager-sort-header">
+                   <a class="submission-status-sort" title="Click to sort" href="#">Submission Status</a>
+                   <img class="submission-status-sort-img" src="/library/image/sakai/sortascending.gif" />
+                 </th>
+                 <th class="grade-col-header">
+                   <a class="grade-sort" title="Click to sort" href="#">Grade (Released)</a>
+                   <img class="grade-sort-img" src="/library/image/sakai/sortascending.gif" />
+                 </th>
+                 <th class="report-col-header flc-pager-sort-header">Report 
+                   <!-- <a class="submission-report-sort" title="Click to sort" href="#">Report</a>
+                   <img class="submission-report-sort-img" src="/library/image/sakai/sortascending.gif" />-->
+                 </th>
+                 <th class="flc-pager-sort-header"> 
+                   <a class="feedback-released-sort" title="Click to sort" href="#">Feedback Released?</a>
+                   <img class="feedback-released-sort-img" src="/library/image/sakai/sortascending.gif" />
+                 </th>
+             </tr>
+         </thead>
+
+         <tbody>
+            <tr class="row" >
+               <td><a href="" class="student-grade-link"></a></td>
+               <td><span class="submitted-time"></span></td>
+               <td><span class="submission-status"></span>
+               </td>
+               <td class="grade"></td>
+               <td class="report_info">
+                 <a class="review-score" target="_blank">review percentage</a>
+                 <span class="review-pending">review percentage</span>
+                 <img class="review-error" src="/../../library/image/silk/error.png" />
+                 <img class="review-multiple" src="/../../library/image/silk/page_white_stack.png" />
+               </td>
+               <td>
+                 <img class="feedback-released" src="/sakai-assignment2-tool/content/images/check.png" width="16" height="16" border="0" />
+               </td>
+             </tr>
+         </tbody>
+     </table>
+     
+   <form rsf:id="unassigned-apply-form1:" method="post">
+       <div class="unassigned-apply">
+          <p>
+             <input rsf:id="new-grade-value" type="text" size="4" value="0" />
+             <input rsf:id="apply-button" id="apply-button" type="submit" value="Apply" class="unassigned-apply-button" />
+          </p>
+      </div>
+   </form>
+   
+   <div class="pager-sort-area">
+<div>
+    <div id="pager-bottom" class="fl-pager-bottom flc-pager-bottom">
+      <ul id="page-list-bottom" class="fl-pager-links pager-links flc-pager-links">
+        <li class="flc-pager-pageLink"><a href="#">1</a></li>
+        <li class="flc-pager-pageLink-disabled">2</li>
+        <li class="flc-pager-pageLink-skip">...</li>
+        <li class="flc-pager-pageLink"><a href="#">3</a></li>
+      </ul>
+      <p id="page-size-bottom">
+    <span class="flc-pager-summary">1-10 of 500 items</span>
+      </p>
+      <p id="page-arrows-bottom">
+      <span class="fl-pager-previous flc-pager-previous"><a href="#">&lt; previous</a></span>
+      <span class="fl-pager-next flc-pager-next"><a href="#">next &gt;</a></span>
+      </p>
+    </div>
+</div>
+  </div>
+   </div>
+   <!-- End Fluid Table -->
+
+   <div style="display: none" id="spinnerDiv">
+     <img src="/sakai-assignment2-tool/content/images/wait_sakai.gif" />
+   </div>  
+
+   <script type="text/javascript" rsf:id="defaultSortBy">
+      defaultSortBy="name"; //done via producer
+   </script>
+<script type="text/javascript">
+//<![CDATA[
+function slide_details(img){
+   jQuery('#assignment_details').toggle();
+   if(img.src.match('collapse')){
+      img.src=img.src.replace(/collapse/, 'expand');
+   }else{
+      img.src=img.src.replace(/expand/, 'collapse');
+   }
+   a2SetMainFrameHeight();
+}
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[ 
+var sakai = sakai || {};
+jQuery(document).ready(function(){
+    asnn2.pageLoaded = true;
+});
+//]]>
+</script>
+<script rsf:id="asnn2subview-init" type="text/javascript">
+//<![CDATA[
+asnn2subview.init(3);
+//]]>
+</script>
+   </div>
+</body>
+</html>

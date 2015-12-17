@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+   
+     <!-- create a logic bean, give it the dao from above and some sakai services -->
+   <bean id="org.sakaiproject.assignment2.logic.ExternalLogic" class="org.sakaiproject.assignment2.logic.impl.ExternalLogicImpl" init-method="init">
+      <property name="sessionManager" ref="org.sakaiproject.tool.api.SessionManager" />
+      <property name="siteService" ref="org.sakaiproject.site.api.SiteService" />
+      <property name="toolManager" ref="org.sakaiproject.tool.api.ToolManager" />
+      <property name="userDirectoryService" ref="org.sakaiproject.user.api.UserDirectoryService" />
+      <property name="serverConfigurationService" ref="org.sakaiproject.component.api.ServerConfigurationService" />
+      <property name="timeService" ref="org.sakaiproject.time.api.TimeService" />
+   </bean>
+   
+   <bean id="org.sakaiproject.assignment2.logic.AssignmentAuthzLogic" class="org.sakaiproject.assignment2.logic.impl.AssignmentAuthzLogicImpl" init-method="init">
+      <property name="functionManager" ref="org.sakaiproject.authz.api.FunctionManager" />
+      <property name="siteService" ref="org.sakaiproject.site.api.SiteService" />
+      <property name="securityService" ref="org.sakaiproject.authz.api.SecurityService" />
+      <property name="authzGroupService" ref="org.sakaiproject.authz.api.AuthzGroupService" />
+      <property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+   </bean>
+   
+   <bean id="org.sakaiproject.assignment2.logic.ExternalGradebookLogic" class="org.sakaiproject.assignment2.logic.impl.ExternalGradebookLogicImpl" init-method="init">
+   		<property name="gradebookService" ref="org_sakaiproject_service_gradebook_GradebookService" />
+   		<property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+      <property name="assignmentAuthzLogic" ref="org.sakaiproject.assignment2.logic.AssignmentAuthzLogic" />
+      <property name="eventLogic" ref="org.sakaiproject.assignment2.logic.ExternalEventLogic" />
+   </bean>
+   
+   <bean id="org.sakaiproject.assignment2.logic.ExternalAnnouncementLogic" class="org.sakaiproject.assignment2.logic.impl.ExternalAnnouncementLogicImpl" init-method="init">
+   		<property name="announcementService" ref="org.sakaiproject.announcement.api.AnnouncementService" />
+   		<property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+   </bean>
+   
+   <bean id="org.sakaiproject.assignment2.logic.ExternalCalendarLogic" class="org.sakaiproject.assignment2.logic.impl.ExternalCalendarLogicImpl" init-method="init">
+   		<property name="calendarService" ref="org.sakaiproject.calendar.api.CalendarService" />
+   		<property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+   </bean>
+   
+   <bean id="org.sakaiproject.assignment2.logic.ExternalEventLogic" class="org.sakaiproject.assignment2.logic.impl.ExternalEventLogicImpl" init-method="init">
+     <property name="eventTrackingService" ref="org.sakaiproject.event.api.EventTrackingService" />
+   </bean>
+   
+   <bean id="org.sakaiproject.assignment2.logic.ExternalContentLogic" class="org.sakaiproject.assignment2.logic.impl.ExternalContentLogicImpl" init-method="init">
+     <property name="contentHostingService" ref="org.sakaiproject.content.api.ContentHostingService" />
+     <property name="contentTypeImageService" ref="org.sakaiproject.content.api.ContentTypeImageService" />
+     <property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+   </bean>
+
+   <bean id="org.sakaiproject.assignment2.logic.AssignmentLogic" class="org.sakaiproject.assignment2.logic.impl.AssignmentLogicImpl" init-method="init">
+      <property name="dao" ref="org.sakaiproject.assignment2.dao.AssignmentDao" />
+      <property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+      <property name="permissionLogic" ref="org.sakaiproject.assignment2.logic.AssignmentPermissionLogic" />
+      <property name="externalGradebookLogic" ref="org.sakaiproject.assignment2.logic.ExternalGradebookLogic" />
+      <property name="externalAnnouncementLogic" ref="org.sakaiproject.assignment2.logic.ExternalAnnouncementLogic" />
+      <property name="externalCalendarLogic" ref="org.sakaiproject.assignment2.logic.ExternalCalendarLogic" />
+      <property name="assignmentBundleLogic" ref="org.sakaiproject.assignment2.logic.AssignmentBundleLogic" />
+      <property name="taggingManager" ref="org.sakaiproject.taggable.api.TaggingManager" />
+      <property name="assignmentActivityProducer" ref="org.sakaiproject.assignment2.taggable.api.AssignmentActivityProducer" />
+      <property name="entityProviderManager" ref="org.sakaiproject.entitybroker.entityprovider.EntityProviderManager" />
+      <property name="externalContentReviewLogic" ref="org.sakaiproject.assignment2.logic.ExternalContentReviewLogic" />
+      <property name="externalEventLogic" ref="org.sakaiproject.assignment2.logic.ExternalEventLogic" />
+      <property name="serverConfigurationService"
+            ref="org.sakaiproject.component.api.ServerConfigurationService" />
+   </bean>
+   
+   <bean id="org.sakaiproject.assignment2.logic.AssignmentPermissionLogic" class="org.sakaiproject.assignment2.logic.impl.AssignmentPermissionLogicImpl" init-method="init">
+      <property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+      <property name="dao" ref="org.sakaiproject.assignment2.dao.AssignmentDao" />
+      <property name="assignmentAuthzLogic" ref="org.sakaiproject.assignment2.logic.AssignmentAuthzLogic" />
+      <property name="externalTaggableLogic" ref="org.sakaiproject.assignment2.logic.ExternalTaggableLogic" />
+   </bean>
+   
+   <bean id="org.sakaiproject.assignment2.logic.AssignmentSubmissionLogic" class="org.sakaiproject.assignment2.logic.impl.AssignmentSubmissionLogicImpl" init-method="init">
+      <property name="dao" ref="org.sakaiproject.assignment2.dao.AssignmentDao" />
+      <property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+      <property name="externalGradebookLogic" ref="org.sakaiproject.assignment2.logic.ExternalGradebookLogic" />
+      <property name="permissionLogic" ref="org.sakaiproject.assignment2.logic.AssignmentPermissionLogic" />
+      <property name="assignmentLogic" ref="org.sakaiproject.assignment2.logic.AssignmentLogic" />
+      <property name="externalContentReviewLogic" ref="org.sakaiproject.assignment2.logic.ExternalContentReviewLogic" />
+      <property name="externalEventLogic" ref="org.sakaiproject.assignment2.logic.ExternalEventLogic" />
+   </bean>
+   
+   <bean id="org.sakaiproject.assignment2.logic.ImportExportLogic" class="org.sakaiproject.assignment2.logic.impl.ImportExportLogicImpl" init-method="init">
+      <property name="dao" ref="org.sakaiproject.assignment2.dao.AssignmentDao" />
+      <property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+      <property name="externalGradebookLogic" ref="org.sakaiproject.assignment2.logic.ExternalGradebookLogic" />
+      <property name="assignmentLogic" ref="org.sakaiproject.assignment2.logic.AssignmentLogic" />
+      <property name="externalContentLogic" ref="org.sakaiproject.assignment2.logic.ExternalContentLogic" />
+      <property name="assignmentService" ref="org.sakaiproject.assignment.api.AssignmentService" />
+      <property name="externalContentReviewLogic" ref="org.sakaiproject.assignment2.logic.ExternalContentReviewLogic" />
+   </bean>
+   
+   <bean id="org.sakaiproject.assignment2.logic.AssignmentBundleLogic" class="org.sakaiproject.assignment2.logic.impl.AssignmentBundleLogicImpl" init-method="init">
+   </bean>
+   
+   <bean id="org.sakaiproject.assignment2.logic.ExternalContentReviewLogic" 
+      class="org.sakaiproject.assignment2.logic.impl.ExternalContentReviewLogicImpl" init-method="init">
+      <property name="externalContentLogic" ref="org.sakaiproject.assignment2.logic.ExternalContentLogic" />
+      <property name="assignmentBundleLogic" ref="org.sakaiproject.assignment2.logic.AssignmentBundleLogic" />
+      <property name="idManager" ref="org.sakaiproject.id.api.IdManager" />
+      <property name="serverConfigurationService" ref="org.sakaiproject.component.api.ServerConfigurationService" />
+      <property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+   </bean>
+
+	<bean id="org.sakaiproject.assignment2.logic.UploadAllLogic"
+		  class="org.sakaiproject.assignment2.logic.impl.UploadAllLogicImpl">
+		<property name="assignmentLogic" ref="org.sakaiproject.assignment2.logic.AssignmentLogic" />
+		<property name="assignmentSubmissionLogic" ref="org.sakaiproject.assignment2.logic.AssignmentSubmissionLogic" />
+		<property name="contentHostingService" ref="org.sakaiproject.content.api.ContentHostingService" />
+		<property name="contentTypeImageService" ref="org.sakaiproject.content.api.ContentTypeImageService" />
+		<property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+		<property name="zipExportLogic" ref="org.sakaiproject.assignment2.logic.ZipExportLogic" />
+		<property name="uploadGradesLogic" ref="org.sakaiproject.assignment2.logic.UploadGradesLogic" />
+		<property name="assignmentPermissionLogic" ref="org.sakaiproject.assignment2.logic.AssignmentPermissionLogic" />
+    <property name="assignmentBundleLogic" ref="org.sakaiproject.assignment2.logic.AssignmentBundleLogic" />
+    <property name="assignmentDao" ref="org.sakaiproject.assignment2.dao.AssignmentDao" />
+	</bean> 
+	
+	<bean id="org.sakaiproject.assignment2.logic.UploadGradesLogic"
+		  class="org.sakaiproject.assignment2.logic.impl.UploadGradesLogicImpl">
+		<property name="assignmentLogic" ref="org.sakaiproject.assignment2.logic.AssignmentLogic" />
+		<property name="assignmentPermissionLogic" ref="org.sakaiproject.assignment2.logic.AssignmentPermissionLogic" />
+		<property name="externalGradebookLogic" ref="org.sakaiproject.assignment2.logic.ExternalGradebookLogic" />
+		<property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+    <property name="serverConfigurationService" ref="org.sakaiproject.component.api.ServerConfigurationService" />
+	</bean>
+
+	<bean id="org.sakaiproject.assignment2.logic.ScheduledNotification" class="org.sakaiproject.assignment2.logic.impl.ScheduledNotificationImpl">
+		<property name="emailService" ref="org.sakaiproject.email.api.EmailService" />
+		<property name="externalContentLogic" ref="org.sakaiproject.assignment2.logic.ExternalContentLogic" />
+		<property name="serverConfigurationService" ref="org.sakaiproject.component.api.ServerConfigurationService" />
+		<property name="digestService" ref="org.sakaiproject.email.api.DigestService" />
+		<property name="assignmentBundleLogic" ref="org.sakaiproject.assignment2.logic.AssignmentBundleLogic" />
+		<property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+		<property name="assignmentPermissionLogic" ref="org.sakaiproject.assignment2.logic.AssignmentPermissionLogic" />
+	</bean>
+
+	<bean id="org.sakaiproject.assignment2.logic.ZipExportLogic" class="org.sakaiproject.assignment2.logic.impl.ZipExportLogicImpl">
+		<property name="assignmentLogic" ref="org.sakaiproject.assignment2.logic.AssignmentLogic" />
+		<property name="assignmentSubmissionLogic" ref="org.sakaiproject.assignment2.logic.AssignmentSubmissionLogic" />
+		<property name="gradebookLogic" ref="org.sakaiproject.assignment2.logic.ExternalGradebookLogic" />
+		<property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+		<property name="externalContentLogic" ref="org.sakaiproject.assignment2.logic.ExternalContentLogic" />
+		<property name="assignmentBundleLogic" ref="org.sakaiproject.assignment2.logic.AssignmentBundleLogic" />
+		<property name="assignmentPermissionLogic" ref="org.sakaiproject.assignment2.logic.AssignmentPermissionLogic" />
+	</bean>
+  
+  <bean id="org.sakaiproject.assignment2.logic.ExternalTaggableLogic" class="org.sakaiproject.assignment2.logic.impl.ExternalTaggableLogicImpl" init-method="init">
+   </bean>
+</beans>

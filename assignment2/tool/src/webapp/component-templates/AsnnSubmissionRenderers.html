@@ -1,0 +1,188 @@
+<div>
+
+<!--                                                                         -->
+<!--     Assignment Submission Detail Headers Widget                         -->
+<!--                                                                         -->
+<div rsf:id="assn2-submission-details-widget:">
+    <h3 class="mainHeading">
+        <span rsf:id="heading_title">Professional Writing for Visual Media</span> 
+        <span rsf:id="heading_status" class="highlight">In Progress!</span>
+        <span rsf:id="heading_draft">In Progress - Last saved March 4, 1953</span>
+    </h3>
+    
+	<p class="subheading" rsf:id="due_date">DUE: 09 23, 2008 4:00pm or No due date</p>
+	
+	<p class="alertMessage" rsf:id="submission_closed">Submission is closed</p>
+	
+</div>
+
+
+<!--                                                                         -->
+<!--     Assignment Submission History Display Widget                        -->
+<!--                                                                         -->
+<div rsf:id="asnn2-submission-history-widget:" class="versionHistory">
+		
+		<div id="multiple-submissions" rsf:id="multiple-submissions">
+		    <div id="submission-version:" rsf:id="submission-version:">
+            <div rsf:id="version_toggle:">
+            </div>
+            <div rsf:id="versionInformation" class="subsection1 toggleSubsection">
+                <div rsf:id="submission-entry:">
+                  <!-- The rendered submission goes here. -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--                                                                         -->
+<!--     Assignment Submission Version Display Widget                        -->
+<!--                                                                         -->
+<div rsf:id="asnn2-submission-version-widget:">
+
+    <div rsf:id="feedback_toggle:">
+    <!-- feedback toggle header -->
+    </div>
+    <div rsf:id="feedbackSection" class="toggleSubsection">
+        <h4 rsf:id="feedback-header:">Instructor Feedback</h4>
+        <div rsf:id="feedback-text" class="textPanel indnt1 listCorrection">
+            <p>Feedback from the instructor.</p>
+        </div>
+        <h4 rsf:id="feedback-attachments-header">Feedback Supporting Materials</h4>
+        <ul class="attachList indnt1">
+            <li rsf:id="feedback-attachment-list:">
+                <img src="page_white_word.png" width="16" height="16"/><a href="">ExampleAttachment.doc</a> (52 KB)
+            </li>
+        </ul>
+        <h4 rsf:id="submission-text-header">Submission Text</h4>
+        <div rsf:id="submission-text" class="textPanel indnt1 listCorrection">
+            <p>This is the students submission text,
+               possibly annotated by the instructor.
+            </p>
+        </div>
+        <h4 rsf:id="submission-attachments-header">Supporting Materials</h4>
+        <ul class="attachList indnt1">
+            <li rsf:id="submission-attachment-list:">
+                <img src="page_white_word.png" width="16" height="16"/><a href="">ExampleAttachment.doc</a> (52 KB)
+            </li>
+        </ul>
+        <span rsf:id="no_submitted_attachments" class="instruction indnt1">No attachments yet</span>
+    </div>
+    
+</div>
+
+<!--                                                                         -->
+<!--     Student Submission Editor                                           -->
+<!--                                                                         -->
+<div rsf:id="asnn2-submit-editor-widget:">
+	<form rsf:id="form" method="post">
+        <input type="hidden" rsf:id="csrf" />
+
+    <div rsf:id="resubmit_toggle:">
+      <!-- resubmit toggle header -->
+    </div>
+    
+    <div rsf:id="edit_submission">
+      <div rsf:id="assignment-instructions-edit:">
+         <!-- Assignment Instructions go here. -->
+      </div>
+      <div rsf:id="tagging-info-edit:">
+        <!-- Assignment Tag info goes here -->
+      </div>
+    	<h3 rsf:id="msg=assignment2.student-submit.assignment_submission">Assignment Submission</h3>
+      <div class="studentSubsection">
+      	<p class="instruction" rsf:id="submission_instructions">Submission Instructions</p>
+      	<p rsf:id="required" class="instruction">An * means required.</p>
+      	<fieldset rsf:id="submit_text">
+      		<legend rsf:id="submit_text_label">Assignment Text</legend>
+      		<div rsf:id="text:">
+      		    <textarea id="sub_text" rsf:id="text_disabled" name="something" cols="80" rows="20" wrap="virtual"></textarea>
+      			<!-- this should be the FCKEditor -->
+      		</div>
+      	</fieldset>
+      	
+      	<div rsf:id="submit_attachments">
+          <span rsf:id="plagiarism_check" class="messageContent">Beware!  This will be checked for plagiarism!! </span>
+          <div rsf:id="plagiarism_file_req_section">
+            <a rsf:id="plagiarism_file_req" target="_blank">Supported Formats!</a>
+          </div>
+      	<fieldset id="attachmentsFieldset">
+      		<legend rsf:id="msg=assignment2.student-submit.attachments">Attachments</legend>
+      		<ol class="fragment-attachments-container" rsf:id="attachment_list:">
+      			<li></li>
+      		</ol>
+      		<span class="indnt1"><a rsf:id="add_submission_attachments" class="thickbox">Add Attachments</a></span>
+      	</fieldset>
+      	</div>
+      </div>
+    </div>
+    
+  <div rsf:id="submission_info" id="">
+      <div rsf:id="honor_pledge_fieldset" class="honorPledgeSection">
+        <span rsf:id="msg=assignment2.req_star" class="reqStar">*</span>
+        <input type="checkbox" rsf:id="honor_pledge" id="honor_pledge" class="honor_pledge" />
+        <label for="honor_pledge">
+          <span rsf:id="msg=assignment2.student-submit.honor_pledge" class="honorPledgeLabel">HONOR PLEDGE!:</span>
+          <span rsf:id="honor_pledge_text">
+            I have neither given nor received aid on this assignment!!
+          </span>
+          <span class="messageError" style="display: none;" id="honor_pledge_error" rsf:id="msg=assignment2.student-submit.error.honor_pledge_required">You must agree to the honor code!</span>
+        </label>
+      </div>
+    	
+    	<fieldset rsf:id="submit_section" id="submit_section" class="submit">
+    		<input type="hidden" rsf:id="submitted_text_for_attach_only" />
+    		<input rsf:id="submit_button"  accesskey="s" type="submit" class="active" value="Submit!" onclick="return asnn2.studentActionConfirm(this,'#submit-confirm-dialog',true);" />
+    		<input rsf:id="back_to_edit_button" type="submit" value="Edit!" />
+    		<!-- <input rsf:id="preview_button" title="Preview Submission" accesskey="v" type="button" class="preview_button thickbox" value="Preview"/> -->
+    		<input rsf:id="preview_button" accesskey="v" type="submit" value="Preview!"/>
+    		<input rsf:id="save_draft_button" accesskey="d" type="submit" value="Save Draft!"/>
+    		<input rsf:id="cancel_button" accesskey="x" type="submit" value="Cancel!" onclick="return asnn2.studentActionConfirm(this,'#submit-cancel-dialog',false);"/>
+    	</fieldset>
+    </div>
+
+    <fieldset class="submit" rsf:id="view_only_section" id="">
+      <input rsf:id="return_to_list_button" accesskey="v" type="submit" value="Return to list!"/>
+    </fieldset>
+
+	</form>	
+	
+	<div style="display:none" id="submit-confirm-dialog">
+       <p class="alertMessageInline" rsf:id="msg=assignment2.student-submit.confirm.msg">Are you sure you want to submit this?!!</p>
+        <div class="dialog-submit">
+            <input class="submission-confirm-button active" accesskey="s" type="button" rsf:id="msg=assignment2.student-submit.confirm.continue"/>
+            <input class="submission-cancel-button" accesskey="x" type="button" rsf:id="msg=assignment2.student-submit.confirm.cancel"/>
+        </div>
+    </div>
+    
+    <div style="display:none" id="submit-cancel-dialog">
+        <p class="alertMessageInline" rsf:id="msg=assignment2.dialogs.student_submit_cancel.msg">Are you sure you want to submit this?!!</p>
+        <div class="dialog-submit">
+            <input class="submission-confirm-button active" accesskey="s" type="button" rsf:id="msg=assignment2.dialogs.student_submit_cancel.confirm"/>
+            <input class="submission-cancel-button" accesskey="x" type="button" rsf:id="msg=assignment2.dialogs.student_submit_cancel.cancel"/> 
+        </div>
+    </div>
+    
+  <script type="text/javascript">
+  //<![CDATA[
+    var honorPledgeCheckbox = jQuery("input:checkbox[class='honor_pledge']");
+    honorPledgeCheckbox.click(function () { 
+      honorPledgeElem = honorPledgeCheckbox.get(0);
+      if (honorPledgeElem && honorPledgeElem.checked) {
+       jQuery("#page-replace\\:\\:portletBody\\:1\\:assignment-edit-submission\\:\\:honor_pledge_error").hide();
+      }
+    });
+
+    var resubmitToggle = jQuery("#resubmit_toggle");
+    resubmitToggle.click(function () {
+        // show the submission buttons and hide the "Return to List" button
+        var submitSection = jQuery("#page-replace\\:\\:portletBody\\:1\\:assignment-edit-submission\\:\\:submission_info");
+        var viewOnlySection = jQuery("#page-replace\\:\\:portletBody\\:1\\:assignment-edit-submission\\:\\:view_only_section");
+        submitSection.show();
+        viewOnlySection.hide();
+    });
+  //]]>
+  </script>
+          
+</div>
+</div>

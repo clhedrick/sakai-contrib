@@ -1,0 +1,12 @@
+Index: pom.xml
+===================================================================
+--- pom.xml	(revision 69065)
++++ pom.xml	(working copy)
+@@ -99,6 +99,7 @@
+         <module>emailtemplateservice</module>
+         <module>entitybroker</module>
+         <module>gradebook</module>
++        <module>gradebook2</module>
+         <module>help</module>
+         <module>jobscheduler</module>
+         <module>jsf</module>

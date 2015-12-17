@@ -1,0 +1,232 @@
+<!DOCTYPE html      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Assignment List</title>
+
+<link media="all" href="../css/assignmentsv4.css" type="text/css" rel="stylesheet" />
+<link media="all" href="../css/list.css" type="text/css" rel="stylesheet" />
+
+  <script src="../js/InfusionAll_r7132.js" type="text/javascript"></script>
+  <script src="../js/inst-asnn-list.js" type="text/javascript"></script>
+
+</head>
+<body>
+  <script type="text/javascript">
+    alert(1);
+  </script>
+  <div class="portletBody" rsf:id="page:">
+
+  <ul class="breadCrumb">
+    <li class="lastCrumb">Assignment List</li>
+  </ul>
+
+  <div class="generalErrors">
+    <ul rsf:id="message-for:*" style="margin:0px;">
+      <li>Message for user here</li>
+    </ul>
+  </div>
+
+  <div> 
+    <div style="background: #f1f1f1;">
+      <div id="pager-top" class="fl-pager-top flc-pager-top">
+        <p id="actionBar">
+          <span rsf:id="add_action" style="white-space:nowrap;">
+              <img class="actionImage" src="/sakai-assignment2-tool/content/images/add.png" />
+              <a rsf:id="add_link" class="actionLink" href="#" onclick="window.location = '/portal/tool/'+sakai.curPlacement+'/assignment'">
+              Add!</a>
+          </span>
+          <span rsf:id="reorder_action" style="white-space:nowrap;">
+              <span rsf:id="sep0"> | </span>
+              <img class="actionImage" src="/library/image/silk/arrow_switch.png" />
+              <a rsf:id="reorder_link" class="actionLink" href="#" onclick="window.location = '/portal/tool/'+sakai.curPlacement+'/reorder-student-view'">
+              Reorder Student View!</a>
+          </span>
+          <span rsf:id="import_action" style="white-space:nowrap;">
+              <span rsf:id="sep1"> | </span>
+              <img class="actionImage" src="/library/image/silk/arrow_left.png" />
+              <a rsf:id="import_link" class="actionLink" href="#" onclick="window.location = '/portal/tool/'+sakai.curPlacement+'/import-assignments'">
+              Import from Assignments!</a>
+          </span>
+          <span rsf:id="permissions_action" style="white-space:nowrap;">
+              <span rsf:id="sep2"> | </span>
+              <img class="actionImage" src="/library/image/silk/lock.png" />
+              <a rsf:id="permissions_link" class="actionLink" href="#" onclick="window.location = '/portal/tool/'+sakai.curPlacement+'/permissions'">
+              Permissions!</a>
+          </span>
+          <span rsf:id="grading_action" style="white-space:nowrap;">
+              <span rsf:id="sep3"> | </span>
+              <img class="actionImage" src="/library/image/silk/pencil.png" />
+              <a rsf:id="grading_link" class="actionLink" href="#" onclick="window.location = '/portal/tool/'+sakai.curPlacement+'/sakai.gradebook.permissions.helper/graderRules'">
+              Grader Permissions!</a>
+          </span>
+        </p>
+        <p id="top-pager-area">
+          Show <span>
+          <select class="flc-pager-page-size">
+            <option value="5">5 per page</option>
+            <option value="10">10 per page</option>
+            <option value="20">20 per page</option>
+            <option value="50">50 per page</option>
+            <option value="100">100 per page</option>
+            <option value="150">150 per page</option>
+            <option value="200">200 per page</option>
+            <option value="15000">All</option>
+          </select></span>
+          <span class="fl-pager-firstpage"><img src="/library/image/silk/resultset_first.png" /></span>
+          <span class="flc-pager-previous"><img src="/library/image/silk/resultset_previous.png" /></span>
+          <span class="flc-pager-next"><img src="/library/image/silk/resultset_next.png" /></span>
+          <span class="fl-pager-lastpage"><img src="/library/image/silk/resultset_last.png" /></span>
+        </p>
+        <!-- since we optionally render the float:left items, adding a spacer div to keep things from looking funky -->
+        <div style="clear:both;"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="noAsnn" style="display: none;">
+    <span class="noAsnnHeading">Assignments</span>
+    <div class="noAsnnInfo">There are currently no assignments at this location.  Click 'Add' to add an assignment.</div>
+  </div>
+
+  <span style="display:none" rsf:id="csrf" class="csrf"></span>
+
+  <table style="display: none; border-collapse: collapse" id="asnn-list-table"> 
+    <thead>
+      <tr>
+        <th class="asnn-decorated-heading">
+          <span style="font-size: 1.2em;">Assignments</span>
+          <br/>
+          <div id="top-sort-area" style="display: none; margin: 0; padding: 0px;">
+            <span class="sortbylabel">Sorted by:</span>
+            <ul class="sort-bar">
+              <li class="sort-item"><a href="#" class="titlesort">Title</a> |</li>
+              <li class="sort-item"><a href="#" class="opendatesort">Open Date</a> |</li>
+              <li class="sort-item"><a href="#" class="duedatesort">Due Date</a> |</li>
+              <li class="sort-item">
+                <a href="#" class="instsort">Student View</a>
+                <img src="/library/image/sakai/sortascending.gif" />
+              </li>
+            </ul>
+          </div>
+        </th>
+        <th class="asnn-decorated-heading">
+          <span class="inNewColumn" style="font-size: 1.2em;">In/New</span>
+        </th>
+        <th style="vertical-align: middle" class="asnn-decorated-heading">
+          <input style="display: none;" id="checkall" type="checkbox"/>
+        </th>
+      </tr>
+    </thead>
+    <tbody id="asnn-list">
+      <tr class="row">
+        <td class="asnn-decorated-cell asnn-title-cell"><p style="margin:0;padding:0;">
+          <span style="display:none" class="asnnid">1</span>
+          <span class="asnntitle">Audio Scriptwriting</span>
+          <span class="titleedit" style="display:none;">Audio Scriptwriting</span>
+          <img class="attachments" src="/sakai-assignment2-tool/content/images/attach.png" />
+          <img class="reviewEnabled" src="/../../library/image/silk/rosette.png" 
+              alt="Checking assignment submissions for originality."
+              title="Checking assignment submissions for originality."/>
+          <span class="draft">draft</span>
+          <img class="needsAttention" src="/../../library/image/sakai/warn.gif"
+            alt="There is a problem with this assignment. For additional information, click Edit."
+            title="There is a problem with this assignment. For additional information, click Edit." />
+    </p>
+    <div style="margin-bottom: 2px">
+        <a href="" class="detailslink">View Details</a>
+        <span class="sep0"> | </span>
+        <a href="" class="editlink">Edit</a>
+        <span class="sep1"> | </span>
+        <a href="" class="matrixlink">Create/Edit Matrix Links</a> 
+        <span class="sep2"> | </span>
+        <a href="" class="duplink">Duplicate</a>
+        <span class="sep3"> | </span>
+        <a href="" class="gradelink">Grade</a>
+    </div>
+    <div>
+    <span class="opendatelabel">Open: </span>
+          <span class="opendate">May 6, 2008 3:00 PM</span>
+    </div>
+    <div>
+    <span class="duedatelabel">Due: </span>
+          <span class="duedate">May 13, 2008 3:00 PM</span>
+    </div>
+    <div>
+    <span class="groupslabel">Restricted To: </span>
+          <span class="groups">Red Cohort, Yellow Cohort</span>
+    </div>
+        </td>
+        <td class="asnn-decorated-cell">
+          <span class="inAndNew inNewColumn">8/4</span>
+          <a href="" class="inAndNewLink">10/4</a>
+        </td>
+        <td class="asnn-decorated-cell"><input class="asnncheck" type="checkbox" /></td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="removeAsnn" style="margin-bottom: 20px;">
+    <input style="display: none" type="button" value="Remove" class="removebutton" />
+  </div>
+
+  <div class="pager-sort-area" style="background: #f1f1f1; display: none;">
+    <div id="bottom-pager-area" >
+      <div id="pager-bottom" class="fl-pager-bottom flc-pager-bottom">
+        <p id="page-size-bottom" style="width: 40%;">
+          <span class="flc-pager-summary">1-10 of 500 items</span>
+          <span class="fl-pager-firstpage"><img src="/library/image/silk/resultset_first.png" /></span>
+          <span id="previous-bottom" ><img src="/library/image/silk/resultset_previous.png" /></span>
+          <span id="next-bottom" ><img src="/library/image/silk/resultset_next.png" /></span>
+          <span class="fl-pager-lastpage"><img src="/library/image/silk/resultset_last.png" /></span>
+        </p>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </div> <!-- end pager-sort-area -->
+
+    <!-- This is the template for the Confirm Asnn Remove Dialog. -->
+  <div id="remove-asnn-dialog" style="display:none">
+    <div class="generalErrors">
+      <ul class="ui-dialog-msg-list">
+        <li class="alertMessageInline" >Are you sure you want to remove the following assignments and any associated submissions?</li>
+      </ul>
+    </div>
+    <table class="listHier lines" > <!--  rsf:id="assignment-list-table" > -->
+      <thead><tr>
+        <th>Assignment Title</th>
+        <th>Due</th>
+        <th>Submissions</th>
+      </tr></thead>
+      <tbody id="asnn-to-delete"> <!--
+        <td id="asnn-to-delete-title">Homework 1</td>
+        <td id="asnn-to-delete-due">Mar 26, 2008 5:00 pm</td>
+        <td id="asnn-to-delete-numsubmissions">1</td> -->
+      </tbody>
+    </table>
+    <span style="display:none" id="asnn-to-delete-id"></span>
+    <fieldset class="submit">
+      <input id="remove-asnn-button" accesskey="r" type="button" class="remove-button active" value="Remove" />
+      <input id="cancel-remove-asnn-button" class="cancel-button" accesskey="x" type="button" value="Cancel" />
+    </fieldset>
+  </div>
+
+  <div id="gradebooknameconflict-asnn-dialog" style="display:none">
+    <div class="generalErrors">
+      <ul class="ui-dialog-msg-list">
+        <li class="alertMessageInline" >Assignment gradebook name conflict placeholder text</li>
+      </ul>
+      <fieldset class="submit">
+        <input id="gradebooknameconfict-asnn-dialog-close-button" type="button" value="placeholeder text" onclick='asnn2util.closeDialog(jQuery("#gradebooknameconflict-asnn-dialog"));' />
+      </fieldset>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    asnn2.initAsnnList();
+  </script>
+
+  </div>
+</body>
+</html>

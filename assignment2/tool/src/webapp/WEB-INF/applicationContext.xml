@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean class="org.sakaiproject.assignment2.tool.GradebookItemObserver"
+      init-method="init" destroy-method="destroy">
+        <property name="eventTrackingService" 
+            ref="org.sakaiproject.event.api.EventTrackingService" />
+        <property name="assignmentLogic" 
+            ref="org.sakaiproject.assignment2.logic.AssignmentLogic" />
+        <property name="gradebookLogic" 
+            ref="org.sakaiproject.assignment2.logic.ExternalGradebookLogic" />
+        <property name="serverConfigurationService"
+            ref="org.sakaiproject.component.api.ServerConfigurationService" />
+    </bean>
+
+    <bean id="asnnHelperHandlerHookBeanProxy" parent="RSACBridgeProxy">
+        <property name="targetBeanName" value="asnnHelperHandlerHookBean"/>
+    </bean>
+    
+    <bean parent="handlerHookParent">
+        <property name="value">
+            <bean class="org.sakaiproject.assignment2.tool.handlerhooks.HelperHandlerHook">
+                <property name="viewParametersProxy" ref="viewParametersProxy" />
+                <property name="helperHandlerHookBean" ref="asnnHelperHandlerHookBeanProxy" />
+            </bean>
+        </property>
+    </bean>
+    
+    <!-- test out running some tests from spring -->
+    <!-- 
+   <bean class="org.sakaiproject.testrunner.util.TestExecutor">
+      <property name="testClassname" 
+         value="org.sakaiproject.assignment2.tests.IntegrationTest" />
+      <property name="testType" value="testrunner.integration" />
+      <property name="testDelaySeconds" value="0" />
+   </bean>
+-->
+	<!--   
+		<bean id="messageRenderer" class="org.sakaiproject.assignment2.tool.beans.Assignments2MessageRenderer">
+		<property name="messageLocator">
+		<ref bean="messageLocator" />
+		</property>
+		<property name="infoStyleClass" value="success" />
+		<property name="errorStyleClass" value="alertMessageInline" />
+		</bean>
+	-->
+
+	<bean id="LocalPermissionLogic"
+		class="org.sakaiproject.assignment2.tool.LocalPermissionLogic">
+		<property name="permissionLogic"
+			ref="org.sakaiproject.assignment2.logic.AssignmentPermissionLogic" />
+		<property name="externalLogic"
+			ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+		<property name="assignmentLogic"
+			ref="org.sakaiproject.assignment2.logic.AssignmentLogic" />
+      <property name="externalGradebookLogic"
+          ref="org.sakaiproject.assignment2.logic.ExternalGradebookLogic" />
+	</bean>
+    
+    <bean id="localTurnitinLogic"
+        class="org.sakaiproject.assignment2.tool.LocalTurnitinLogic">
+        <property name="serverConfigurationService" ref="org.sakaiproject.component.api.ServerConfigurationService" />
+    </bean>
+
+	<bean id="localAssignmentLogic"
+		class="org.sakaiproject.assignment2.tool.LocalAssignmentLogic">
+	</bean>
+  
+  <bean id="localCacheLogic"
+    class="org.sakaiproject.assignment2.tool.LocalCacheLogic">
+    <property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+    <property name="assignmentLogic" ref="org.sakaiproject.assignment2.logic.AssignmentLogic" />
+    <property name="assignmentSubmissionLogic" ref="org.sakaiproject.assignment2.logic.AssignmentSubmissionLogic" />
+    <property name="a2SessionCache" ref="org.sakaiproject.assignment2.tool.beans.SessionCache" />
+    <property name="assignmentAuthzLogic" ref="org.sakaiproject.assignment2.logic.AssignmentAuthzLogic" />
+  </bean>
+    
+    <bean id="DisplayUtil" class="org.sakaiproject.assignment2.tool.DisplayUtil">
+        <property name="submissionLogic" ref="org.sakaiproject.assignment2.logic.AssignmentSubmissionLogic" />
+        <property name="messageLocator" ref="messageLocator" />
+        <property name="assignmentBundleLogic" ref="org.sakaiproject.assignment2.logic.AssignmentBundleLogic" />
+        <property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+    </bean>
+
+	
+	<bean  id="org.sakaiproject.assignment2.tool.entity.Assignment2SubmissionEntityProvider"
+	       parent="org.sakaiproject.entitybroker.entityprovider.AbstractEntityProvider"
+	     class="org.sakaiproject.assignment2.tool.entity.Assignment2SubmissionEntityProvider">
+		<property name="submissionLogic" ref="org.sakaiproject.assignment2.logic.AssignmentSubmissionLogic" />
+		<property name="assignmentLogic" ref="org.sakaiproject.assignment2.logic.AssignmentLogic" />
+		<property name="externalGradebookLogic" ref="org.sakaiproject.assignment2.logic.ExternalGradebookLogic" />
+	    <property name="permissionLogic" ref="org.sakaiproject.assignment2.logic.AssignmentPermissionLogic" />
+	    <property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+	    <property name="assignmentBundleLogic" ref="org.sakaiproject.assignment2.logic.AssignmentBundleLogic" />
+        <property name="externalContentReviewLogic" ref="org.sakaiproject.assignment2.logic.ExternalContentReviewLogic" />
+        <property name="sessionManager" ref="org.sakaiproject.tool.api.SessionManager" />
+        <property name="a2sessionCache" ref="org.sakaiproject.assignment2.tool.beans.SessionCache" />
+       <!--  <property name="submissionTableViewStateHolder">
+            <bean parent="RSACBridgeProxy">
+                <property name="targetBeanName" value="SubmissionTableViewStateHolder" />
+            </bean>
+        </property> -->
+	</bean>
+	
+	<bean parent="org.sakaiproject.entitybroker.entityprovider.AbstractEntityProvider"  
+	    class="org.sakaiproject.assignment2.tool.entity.Assignment2EntityProvider">
+		<property name="assignmentLogic" ref="org.sakaiproject.assignment2.logic.AssignmentLogic" />
+	    <property name="permissionLogic" ref="org.sakaiproject.assignment2.logic.AssignmentPermissionLogic" />
+        <property name="externalLogic" ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+        <property name="displayUtil" ref="DisplayUtil" />
+        <property name="assignmentBundleLogic" ref="org.sakaiproject.assignment2.logic.AssignmentBundleLogic" />
+        <property name="externalGradebookLogic" ref="org.sakaiproject.assignment2.logic.ExternalGradebookLogic" />
+        <property name="externalContentReviewLogic" ref="org.sakaiproject.assignment2.logic.ExternalContentReviewLogic" />
+        <property name="externalTaggableLogic" ref="org.sakaiproject.assignment2.logic.ExternalTaggableLogic" />
+        <property name="externalContentLogic" ref="org.sakaiproject.assignment2.logic.ExternalContentLogic" />
+        <property name="messageSource" ref="messageSource" />
+    </bean>
+
+	<!--  causes every variable to post, even if it hasn't changed since page render -->
+	<bean id="ignoreFossilizedValues"
+		class="uk.org.ponder.springutil.BooleanFactory">
+		<property name="value" value="true" />
+	</bean>
+
+	<!-- handles configuration of internationalization messages -->
+	<bean id="messageSource" parent="messageSourceParent">
+      <property name="basename" value="classpath:/bundle/messages" />
+    </bean>
+
+
+	<bean id="Assignment2ViewParamsInterceptor"
+				class="org.sakaiproject.assignment2.tool.Assignment2WorkFlowLogic">
+		<property name="localPermissionLogic" ref="LocalPermissionLogic" />
+	</bean>
+
+	<!--  Handles incoming views to filter based on permissions  -->
+	<bean parent="viewParamsInterceptorParent">
+		<property name="value" ref="Assignment2ViewParamsInterceptor" />
+	</bean>
+	
+	<bean parent="actionResultInterceptorParent">
+    	<property name="value" ref="Assignment2ViewParamsInterceptor" />
+ 	</bean>
+	
+
+	<!-- Define the bean roots from the request scope file that are accessible 
+		via incoming request URL -->
+	<bean parent="requestAddressibleParent">
+		<property name="value"
+			value="AssignmentAuthoringOptionsFlowBean, AssignmentAuthoringBean, AssignmentAuthoringFlowBean, StudentSubmissionBean,RemoveAssignmentCommand,StudentSubmissionVersionFlowBean,GradeAllRemainingAction,MarkFeedbackAsReadAction,Assignment2,AssignmentSubmission,GradeAndFeedbackSubmissionBean,FilePickerBean,AssignmentSubmissionVersion,UploadBean,MarkTodoBean,ReleaseGradesAction,ReleaseFeedbackAction,ReorderAssignmentsAction,ImportAssignmentsAction,CommonNavigationBean" />
+	</bean>
+
+	<!-- Override the default style of user messages -->
+	<bean id="assignment2TemplateContributor"
+		parent="templateContributorParent">
+		<property name="baseDirectory" value="component-templates/" />
+		<property name="templateNames"
+			value="AsnnSubmissionRenderers,SortHeader,AttachmentList,GradebookDetails,StudentViewAssignment,AttachmentEvolver,MarkupEditor,ReviewStatus,AssignmentInstructions,ToggleHeader,AssignmentTags,AsnnDetails,GradeDetails" />
+	</bean>
+
+	<!-- Override the default style of user messages -->
+	<bean id="messageTemplateContributor"
+		parent="templateContributorParent">
+		<property name="baseDirectory" value="component-templates/" />
+		<property name="templateNames" value="Messages" />
+	</bean>
+
+	<!-- Register the template "layout.html" as defining root layout for
+		each page in the application (extension is auto-inferred from view type),
+		base directory is defaulted from "defaultTemplatePath" -> content/templates/ -->
+	<bean parent="rootTemplateContributorParent">
+		<property name="templateNames" value="Layout" />
+	</bean>
+
+	<bean id="HTMLViewGroup" class="uk.org.ponder.rsf.view.ViewGroup">
+		<property name="contentTypeSpec" value="HTML,HTML-FRAGMENT" />
+	</bean>
+
+	<!-- The beans listed here are session beans, currently we have one. :| -->
+	<bean id="myBeanScope" parent="beanScopeParent">
+		<property name="copyPreservingBeans"
+			value="SubmissionTableViewStateHolder" />
+		<property name="exclusive" value="true" />
+	</bean>
+	
+	  <!-- The beans which will be preserved across a flow via simple instance
+			copying -->
+	<bean parent="copyPreservingParent">
+		<!-- <property name="value" value="UploadBean, Assignment2, AssignmentSubmissionVersion, GradeAndFeedbackSubmissionBean, AssignmentSubmission"/> -->
+	    <!-- Ugh, UploadBean still has request scope references as well. -->
+	    <property name="value" value="UploadBean, StudentSubmissionVersionFlowBean, AssignmentAuthoringFlowBean, AssignmentAuthoringOptionsFlowBean"/>
+	</bean>
+	
+	
+
+	<bean id="Assignment2Creator"
+		class="org.sakaiproject.assignment2.tool.beans.Assignment2Creator">
+		<property name="externalLogic"
+			ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+		<property name="messageLocator" ref="messageLocator" />
+	</bean>
+
+	<bean id="Assignment2" parent="entityBeanLocatorParent">
+		<property name="newMethod" value="Assignment2Creator.create" />
+		<property name="fetchMethod"
+			value="org\.sakaiproject\.assignment2\.logic\.AssignmentLogic.getAssignmentByIdWithAssociatedData" />
+		<property name="saveMethod"
+			value="org\.sakaiproject\.assignment2\.logic\.AssignmentLogic.saveAssignment" />
+		<property name="removeMethod"
+			value="org\.sakaiproject\.assignment2\.logic\.AssignmentLogic.deleteAssignment" />
+	</bean>
+
+	<bean id="AssignmentSubmissionCreator"
+		class="org.sakaiproject.assignment2.tool.beans.AssignmentSubmissionCreator">
+		<property name="externalLogic"
+			ref="org.sakaiproject.assignment2.logic.ExternalLogic" />
+	</bean>
+
+	<bean id="AssignmentSubmission" parent="entityBeanLocatorParent">
+		<property name="newMethod"
+			value="AssignmentSubmissionCreator.create" />
+		<property name="fetchMethod"
+			value="org\.sakaiproject\.assignment2\.logic\.AssignmentSubmissionLogic.getAssignmentSubmissionById" />
+		<property name="saveMethod"
+			value="org\.sakaiproject\.assignment2\.logic\.AssignmentSubmissionLogic.saveAssignmentSubmission" />
+		<property name="removeMethod"
+			value="org\.sakaiproject\.assignment2\.logic\.AssignmentSubmissionLogic.deleteAssignmentSubmission" />
+	</bean>
+
+	<bean id="AssignmentSubmissionVersionCreator"
+		class="org.sakaiproject.assignment2.tool.beans.AssignmentSubmissionVersionCreator">
+	</bean>
+
+	<bean id="AssignmentSubmissionVersion"
+		parent="entityBeanLocatorParent">
+		<property name="newMethod"
+			value="AssignmentSubmissionVersionCreator.create" />
+		<property name="fetchMethod"
+			value="org\.sakaiproject\.assignment2\.logic\.AssignmentSubmissionLogic.getSubmissionVersionById" />
+		<property name="saveMethod"
+			value="org\.sakaiproject\.assignment2\.logic\.AssignmentSubmissionLogic.saveInstructorFeedback" />
+	</bean>
+
+	<bean parent="handlerHookParent">
+		<property name="value">
+			<bean parent="RSACBridgeProxy">
+				<property name="targetBeanName" value="zipHandlerHook" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="zipSubmissionsBean" parent="viewParamsRegistrarParent">
+		<property name="viewID" value="zipSubmissions" />
+		<property name="viewParamsClass"
+			value="org.sakaiproject.assignment2.tool.params.ZipViewParams" />
+	</bean>
+
+	<!-- Use RSF's "BeanGuard" validation scheme to trap all write accesses to a
+		Assignment2 entity -->
+	<!-- 
+		<bean parent="writeGuardParent">
+		<property name="guardedPath" value="Assignment2.*" />
+		<property name="guardMethod" value="Assignment2Validator.assignment" />
+		</bean>
+	-->
+	
+	<bean id="org.sakaiproject.assignment2.tool.beans.SessionCache" 
+	      class="org.sakaiproject.assignment2.tool.beans.SessionCache"
+	      init-method="init">
+	      <property name="memoryService" ref="org.sakaiproject.memory.api.MemoryService" />
+	      <property name="assignment2SubmissionEntityProvider" ref="org.sakaiproject.assignment2.tool.entity.Assignment2SubmissionEntityProvider" />
+	</bean>
+    
+    <bean parent="org.sakaiproject.entitybroker.entityprovider.AbstractEntityProvider"  
+      class="org.sakaiproject.assignment2.tool.entity.ViewAssignment2EntityProvider">
+      <property name="localCacheLogic" ref="localCacheLogic" />
+      <property name="assignmentPermissionLogic" ref="org.sakaiproject.assignment2.logic.AssignmentPermissionLogic" />
+    </bean>
+    
+    <bean parent="org.sakaiproject.entitybroker.entityprovider.AbstractEntityProvider"  
+      class="org.sakaiproject.assignment2.tool.entity.ViewSubmissionEntityProvider">
+      <property name="assignmentSubmissionLogic" ref="org.sakaiproject.assignment2.logic.AssignmentSubmissionLogic" />
+      <property name="localCacheLogic" ref="localCacheLogic" />
+    </bean>
+	
+</beans>

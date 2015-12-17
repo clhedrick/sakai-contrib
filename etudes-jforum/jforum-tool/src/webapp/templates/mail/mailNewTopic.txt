@@ -1,0 +1,15 @@
+<#setting number_format = "#"/>
+A topic has been updated in the <a href="${siteToolUrl}"><b>${siteTitle}</b></a> site at Etudes (${portalUrl})
+<br /><br />
+-----------------------------
+<br />
+From: ${topicFrom} 
+<br />
+Subject: ${post.subject}
+<br /><br />
+${post.text}
+<br /><br />
+-----------------------------
+<br /><br />
+This notification message was sent by Etudes(${portalUrl}) from the ${siteTitle} site. 
+You can modify how you receive notifications at Discussions & Private Messages >> My Profile.

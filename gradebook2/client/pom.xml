@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+    	<artifactId>gradebook2-base</artifactId>
+    	<groupId>org.sakaiproject.gradebook2</groupId>
+    	<version>1.9.0-SNAPSHOT</version>
+   		<relativePath>../pom.xml</relativePath>
+  	</parent>
+  	
+	<modelVersion>4.0.0</modelVersion>
+	<name>Sakai Gradebook2 Client</name>
+	<artifactId>gradebook2-client</artifactId>
+	<!-- packaging>jar</packaging-->
+	
+	<profiles>
+		<profile>
+            <id>gwt-dev-windows</id>
+            <properties>
+                <platform>windows</platform>
+            </properties>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+        </profile>
+        <profile>
+            <id>gwt-dev-mac</id>
+            <properties>
+                <platform>mac</platform>
+            </properties>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+        </profile>        
+        <profile>
+            <id>gwt-dev-linux</id>
+            <properties>
+                <platform>linux</platform>
+            </properties>
+            <activation>
+                <os>
+                    <name>linux</name>
+                </os>
+            </activation>
+        </profile>
+    </profiles>
+	
+	<build>
+		<directory>target</directory>
+    	<outputDirectory>target/classes</outputDirectory>
+    	<testOutputDirectory>target/test-classes</testOutputDirectory>
+    	<sourceDirectory>src/java</sourceDirectory>
+		<resources>
+			<resource>
+	   			<directory>${basedir}/src/java</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>2.5.0</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.google.gwt</groupId>
+						<artifactId>gwt-user</artifactId>
+						<version>${gwt.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>com.google.gwt</groupId>
+						<artifactId>gwt-dev</artifactId>
+						<version>${gwt.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<configuration>
+							<module>org.sakaiproject.gradebook.gwt.GradebookApplication</module>
+							<extraJvmArgs>-Xmx512m</extraJvmArgs>
+							<inplace>true</inplace>
+							<warSourceDirectory>${basedir}/../war</warSourceDirectory>
+						</configuration>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+				    <compileSourcesArtifacts>
+					<artifact>org.sakaiproject.gradebook2:gradebook2-api:jar</artifact>
+				    </compileSourcesArtifacts>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+       	</plugins>
+	</build>
+
+	
+	<dependencies>	
+		<!-- Project dependencies -->
+
+		<dependency>
+      		<groupId>org.sakaiproject.gradebook2</groupId>
+      		<artifactId>gradebook2-api</artifactId>
+      		<scope>provided</scope>
+   		</dependency>
+
+		<dependency>
+  	  		<groupId>org.sakaiproject.gradebook2</groupId>
+      		<artifactId>gradebook2-model</artifactId>
+      		<scope>provided</scope>
+  		</dependency>
+
+		<dependency>
+  	  		<groupId>org.sakaiproject.gradebook2</groupId>
+      		<artifactId>gradebook2-shared</artifactId>
+  		</dependency>
+
+		<!-- GWT Visualization Dependency -->
+    	<dependency>
+    		<groupId>com.google.gwt.google-apis</groupId>
+    		<artifactId>gwt-visualization</artifactId>
+    		<version>1.1.2</version>
+    		<scope>compile</scope>
+    	</dependency>
+    	
+    	
+    	<!--
+    		The following tow javax.validaiton dependencies are needed because the gwt-maven-plugin v2.2.0 doesn't handle this GWT v2.3.0 dependency
+    		For more information, see: http://goo.gl/deqTg
+    	 -->
+    	<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${javax.validation.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${javax.validation.version}</version>
+			<classifier>sources</classifier>
+			<scope>provided</scope>
+		</dependency>
+    	
+		<dependency>
+			<groupId>com.googlecode.gwt.inject</groupId>
+			<artifactId>gin</artifactId>
+			<version>1.5-post-gwt-2.2</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>3.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-assistedinject</artifactId>
+			<version>3.0</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>	
+</project>
+

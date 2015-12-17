@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:rsf="http://ponder.org.uk/rsf" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title rsf:id="msg=assignment2.title">Assignments</title>
+		<link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" />
+		<link href="/library/skin/default/tool.css" type="text/css"rel="stylesheet" media="all" />
+		<link href="../css/assignmentsv4.css" type="text/css" rel="stylesheet" media="all" />
+	</head>
+	<body>
+		<!--  everything outside of rsf:id="page:" is set in Layout.html using outerPageTemplates -->
+		<div rsf:id="page:" class="portletBody">
+			<ul class="breadCrumb">
+				<li><a rsf:id="breadcrumb_asnn_list">Assignment List</a></li>
+				<li><a rsf:id="breadcrumb_asnn_submissions">Submissions for Homework 1</a></li>
+				<li rsf:id="msg=assignment2.upload_grades.title" class="lastCrumb">Upload Grades</li>
+			</ul>
+		
+			<h3 rsf:id="msg=assignment2.upload_grades_confirm.title">Verify Grade Import</h3>
+			
+			<div class="generalErrors">
+                <ul rsf:id="message-for:*" style="margin:0px;">
+                    <li>Message for user here</li>
+                </ul>
+            </div>
+			
+			<p class="instruction" rsf:id="msg=assignment2.upload_grades_confirm.instructions">
+				Below is a display of the contents of your spreadsheet. If you need to make changes, 
+				click the Back button, make changes to your file, and import it again. 
+			</p>
+
+			<table class="listHier lines nolines" cellpadding="0" cellspacing="0">
+			     <thead>
+			         <tr>
+			             <th id="studentid-header" rsf:id="msg=assignment2.upload_grades_confirm.tableheader.studentid">Student ID</th>
+			             <th id="studentname-header" rsf:id="msg=assignment2.upload_grades_confirm.tableheader.studentname">Student Name</th>
+			             <th id="title-header" rsf:id="title-header"></th>
+			             <th id="comments-header" rsf:id="msg=assignment2.upload_grades_confirm.tableheader.comments"></th>
+			         </tr>
+			     </thead>
+			     <tbody>
+			         <tr rsf:id="student-row:">
+			             <td headers="page-replace::studentid-header" rsf:id="student-id">earledge</td>
+			             <td headers="page-replace::studentname-header" rsf:id="student-name">Arledge, Earlene</td>
+			             <td headers="page-replace::title-header" rsf:id="grade">90</td>
+			             <td headers="page-replace::comments-header" rsf:id="comments"></td>
+			         </tr>
+			     </tbody>
+			
+			</table>
+
+			<form method="post" rsf:id="finish-form" enctype="multipart/form-data">
+				<input type="hidden" rsf:id="csrf" />
+				<div class="highlightPanel">
+					<p class="act">
+						<input rsf:id="ok-button" type="submit" accesskey="s" value="Ok" />
+						<input rsf:id="cancel-button" type="submit" accesskey="x" value="Back" />
+					</p>
+				</div>
+			</form>
+
+		</div>
+	</body>
+</html>

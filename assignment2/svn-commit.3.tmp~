@@ -1,0 +1,19 @@
+
+--This line, and those below, will be ignored--
+
+M    impl/src/java/org/sakaiproject/assignment2/logic/impl/ExternalGradebookLogicImpl.java
+M    impl/pom.xml
+M    tool/src/webapp/WEB-INF/requestContext.xml
+M    tool/src/webapp/WEB-INF/web.xml
+M    tool/src/java/org/sakaiproject/assignment2/tool/producers/AddAttachmentHelperProducer.java
+M    tool/src/java/org/sakaiproject/assignment2/tool/producers/TaggableHelperProducer.java
+M    tool/src/java/org/sakaiproject/assignment2/tool/producers/PermissionsProducer.java
+M    tool/src/java/org/sakaiproject/assignment2/tool/entity/ViewAssignment2EntityProvider.java
+M    tool/src/java/org/sakaiproject/assignment2/tool/entity/ViewSubmissionEntityProvider.java
+M    tool/src/java/org/sakaiproject/assignment2/tool/handlerhooks/Asnn2HttpServletFactory.java
+M    tool/src/java/org/sakaiproject/assignment2/tool/handlerhooks/HelperHandlerHook.java
+M    tool/src/java/org/sakaiproject/assignment2/tool/handlerhooks/HelperHandlerHookBean.java
+M    tool/src/java/org/sakaiproject/assignment2/tool/params/ThickboxHelperViewParams.java
+M    tool/src/java/org/sakaiproject/assignment2/tool/params/TaggableHelperViewParams.java
+M    tool/pom.xml
+M    pack/src/webapp/WEB-INF/components.xml

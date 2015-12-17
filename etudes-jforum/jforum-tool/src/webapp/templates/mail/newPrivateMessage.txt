@@ -1,0 +1,13 @@
+<#setting number_format = "#"/>
+You have a new Private Message in the <a href="${siteUrl}"><b>${siteTitle}</b></a> site at Etudes (${portalUrl}) 
+<br /><br />
+Go to the site to reply to the message.
+<br /><br />
+-----------------------------
+<br />
+From: ${pmFrom} 
+<br />
+Subject: ${pmSubject} 
+<br /><br />
+${pmText}
+<br /><br />

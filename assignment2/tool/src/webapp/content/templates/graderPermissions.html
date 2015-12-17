@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:rsf="http://ponder.org.uk/rsf" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title rsf:id="msg=assignment2.title">Assignments</title>
+		<link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" />
+		<link href="/library/skin/default/tool.css" type="text/css"rel="stylesheet" media="all" />
+		<link href="../css/assignmentsv4.css" type="text/css" rel="stylesheet" media="all" />
+	</head>
+	<body>
+		<!--  everything outside of rsf:id="page:" is set in Layout.html using outerPageTemplates -->
+		<div rsf:id="page:" class="portletBody">
+			<ul class="breadCrumb">
+				<li><a rsf:id="breadcrumb_asnn_list">Assignment List</a></li>
+				<li rsf:id="msg=assignment2.grader-perms.page_title" class="lastCrumb">Upload All</li>
+			</ul>
+		
+			<h2 rsf:id="msg=assignment2.grader-perms.title">Grader Permission Settings</h2>
+
+			<p class="instruction" rsf:id="grader-perms-instructions">
+				When an assignment is graded, only users with grading privileges in your Gradebook
+         tool may provide a grade for the submission.  You are able to extend or restrict
+         grading privileges for certain roles in your gradebook.  The roles defined in this
+         site have the following grading privileges in the gradebook.  Click "Customize" to
+         customize these privileges for the roles that may be customized.
+			</p>
+            
+      <table class="listHier lines">
+        <tr>
+          <th rsf:id="msg=assignment2.grader-perms.role">Role!</th>
+          <th rsf:id="msg=assignment2.grader-perms.privileges">Grade submissions from:</th>
+        </tr>
+        <tr rsf:id="role_row:">
+          <td rsf:id="role_name">Instructor</td>
+          <td><span rsf:id="role_privileges">All</span> <a rsf:id="customize_link" class="thickbox">Customize!</a></td>
+        </tr>
+      </table>
+      
+      <form method="get" rsf:id="return-to-list-form">
+          <fieldset class="submit">
+            <input rsf:id="return-to-list" accesskey="s" type="submit" value="Return to Assignment List!" />
+          </fieldset>
+      </form>
+        
+		</div>
+	</body>
+</html>

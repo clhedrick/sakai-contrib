@@ -1,0 +1,404 @@
+<#--
+/**********************************************************************************
+ * $URL: https://source.sakaiproject.org/contrib/etudes/sakai-jforum/tags/2.9.11/jforum-tool/src/webapp/templates/default/pm_list.htm $
+ * $Id: pm_list.htm 83559 2013-04-30 19:03:29Z murthy@etudes.org $ 
+ *********************************************************************************** 
+ * 
+ * Copyright (c) 2008, 2009, 2010, 2011, 2012 Etudes, Inc. 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * 
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License. 
+ * 
+ * Portions completed before July 1, 2004 Copyright (c) 2003, 2004 Rafael Steil, All rights reserved, licensed under the BSD license. 
+ * http://www.opensource.org/licenses/bsd-license.php 
+ * 
+ * Redistribution and use in source and binary forms, 
+ * with or without modification, are permitted provided 
+ * that the following conditions are met: 
+ * 
+ * 1) Redistributions of source code must retain the above 
+ * copyright notice, this list of conditions and the 
+ * following disclaimer. 
+ * 2) Redistributions in binary form must reproduce the 
+ * above copyright notice, this list of conditions and 
+ * the following disclaimer in the documentation and/or 
+ * other materials provided with the distribution. 
+ * 3) Neither the name of "Rafael Steil" nor 
+ * the names of its contributors may be used to endorse 
+ * or promote products derived from this software without 
+ * specific prior written permission. 
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT 
+ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, 
+ * BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
+ * THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE 
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER 
+ * IN CONTRACT, STRICT LIABILITY, OR TORT 
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE 
+ ***********************************************************************************/
+ -->
+<#include "header.htm"/>
+<table cellspacing="0" cellpadding="10" width="100%" align="center" border="0">
+	<tbody>
+		<tr>
+			<td>
+				<script language="JavaScript" type="text/javascript">
+				<#include "js/pm_moderation.js"/>
+				//
+				// Should really check the browser to stop this whining ...
+				//
+				/*
+				function select_switch(status) 
+				{
+					for (i = 1; i < document.privmsg_list.length; i++) {
+						document.privmsg_list.elements[i].checked = status;
+					}
+				}
+				*/
+				var status = false;
+				function select_switch() 
+				{
+					if (status)
+					{
+						status = false;	
+					}
+					else
+					{
+						status = true;
+					}
+					
+					for (i = 1; i < document.privmsg_list.length; i++) 
+					{						
+						document.privmsg_list.elements[i].checked = status;
+					}
+				}
+				
+				function toggle_switch(ele)
+				{
+					//alert(ele.checked);
+					
+					var chkAllEle = document.getElementsByName("chkAll");
+					
+					if (!ele.checked)
+					{
+						for (i = 0; i < chkAllEle.length; i++) 
+						{
+							chkAllEle[i].checked = false;
+						}
+					}
+					else
+					{
+						var allStatus = true;
+						
+						var eleId = document.getElementsByName("id");
+						
+						for (i = 0; i < eleId.length; i++) 
+						{						
+							if (!eleId[i].checked)
+							{
+								allStatus = false;
+								break;
+							}
+						}
+						
+						for (i = 0; i < chkAllEle.length; i++) 
+						{
+							chkAllEle[i].checked = allStatus;
+						}
+					}
+				}
+				</script>
+
+				<table cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
+					<tbody>
+						<tr>
+							<td valign="top" align="middle" width="100%">
+								<table height="40" cellspacing="2" cellpadding="2" border="0">
+									<tbody>
+										<tr>
+											<#--td valign="bottom">
+												<#if !inbox?default(false)>
+												<a href="${JForumContext.encodeURL("/pm/inbox/date/d")}">
+												</#if>
+												<img class="imgicon" src="${contextPath}/templates/${templateName}/images/pm_inbox.png" border="0" alt="inbox icon"/>
+												<#if !inbox?default(false)>
+												</a>
+												</#if>
+											</td-->
+											<td valign="bottom">
+												<span class="gen">
+												<#if !inbox?default(false)>
+												<a href="${JForumContext.encodeURL("/pm/inbox/date/d")}">
+												<#else>
+												<b>
+												</#if>
+												<img class="imgicon" src="${contextPath}/templates/${templateName}/images/pm_inbox.png" alt="inbox icon"/>${I18n.getMessage("PrivateMessage.inbox")}
+												<#if !inbox?default(false)>												
+												</a>
+												</#if>
+												</span>
+											</td>
+											<#--td valign="bottom">
+												<#if !sentbox?default(false)>
+												<a href="${JForumContext.encodeURL("/pm/sentbox/date/d")}">
+												</#if>
+												<img class="imgicon" src="${contextPath}/templates/${templateName}/images/pm_sentbox.png" border="0" alt="sent icon"/>
+												<#if !sentbox?default(false)>
+												</a>
+												<#else>
+												<b>
+												</#if>
+											</td-->
+											<td valign="bottom">
+												&nbsp;&nbsp;
+												<span class="gen">
+												<#if !sentbox?default(false)>
+												<a href="${JForumContext.encodeURL("/pm/sentbox/date/d")}">
+												<#else>
+												<b>
+												</#if>
+												<img class="imgicon" src="${contextPath}/templates/${templateName}/images/pm_sentbox.png" alt="sent icon"/>${I18n.getMessage("PrivateMessage.sentbox")}
+												<#if !sentbox?default(false)>
+												</a>
+												<#else>
+												</b>
+												</#if>
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<br clear="all" />
+				<form action="${JForumContext.encodeURL("/jforum")}" method="post" name="privmsg_list" id="privmsg_list">
+				<input type="hidden" name="module" value="${moduleName}" />
+				<input type="hidden" id="action" name="action" value="delete">
+					<table class="forumline" cellspacing="1" cellpadding="3" width="100%" border="0">
+						<tbody>
+							<tr>
+								<td valign="bottom" colspan="3" align="left" nowrap="nowrap">
+									<span class="gen">
+									<#--a href="${JForumContext.encodeURL("/pm/send")}" accesskey="${I18n.getMessage("new-access")}"><img src="${contextPath}/templates/${templateName}/images/${imagesI18n}/new_pm.gif" border="0" alt="${I18n.getMessage("add-pm-description")}" title="${I18n.getMessage("add-pm-access-description")}"/></a-->
+									<a href="${JForumContext.encodeURL("/pm/send")}" accesskey="${I18n.getMessage("new-access")}">
+									<img class="imgicon" src="${contextPath}/templates/${templateName}/images/email_edit.png" alt="${I18n.getMessage("add-pm-description")}" title="${I18n.getMessage("add-pm-access-description")}"/>${I18n.getMessage("User.NewPM")}
+									</a>
+									</span>
+								</td>
+								<td class="gen" colspan="3" valign="bottom" nowrap="nowrap" align="right">
+									<#if (pmList.size() > 0)>
+									&nbsp;
+									<a href="#" onclick="javascript:flagPMs('addFlag');">
+										<img class="imgicon" src="${contextPath}/templates/${templateName}/images/flag-pm.png" alt="add follow-up icon" title="${I18n.getMessage("PrivateMessage.addFlag")}"/>${I18n.getMessage("PrivateMessage.addFlag")}
+									</a>
+									&nbsp;&nbsp;
+									<a href="#" onclick="javascript:flagPMs('clearFlag');">
+										<img class="imgicon" src="${contextPath}/templates/${templateName}/images/clear_flag.png" alt="clear follow-up icon" title="${I18n.getMessage("PrivateMessage.clearFlag")}"/>${I18n.getMessage("PrivateMessage.clearFlag")}
+									</a>
+									&nbsp;
+									<a href="#" onclick="javascript:deletePMs();">
+										<img class="imgicon" src="${contextPath}/templates/${templateName}/images/delete.png" alt="delete icon" title="${I18n.getMessage("PrivateMessage.deleteSelected")}"/>${I18n.getMessage("PrivateMessage.deleteSelected")}
+									</a>
+									</#if>
+								</td>
+							</tr>
+							<tr>
+								<th class="thCornerL" nowrap="nowrap" width="5%" valign="middle" align="center">
+									<#if (pmList.size() > 0)>
+										<input type="checkbox" id="chkAll" name="chkAll" onclick="javascript:select_switch();" />
+									</#if>
+								</th>
+								<th class="thTop" nowrap="nowrap" width="4%" height="25">
+									&nbsp;&nbsp;
+								</th>
+								<th class="thTop" nowrap="nowrap" width="3%" height="25">
+									&nbsp;&nbsp;
+								</th>
+								<th class="thTop" nowrap="nowrap" width="53%">
+									&nbsp;${I18n.getMessage("PrivateMessage.subject")}&nbsp;
+								</th>
+								<th class="thTop" nowrap="nowrap" width="20%">
+									<#if inbox?default(false)>
+										&nbsp;
+										<#if (sort_column?? && sort_column?contains("name")) >
+											<#if (sort_direction?contains("a")) >
+												<a href="${JForumContext.encodeURL("/pm/inbox/name/d")}">
+												${I18n.getMessage("PrivateMessage.from")}&nbsp;
+												<img src="${contextPath}/templates/${templateName}/images/sort_ascending.gif"/>
+												</a>
+											<#elseif (sort_direction?contains("d"))>
+												<a href="${JForumContext.encodeURL("/pm/inbox/name/a")}">
+												${I18n.getMessage("PrivateMessage.from")}&nbsp;
+												<img src="${contextPath}/templates/${templateName}/images/sort_descending.gif"/>
+												</a>
+											</#if>
+										<#else>
+											<a href="${JForumContext.encodeURL("/pm/inbox/name/a")}">
+												${I18n.getMessage("PrivateMessage.from")}&nbsp;
+											</a>
+										</#if>
+									<#else>
+										&nbsp;
+										<#if (sort_column?? && sort_column?contains("name")) >
+											<#if (sort_direction?contains("a")) >
+												<a href="${JForumContext.encodeURL("/pm/sentbox/name/d")}">
+												${I18n.getMessage("PrivateMessage.to")}&nbsp;
+												<img src="${contextPath}/templates/${templateName}/images/sort_ascending.gif"/>
+												</a>
+											<#elseif (sort_direction?contains("d"))>
+												<a href="${JForumContext.encodeURL("/pm/sentbox/name/a")}">
+												${I18n.getMessage("PrivateMessage.to")}&nbsp;
+												<img src="${contextPath}/templates/${templateName}/images/sort_descending.gif"/>
+												</a>
+											</#if>
+										<#else>
+											<a href="${JForumContext.encodeURL("/pm/sentbox/name/a")}">
+												${I18n.getMessage("PrivateMessage.to")}&nbsp;
+											</a>
+										</#if>
+									</#if>
+								</th>
+								<th class="thTop" nowrap="nowrap" width="15%">
+									&nbsp;
+									<#if inbox?default(false)>
+										<#if (sort_column?? && sort_column?contains("date")) >
+											<#if (sort_direction?contains("a")) >
+												<a href="${JForumContext.encodeURL("/pm/inbox/date/d")}">
+												${I18n.getMessage("PrivateMessage.date")}&nbsp;
+												<img src="${contextPath}/templates/${templateName}/images/sort_ascending.gif"/>
+												</a>
+											<#elseif (sort_direction?contains("d"))>
+												<a href="${JForumContext.encodeURL("/pm/inbox/date/a")}">
+												${I18n.getMessage("PrivateMessage.date")}&nbsp;
+												<img src="${contextPath}/templates/${templateName}/images/sort_descending.gif"/>
+												</a>
+											</#if>
+										<#else>
+											<a href="${JForumContext.encodeURL("/pm/inbox/date/a")}">
+												${I18n.getMessage("PrivateMessage.date")}&nbsp;
+											</a>
+										</#if>
+									<#else>
+										<#if (sort_column?? && sort_column?contains("date")) >
+											<#if (sort_direction?contains("a")) >
+												<a href="${JForumContext.encodeURL("/pm/sentbox/date/d")}">
+												${I18n.getMessage("PrivateMessage.date")}&nbsp;
+												<img src="${contextPath}/templates/${templateName}/images/sort_ascending.gif"/>
+												</a>
+											<#elseif (sort_direction?contains("d"))>
+												<a href="${JForumContext.encodeURL("/pm/sentbox/date/a")}">
+												${I18n.getMessage("PrivateMessage.date")}&nbsp;
+												<img src="${contextPath}/templates/${templateName}/images/sort_descending.gif"/>
+												</a>
+											</#if>
+										<#else>
+											<a href="${JForumContext.encodeURL("/pm/sentbox/date/a")}">
+												${I18n.getMessage("PrivateMessage.date")}&nbsp;
+											</a>
+										</#if>
+									</#if>
+								</th>								
+							</tr>
+							<#list pmList as pm>
+							<tr>
+								<td class="row1" valign="middle" align="middle" width="5%"><span class="postdetails"><input type="checkbox" value="${pm.id}" name="id" onclick="javascript:toggle_switch(this);" /></span></td>
+								<td class="row1" valign="middle" align="left" width="4%" style="white-space:nowrap">
+									<#if pm.type == NEW>
+										<img src="${contextPath}/templates/${templateName}/images/email_new.png" alt="new message icon" title="${I18n.getMessage("pm-unread-title")}"/>
+									<#else>
+										<#if pm.isReplied()>
+											<img src="${contextPath}/templates/${templateName}/images/email_replied.png" alt="replied icon" title="${I18n.getMessage("pm-replied-title")}"/>
+										<#else>
+											<img src="${contextPath}/templates/${templateName}/images/email_read_pm.png" alt="message icon" title="${I18n.getMessage("pm-read-title")}"/>
+										</#if>
+									</#if>
+									<#if pm.priority == PRIORITY_HIGH>
+										<img src="${contextPath}/templates/${templateName}/images/icon_priority_high.png" alt="${I18n.getMessage("PrivateMessage.priorityHighMessageTitle")}" title="${I18n.getMessage("PrivateMessage.priorityHighMessageTitle")}"/>
+									</#if>
+								</td>
+								<td class="row1" valign="middle" align="center" width="3%">
+									<#if pm.isFlagToFollowup()>
+										<img src="${contextPath}/templates/${templateName}/images/flag-pm.png" alt="follow-up icon"/>
+									<#else>
+										<img height="18" src="${contextPath}/templates/${templateName}/images/spacer.gif" width="13"/>
+									</#if>
+								</td>
+								<td class="row1" valign="middle" align="left" width="53%">
+									<#if pm.post.hasAttachments()><img src="${contextPath}/templates/${templateName}/images/icon_clip.gif" align="middle" alt="attachment icon"></#if>
+									<span class="gen">&nbsp;<a class="gen" href="${JForumContext.encodeURL("/pm/read/${pm.id}")}">${pm.post.subject}</a></span>
+								</td>
+								<td class="row1" valign="middle" align="left" width="20%">
+								    <#if inbox?default(false)>
+									<span class="gen">&nbsp;<a class="gen" href="${JForumContext.encodeURL("/user/profile/${pm.fromUser.id}")}">${pm.fromUser.firstName?default("")} ${pm.fromUser.lastName?default("")}</a></span>
+									<#else>
+									<span class="gen">&nbsp;<a class="gen" href="${JForumContext.encodeURL("/user/profile/${pm.toUser.id}")}">${pm.toUser.firstName?default("")} ${pm.toUser.lastName?default("")}</a></span>
+									</#if>									
+								</td>
+								<td class="row1" valign="middle" align="left" width="15%"><span class="gen">${DateUtil.getStringFromDate(pm.post.time)}</span></td>
+							</tr>
+							</#list>
+							<tr>
+								<td class="catBottom" nowrap="nowrap" width="5%" valign="middle" align="center">
+									<#if (pmList.size() > 0)>
+										<input type="checkbox" id="chkAll" name="chkAll" onclick="javascript:select_switch();" />
+									</#if>
+								</td>
+								<td class="catBottom" align="right" colspan="5" height="28">
+								</td>
+							</tr>
+							<tr>
+								<td valign="bottom" colspan="3" align="left" nowrap="nowrap">
+									<span class="gen">
+									<#--a href="${JForumContext.encodeURL("/pm/send")}" accesskey="${I18n.getMessage("new-access")}"><img src="${contextPath}/templates/${templateName}/images/${imagesI18n}/new_pm.gif" border="0" alt="${I18n.getMessage("add-pm-description")}" title="${I18n.getMessage("add-pm-access-description")}"/></a-->
+									<a href="${JForumContext.encodeURL("/pm/send")}" accesskey="${I18n.getMessage("new-access")}">
+									<img class="imgicon" src="${contextPath}/templates/${templateName}/images/email_edit.png" alt="${I18n.getMessage("add-pm-description")}" title="${I18n.getMessage("add-pm-access-description")}"/>${I18n.getMessage("User.NewPM")}
+									</a>
+									</span>
+								</td>
+								<td class="gen" colspan="3" valign="bottom" nowrap="nowrap" align="right">
+									<#if (pmList.size() > 0)>
+									&nbsp;
+									<a href="#" onclick="javascript:flagPMs('addFlag');">
+										<img class="imgicon" src="${contextPath}/templates/${templateName}/images/flag-pm.png" alt="add follow-up icon" title="${I18n.getMessage("PrivateMessage.addFlag")}"/>${I18n.getMessage("PrivateMessage.addFlag")}
+									</a>
+									&nbsp;&nbsp;
+									<a href="#" onclick="javascript:flagPMs('clearFlag');">
+										<img class="imgicon" src="${contextPath}/templates/${templateName}/images/clear_flag.png" alt="clear follow-up icon" title="${I18n.getMessage("PrivateMessage.clearFlag")}"/>${I18n.getMessage("PrivateMessage.clearFlag")}
+									</a>
+									&nbsp;
+									<a href="#" onclick="javascript:deletePMs();">
+										<img class="imgicon" src="${contextPath}/templates/${templateName}/images/delete.png" alt="delete icon" title="${I18n.getMessage("PrivateMessage.deleteSelected")}"/>${I18n.getMessage("PrivateMessage.deleteSelected")}
+									</a>
+									</#if>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+				<div align="center"></div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<#include "bottom.htm"/>

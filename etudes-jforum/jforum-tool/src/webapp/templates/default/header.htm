@@ -1,0 +1,168 @@
+<#--
+/**********************************************************************************
+ * $URL: https://source.sakaiproject.org/contrib/etudes/sakai-jforum/tags/2.9.11/jforum-tool/src/webapp/templates/default/header.htm $
+ * $Id: header.htm 83559 2013-04-30 19:03:29Z murthy@etudes.org $ 
+ *********************************************************************************** 
+ * 
+ * Copyright (c) 2008, 2009, 2010, 2012, 2013 Etudes, Inc. 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * 
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License. 
+ * 
+ * Portions completed before July 1, 2004 Copyright (c) 2003, 2004 Rafael Steil, All rights reserved, licensed under the BSD license. 
+ * http://www.opensource.org/licenses/bsd-license.php 
+ * 
+ * Redistribution and use in source and binary forms, 
+ * with or without modification, are permitted provided 
+ * that the following conditions are met: 
+ * 
+ * 1) Redistributions of source code must retain the above 
+ * copyright notice, this list of conditions and the 
+ * following disclaimer. 
+ * 2) Redistributions in binary form must reproduce the 
+ * above copyright notice, this list of conditions and 
+ * the following disclaimer in the documentation and/or 
+ * other materials provided with the distribution. 
+ * 3) Neither the name of "Rafael Steil" nor 
+ * the names of its contributors may be used to endorse 
+ * or promote products derived from this software without 
+ * specific prior written permission. 
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT 
+ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, 
+ * BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
+ * THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE 
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER 
+ * IN CONTRACT, STRICT LIABILITY, OR TORT 
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE 
+ ***********************************************************************************/
+ -->
+<#setting number_format = "#"/>
+<#setting datetime_format = dateTimeFormat/>
+<#assign logged = logged?default(false)/>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=${encoding}" />
+<meta name="description" content="${metaDescription}" />
+<meta name="keywords" content="${metaKeywords}" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<link href="/etudes_jforum_library/skin/style.css" type="text/css" rel="stylesheet" media="all" />
+<script type="text/javascript"><#include "js/utils.js"/></script>
+<title>${pageTitle?default("JForum")}</title>
+<script type="text/javascript" language="JavaScript" src="/library/js/headscripts.js"></script>
+
+<#--etudes ckeditor location is different than the sakai ckeditor location. The sakai paths are /library/editor/ckeditor/ckeditor.js and /library/editor/ckeditor.launch.js-->
+<#--for etudes tools the etudes.editor.path is to be added in sakai.properties-->
+<#if editorPath??>
+<script type="text/javascript" src="${editorPath}/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="${editorPath}/ckeditor.launch.js"></script>
+<#else>
+<script type="text/javascript" src="/library/editor/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/library/editor/ckeditor.launch.js"></script>
+</#if>
+</head>
+<body onload="${JForumContext.sakaiWinHeightJSFunction()}">
+
+<!--
+Original theme from phpBB (http://www.phpbb.com) subSilver
+Created by subBlue design
+http://www.subBlue.com
+
+Some modifications by JForum Team
+-->
+
+<table width="100%" border="0">
+	<tr>
+		<td>
+			<table cellspacing="0" cellpadding="0" width="100%" border="0">
+				<tr>
+					<td>
+						<!--<a href="${homepageLink}"><img src="${contextPath}/templates/${templateName}/images/logo.jpg"  vspace="1" border="0"></a>-->
+					</td>
+					 
+					<td width="100%" align="center" valign="center">
+						<!--<span class="maintitle">${forumTitle?default("JForum")}</span>-->
+						<table cellspacing="0" cellpadding="2" border="0">
+							<tr>
+								<td vAlign="top" nowrap="nowrap" align="middle">&nbsp;
+								<span class="gen"> 
+									<#--img src="${contextPath}/templates/${templateName}/images/icon_mini_groups.gif" width="12" height="13"  alt="discussion home icon"/>&nbsp;<a id="backtosite" class="mainmenu" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumBase.backToSite")}</a>&nbsp;-->
+									<a id="backtosite" class="gen" href="${JForumContext.encodeURL("/forums/list")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/home.png" alt="discussion home icon"/>${I18n.getMessage("ForumBase.backToSite")}</a>&nbsp;
+									<#--img src="${contextPath}/templates/${templateName}/images/icon_mini_search.gif" width="12" height="13"  alt="search icon"/-->
+									<a id="search" class="gen" href="${JForumContext.encodeURL("/search/filters")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/search.png" alt="search icon"/>${I18n.getMessage("ForumBase.search")}</a> &nbsp;
+									<#--a id="latest" class="mainmenu" href="${JForumContext.encodeURL("/recentTopics/list")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/icon_mini_recentTopics.gif" width="12" height="13" alt="recent topics icon"/>${I18n.getMessage("ForumBase.recentTopics")}</a>&nbsp;-->
+									<a id="latest" class="gen" href="${JForumContext.encodeURL("/recentTopics/list")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/recent_topics.png" alt="recent topics icon"/>${I18n.getMessage("ForumBase.recentTopics")}</a> &nbsp;
+									<#--img src="${contextPath}/templates/${templateName}/images/icon_mini_members.gif" width="12" height="13" alt="members icon"/-->
+									<a id="latest" class="gen" href="${JForumContext.encodeURL("/user/list")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/member_listing.png" alt="members icon"/>${I18n.getMessage("ForumBase.usersList")}</a> &nbsp;
+
+									<#if session?exists && (session.isSakaiAdmin() || session.isFacilitator())>
+										<#--img src="${contextPath}/templates/${templateName}/images/icon_mini_manage.gif" width="12" height="13" alt="manage icon" /-->
+										<a id="adminpanel" href='${JForumContext.encodeURL("/admBase/login")}'><img class="imgicon" src="${contextPath}/templates/${templateName}/images/manage.png" alt="manage icon" />${I18n.getMessage("ForumBase.admin")}</a>
+									</#if>
+
+									<#if logged>
+										<br/>
+										<#--img src="${contextPath}/templates/${templateName}/images/icon_mini_profile.gif" width="12" height="13" border="0" alt="profile icon"/-->
+										<a id="myprofile" class="gen" href="${JForumContext.encodeURL("/user/edit/${session.userId}")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/user_preferences.png" alt="profile icon"/>${I18n.getMessage("ForumBase.profile")}</a>&nbsp; 
+										<#if bookmarksEnabled>
+											<#--img src="${contextPath}/templates/${templateName}/images/icon_minipost.gif" alt="bookmarks icon"-->
+											<a class="gen" href="${JForumContext.encodeURL("/bookmarks/list/${session.userId}")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/my_boomarks.png" alt="bookmarks icon">${I18n.getMessage("Bookmarks.myBag")}</a>&nbsp;
+										</#if>
+										
+										<#assign newPmCount = session.getPrivateMessageCount()/>
+										
+										<#if (newPmCount > 0)>
+											<#--a id="privatemessages" class="gen" href="${JForumContext.encodeURL("/pm/inbox/date/d")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/icon_mini_new-message.gif" width="12" height="13" border="0" alt="private messages icon"/>${I18n.getMessage("ForumBase.newPm")}: (${newPmCount})</a>&nbsp;-->
+											<a id="privatemessages" class="gen" href="${JForumContext.encodeURL("/pm/inbox/date/d")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/email_new.png" alt="private messages icon"/>${I18n.getMessage("ForumBase.newPm")}: (${newPmCount})</a>&nbsp;
+										<#else>
+											<#--a id="privatemessages" class="mainmenu" href="${JForumContext.encodeURL("/pm/inbox/date/d")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/icon_mini_message.gif" width="12" height="13" border="0" alt="private messages icon"/>${I18n.getMessage("ForumBase.privateMessages")}</a>&nbsp;-->
+											<a id="privatemessages" class="gen" href="${JForumContext.encodeURL("/pm/inbox/date/d")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/email_pm.png" alt="private messages icon"/>${I18n.getMessage("ForumBase.privateMessages")}</a>&nbsp;
+										</#if>
+										
+										<#--img src="${contextPath}/templates/${templateName}/images/icon_mini_register.gif" width="12" height="13" border="0" alt="mark all as read icon"/-->
+										<a id="setmarkalltime" class="gen" href="${JForumContext.encodeURL("/user/setMarkAllTime")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/refresh.png" alt="mark all as read icon"/>${I18n.getMessage("PostShow.markAll")}</a>&nbsp; 
+										
+
+										<#--if !sso>
+											<a id="logout" class="mainmenu" href="${JForumContext.encodeURL("/user/logout")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/icon_mini_login.gif" width="12" height="13" border="0" /> ${I18n.getMessage("ForumBase.logout")} [${session.username}] </a></span>
+										</#if-->
+									</#if>
+	
+									<#--if !logged && !sso>
+										<br/>
+										<a id="register" class="mainmenu" href="${JForumContext.encodeURL("/user/insert")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/icon_mini_register.gif" width="12" height="13" border="0" /> ${I18n.getMessage("ForumBase.register")}</a>&nbsp/&nbsp;</span>
+										<a id="login" class="mainmenu" href="${JForumContext.encodeURL("/user/login")}"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/icon_mini_login.gif" width="12" height="13" border="0" /> ${I18n.getMessage("ForumBase.login")}</a>&nbsp; </span>
+									</#if-->
+								</span>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>

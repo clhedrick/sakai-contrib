@@ -1,0 +1,1 @@
+@gb2.ui.version@

@@ -1,0 +1,9 @@
+#!/bin/csh
+
+source  /users/sakai/ru-2.9/env
+setenv CATALINA_HOME /Volumes/Users/hedrick/tomcattrunk
+
+mvn -Dmaven.test.skip=true clean install sakai:deploy $1 $2 $3
+
+
+

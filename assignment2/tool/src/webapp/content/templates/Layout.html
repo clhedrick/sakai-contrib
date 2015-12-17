@@ -1,0 +1,63 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:rsf="http://ponder.org.uk/rsf" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <title rsf:id="msg=assignment2.title">Assignments</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <link href="/library/skin/tool_base.css" rsf:id="scr=portal-matter" type="text/css" rel="stylesheet" media="all"/>
+        <link href="/library/skin/default/tool.css" rsf:id="scr=portal-matter" type="text/css" rel="stylesheet" media="all"/>
+        <link href="/sakai-assignment2-tool/content/css/assignmentsv4.css" type="text/css" rel="stylesheet" media="all" />
+        <link href="/sakai-assignment2-tool/content/css/thickbox.css" type="text/css" rel="stylesheet" media="all" />
+
+        <link rsf:id="asnn-css-include:" media="all" href="../css/list.css" type="text/css" rel="stylesheet" />
+
+        <script rsf:id="sakai-location-decl-js" type="text/javascript" language="JavaScript">
+        var sakai = sakai || {};
+        sakai.curPlacement = 'x';
+        sakai.curContext = 'y';
+        </script>
+        
+        <script type="text/javascript" rsf:id="scr=portal-matter" language="JavaScript" src="/library/js/headscripts.js"></script>
+        <script type="text/javascript" src="/library/editor/FCKeditor/fckeditor.js"></script>
+        <!-- <script type="text/javascript" src="/sakai-assignment2-tool/content/js/FluidPager.js"></script> -->
+        <script type="text/javascript" src="/sakai-assignment2-tool/content/js/InfusionAll-1.1.2.js"></script>
+        <script type="text/javascript" src="/sakai-assignment2-tool/content/js/InlineEditIntegrations.js"></script>
+        <script type="text/javascript" src="/sakai-assignment2-tool/content/js/jquery.tooltip.pack.js"></script>
+        <script type="text/javascript" src="/library/calendar/js/calendar2.js"></script>
+        <script type="text/javascript" src="/sakai-assignment2-tool/content/js/assignment.js"></script>
+        
+        <!-- <script type="text/javascript" language="JavaScript" src="/sakai-assignment2-tool/content/js/thickbox.js"></script> -->
+
+        <script rsf:id="asnn-js-include:" src="../js/javerscript" type="text/javascript"></script>
+
+    </head>
+    <body>
+        <div rsf:id="page-replace:" class="portletBody">
+        </div>
+    </body>
+    <script type="text/javascript" rsf:id="iframeId_init">
+        //set in producer
+        //iframeId = blah
+    </script>
+    <script type="text/javascript">
+        //Add a listener to the document window so that every time it resizes
+        // we adjust the main frame height auto-magically without having to
+        // even worry abouts it anymores
+        catchResize = function(){
+            a2SetMainFrameHeight();
+        }
+
+        //now the fun one, add an event listener so that if a DOM node is modified
+        // it will adjust the main frame height.  This way, if we make browser side
+        // DOM modifications, we do not have to call setMainFrameHeight every time
+        jQuery(window).load(function(){
+            if (!jQuery.browser.msie) {
+                document.addEventListener("DOMAttrModified", catchResize, false);
+            }
+            else {
+                document.onpropertychange = catchResize;
+            }
+        });
+    </script>
+</html>

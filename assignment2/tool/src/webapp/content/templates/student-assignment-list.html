@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:rsf="http://ponder.org.uk/rsf" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <title rsf:id="msg=assignment2.title">Assignments</title>
+    <link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all"/>
+    <link href="/library/skin/default/tool.css" type="text/css" rel="stylesheet" media="all"/>
+    <link href="/sakai-assignment2-tool/content/css/assignmentsv4.css" type="text/css" rel="stylesheet" media="all" />
+    <script src="../js/jquery.tablesorter.js" type="text/javascript"></script>
+    <script src="../js/student-assignment-list.js" type="text/javascript"></script>
+</head>
+
+<body>
+<!--  everything outside of rsf:id="page:" is set in Layout.html using outerPageTemplates -->
+
+<div rsf:id="page:" class="portletBody">
+
+	<ul class="breadCrumb">
+		<li rsf:id="last_breadcrumb" class="lastCrumb">Last Breadcrumb</li>
+	</ul>
+
+	<div class="generalErrors">
+		<ul rsf:id="message-for:*" style="margin:0px;">
+			<li>Message for user here</li>
+		</ul>
+	</div>
+
+	<!-- <div rsf:id="pagerDiv:" class="listNav"></div> -->
+	<!-- <p rsf:id="msg=assignment2.student-assignment-list.instructions" class="instruction">Select an assignment to view details, start working or edit your previous work.</p> -->
+
+	<div rsf:id="message-for:*" class="debug_info"></div>
+
+	<table rsf:id="assignment-list-table" class="listHier lines tablesorter">
+		<thead>
+		
+		<tr> 
+			<!--  <th class="attach">&nbsp;</th> -->
+			<!-- For now commenting these out as there's no paging in 
+			     current spec -->
+			<!-- 
+			<th rsf:id="tableheader.assignment:">
+			</th>
+			<th rsf:id="tableheader.for:">
+			</th>
+			<th rsf:id="tableheader.status:">
+			</th>
+			<th rsf:id="tableheader.open:">
+			</th>
+			<th rsf:id="tableheader.due:">
+			</th>
+			-->
+			<th rsf:id="msg=assignment2.student-assignment-list.tableheader.todo">To Do</th>
+			<th><a href="#" class="titleSort"><span  rsf:id="msg=assignment2.student-assignment-list.tableheader.assignment">Assignment Title</span></a></th>
+			<th><a href="#" class="dueSort"><span rsf:id="msg=assignment2.student-assignment-list.tableheader.due">Due</span></a></th>
+			<th rsf:id="msg=assignment2.student-assignment-list.tableheader.feedback">Feedback</th>
+			<th rsf:id="msg=assignment2.student-assignment-list.tableheader.grade">Grade</th>
+		</tr>
+		</thead>
+		<tbody> 
+		<tr rsf:id="assignment-row:"> 
+			<!-- <td headers="attachments" class="attach">
+				<img rsf:id="attachments" src="attach.png" width="16" height="16" border="0" />
+			</td>
+			-->
+			<td>
+				<form rsf:id="todo-check-form" method="post">
+			    	<input rsf:id="todo-checkbox" type="checkbox" onclick="this.form.submit();"/>
+			    	<input id="submit-button" rsf:id="submit-button" style="display:none" type="submit" />
+			    </form>
+			</td>
+			<td>
+				<h4 class="completed_assignment" >
+				    <span rsf:id="assignment-title">Homework Example 2</span>
+				    <span rsf:id="assignment-in-progress" class="highlight">(DRAFT)</span>
+				    <span rsf:id="assignment-deleted" class="highlight">(Assignment has been deleted)</span>
+				</h4>
+			    <!-- <h4><a rsf:id="assignment_link" class="title">Homework Example 2</a></h4> -->
+			    <div class="itemAction">
+			        <a rsf:id="assignment-action-link" href="">View Submission</a>
+			        <span rsf:id="resubmit-action">
+			        	<span class="separator">|</span>
+			        	<a rsf:id="assignment-resubmit-link" href="">Resubmit me!</a>
+			        </span>
+			    </div>
+			</td>
+			<!--  <td rsf:id="assignment_row_for" class="for">Group 1, Group 2</td> -->
+			<!--  <td rsf:id="assignment_row_status" class="status">Not Started</td> -->
+			<!-- <td rsf:id="assignment_row_open">Sep 24, 2007 11:00 am</td> -->
+			<td>
+				<span rsf:id="assignment_row_due">Oct 1, 2007 6:00 pm</span>
+				<span class="highlight" rsf:id="assignment_late">I'm late!</span>
+			</td>
+			<!-- Feedback -->
+			<td>
+				<a href="" rsf:id="unread-feedback-link">
+					<img rsf:id="unread-feedback-img" src="/library/image/silk/email.png" />
+				</a>
+				<a href="" rsf:id="read-feedback-link">
+					<img rsf:id="read-feedback-img" src="/library/image/silk/email_open.png" />
+				</a>
+			</td>
+			<td rsf:id="grade">N/A</td>
+			
+			<!-- For the JS Sorting --> 
+			<!-- 
+			<td class="skip">
+				<span class="openDate" rsf:id="open_timestamp"></span>
+				<span class="dueDate" rsf:id="due_timestamp"></span>
+				<span class="sortIndex" rsf:id="sortIndex"></span>
+			</td>
+			-->
+		</tr>
+		</tbody>
+	</table>
+	<p rsf:id="assignment_empty">There are no Assignments yet</p>
+	<script type="text/javascript" rsf:id="sortTableParsers">
+	 	//Put this code in the jsp page since IE8 was having trouble with $(document).ready() function.
+	 	asnn2.setupStdntListTableParsers();
+	</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.sakaiproject.assignment2.model.AssignmentSubmission" table="A2_SUBMISSION_T">
+       
+        <id name="id" column="SUBMISSION_ID" type="long">
+					<generator class="native">
+						<param name="sequence">A2_SUBMISSION_S</param>
+					</generator>
+				</id>
+        
+        <version name="optimisticVersion" type="integer" column="VERSION"/>
+        
+        <!--  This maps to the A2_ASSIGNMENT_T table -->
+        <many-to-one name="assignment" column="ASSIGNMENT_ID"
+        	class="org.sakaiproject.assignment2.model.Assignment2"
+        	not-null="true" unique-key="ASSIGN_ID_USER_ID"
+        	index="A2_SUBMISSION_ASSIGN_I" />
+
+        <!-- The userId of the user associated with this submission -->
+        <property name="userId" type="java.lang.String">
+            <column name="USER_ID" not-null="true" length="99" 
+            	unique-key="ASSIGN_ID_USER_ID" index="A2_SUBMISSION_USER_ID_I" />
+        </property>
+        
+        <!-- Date and time after which the user can no longer resubmit -->
+        <property name="resubmitCloseDate" type="java.util.Date">
+            <column name="RESUBMIT_CLOSE_DATE" />
+        </property>
+        
+        <!-- restrict num submissions allowed  -->
+        <property name="numSubmissionsAllowed" type="java.lang.Integer" >
+            <column name="NUM_SUB_ALLOWED" />
+        </property>
+        
+        <!-- mark this submission as completed - may be modified by student  -->
+        <property name="completed" type="boolean" >
+            <column name="COMPLETED" />
+        </property>
+        
+        <!-- AssignmentSubmission created by -->
+        <property name="createdBy" type="java.lang.String">
+            <column name="CREATED_BY" length="99" not-null="true" />
+        </property>
+        
+        <!-- AssignmentSubmission created date and time -->
+        <property name="createdDate" type="java.util.Date">
+            <column name="CREATED_DATE" not-null="true" />
+        </property>
+        
+        <!-- AssignmentSubmission modified by -->
+        <property name="modifiedBy" type="java.lang.String">
+            <column name="MODIFIED_BY" length="99" />
+        </property>
+        
+        <!-- AssignmentSubmission modified date and time -->
+        <property name="modifiedDate" type="java.util.Date">
+            <column name="MODIFIED_DATE" />
+        </property>
+        
+        <!-- a set of all of the versions of this submission -->
+        <set name="submissionHistorySet" lazy="true" inverse="true" cascade="none"
+        		order-by="SUBMITTED_VERSION_NUMBER desc">
+	        <key column="SUBMISSION_ID"/>                        
+	        <one-to-many class="org.sakaiproject.assignment2.model.AssignmentSubmissionVersion"/>            
+    		</set>
+              
+    </class>
+    
+    <query name="findSubmissionsForStudentForAssignments">
+    <![CDATA[from org.sakaiproject.assignment2.model.AssignmentSubmission submission
+    				 left join fetch submission.assignment
+             where submission.userId = :studentId
+             and submission.assignment in (:assignmentList)]]>
+  	</query>
+  	
+  	<query name="findSubmissionsForStudentsForAssignment">
+    <![CDATA[from org.sakaiproject.assignment2.model.AssignmentSubmission submission
+    				 left join fetch submission.assignment
+             where submission.assignment = :assignment
+             and submission.userId in (:studentIdList)]]>
+  	</query>
+  	
+  	<query name="findSubmissionById">
+    <![CDATA[from org.sakaiproject.assignment2.model.AssignmentSubmission submission
+    				 left join fetch submission.assignment
+             where submission.id = :submissionId]]>
+  	</query>
+  	<query name="findStudentSubmissionWithHistoryForAssignment">
+    <![CDATA[from org.sakaiproject.assignment2.model.AssignmentSubmission submission
+    				 left join fetch submission.submissionHistorySet versions
+    				 left join fetch versions.feedbackAttachSet
+    				 left join fetch versions.submissionAttachSet
+    				 left join fetch submission.assignment
+             where submission.userId = :studentId and
+             		submission.assignment = :assignment]]>
+  	</query>
+  	<query name="findSubmissionsWithHistoryForAssignmentAndStudents">
+    <![CDATA[from org.sakaiproject.assignment2.model.AssignmentSubmission submission
+    				 left join fetch submission.submissionHistorySet versions
+    				 left join fetch versions.feedbackAttachSet
+    				 left join fetch versions.submissionAttachSet
+    				 left join fetch submission.assignment
+             where submission.userId in (:studentIdList) and
+             		submission.assignment = :assignment]]>
+  	</query>
+  	<query name="findSubmissionByIdWithHistory">
+  	<![CDATA[from org.sakaiproject.assignment2.model.AssignmentSubmission submission
+  	                 left join fetch submission.assignment
+    				 left join fetch submission.submissionHistorySet versions
+             where submission.id = :submissionId]]>
+  	</query>
+  	<query name="findSubmissionsForStudentWithVersionHistoryAndAttach">
+  	<![CDATA[from org.sakaiproject.assignment2.model.AssignmentSubmission submission
+  	                 left join fetch submission.assignment
+    				 left join fetch submission.submissionHistorySet versions
+    				 left join fetch versions.feedbackAttachSet
+    				 left join fetch versions.submissionAttachSet
+             where submission.userId = :studentId and
+             		submission.assignment in (:assignmentList)]]>
+  	</query>
+  	<query name="findSubmissionsForRemovedAssignments">
+  	<![CDATA[from org.sakaiproject.assignment2.model.AssignmentSubmission submission
+    				 left join fetch submission.submissionHistorySet versions
+    				 left join fetch versions.feedbackAttachSet
+    				 left join fetch versions.submissionAttachSet
+    				 left join fetch submission.assignment
+             where submission.userId = :studentId and
+             		submission.assignment.contextId = :contextId and
+             		submission.assignment.removed = true]]>
+  	</query>
+  	
+</hibernate-mapping>

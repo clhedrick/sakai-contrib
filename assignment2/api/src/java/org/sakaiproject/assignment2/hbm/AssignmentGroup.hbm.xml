@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.sakaiproject.assignment2.model.AssignmentGroup" table="A2_ASSIGN_GROUP_T">
+       
+        <id name="id" column="ASSIGNMENT_GROUP_ID" type="long">
+					<generator class="native">
+						<param name="sequence">A2_ASSIGN_GROUP_S</param>
+					</generator>
+				</id>
+        
+        <version name="optimisticVersion" type="integer" column="VERSION"/>
+        
+        <!--  This maps to the A2_ASSIGNMENT_T table -->
+        <many-to-one name="assignment" column="ASSIGNMENT_ID"
+        	class="org.sakaiproject.assignment2.model.Assignment2"
+        	not-null="true" unique-key="ASSIGN_ID_GROUP_REF"  
+        	index="A2_ASSIGN_GROUP_ASSIGN_I" />
+
+        <!-- The Authz groupId (group_id is reserved in oracle, so we will name it GROUP_REF in the table-->
+        <property name="groupId" type="java.lang.String" unique-key="ASSIGN_ID_GROUP_REF">
+            <column name="GROUP_REF" not-null="true" length="255" />
+        </property>
+              
+    </class>
+</hibernate-mapping>

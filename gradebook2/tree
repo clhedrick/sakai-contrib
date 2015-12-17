@@ -1,0 +1,1187 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for org.sakaiproject.gradebook2:gradebook2-model:jar:1.9.0-SNAPSHOT
+[WARNING] 'reporting.plugins.plugin.version' for org.apache.maven.plugins:maven-project-info-reports-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1932, column 15
+[WARNING] 'reporting.plugins.plugin.version' for org.codehaus.mojo:taglist-maven-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1936, column 15
+[WARNING] 'reporting.plugins.plugin.version' for net.sourceforge.maven-taglib:maven-taglib-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1942, column 15
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for org.sakaiproject.gradebook2:gradebook2-api:jar:1.9.0-SNAPSHOT
+[WARNING] 'reporting.plugins.plugin.version' for org.apache.maven.plugins:maven-project-info-reports-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1932, column 15
+[WARNING] 'reporting.plugins.plugin.version' for org.codehaus.mojo:taglist-maven-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1936, column 15
+[WARNING] 'reporting.plugins.plugin.version' for net.sourceforge.maven-taglib:maven-taglib-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1942, column 15
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for org.sakaiproject.gradebook2:gradebook2-shared:jar:1.9.0-SNAPSHOT
+[WARNING] 'reporting.plugins.plugin.version' for org.apache.maven.plugins:maven-project-info-reports-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1932, column 15
+[WARNING] 'reporting.plugins.plugin.version' for org.codehaus.mojo:taglist-maven-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1936, column 15
+[WARNING] 'reporting.plugins.plugin.version' for net.sourceforge.maven-taglib:maven-taglib-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1942, column 15
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for org.sakaiproject.gradebook2:gradebook2-server:jar:1.9.0-SNAPSHOT
+[WARNING] 'reporting.plugins.plugin.version' for org.apache.maven.plugins:maven-project-info-reports-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1932, column 15
+[WARNING] 'reporting.plugins.plugin.version' for org.codehaus.mojo:taglist-maven-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1936, column 15
+[WARNING] 'reporting.plugins.plugin.version' for net.sourceforge.maven-taglib:maven-taglib-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1942, column 15
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for org.sakaiproject.gradebook2:gradebook2-client:jar:1.9.0-SNAPSHOT
+[WARNING] 'reporting.plugins.plugin.version' for org.apache.maven.plugins:maven-project-info-reports-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1932, column 15
+[WARNING] 'reporting.plugins.plugin.version' for org.codehaus.mojo:taglist-maven-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1936, column 15
+[WARNING] 'reporting.plugins.plugin.version' for net.sourceforge.maven-taglib:maven-taglib-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1942, column 15
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for org.sakaiproject.gradebook2:sakai-gradebook2:war:1.9.0-SNAPSHOT
+[WARNING] 'reporting.plugins.plugin.version' for org.apache.maven.plugins:maven-project-info-reports-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1932, column 15
+[WARNING] 'reporting.plugins.plugin.version' for org.codehaus.mojo:taglist-maven-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1936, column 15
+[WARNING] 'reporting.plugins.plugin.version' for net.sourceforge.maven-taglib:maven-taglib-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1942, column 15
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for org.sakaiproject.gradebook2:gradebook2-base:pom:1.9.0-SNAPSHOT
+[WARNING] 'reporting.plugins.plugin.version' for org.apache.maven.plugins:maven-project-info-reports-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1932, column 15
+[WARNING] 'reporting.plugins.plugin.version' for org.codehaus.mojo:taglist-maven-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1936, column 15
+[WARNING] 'reporting.plugins.plugin.version' for net.sourceforge.maven-taglib:maven-taglib-plugin is missing. @ org.sakaiproject:master:11-SNAPSHOT, /Volumes/Users/hedrick/trunk-addons/master/pom.xml, line 1942, column 15
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Sakai Gradebook2 Project
+[INFO] Sakai Gradebook2 Shared Data Model
+[INFO] Sakai Gradebook2 API
+[INFO] Sakai Gradebook2 Shared Classes
+[INFO] Sakai Gradebook2 Server Side Code
+[INFO] Sakai Gradebook2 Client
+[INFO] Sakai Gradebook2 War
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Sakai Gradebook2 Project 1.9.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/edu-services/gradebook/gradebook-service-api/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/edu-services/gradebook/gradebook-service-api/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/edu-services/edu-services/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/edu-services/gradebook/gradebook-service-hibernate/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/edu-services/gradebook/gradebook-service-hibernate/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/edu-services/gradebook/gradebook-service-impl/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/edu-services/gradebook/gradebook-service-impl/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/kernel/sakai-kernel-util/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/kernel/sakai-kernel-util/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/kernel/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/edu-services/sections/sections-integrationsupport/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/edu-services/sections/sections-integrationsupport/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/edu-services/sections/sections/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The POM for jta:jta:jar:h2.1.8 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] The POM for commons-codec:commons-codec:jar:1.8 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] The POM for commons-fileupload:commons-fileupload:jar:1.3.1 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/edu-services/course-management/coursemanagement-api/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/edu-services/course-management/coursemanagement-api/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/edu-services/course-management/course-management/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/edu-services/sections/sections-api/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/edu-services/sections/sections-api/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/kernel/sakai-kernel-impl/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/kernel/sakai-kernel-impl/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/kernel/sakai-kernel-storage-util/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/kernel/sakai-kernel-storage-util/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The POM for org.slf4j:slf4j-api:jar:1.7.5 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] The POM for net.sf.ehcache:ehcache-core:jar:2.6.6 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/common/archive-api/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/common/archive-api/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/common/common/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/common/archive-impl/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/common/archive-impl/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/kernel/sakai-kernel-api/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/kernel/sakai-kernel-api/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/kernel/sakai-component-manager/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/kernel/sakai-component-manager/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.1:tree (default-cli) @ gradebook2-base ---
+[WARNING] Invalid POM for jta:jta:jar:h2.1.8, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for commons-codec:commons-codec:jar:1.8, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for commons-fileupload:commons-fileupload:jar:1.3.1, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for commons-codec:commons-codec:jar:1.8, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/kernel/sakai-kernel-util/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] The metadata /Volumes/Users/hedrick/.m2/repository/org/sakaiproject/kernel/11-SNAPSHOT/maven-metadata-ibiblio.xml is invalid: end tag name </body> must match start tag name <hr> from line 836 (position: START_TAG seen ...          10-Nov-2009 12:12                  26\r\n</pre><hr></body>... @836:18) 
+[WARNING] Invalid POM for commons-codec:commons-codec:jar:1.8, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for commons-codec:commons-codec:jar:1.8, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for org.slf4j:slf4j-api:jar:1.7.5, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for org.slf4j:slf4j-api:jar:1.7.5, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for net.sf.ehcache:ehcache-core:jar:2.6.6, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for org.slf4j:slf4j-api:jar:1.7.5, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for commons-codec:commons-codec:jar:1.8, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for org.slf4j:slf4j-api:jar:1.7.5, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for org.slf4j:slf4j-api:jar:1.7.5, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for net.sf.ehcache:ehcache-core:jar:2.6.6, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for commons-codec:commons-codec:jar:1.8, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for commons-codec:commons-codec:jar:1.8, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for commons-codec:commons-codec:jar:1.8, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for org.slf4j:slf4j-api:jar:1.7.5, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for net.sf.ehcache:ehcache-core:jar:2.6.6, transitive dependencies (if any) will not be available, enable debug logging for more details
+[INFO] org.sakaiproject.gradebook2:gradebook2-base:pom:1.9.0-SNAPSHOT
+[INFO] +- com.google.gwt:gwt-servlet:jar:2.5.0:runtime
+[INFO] +- com.google.gwt:gwt-user:jar:2.5.0:provided
+[INFO] |  +- javax.validation:validation-api:jar:1.0.0.GA:provided
+[INFO] |  +- javax.validation:validation-api:jar:sources:1.0.0.GA:provided
+[INFO] |  \- org.json:json:jar:20090211:provided
+[INFO] +- com.extjs:gxt:jar:2.2.5-gwt22:provided
+[INFO] +- com.sencha.gxt:gxt:jar:3.0.1:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-hibernate:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-impl:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.sakaiproject.edu-services.sections:sections-integrationsupport:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.apache.myfaces.core:myfaces-api:jar:1.1.5:provided
+[INFO] |  |  +- commons-lang:commons-lang:jar:2.6:provided (version managed from 2.1)
+[INFO] |  |  \- javax.servlet:jstl:jar:1.1.2:provided (version managed from 1.1.0)
+[INFO] |  +- org.apache.myfaces.core:myfaces-impl:jar:1.1.5:provided
+[INFO] |  |  +- commons-el:commons-el:jar:1.0:provided
+[INFO] |  |  \- commons-collections:commons-collections:jar:3.2.2:provided
+[INFO] |  +- org.apache.myfaces.tomahawk:tomahawk:jar:1.1.6:provided
+[INFO] |  |  +- commons-fileupload:commons-fileupload:jar:1.3.1:provided (version managed from 1.0)
+[INFO] |  |  \- oro:oro:jar:2.0.8:provided
+[INFO] |  +- aopalliance:aopalliance:jar:1.0:provided
+[INFO] |  +- jta:jta:jar:h2.1.8:provided
+[INFO] |  +- odmg:odmg:jar:3.0:provided
+[INFO] |  +- commons-digester:commons-digester:jar:1.6:provided
+[INFO] |  |  \- xml-apis:xml-apis:jar:1.0.b2:provided
+[INFO] |  +- commons-beanutils:commons-beanutils:jar:1.7.0:provided
+[INFO] |  \- com.thoughtworks.xstream:xstream:jar:1.2.1:provided
+[INFO] |     \- xpp3:xpp3_min:jar:1.1.3.4.O:provided
+[INFO] +- org.sakaiproject.edu-services.course-management:coursemanagement-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.sections:sections-api:jar:11-SNAPSHOT:provided
+[INFO] +- javax.servlet:servlet-api:jar:2.5:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-impl:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.sakaiproject.kernel:sakai-kernel-storage-util:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.apache.tika:tika-core:jar:1.10:provided
+[INFO] |  +- org.apache.tika:tika-parsers:jar:1.10:provided
+[INFO] |  |  +- org.gagravarr:vorbis-java-tika:jar:0.6:provided
+[INFO] |  |  +- com.healthmarketscience.jackcess:jackcess:jar:2.1.2:provided
+[INFO] |  |  +- com.healthmarketscience.jackcess:jackcess-encrypt:jar:2.1.0:provided
+[INFO] |  |  +- net.sourceforge.jmatio:jmatio:jar:1.0:provided
+[INFO] |  |  +- org.apache.james:apache-mime4j-core:jar:0.7.2:provided
+[INFO] |  |  +- org.apache.james:apache-mime4j-dom:jar:0.7.2:provided
+[INFO] |  |  +- org.apache.commons:commons-compress:jar:1.9:provided
+[INFO] |  |  +- org.tukaani:xz:jar:1.5:provided
+[INFO] |  |  +- org.apache.pdfbox:pdfbox:jar:1.8.10:provided
+[INFO] |  |  |  +- org.apache.pdfbox:fontbox:jar:1.8.10:provided
+[INFO] |  |  |  \- org.apache.pdfbox:jempbox:jar:1.8.10:provided
+[INFO] |  |  +- org.bouncycastle:bcmail-jdk15on:jar:1.52:provided
+[INFO] |  |  |  \- org.bouncycastle:bcpkix-jdk15on:jar:1.52:provided
+[INFO] |  |  +- org.bouncycastle:bcprov-jdk15on:jar:1.52:provided
+[INFO] |  |  +- org.apache.poi:poi-scratchpad:jar:3.13-beta1:provided
+[INFO] |  |  +- org.ccil.cowan.tagsoup:tagsoup:jar:1.2.1:provided
+[INFO] |  |  +- com.googlecode.mp4parser:isoparser:jar:1.0.2:provided
+[INFO] |  |  |  \- org.aspectj:aspectjrt:jar:1.8.0:provided
+[INFO] |  |  +- com.drewnoakes:metadata-extractor:jar:2.8.0:provided
+[INFO] |  |  |  \- com.adobe.xmp:xmpcore:jar:5.1.2:provided
+[INFO] |  |  +- rome:rome:jar:1.0:provided
+[INFO] |  |  |  \- jdom:jdom:jar:1.0:provided
+[INFO] |  |  +- org.gagravarr:vorbis-java-core:jar:0.6:provided
+[INFO] |  |  +- com.googlecode.juniversalchardet:juniversalchardet:jar:1.0.3:provided
+[INFO] |  |  +- org.codelibs:jhighlight:jar:1.0.2:provided
+[INFO] |  |  +- com.pff:java-libpst:jar:0.8.1:provided
+[INFO] |  |  +- com.github.junrar:junrar:jar:0.7:provided
+[INFO] |  |  |  +- commons-logging:commons-logging-api:jar:1.1:provided
+[INFO] |  |  |  \- org.apache.commons:commons-vfs2:jar:2.0:provided
+[INFO] |  |  |     +- org.apache.maven.scm:maven-scm-api:jar:1.4:provided
+[INFO] |  |  |     |  \- org.codehaus.plexus:plexus-utils:jar:1.5.6:provided
+[INFO] |  |  |     \- org.apache.maven.scm:maven-scm-provider-svnexe:jar:1.4:provided
+[INFO] |  |  |        +- org.apache.maven.scm:maven-scm-provider-svn-commons:jar:1.4:provided
+[INFO] |  |  |        \- regexp:regexp:jar:1.3:provided
+[INFO] |  |  +- org.apache.opennlp:opennlp-tools:jar:1.5.3:provided
+[INFO] |  |  |  +- org.apache.opennlp:opennlp-maxent:jar:3.0.3:provided
+[INFO] |  |  |  \- net.sf.jwordnet:jwnl:jar:1.3.3:provided
+[INFO] |  |  +- commons-io:commons-io:jar:2.4:provided
+[INFO] |  |  +- org.apache.commons:commons-exec:jar:1.3:provided
+[INFO] |  |  +- com.googlecode.json-simple:json-simple:jar:1.1.1:provided
+[INFO] |  |  +- edu.ucar:netcdf4:jar:4.5.5:provided
+[INFO] |  |  |  +- net.jcip:jcip-annotations:jar:1.0:provided
+[INFO] |  |  |  \- net.java.dev.jna:jna:jar:4.1.0:provided
+[INFO] |  |  +- edu.ucar:grib:jar:4.5.5:provided
+[INFO] |  |  |  +- com.google.protobuf:protobuf-java:jar:2.5.0:provided
+[INFO] |  |  |  +- org.jdom:jdom2:jar:2.0.4:provided
+[INFO] |  |  |  +- edu.ucar:jj2000:jar:5.2:provided
+[INFO] |  |  |  \- org.itadaki:bzip2:jar:0.9.1:provided
+[INFO] |  |  +- edu.ucar:cdm:jar:4.5.5:provided
+[INFO] |  |  |  +- edu.ucar:udunits:jar:4.5.5:provided
+[INFO] |  |  |  +- org.apache.httpcomponents:httpcore:jar:4.2.5:provided
+[INFO] |  |  |  +- joda-time:joda-time:jar:2.2:provided
+[INFO] |  |  |  +- org.quartz-scheduler:quartz:jar:2.2.1:provided (version managed from 2.2.0)
+[INFO] |  |  |  |  \- c3p0:c3p0:jar:0.9.1.1:provided
+[INFO] |  |  |  \- com.beust:jcommander:jar:1.35:provided
+[INFO] |  |  +- edu.ucar:httpservices:jar:4.5.5:provided
+[INFO] |  |  |  +- org.apache.httpcomponents:httpclient:jar:4.2.6:provided
+[INFO] |  |  |  \- org.apache.httpcomponents:httpmime:jar:4.2.6:provided
+[INFO] |  |  +- org.apache.commons:commons-csv:jar:1.0:provided
+[INFO] |  |  +- org.apache.sis.core:sis-utility:jar:0.5:provided
+[INFO] |  |  +- org.apache.sis.storage:sis-netcdf:jar:0.5:provided
+[INFO] |  |  |  +- org.apache.sis.storage:sis-storage:jar:0.5:provided
+[INFO] |  |  |  \- org.apache.sis.core:sis-referencing:jar:0.5:provided
+[INFO] |  |  +- org.apache.sis.core:sis-metadata:jar:0.5:provided
+[INFO] |  |  \- org.opengis:geoapi:jar:3.0.0:provided
+[INFO] |  |     \- javax.measure:jsr-275:jar:0.9.3:provided
+[INFO] |  +- org.apache.poi:poi:jar:3.8:provided
+[INFO] |  +- org.apache.poi:poi-ooxml:jar:3.8:provided
+[INFO] |  |  +- org.apache.poi:poi-ooxml-schemas:jar:3.8:provided
+[INFO] |  |  |  \- org.apache.xmlbeans:xmlbeans:jar:2.3.0:provided
+[INFO] |  |  |     \- stax:stax-api:jar:1.0.1:provided
+[INFO] |  |  \- dom4j:dom4j:jar:1.6.1:provided
+[INFO] |  +- commons-validator:commons-validator:jar:1.4.1:provided
+[INFO] |  +- net.sf.opencsv:opencsv:jar:1.8:provided (version managed from 2.3)
+[INFO] |  +- com.google.guava:guava:jar:16.0.1:provided
+[INFO] |  +- com.google.code.findbugs:jsr305:jar:2.0.3:provided
+[INFO] |  +- org.azeckoski:reflectutils:jar:0.9.19:provided
+[INFO] |  +- org.jasypt:jasypt:jar:1.9.0:provided
+[INFO] |  +- com.ibm.icu:icu4j:jar:4.8.1:provided
+[INFO] |  +- org.owasp.antisamy:antisamy:jar:1.5.3:provided
+[INFO] |  |  +- org.apache.xmlgraphics:batik-css:jar:1.7:provided
+[INFO] |  |  |  +- org.apache.xmlgraphics:batik-ext:jar:1.7:provided
+[INFO] |  |  |  +- org.apache.xmlgraphics:batik-util:jar:1.7:provided
+[INFO] |  |  |  \- xml-apis:xml-apis-ext:jar:1.3.04:provided
+[INFO] |  |  +- net.sourceforge.nekohtml:nekohtml:jar:1.9.16:provided
+[INFO] |  |  |  \- xerces:xercesImpl:jar:2.6.2:provided (version managed from 2.9.1)
+[INFO] |  |  \- commons-httpclient:commons-httpclient:jar:3.1:provided
+[INFO] |  \- org.jsoup:jsoup:jar:1.7.3:provided
+[INFO] +- org.sakaiproject.common:archive-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.common:archive-impl:jar:11-SNAPSHOT:provided
+[INFO] |  \- commons-codec:commons-codec:jar:1.8:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-api:jar:11-SNAPSHOT:provided
+[INFO] |  \- com.zaxxer:HikariCP:jar:2.4.1:provided
+[INFO] |     \- org.slf4j:slf4j-api:jar:1.7.5:provided
+[INFO] +- org.sakaiproject.kernel:sakai-component-manager:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-util:jar:11-SNAPSHOT:compile
+[INFO] +- org.springframework:spring-beans:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-context:jar:4.1.8.RELEASE:provided
+[INFO] |  +- org.springframework:spring-aop:jar:4.1.8.RELEASE:provided
+[INFO] |  \- org.springframework:spring-expression:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-core:jar:4.1.8.RELEASE:provided
+[INFO] |  \- commons-logging:commons-logging:jar:1.0.4:provided
+[INFO] +- org.springframework:spring-web:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-webmvc:jar:4.1.8.RELEASE:compile
+[INFO] +- net.sf.ehcache:ehcache-core:jar:2.6.6:provided
+[INFO] \- junit:junit:jar:4.1:test
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Sakai Gradebook2 Shared Data Model 1.9.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.1:tree (default-cli) @ gradebook2-model ---
+[INFO] org.sakaiproject.gradebook2:gradebook2-model:jar:1.9.0-SNAPSHOT
+[INFO] +- com.google.gwt:gwt-servlet:jar:2.5.0:runtime
+[INFO] +- com.google.gwt:gwt-user:jar:2.5.0:provided
+[INFO] |  +- javax.validation:validation-api:jar:1.0.0.GA:provided
+[INFO] |  +- javax.validation:validation-api:jar:sources:1.0.0.GA:provided
+[INFO] |  \- org.json:json:jar:20090211:provided
+[INFO] +- com.extjs:gxt:jar:2.2.5-gwt22:provided
+[INFO] +- com.sencha.gxt:gxt:jar:3.0.1:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-hibernate:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-impl:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.sakaiproject.edu-services.sections:sections-integrationsupport:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.apache.myfaces.core:myfaces-api:jar:1.1.5:provided
+[INFO] |  |  +- commons-lang:commons-lang:jar:2.6:provided (version managed from 2.1)
+[INFO] |  |  \- javax.servlet:jstl:jar:1.1.2:provided (version managed from 1.1.0)
+[INFO] |  +- org.apache.myfaces.core:myfaces-impl:jar:1.1.5:provided
+[INFO] |  |  +- commons-el:commons-el:jar:1.0:provided
+[INFO] |  |  \- commons-collections:commons-collections:jar:3.2.2:provided
+[INFO] |  +- org.apache.myfaces.tomahawk:tomahawk:jar:1.1.6:provided
+[INFO] |  |  +- commons-fileupload:commons-fileupload:jar:1.3.1:provided (version managed from 1.0)
+[INFO] |  |  \- oro:oro:jar:2.0.8:provided
+[INFO] |  +- aopalliance:aopalliance:jar:1.0:provided
+[INFO] |  +- jta:jta:jar:h2.1.8:provided
+[INFO] |  +- odmg:odmg:jar:3.0:provided
+[INFO] |  +- commons-digester:commons-digester:jar:1.6:provided
+[INFO] |  |  \- xml-apis:xml-apis:jar:1.0.b2:provided
+[INFO] |  +- commons-beanutils:commons-beanutils:jar:1.7.0:provided
+[INFO] |  \- com.thoughtworks.xstream:xstream:jar:1.2.1:provided
+[INFO] |     \- xpp3:xpp3_min:jar:1.1.3.4.O:provided
+[INFO] +- org.sakaiproject.edu-services.course-management:coursemanagement-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.sections:sections-api:jar:11-SNAPSHOT:provided
+[INFO] +- javax.servlet:servlet-api:jar:2.5:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-impl:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.sakaiproject.kernel:sakai-kernel-storage-util:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.apache.tika:tika-core:jar:1.10:provided
+[INFO] |  +- org.apache.tika:tika-parsers:jar:1.10:provided
+[INFO] |  |  +- org.gagravarr:vorbis-java-tika:jar:0.6:provided
+[INFO] |  |  +- com.healthmarketscience.jackcess:jackcess:jar:2.1.2:provided
+[INFO] |  |  +- com.healthmarketscience.jackcess:jackcess-encrypt:jar:2.1.0:provided
+[INFO] |  |  +- net.sourceforge.jmatio:jmatio:jar:1.0:provided
+[INFO] |  |  +- org.apache.james:apache-mime4j-core:jar:0.7.2:provided
+[INFO] |  |  +- org.apache.james:apache-mime4j-dom:jar:0.7.2:provided
+[INFO] |  |  +- org.apache.commons:commons-compress:jar:1.9:provided
+[INFO] |  |  +- org.tukaani:xz:jar:1.5:provided
+[INFO] |  |  +- org.apache.pdfbox:pdfbox:jar:1.8.10:provided
+[INFO] |  |  |  +- org.apache.pdfbox:fontbox:jar:1.8.10:provided
+[INFO] |  |  |  \- org.apache.pdfbox:jempbox:jar:1.8.10:provided
+[INFO] |  |  +- org.bouncycastle:bcmail-jdk15on:jar:1.52:provided
+[INFO] |  |  |  \- org.bouncycastle:bcpkix-jdk15on:jar:1.52:provided
+[INFO] |  |  +- org.bouncycastle:bcprov-jdk15on:jar:1.52:provided
+[INFO] |  |  +- org.apache.poi:poi-scratchpad:jar:3.13-beta1:provided
+[INFO] |  |  +- org.ccil.cowan.tagsoup:tagsoup:jar:1.2.1:provided
+[INFO] |  |  +- com.googlecode.mp4parser:isoparser:jar:1.0.2:provided
+[INFO] |  |  |  \- org.aspectj:aspectjrt:jar:1.8.0:provided
+[INFO] |  |  +- com.drewnoakes:metadata-extractor:jar:2.8.0:provided
+[INFO] |  |  |  \- com.adobe.xmp:xmpcore:jar:5.1.2:provided
+[INFO] |  |  +- rome:rome:jar:1.0:provided
+[INFO] |  |  |  \- jdom:jdom:jar:1.0:provided
+[INFO] |  |  +- org.gagravarr:vorbis-java-core:jar:0.6:provided
+[INFO] |  |  +- com.googlecode.juniversalchardet:juniversalchardet:jar:1.0.3:provided
+[INFO] |  |  +- org.codelibs:jhighlight:jar:1.0.2:provided
+[INFO] |  |  +- com.pff:java-libpst:jar:0.8.1:provided
+[INFO] |  |  +- com.github.junrar:junrar:jar:0.7:provided
+[INFO] |  |  |  +- commons-logging:commons-logging-api:jar:1.1:provided
+[INFO] |  |  |  \- org.apache.commons:commons-vfs2:jar:2.0:provided
+[INFO] |  |  |     +- org.apache.maven.scm:maven-scm-api:jar:1.4:provided
+[INFO] |  |  |     |  \- org.codehaus.plexus:plexus-utils:jar:1.5.6:provided
+[INFO] |  |  |     \- org.apache.maven.scm:maven-scm-provider-svnexe:jar:1.4:provided
+[INFO] |  |  |        +- org.apache.maven.scm:maven-scm-provider-svn-commons:jar:1.4:provided
+[INFO] |  |  |        \- regexp:regexp:jar:1.3:provided
+[INFO] |  |  +- org.apache.opennlp:opennlp-tools:jar:1.5.3:provided
+[INFO] |  |  |  +- org.apache.opennlp:opennlp-maxent:jar:3.0.3:provided
+[INFO] |  |  |  \- net.sf.jwordnet:jwnl:jar:1.3.3:provided
+[INFO] |  |  +- commons-io:commons-io:jar:2.4:provided
+[INFO] |  |  +- org.apache.commons:commons-exec:jar:1.3:provided
+[INFO] |  |  +- com.googlecode.json-simple:json-simple:jar:1.1.1:provided
+[INFO] |  |  +- edu.ucar:netcdf4:jar:4.5.5:provided
+[INFO] |  |  |  +- net.jcip:jcip-annotations:jar:1.0:provided
+[INFO] |  |  |  \- net.java.dev.jna:jna:jar:4.1.0:provided
+[INFO] |  |  +- edu.ucar:grib:jar:4.5.5:provided
+[INFO] |  |  |  +- com.google.protobuf:protobuf-java:jar:2.5.0:provided
+[INFO] |  |  |  +- org.jdom:jdom2:jar:2.0.4:provided
+[INFO] |  |  |  +- edu.ucar:jj2000:jar:5.2:provided
+[INFO] |  |  |  \- org.itadaki:bzip2:jar:0.9.1:provided
+[INFO] |  |  +- edu.ucar:cdm:jar:4.5.5:provided
+[INFO] |  |  |  +- edu.ucar:udunits:jar:4.5.5:provided
+[INFO] |  |  |  +- org.apache.httpcomponents:httpcore:jar:4.2.5:provided
+[INFO] |  |  |  +- joda-time:joda-time:jar:2.2:provided
+[INFO] |  |  |  +- org.quartz-scheduler:quartz:jar:2.2.1:provided (version managed from 2.2.0)
+[INFO] |  |  |  |  \- c3p0:c3p0:jar:0.9.1.1:provided
+[INFO] |  |  |  \- com.beust:jcommander:jar:1.35:provided
+[INFO] |  |  +- edu.ucar:httpservices:jar:4.5.5:provided
+[INFO] |  |  |  +- org.apache.httpcomponents:httpclient:jar:4.2.6:provided
+[INFO] |  |  |  \- org.apache.httpcomponents:httpmime:jar:4.2.6:provided
+[INFO] |  |  +- org.apache.commons:commons-csv:jar:1.0:provided
+[INFO] |  |  +- org.apache.sis.core:sis-utility:jar:0.5:provided
+[INFO] |  |  +- org.apache.sis.storage:sis-netcdf:jar:0.5:provided
+[INFO] |  |  |  +- org.apache.sis.storage:sis-storage:jar:0.5:provided
+[INFO] |  |  |  \- org.apache.sis.core:sis-referencing:jar:0.5:provided
+[INFO] |  |  +- org.apache.sis.core:sis-metadata:jar:0.5:provided
+[INFO] |  |  \- org.opengis:geoapi:jar:3.0.0:provided
+[INFO] |  |     \- javax.measure:jsr-275:jar:0.9.3:provided
+[INFO] |  +- org.apache.poi:poi:jar:3.8:provided
+[INFO] |  +- org.apache.poi:poi-ooxml:jar:3.8:provided
+[INFO] |  |  +- org.apache.poi:poi-ooxml-schemas:jar:3.8:provided
+[INFO] |  |  |  \- org.apache.xmlbeans:xmlbeans:jar:2.3.0:provided
+[INFO] |  |  |     \- stax:stax-api:jar:1.0.1:provided
+[INFO] |  |  \- dom4j:dom4j:jar:1.6.1:provided
+[INFO] |  +- commons-validator:commons-validator:jar:1.4.1:provided
+[INFO] |  +- net.sf.opencsv:opencsv:jar:1.8:provided (version managed from 2.3)
+[INFO] |  +- com.google.guava:guava:jar:16.0.1:provided
+[INFO] |  +- com.google.code.findbugs:jsr305:jar:2.0.3:provided
+[INFO] |  +- org.azeckoski:reflectutils:jar:0.9.19:provided
+[INFO] |  +- org.jasypt:jasypt:jar:1.9.0:provided
+[INFO] |  +- com.ibm.icu:icu4j:jar:4.8.1:provided
+[INFO] |  +- org.owasp.antisamy:antisamy:jar:1.5.3:provided
+[INFO] |  |  +- org.apache.xmlgraphics:batik-css:jar:1.7:provided
+[INFO] |  |  |  +- org.apache.xmlgraphics:batik-ext:jar:1.7:provided
+[INFO] |  |  |  +- org.apache.xmlgraphics:batik-util:jar:1.7:provided
+[INFO] |  |  |  \- xml-apis:xml-apis-ext:jar:1.3.04:provided
+[INFO] |  |  +- net.sourceforge.nekohtml:nekohtml:jar:1.9.16:provided
+[INFO] |  |  |  \- xerces:xercesImpl:jar:2.6.2:provided (version managed from 2.9.1)
+[INFO] |  |  \- commons-httpclient:commons-httpclient:jar:3.1:provided
+[INFO] |  \- org.jsoup:jsoup:jar:1.7.3:provided
+[INFO] +- org.sakaiproject.common:archive-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.common:archive-impl:jar:11-SNAPSHOT:provided
+[INFO] |  \- commons-codec:commons-codec:jar:1.8:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-api:jar:11-SNAPSHOT:provided
+[INFO] |  \- com.zaxxer:HikariCP:jar:2.4.1:provided
+[INFO] |     \- org.slf4j:slf4j-api:jar:1.7.5:provided
+[INFO] +- org.sakaiproject.kernel:sakai-component-manager:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-util:jar:11-SNAPSHOT:compile
+[INFO] +- org.springframework:spring-beans:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-context:jar:4.1.8.RELEASE:provided
+[INFO] |  +- org.springframework:spring-aop:jar:4.1.8.RELEASE:provided
+[INFO] |  \- org.springframework:spring-expression:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-core:jar:4.1.8.RELEASE:provided
+[INFO] |  \- commons-logging:commons-logging:jar:1.0.4:provided
+[INFO] +- org.springframework:spring-web:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-webmvc:jar:4.1.8.RELEASE:compile
+[INFO] +- net.sf.ehcache:ehcache-core:jar:2.6.6:provided
+[INFO] \- junit:junit:jar:4.1:test
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Sakai Gradebook2 API 1.9.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.1:tree (default-cli) @ gradebook2-api ---
+[INFO] org.sakaiproject.gradebook2:gradebook2-api:jar:1.9.0-SNAPSHOT
+[INFO] +- org.sakaiproject.gradebook2:gradebook2-model:jar:1.9.0-SNAPSHOT:provided
+[INFO] +- com.google.gwt:gwt-user:jar:2.4.0:provided
+[INFO] |  +- javax.validation:validation-api:jar:1.0.0.GA:provided
+[INFO] |  \- javax.validation:validation-api:jar:sources:1.0.0.GA:provided
+[INFO] +- com.google.gwt:gwt-servlet:jar:2.5.0:runtime
+[INFO] +- com.extjs:gxt:jar:2.2.5-gwt22:provided
+[INFO] +- com.sencha.gxt:gxt:jar:3.0.1:provided
+[INFO] |  \- org.json:json:jar:20090211:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-hibernate:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-impl:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.sakaiproject.edu-services.sections:sections-integrationsupport:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.apache.myfaces.core:myfaces-api:jar:1.1.5:provided
+[INFO] |  |  +- commons-lang:commons-lang:jar:2.6:provided (version managed from 2.1)
+[INFO] |  |  \- javax.servlet:jstl:jar:1.1.2:provided (version managed from 1.1.0)
+[INFO] |  +- org.apache.myfaces.core:myfaces-impl:jar:1.1.5:provided
+[INFO] |  |  +- commons-el:commons-el:jar:1.0:provided
+[INFO] |  |  \- commons-collections:commons-collections:jar:3.2.2:provided
+[INFO] |  +- org.apache.myfaces.tomahawk:tomahawk:jar:1.1.6:provided
+[INFO] |  |  +- commons-fileupload:commons-fileupload:jar:1.3.1:provided (version managed from 1.0)
+[INFO] |  |  \- oro:oro:jar:2.0.8:provided
+[INFO] |  +- aopalliance:aopalliance:jar:1.0:provided
+[INFO] |  +- jta:jta:jar:h2.1.8:provided
+[INFO] |  +- odmg:odmg:jar:3.0:provided
+[INFO] |  +- commons-digester:commons-digester:jar:1.6:provided
+[INFO] |  |  \- xml-apis:xml-apis:jar:1.0.b2:provided
+[INFO] |  +- commons-beanutils:commons-beanutils:jar:1.7.0:provided
+[INFO] |  \- com.thoughtworks.xstream:xstream:jar:1.2.1:provided
+[INFO] |     \- xpp3:xpp3_min:jar:1.1.3.4.O:provided
+[INFO] +- org.sakaiproject.edu-services.course-management:coursemanagement-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.sections:sections-api:jar:11-SNAPSHOT:provided
+[INFO] +- javax.servlet:servlet-api:jar:2.5:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-impl:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.sakaiproject.kernel:sakai-kernel-storage-util:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.apache.tika:tika-core:jar:1.10:provided
+[INFO] |  +- org.apache.tika:tika-parsers:jar:1.10:provided
+[INFO] |  |  +- org.gagravarr:vorbis-java-tika:jar:0.6:provided
+[INFO] |  |  +- com.healthmarketscience.jackcess:jackcess:jar:2.1.2:provided
+[INFO] |  |  +- com.healthmarketscience.jackcess:jackcess-encrypt:jar:2.1.0:provided
+[INFO] |  |  +- net.sourceforge.jmatio:jmatio:jar:1.0:provided
+[INFO] |  |  +- org.apache.james:apache-mime4j-core:jar:0.7.2:provided
+[INFO] |  |  +- org.apache.james:apache-mime4j-dom:jar:0.7.2:provided
+[INFO] |  |  +- org.apache.commons:commons-compress:jar:1.9:provided
+[INFO] |  |  +- org.tukaani:xz:jar:1.5:provided
+[INFO] |  |  +- org.apache.pdfbox:pdfbox:jar:1.8.10:provided
+[INFO] |  |  |  +- org.apache.pdfbox:fontbox:jar:1.8.10:provided
+[INFO] |  |  |  \- org.apache.pdfbox:jempbox:jar:1.8.10:provided
+[INFO] |  |  +- org.bouncycastle:bcmail-jdk15on:jar:1.52:provided
+[INFO] |  |  |  \- org.bouncycastle:bcpkix-jdk15on:jar:1.52:provided
+[INFO] |  |  +- org.bouncycastle:bcprov-jdk15on:jar:1.52:provided
+[INFO] |  |  +- org.apache.poi:poi-scratchpad:jar:3.13-beta1:provided
+[INFO] |  |  +- org.ccil.cowan.tagsoup:tagsoup:jar:1.2.1:provided
+[INFO] |  |  +- com.googlecode.mp4parser:isoparser:jar:1.0.2:provided
+[INFO] |  |  |  \- org.aspectj:aspectjrt:jar:1.8.0:provided
+[INFO] |  |  +- com.drewnoakes:metadata-extractor:jar:2.8.0:provided
+[INFO] |  |  |  \- com.adobe.xmp:xmpcore:jar:5.1.2:provided
+[INFO] |  |  +- rome:rome:jar:1.0:provided
+[INFO] |  |  |  \- jdom:jdom:jar:1.0:provided
+[INFO] |  |  +- org.gagravarr:vorbis-java-core:jar:0.6:provided
+[INFO] |  |  +- com.googlecode.juniversalchardet:juniversalchardet:jar:1.0.3:provided
+[INFO] |  |  +- org.codelibs:jhighlight:jar:1.0.2:provided
+[INFO] |  |  +- com.pff:java-libpst:jar:0.8.1:provided
+[INFO] |  |  +- com.github.junrar:junrar:jar:0.7:provided
+[INFO] |  |  |  +- commons-logging:commons-logging-api:jar:1.1:provided
+[INFO] |  |  |  \- org.apache.commons:commons-vfs2:jar:2.0:provided
+[INFO] |  |  |     +- org.apache.maven.scm:maven-scm-api:jar:1.4:provided
+[INFO] |  |  |     |  \- org.codehaus.plexus:plexus-utils:jar:1.5.6:provided
+[INFO] |  |  |     \- org.apache.maven.scm:maven-scm-provider-svnexe:jar:1.4:provided
+[INFO] |  |  |        +- org.apache.maven.scm:maven-scm-provider-svn-commons:jar:1.4:provided
+[INFO] |  |  |        \- regexp:regexp:jar:1.3:provided
+[INFO] |  |  +- org.apache.opennlp:opennlp-tools:jar:1.5.3:provided
+[INFO] |  |  |  +- org.apache.opennlp:opennlp-maxent:jar:3.0.3:provided
+[INFO] |  |  |  \- net.sf.jwordnet:jwnl:jar:1.3.3:provided
+[INFO] |  |  +- commons-io:commons-io:jar:2.4:provided
+[INFO] |  |  +- org.apache.commons:commons-exec:jar:1.3:provided
+[INFO] |  |  +- com.googlecode.json-simple:json-simple:jar:1.1.1:provided
+[INFO] |  |  +- edu.ucar:netcdf4:jar:4.5.5:provided
+[INFO] |  |  |  +- net.jcip:jcip-annotations:jar:1.0:provided
+[INFO] |  |  |  \- net.java.dev.jna:jna:jar:4.1.0:provided
+[INFO] |  |  +- edu.ucar:grib:jar:4.5.5:provided
+[INFO] |  |  |  +- com.google.protobuf:protobuf-java:jar:2.5.0:provided
+[INFO] |  |  |  +- org.jdom:jdom2:jar:2.0.4:provided
+[INFO] |  |  |  +- edu.ucar:jj2000:jar:5.2:provided
+[INFO] |  |  |  \- org.itadaki:bzip2:jar:0.9.1:provided
+[INFO] |  |  +- edu.ucar:cdm:jar:4.5.5:provided
+[INFO] |  |  |  +- edu.ucar:udunits:jar:4.5.5:provided
+[INFO] |  |  |  +- org.apache.httpcomponents:httpcore:jar:4.2.5:provided
+[INFO] |  |  |  +- joda-time:joda-time:jar:2.2:provided
+[INFO] |  |  |  +- org.quartz-scheduler:quartz:jar:2.2.1:provided (version managed from 2.2.0)
+[INFO] |  |  |  |  \- c3p0:c3p0:jar:0.9.1.1:provided
+[INFO] |  |  |  \- com.beust:jcommander:jar:1.35:provided
+[INFO] |  |  +- edu.ucar:httpservices:jar:4.5.5:provided
+[INFO] |  |  |  +- org.apache.httpcomponents:httpclient:jar:4.2.6:provided
+[INFO] |  |  |  \- org.apache.httpcomponents:httpmime:jar:4.2.6:provided
+[INFO] |  |  +- org.apache.commons:commons-csv:jar:1.0:provided
+[INFO] |  |  +- org.apache.sis.core:sis-utility:jar:0.5:provided
+[INFO] |  |  +- org.apache.sis.storage:sis-netcdf:jar:0.5:provided
+[INFO] |  |  |  +- org.apache.sis.storage:sis-storage:jar:0.5:provided
+[INFO] |  |  |  \- org.apache.sis.core:sis-referencing:jar:0.5:provided
+[INFO] |  |  +- org.apache.sis.core:sis-metadata:jar:0.5:provided
+[INFO] |  |  \- org.opengis:geoapi:jar:3.0.0:provided
+[INFO] |  |     \- javax.measure:jsr-275:jar:0.9.3:provided
+[INFO] |  +- org.apache.poi:poi:jar:3.8:provided
+[INFO] |  +- org.apache.poi:poi-ooxml:jar:3.8:provided
+[INFO] |  |  +- org.apache.poi:poi-ooxml-schemas:jar:3.8:provided
+[INFO] |  |  |  \- org.apache.xmlbeans:xmlbeans:jar:2.3.0:provided
+[INFO] |  |  |     \- stax:stax-api:jar:1.0.1:provided
+[INFO] |  |  \- dom4j:dom4j:jar:1.6.1:provided
+[INFO] |  +- commons-validator:commons-validator:jar:1.4.1:provided
+[INFO] |  +- net.sf.opencsv:opencsv:jar:1.8:provided (version managed from 2.3)
+[INFO] |  +- com.google.guava:guava:jar:16.0.1:provided
+[INFO] |  +- com.google.code.findbugs:jsr305:jar:2.0.3:provided
+[INFO] |  +- org.azeckoski:reflectutils:jar:0.9.19:provided
+[INFO] |  +- org.jasypt:jasypt:jar:1.9.0:provided
+[INFO] |  +- com.ibm.icu:icu4j:jar:4.8.1:provided
+[INFO] |  +- org.owasp.antisamy:antisamy:jar:1.5.3:provided
+[INFO] |  |  +- org.apache.xmlgraphics:batik-css:jar:1.7:provided
+[INFO] |  |  |  +- org.apache.xmlgraphics:batik-ext:jar:1.7:provided
+[INFO] |  |  |  +- org.apache.xmlgraphics:batik-util:jar:1.7:provided
+[INFO] |  |  |  \- xml-apis:xml-apis-ext:jar:1.3.04:provided
+[INFO] |  |  +- net.sourceforge.nekohtml:nekohtml:jar:1.9.16:provided
+[INFO] |  |  |  \- xerces:xercesImpl:jar:2.6.2:provided (version managed from 2.9.1)
+[INFO] |  |  \- commons-httpclient:commons-httpclient:jar:3.1:provided
+[INFO] |  \- org.jsoup:jsoup:jar:1.7.3:provided
+[INFO] +- org.sakaiproject.common:archive-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.common:archive-impl:jar:11-SNAPSHOT:provided
+[INFO] |  \- commons-codec:commons-codec:jar:1.8:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-api:jar:11-SNAPSHOT:provided
+[INFO] |  \- com.zaxxer:HikariCP:jar:2.4.1:provided
+[INFO] |     \- org.slf4j:slf4j-api:jar:1.7.5:provided
+[INFO] +- org.sakaiproject.kernel:sakai-component-manager:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-util:jar:11-SNAPSHOT:compile
+[INFO] +- org.springframework:spring-beans:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-context:jar:4.1.8.RELEASE:provided
+[INFO] |  +- org.springframework:spring-aop:jar:4.1.8.RELEASE:provided
+[INFO] |  \- org.springframework:spring-expression:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-core:jar:4.1.8.RELEASE:provided
+[INFO] |  \- commons-logging:commons-logging:jar:1.0.4:provided
+[INFO] +- org.springframework:spring-web:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-webmvc:jar:4.1.8.RELEASE:compile
+[INFO] +- net.sf.ehcache:ehcache-core:jar:2.6.6:provided
+[INFO] \- junit:junit:jar:4.1:test
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Sakai Gradebook2 Shared Classes 1.9.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.1:tree (default-cli) @ gradebook2-shared ---
+[INFO] org.sakaiproject.gradebook2:gradebook2-shared:jar:1.9.0-SNAPSHOT
+[INFO] +- org.sakaiproject.gradebook2:gradebook2-model:jar:1.9.0-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.gradebook2:gradebook2-api:jar:1.9.0-SNAPSHOT:provided
+[INFO] +- com.google.gwt:gwt-servlet:jar:2.5.0:runtime
+[INFO] +- com.google.gwt:gwt-user:jar:2.5.0:provided
+[INFO] |  +- javax.validation:validation-api:jar:1.0.0.GA:provided
+[INFO] |  +- javax.validation:validation-api:jar:sources:1.0.0.GA:provided
+[INFO] |  \- org.json:json:jar:20090211:provided
+[INFO] +- com.extjs:gxt:jar:2.2.5-gwt22:provided
+[INFO] +- com.sencha.gxt:gxt:jar:3.0.1:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-hibernate:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-impl:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.sakaiproject.edu-services.sections:sections-integrationsupport:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.apache.myfaces.core:myfaces-api:jar:1.1.5:provided
+[INFO] |  |  +- commons-lang:commons-lang:jar:2.6:provided (version managed from 2.1)
+[INFO] |  |  \- javax.servlet:jstl:jar:1.1.2:provided (version managed from 1.1.0)
+[INFO] |  +- org.apache.myfaces.core:myfaces-impl:jar:1.1.5:provided
+[INFO] |  |  +- commons-el:commons-el:jar:1.0:provided
+[INFO] |  |  \- commons-collections:commons-collections:jar:3.2.2:provided
+[INFO] |  +- org.apache.myfaces.tomahawk:tomahawk:jar:1.1.6:provided
+[INFO] |  |  +- commons-fileupload:commons-fileupload:jar:1.3.1:provided (version managed from 1.0)
+[INFO] |  |  \- oro:oro:jar:2.0.8:provided
+[INFO] |  +- aopalliance:aopalliance:jar:1.0:provided
+[INFO] |  +- jta:jta:jar:h2.1.8:provided
+[INFO] |  +- odmg:odmg:jar:3.0:provided
+[INFO] |  +- commons-digester:commons-digester:jar:1.6:provided
+[INFO] |  |  \- xml-apis:xml-apis:jar:1.0.b2:provided
+[INFO] |  +- commons-beanutils:commons-beanutils:jar:1.7.0:provided
+[INFO] |  \- com.thoughtworks.xstream:xstream:jar:1.2.1:provided
+[INFO] |     \- xpp3:xpp3_min:jar:1.1.3.4.O:provided
+[INFO] +- org.sakaiproject.edu-services.course-management:coursemanagement-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.sections:sections-api:jar:11-SNAPSHOT:provided
+[INFO] +- javax.servlet:servlet-api:jar:2.5:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-impl:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.sakaiproject.kernel:sakai-kernel-storage-util:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.apache.tika:tika-core:jar:1.10:provided
+[INFO] |  +- org.apache.tika:tika-parsers:jar:1.10:provided
+[INFO] |  |  +- org.gagravarr:vorbis-java-tika:jar:0.6:provided
+[INFO] |  |  +- com.healthmarketscience.jackcess:jackcess:jar:2.1.2:provided
+[INFO] |  |  +- com.healthmarketscience.jackcess:jackcess-encrypt:jar:2.1.0:provided
+[INFO] |  |  +- net.sourceforge.jmatio:jmatio:jar:1.0:provided
+[INFO] |  |  +- org.apache.james:apache-mime4j-core:jar:0.7.2:provided
+[INFO] |  |  +- org.apache.james:apache-mime4j-dom:jar:0.7.2:provided
+[INFO] |  |  +- org.apache.commons:commons-compress:jar:1.9:provided
+[INFO] |  |  +- org.tukaani:xz:jar:1.5:provided
+[INFO] |  |  +- org.apache.pdfbox:pdfbox:jar:1.8.10:provided
+[INFO] |  |  |  +- org.apache.pdfbox:fontbox:jar:1.8.10:provided
+[INFO] |  |  |  \- org.apache.pdfbox:jempbox:jar:1.8.10:provided
+[INFO] |  |  +- org.bouncycastle:bcmail-jdk15on:jar:1.52:provided
+[INFO] |  |  |  \- org.bouncycastle:bcpkix-jdk15on:jar:1.52:provided
+[INFO] |  |  +- org.bouncycastle:bcprov-jdk15on:jar:1.52:provided
+[INFO] |  |  +- org.apache.poi:poi-scratchpad:jar:3.13-beta1:provided
+[INFO] |  |  +- org.ccil.cowan.tagsoup:tagsoup:jar:1.2.1:provided
+[INFO] |  |  +- com.googlecode.mp4parser:isoparser:jar:1.0.2:provided
+[INFO] |  |  |  \- org.aspectj:aspectjrt:jar:1.8.0:provided
+[INFO] |  |  +- com.drewnoakes:metadata-extractor:jar:2.8.0:provided
+[INFO] |  |  |  \- com.adobe.xmp:xmpcore:jar:5.1.2:provided
+[INFO] |  |  +- rome:rome:jar:1.0:provided
+[INFO] |  |  |  \- jdom:jdom:jar:1.0:provided
+[INFO] |  |  +- org.gagravarr:vorbis-java-core:jar:0.6:provided
+[INFO] |  |  +- com.googlecode.juniversalchardet:juniversalchardet:jar:1.0.3:provided
+[INFO] |  |  +- org.codelibs:jhighlight:jar:1.0.2:provided
+[INFO] |  |  +- com.pff:java-libpst:jar:0.8.1:provided
+[INFO] |  |  +- com.github.junrar:junrar:jar:0.7:provided
+[INFO] |  |  |  +- commons-logging:commons-logging-api:jar:1.1:provided
+[INFO] |  |  |  \- org.apache.commons:commons-vfs2:jar:2.0:provided
+[INFO] |  |  |     +- org.apache.maven.scm:maven-scm-api:jar:1.4:provided
+[INFO] |  |  |     |  \- org.codehaus.plexus:plexus-utils:jar:1.5.6:provided
+[INFO] |  |  |     \- org.apache.maven.scm:maven-scm-provider-svnexe:jar:1.4:provided
+[INFO] |  |  |        +- org.apache.maven.scm:maven-scm-provider-svn-commons:jar:1.4:provided
+[INFO] |  |  |        \- regexp:regexp:jar:1.3:provided
+[INFO] |  |  +- org.apache.opennlp:opennlp-tools:jar:1.5.3:provided
+[INFO] |  |  |  +- org.apache.opennlp:opennlp-maxent:jar:3.0.3:provided
+[INFO] |  |  |  \- net.sf.jwordnet:jwnl:jar:1.3.3:provided
+[INFO] |  |  +- commons-io:commons-io:jar:2.4:provided
+[INFO] |  |  +- org.apache.commons:commons-exec:jar:1.3:provided
+[INFO] |  |  +- com.googlecode.json-simple:json-simple:jar:1.1.1:provided
+[INFO] |  |  +- edu.ucar:netcdf4:jar:4.5.5:provided
+[INFO] |  |  |  +- net.jcip:jcip-annotations:jar:1.0:provided
+[INFO] |  |  |  \- net.java.dev.jna:jna:jar:4.1.0:provided
+[INFO] |  |  +- edu.ucar:grib:jar:4.5.5:provided
+[INFO] |  |  |  +- com.google.protobuf:protobuf-java:jar:2.5.0:provided
+[INFO] |  |  |  +- org.jdom:jdom2:jar:2.0.4:provided
+[INFO] |  |  |  +- edu.ucar:jj2000:jar:5.2:provided
+[INFO] |  |  |  \- org.itadaki:bzip2:jar:0.9.1:provided
+[INFO] |  |  +- edu.ucar:cdm:jar:4.5.5:provided
+[INFO] |  |  |  +- edu.ucar:udunits:jar:4.5.5:provided
+[INFO] |  |  |  +- org.apache.httpcomponents:httpcore:jar:4.2.5:provided
+[INFO] |  |  |  +- joda-time:joda-time:jar:2.2:provided
+[INFO] |  |  |  +- org.quartz-scheduler:quartz:jar:2.2.1:provided (version managed from 2.2.0)
+[INFO] |  |  |  |  \- c3p0:c3p0:jar:0.9.1.1:provided
+[INFO] |  |  |  \- com.beust:jcommander:jar:1.35:provided
+[INFO] |  |  +- edu.ucar:httpservices:jar:4.5.5:provided
+[INFO] |  |  |  +- org.apache.httpcomponents:httpclient:jar:4.2.6:provided
+[INFO] |  |  |  \- org.apache.httpcomponents:httpmime:jar:4.2.6:provided
+[INFO] |  |  +- org.apache.commons:commons-csv:jar:1.0:provided
+[INFO] |  |  +- org.apache.sis.core:sis-utility:jar:0.5:provided
+[INFO] |  |  +- org.apache.sis.storage:sis-netcdf:jar:0.5:provided
+[INFO] |  |  |  +- org.apache.sis.storage:sis-storage:jar:0.5:provided
+[INFO] |  |  |  \- org.apache.sis.core:sis-referencing:jar:0.5:provided
+[INFO] |  |  +- org.apache.sis.core:sis-metadata:jar:0.5:provided
+[INFO] |  |  \- org.opengis:geoapi:jar:3.0.0:provided
+[INFO] |  |     \- javax.measure:jsr-275:jar:0.9.3:provided
+[INFO] |  +- org.apache.poi:poi:jar:3.8:provided
+[INFO] |  +- org.apache.poi:poi-ooxml:jar:3.8:provided
+[INFO] |  |  +- org.apache.poi:poi-ooxml-schemas:jar:3.8:provided
+[INFO] |  |  |  \- org.apache.xmlbeans:xmlbeans:jar:2.3.0:provided
+[INFO] |  |  |     \- stax:stax-api:jar:1.0.1:provided
+[INFO] |  |  \- dom4j:dom4j:jar:1.6.1:provided
+[INFO] |  +- commons-validator:commons-validator:jar:1.4.1:provided
+[INFO] |  +- net.sf.opencsv:opencsv:jar:1.8:provided (version managed from 2.3)
+[INFO] |  +- com.google.guava:guava:jar:16.0.1:provided
+[INFO] |  +- com.google.code.findbugs:jsr305:jar:2.0.3:provided
+[INFO] |  +- org.azeckoski:reflectutils:jar:0.9.19:provided
+[INFO] |  +- org.jasypt:jasypt:jar:1.9.0:provided
+[INFO] |  +- com.ibm.icu:icu4j:jar:4.8.1:provided
+[INFO] |  +- org.owasp.antisamy:antisamy:jar:1.5.3:provided
+[INFO] |  |  +- org.apache.xmlgraphics:batik-css:jar:1.7:provided
+[INFO] |  |  |  +- org.apache.xmlgraphics:batik-ext:jar:1.7:provided
+[INFO] |  |  |  +- org.apache.xmlgraphics:batik-util:jar:1.7:provided
+[INFO] |  |  |  \- xml-apis:xml-apis-ext:jar:1.3.04:provided
+[INFO] |  |  +- net.sourceforge.nekohtml:nekohtml:jar:1.9.16:provided
+[INFO] |  |  |  \- xerces:xercesImpl:jar:2.6.2:provided (version managed from 2.9.1)
+[INFO] |  |  \- commons-httpclient:commons-httpclient:jar:3.1:provided
+[INFO] |  \- org.jsoup:jsoup:jar:1.7.3:provided
+[INFO] +- org.sakaiproject.common:archive-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.common:archive-impl:jar:11-SNAPSHOT:provided
+[INFO] |  \- commons-codec:commons-codec:jar:1.8:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-api:jar:11-SNAPSHOT:provided
+[INFO] |  \- com.zaxxer:HikariCP:jar:2.4.1:provided
+[INFO] |     \- org.slf4j:slf4j-api:jar:1.7.5:provided
+[INFO] +- org.sakaiproject.kernel:sakai-component-manager:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-util:jar:11-SNAPSHOT:compile
+[INFO] +- org.springframework:spring-beans:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-context:jar:4.1.8.RELEASE:provided
+[INFO] |  +- org.springframework:spring-aop:jar:4.1.8.RELEASE:provided
+[INFO] |  \- org.springframework:spring-expression:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-core:jar:4.1.8.RELEASE:provided
+[INFO] |  \- commons-logging:commons-logging:jar:1.0.4:provided
+[INFO] +- org.springframework:spring-web:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-webmvc:jar:4.1.8.RELEASE:compile
+[INFO] +- net.sf.ehcache:ehcache-core:jar:2.6.6:provided
+[INFO] \- junit:junit:jar:4.1:test
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Sakai Gradebook2 Server Side Code 1.9.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.1:tree (default-cli) @ gradebook2-server ---
+[WARNING] Invalid POM for org.slf4j:slf4j-api:jar:1.7.5, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for org.slf4j:slf4j-api:jar:1.7.5, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for commons-codec:commons-codec:jar:1.8, transitive dependencies (if any) will not be available, enable debug logging for more details
+[INFO] org.sakaiproject.gradebook2:gradebook2-server:jar:1.9.0-SNAPSHOT
+[INFO] +- org.sakaiproject.gradebook2:gradebook2-api:jar:1.9.0-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.gradebook2:gradebook2-model:jar:1.9.0-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.gradebook2:gradebook2-shared:jar:1.9.0-SNAPSHOT:compile
+[INFO] +- com.google.gwt:gwt-user:jar:2.5.0:provided
+[INFO] |  +- javax.validation:validation-api:jar:1.0.0.GA:provided
+[INFO] |  +- javax.validation:validation-api:jar:sources:1.0.0.GA:provided
+[INFO] |  \- org.json:json:jar:20090211:provided
+[INFO] +- org.springframework:spring-core:jar:4.1.8.RELEASE:provided
+[INFO] |  \- commons-logging:commons-logging:jar:1.0.4:provided (version managed from 1.2)
+[INFO] +- org.springframework:spring-tx:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-orm:jar:4.1.8.RELEASE:provided
+[INFO] |  \- org.springframework:spring-jdbc:jar:4.1.8.RELEASE:provided
+[INFO] +- stax:stax-api:jar:1.0.1:compile
+[INFO] +- com.sun.jersey:jersey-server:jar:1.13:compile
+[INFO] |  +- asm:asm:jar:3.1:compile
+[INFO] |  \- com.sun.jersey:jersey-core:jar:1.13:compile
+[INFO] +- com.sun.jersey.contribs:jersey-spring:jar:1.13:compile
+[INFO] |  \- com.sun.jersey:jersey-servlet:jar:1.13:compile
+[INFO] +- com.sun.jersey:jersey-json:jar:1.13:compile
+[INFO] |  +- org.codehaus.jettison:jettison:jar:1.1:compile
+[INFO] |  +- com.sun.xml.bind:jaxb-impl:jar:2.2.3-1:compile
+[INFO] |  |  \- javax.xml.bind:jaxb-api:jar:2.2.2:compile
+[INFO] |  |     \- javax.activation:activation:jar:1.1.1:provided (version managed from 1.1; scope managed from compile)
+[INFO] |  \- org.codehaus.jackson:jackson-xc:jar:1.9.2:compile
+[INFO] +- org.codehaus.jackson:jackson-jaxrs:jar:1.9.9:compile
+[INFO] +- org.codehaus.jackson:jackson-core-asl:jar:1.9.9:compile
+[INFO] +- org.codehaus.jackson:jackson-mapper-asl:jar:1.9.9:compile
+[INFO] +- commons-collections:commons-collections:jar:3.2.1:provided
+[INFO] +- commons-digester:commons-digester:jar:1.6:compile
+[INFO] |  +- commons-beanutils:commons-beanutils:jar:1.6:compile
+[INFO] |  \- xml-apis:xml-apis:jar:1.0.b2:provided (scope managed from compile)
+[INFO] +- commons-io:commons-io:jar:1.4:provided
+[INFO] +- jexcelapi:jxl:jar:2.4.2:compile
+[INFO] +- net.sf.opencsv:opencsv:jar:1.8:compile
+[INFO] +- org.apache.poi:poi:jar:3.8:compile
+[INFO] |  \- commons-codec:commons-codec:jar:1.8:provided (version managed from 1.5; scope managed from compile)
+[INFO] +- org.hibernate:hibernate-core:jar:3.6.10.Final:provided
+[INFO] |  +- antlr:antlr:jar:2.7.6:provided
+[INFO] |  +- dom4j:dom4j:jar:1.6.1:provided
+[INFO] |  +- org.hibernate:hibernate-commons-annotations:jar:3.2.0.Final:provided
+[INFO] |  +- org.hibernate.javax.persistence:hibernate-jpa-2.0-api:jar:1.0.1.Final:provided
+[INFO] |  +- javax.transaction:jta:jar:1.1:provided
+[INFO] |  \- org.slf4j:slf4j-api:jar:1.7.5:provided
+[INFO] +- org.apache.commons:commons-math:jar:2.1:test
+[INFO] +- org.apache.poi:poi-ooxml:jar:3.8:compile
+[INFO] |  \- org.apache.poi:poi-ooxml-schemas:jar:3.8:compile
+[INFO] +- org.apache.xmlbeans:xmlbeans:jar:2.4.0:compile
+[INFO] +- org.apache.poi:ooxml-schemas:jar:1.1:compile
+[INFO] +- org.apache.tika:tika-core:jar:1.2:compile
+[INFO] +- org.apache.tika:tika-parsers:jar:1.2:compile
+[INFO] |  +- org.gagravarr:vorbis-java-tika:jar:0.1:compile
+[INFO] |  |  \- org.gagravarr:vorbis-java-core:jar:tests:0.1:runtime
+[INFO] |  +- edu.ucar:netcdf:jar:4.2-min:compile
+[INFO] |  +- org.apache.james:apache-mime4j-core:jar:0.7.2:compile
+[INFO] |  +- org.apache.james:apache-mime4j-dom:jar:0.7.2:compile
+[INFO] |  +- org.apache.commons:commons-compress:jar:1.4.1:compile
+[INFO] |  |  \- org.tukaani:xz:jar:1.0:compile
+[INFO] |  +- org.apache.pdfbox:pdfbox:jar:1.7.0:compile
+[INFO] |  |  +- org.apache.pdfbox:fontbox:jar:1.7.0:compile
+[INFO] |  |  \- org.apache.pdfbox:jempbox:jar:1.7.0:compile
+[INFO] |  +- org.bouncycastle:bcmail-jdk15:jar:1.45:compile
+[INFO] |  +- org.bouncycastle:bcprov-jdk15:jar:1.45:compile
+[INFO] |  +- org.apache.poi:poi-scratchpad:jar:3.8:compile
+[INFO] |  +- org.apache.geronimo.specs:geronimo-stax-api_1.0_spec:jar:1.0.1:compile
+[INFO] |  +- org.ccil.cowan.tagsoup:tagsoup:jar:1.2.1:compile
+[INFO] |  +- com.googlecode.mp4parser:isoparser:jar:1.0-RC-1:compile
+[INFO] |  |  \- org.aspectj:aspectjrt:jar:1.6.11:compile
+[INFO] |  +- com.drewnoakes:metadata-extractor:jar:2.4.0-beta-1:compile
+[INFO] |  +- rome:rome:jar:0.9:compile
+[INFO] |  |  \- jdom:jdom:jar:1.0:provided (scope managed from compile)
+[INFO] |  +- org.gagravarr:vorbis-java-core:jar:0.1:compile
+[INFO] |  \- com.googlecode.juniversalchardet:juniversalchardet:jar:1.0.3:compile
+[INFO] +- com.google.gwt:gwt-servlet:jar:2.5.0:runtime
+[INFO] +- com.extjs:gxt:jar:2.2.5-gwt22:provided
+[INFO] +- com.sencha.gxt:gxt:jar:3.0.1:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-hibernate:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-impl:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.sakaiproject.edu-services.sections:sections-integrationsupport:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.apache.myfaces.core:myfaces-api:jar:1.1.5:provided
+[INFO] |  |  +- commons-lang:commons-lang:jar:2.6:provided (version managed from 2.1)
+[INFO] |  |  \- javax.servlet:jstl:jar:1.1.2:provided (version managed from 1.1.0)
+[INFO] |  +- org.apache.myfaces.core:myfaces-impl:jar:1.1.5:provided
+[INFO] |  |  \- commons-el:commons-el:jar:1.0:provided
+[INFO] |  +- org.apache.myfaces.tomahawk:tomahawk:jar:1.1.6:provided
+[INFO] |  |  +- commons-fileupload:commons-fileupload:jar:1.3.1:provided (version managed from 1.0)
+[INFO] |  |  \- oro:oro:jar:2.0.8:provided
+[INFO] |  +- aopalliance:aopalliance:jar:1.0:provided
+[INFO] |  +- jta:jta:jar:h2.1.8:provided
+[INFO] |  +- odmg:odmg:jar:3.0:provided
+[INFO] |  \- com.thoughtworks.xstream:xstream:jar:1.2.1:provided
+[INFO] |     \- xpp3:xpp3_min:jar:1.1.3.4.O:provided
+[INFO] +- org.sakaiproject.edu-services.course-management:coursemanagement-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.sections:sections-api:jar:11-SNAPSHOT:provided
+[INFO] +- javax.servlet:servlet-api:jar:2.5:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-impl:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.sakaiproject.kernel:sakai-kernel-storage-util:jar:11-SNAPSHOT:provided
+[INFO] |  +- commons-validator:commons-validator:jar:1.4.1:provided
+[INFO] |  +- com.google.guava:guava:jar:16.0.1:provided
+[INFO] |  +- com.google.code.findbugs:jsr305:jar:2.0.3:provided
+[INFO] |  +- org.azeckoski:reflectutils:jar:0.9.19:provided
+[INFO] |  +- org.jasypt:jasypt:jar:1.9.0:provided
+[INFO] |  +- com.ibm.icu:icu4j:jar:4.8.1:provided
+[INFO] |  +- org.owasp.antisamy:antisamy:jar:1.5.3:provided
+[INFO] |  |  +- org.apache.xmlgraphics:batik-css:jar:1.7:provided
+[INFO] |  |  |  +- org.apache.xmlgraphics:batik-ext:jar:1.7:provided
+[INFO] |  |  |  +- org.apache.xmlgraphics:batik-util:jar:1.7:provided
+[INFO] |  |  |  \- xml-apis:xml-apis-ext:jar:1.3.04:provided
+[INFO] |  |  +- net.sourceforge.nekohtml:nekohtml:jar:1.9.16:provided
+[INFO] |  |  |  \- xerces:xercesImpl:jar:2.6.2:provided (version managed from 2.9.1)
+[INFO] |  |  \- commons-httpclient:commons-httpclient:jar:3.1:provided
+[INFO] |  \- org.jsoup:jsoup:jar:1.7.3:provided
+[INFO] +- org.sakaiproject.common:archive-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.common:archive-impl:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-api:jar:11-SNAPSHOT:provided
+[INFO] |  \- com.zaxxer:HikariCP:jar:2.4.1:provided
+[INFO] +- org.sakaiproject.kernel:sakai-component-manager:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-util:jar:11-SNAPSHOT:compile
+[INFO] +- org.springframework:spring-beans:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-context:jar:4.1.8.RELEASE:provided
+[INFO] |  +- org.springframework:spring-aop:jar:4.1.8.RELEASE:provided
+[INFO] |  \- org.springframework:spring-expression:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-web:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-webmvc:jar:4.1.8.RELEASE:compile
+[INFO] +- net.sf.ehcache:ehcache-core:jar:2.6.6:provided
+[INFO] \- junit:junit:jar:4.1:test
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Sakai Gradebook2 Client 1.9.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.1:tree (default-cli) @ gradebook2-client ---
+[INFO] org.sakaiproject.gradebook2:gradebook2-client:jar:1.9.0-SNAPSHOT
+[INFO] +- org.sakaiproject.gradebook2:gradebook2-api:jar:1.9.0-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.gradebook2:gradebook2-model:jar:1.9.0-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.gradebook2:gradebook2-shared:jar:1.9.0-SNAPSHOT:compile
+[INFO] +- com.google.gwt.google-apis:gwt-visualization:jar:1.1.2:compile
+[INFO] +- javax.validation:validation-api:jar:1.0.0.GA:provided
+[INFO] +- javax.validation:validation-api:jar:sources:1.0.0.GA:provided
+[INFO] +- com.googlecode.gwt.inject:gin:jar:1.5-post-gwt-2.2:compile
+[INFO] +- com.google.inject:guice:jar:3.0:compile
+[INFO] |  \- aopalliance:aopalliance:jar:1.0:provided
+[INFO] +- javax.inject:javax.inject:jar:1:compile
+[INFO] +- com.google.inject.extensions:guice-assistedinject:jar:3.0:compile
+[INFO] +- com.google.gwt:gwt-servlet:jar:2.5.0:runtime
+[INFO] +- com.google.gwt:gwt-user:jar:2.5.0:provided
+[INFO] |  \- org.json:json:jar:20090211:provided
+[INFO] +- com.extjs:gxt:jar:2.2.5-gwt22:provided
+[INFO] +- com.sencha.gxt:gxt:jar:3.0.1:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-hibernate:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-impl:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.sakaiproject.edu-services.sections:sections-integrationsupport:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.apache.myfaces.core:myfaces-api:jar:1.1.5:provided
+[INFO] |  |  +- commons-lang:commons-lang:jar:2.6:provided (version managed from 2.1)
+[INFO] |  |  \- javax.servlet:jstl:jar:1.1.2:provided (version managed from 1.1.0)
+[INFO] |  +- org.apache.myfaces.core:myfaces-impl:jar:1.1.5:provided
+[INFO] |  |  +- commons-el:commons-el:jar:1.0:provided
+[INFO] |  |  \- commons-collections:commons-collections:jar:3.2.2:provided
+[INFO] |  +- org.apache.myfaces.tomahawk:tomahawk:jar:1.1.6:provided
+[INFO] |  |  +- commons-fileupload:commons-fileupload:jar:1.3.1:provided (version managed from 1.0)
+[INFO] |  |  \- oro:oro:jar:2.0.8:provided
+[INFO] |  +- jta:jta:jar:h2.1.8:provided
+[INFO] |  +- odmg:odmg:jar:3.0:provided
+[INFO] |  +- commons-digester:commons-digester:jar:1.6:provided
+[INFO] |  |  \- xml-apis:xml-apis:jar:1.0.b2:provided
+[INFO] |  +- commons-beanutils:commons-beanutils:jar:1.7.0:provided
+[INFO] |  \- com.thoughtworks.xstream:xstream:jar:1.2.1:provided
+[INFO] |     \- xpp3:xpp3_min:jar:1.1.3.4.O:provided
+[INFO] +- org.sakaiproject.edu-services.course-management:coursemanagement-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.sections:sections-api:jar:11-SNAPSHOT:provided
+[INFO] +- javax.servlet:servlet-api:jar:2.5:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-impl:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.sakaiproject.kernel:sakai-kernel-storage-util:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.apache.tika:tika-core:jar:1.10:provided
+[INFO] |  +- org.apache.tika:tika-parsers:jar:1.10:provided
+[INFO] |  |  +- org.gagravarr:vorbis-java-tika:jar:0.6:provided
+[INFO] |  |  +- com.healthmarketscience.jackcess:jackcess:jar:2.1.2:provided
+[INFO] |  |  +- com.healthmarketscience.jackcess:jackcess-encrypt:jar:2.1.0:provided
+[INFO] |  |  +- net.sourceforge.jmatio:jmatio:jar:1.0:provided
+[INFO] |  |  +- org.apache.james:apache-mime4j-core:jar:0.7.2:provided
+[INFO] |  |  +- org.apache.james:apache-mime4j-dom:jar:0.7.2:provided
+[INFO] |  |  +- org.apache.commons:commons-compress:jar:1.9:provided
+[INFO] |  |  +- org.tukaani:xz:jar:1.5:provided
+[INFO] |  |  +- org.apache.pdfbox:pdfbox:jar:1.8.10:provided
+[INFO] |  |  |  +- org.apache.pdfbox:fontbox:jar:1.8.10:provided
+[INFO] |  |  |  \- org.apache.pdfbox:jempbox:jar:1.8.10:provided
+[INFO] |  |  +- org.bouncycastle:bcmail-jdk15on:jar:1.52:provided
+[INFO] |  |  |  \- org.bouncycastle:bcpkix-jdk15on:jar:1.52:provided
+[INFO] |  |  +- org.bouncycastle:bcprov-jdk15on:jar:1.52:provided
+[INFO] |  |  +- org.apache.poi:poi-scratchpad:jar:3.13-beta1:provided
+[INFO] |  |  +- org.ccil.cowan.tagsoup:tagsoup:jar:1.2.1:provided
+[INFO] |  |  +- com.googlecode.mp4parser:isoparser:jar:1.0.2:provided
+[INFO] |  |  |  \- org.aspectj:aspectjrt:jar:1.8.0:provided
+[INFO] |  |  +- com.drewnoakes:metadata-extractor:jar:2.8.0:provided
+[INFO] |  |  |  \- com.adobe.xmp:xmpcore:jar:5.1.2:provided
+[INFO] |  |  +- rome:rome:jar:1.0:provided
+[INFO] |  |  |  \- jdom:jdom:jar:1.0:provided
+[INFO] |  |  +- org.gagravarr:vorbis-java-core:jar:0.6:provided
+[INFO] |  |  +- com.googlecode.juniversalchardet:juniversalchardet:jar:1.0.3:provided
+[INFO] |  |  +- org.codelibs:jhighlight:jar:1.0.2:provided
+[INFO] |  |  +- com.pff:java-libpst:jar:0.8.1:provided
+[INFO] |  |  +- com.github.junrar:junrar:jar:0.7:provided
+[INFO] |  |  |  +- commons-logging:commons-logging-api:jar:1.1:provided
+[INFO] |  |  |  \- org.apache.commons:commons-vfs2:jar:2.0:provided
+[INFO] |  |  |     +- org.apache.maven.scm:maven-scm-api:jar:1.4:provided
+[INFO] |  |  |     |  \- org.codehaus.plexus:plexus-utils:jar:1.5.6:provided
+[INFO] |  |  |     \- org.apache.maven.scm:maven-scm-provider-svnexe:jar:1.4:provided
+[INFO] |  |  |        +- org.apache.maven.scm:maven-scm-provider-svn-commons:jar:1.4:provided
+[INFO] |  |  |        \- regexp:regexp:jar:1.3:provided
+[INFO] |  |  +- org.apache.opennlp:opennlp-tools:jar:1.5.3:provided
+[INFO] |  |  |  +- org.apache.opennlp:opennlp-maxent:jar:3.0.3:provided
+[INFO] |  |  |  \- net.sf.jwordnet:jwnl:jar:1.3.3:provided
+[INFO] |  |  +- commons-io:commons-io:jar:2.4:provided
+[INFO] |  |  +- org.apache.commons:commons-exec:jar:1.3:provided
+[INFO] |  |  +- com.googlecode.json-simple:json-simple:jar:1.1.1:provided
+[INFO] |  |  +- edu.ucar:netcdf4:jar:4.5.5:provided
+[INFO] |  |  |  +- net.jcip:jcip-annotations:jar:1.0:provided
+[INFO] |  |  |  \- net.java.dev.jna:jna:jar:4.1.0:provided
+[INFO] |  |  +- edu.ucar:grib:jar:4.5.5:provided
+[INFO] |  |  |  +- com.google.protobuf:protobuf-java:jar:2.5.0:provided
+[INFO] |  |  |  +- org.jdom:jdom2:jar:2.0.4:provided
+[INFO] |  |  |  +- edu.ucar:jj2000:jar:5.2:provided
+[INFO] |  |  |  \- org.itadaki:bzip2:jar:0.9.1:provided
+[INFO] |  |  +- edu.ucar:cdm:jar:4.5.5:provided
+[INFO] |  |  |  +- edu.ucar:udunits:jar:4.5.5:provided
+[INFO] |  |  |  +- org.apache.httpcomponents:httpcore:jar:4.2.5:provided
+[INFO] |  |  |  +- joda-time:joda-time:jar:2.2:provided
+[INFO] |  |  |  +- org.quartz-scheduler:quartz:jar:2.2.1:provided (version managed from 2.2.0)
+[INFO] |  |  |  |  \- c3p0:c3p0:jar:0.9.1.1:provided
+[INFO] |  |  |  \- com.beust:jcommander:jar:1.35:provided
+[INFO] |  |  +- edu.ucar:httpservices:jar:4.5.5:provided
+[INFO] |  |  |  +- org.apache.httpcomponents:httpclient:jar:4.2.6:provided
+[INFO] |  |  |  \- org.apache.httpcomponents:httpmime:jar:4.2.6:provided
+[INFO] |  |  +- org.apache.commons:commons-csv:jar:1.0:provided
+[INFO] |  |  +- org.apache.sis.core:sis-utility:jar:0.5:provided
+[INFO] |  |  +- org.apache.sis.storage:sis-netcdf:jar:0.5:provided
+[INFO] |  |  |  +- org.apache.sis.storage:sis-storage:jar:0.5:provided
+[INFO] |  |  |  \- org.apache.sis.core:sis-referencing:jar:0.5:provided
+[INFO] |  |  +- org.apache.sis.core:sis-metadata:jar:0.5:provided
+[INFO] |  |  \- org.opengis:geoapi:jar:3.0.0:provided
+[INFO] |  |     \- javax.measure:jsr-275:jar:0.9.3:provided
+[INFO] |  +- org.apache.poi:poi:jar:3.8:provided
+[INFO] |  +- org.apache.poi:poi-ooxml:jar:3.8:provided
+[INFO] |  |  +- org.apache.poi:poi-ooxml-schemas:jar:3.8:provided
+[INFO] |  |  |  \- org.apache.xmlbeans:xmlbeans:jar:2.3.0:provided
+[INFO] |  |  |     \- stax:stax-api:jar:1.0.1:provided
+[INFO] |  |  \- dom4j:dom4j:jar:1.6.1:provided
+[INFO] |  +- commons-validator:commons-validator:jar:1.4.1:provided
+[INFO] |  +- net.sf.opencsv:opencsv:jar:1.8:provided (version managed from 2.3)
+[INFO] |  +- com.google.guava:guava:jar:16.0.1:provided
+[INFO] |  +- com.google.code.findbugs:jsr305:jar:2.0.3:provided
+[INFO] |  +- org.azeckoski:reflectutils:jar:0.9.19:provided
+[INFO] |  +- org.jasypt:jasypt:jar:1.9.0:provided
+[INFO] |  +- com.ibm.icu:icu4j:jar:4.8.1:provided
+[INFO] |  +- org.owasp.antisamy:antisamy:jar:1.5.3:provided
+[INFO] |  |  +- org.apache.xmlgraphics:batik-css:jar:1.7:provided
+[INFO] |  |  |  +- org.apache.xmlgraphics:batik-ext:jar:1.7:provided
+[INFO] |  |  |  +- org.apache.xmlgraphics:batik-util:jar:1.7:provided
+[INFO] |  |  |  \- xml-apis:xml-apis-ext:jar:1.3.04:provided
+[INFO] |  |  +- net.sourceforge.nekohtml:nekohtml:jar:1.9.16:provided
+[INFO] |  |  |  \- xerces:xercesImpl:jar:2.6.2:provided (version managed from 2.9.1)
+[INFO] |  |  \- commons-httpclient:commons-httpclient:jar:3.1:provided
+[INFO] |  \- org.jsoup:jsoup:jar:1.7.3:provided
+[INFO] +- org.sakaiproject.common:archive-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.common:archive-impl:jar:11-SNAPSHOT:provided
+[INFO] |  \- commons-codec:commons-codec:jar:1.8:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-api:jar:11-SNAPSHOT:provided
+[INFO] |  \- com.zaxxer:HikariCP:jar:2.4.1:provided
+[INFO] |     \- org.slf4j:slf4j-api:jar:1.7.5:provided
+[INFO] +- org.sakaiproject.kernel:sakai-component-manager:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-util:jar:11-SNAPSHOT:compile
+[INFO] +- org.springframework:spring-beans:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-context:jar:4.1.8.RELEASE:provided
+[INFO] |  +- org.springframework:spring-aop:jar:4.1.8.RELEASE:provided
+[INFO] |  \- org.springframework:spring-expression:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-core:jar:4.1.8.RELEASE:provided
+[INFO] |  \- commons-logging:commons-logging:jar:1.0.4:provided
+[INFO] +- org.springframework:spring-web:jar:4.1.8.RELEASE:provided
+[INFO] +- org.springframework:spring-webmvc:jar:4.1.8.RELEASE:compile
+[INFO] +- net.sf.ehcache:ehcache-core:jar:2.6.6:provided
+[INFO] \- junit:junit:jar:4.1:test
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Sakai Gradebook2 War 1.9.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.1:tree (default-cli) @ sakai-gradebook2 ---
+[WARNING] Invalid POM for commons-codec:commons-codec:jar:1.8, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for org.slf4j:slf4j-api:jar:1.7.5, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for org.slf4j:slf4j-api:jar:1.7.5, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for net.sf.ehcache:ehcache-core:jar:2.6.6, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for org.slf4j:slf4j-api:jar:1.7.5, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for commons-codec:commons-codec:jar:1.8, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for org.slf4j:slf4j-api:jar:1.7.5, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for org.slf4j:slf4j-api:jar:1.7.5, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for net.sf.ehcache:ehcache-core:jar:2.6.6, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for commons-codec:commons-codec:jar:1.8, transitive dependencies (if any) will not be available, enable debug logging for more details
+[INFO] org.sakaiproject.gradebook2:sakai-gradebook2:war:1.9.0-SNAPSHOT
+[INFO] +- org.sakaiproject.gradebook2:gradebook2-server:jar:1.9.0-SNAPSHOT:compile
+[INFO] |  +- stax:stax-api:jar:1.0.1:compile
+[INFO] |  +- com.sun.jersey:jersey-server:jar:1.13:compile
+[INFO] |  |  +- asm:asm:jar:3.1:compile
+[INFO] |  |  \- com.sun.jersey:jersey-core:jar:1.13:compile
+[INFO] |  +- com.sun.jersey.contribs:jersey-spring:jar:1.13:compile
+[INFO] |  |  \- com.sun.jersey:jersey-servlet:jar:1.13:compile
+[INFO] |  +- com.sun.jersey:jersey-json:jar:1.13:compile
+[INFO] |  |  +- org.codehaus.jettison:jettison:jar:1.1:compile
+[INFO] |  |  +- com.sun.xml.bind:jaxb-impl:jar:2.2.3-1:compile
+[INFO] |  |  |  \- javax.xml.bind:jaxb-api:jar:2.2.2:compile
+[INFO] |  |  |     \- javax.activation:activation:jar:1.1.1:provided (version managed from 1.1; scope managed from compile)
+[INFO] |  |  \- org.codehaus.jackson:jackson-xc:jar:1.9.2:compile
+[INFO] |  +- org.codehaus.jackson:jackson-jaxrs:jar:1.9.9:compile
+[INFO] |  +- org.codehaus.jackson:jackson-core-asl:jar:1.9.9:compile
+[INFO] |  +- org.codehaus.jackson:jackson-mapper-asl:jar:1.9.9:compile
+[INFO] |  +- commons-digester:commons-digester:jar:1.6:compile
+[INFO] |  |  +- commons-beanutils:commons-beanutils:jar:1.7.0:compile
+[INFO] |  |  +- commons-collections:commons-collections:jar:3.2.2:provided
+[INFO] |  |  \- xml-apis:xml-apis:jar:1.0.b2:provided (scope managed from compile)
+[INFO] |  +- jexcelapi:jxl:jar:2.4.2:compile
+[INFO] |  +- net.sf.opencsv:opencsv:jar:1.8:compile
+[INFO] |  +- org.apache.poi:poi:jar:3.8:compile
+[INFO] |  +- org.apache.poi:poi-ooxml:jar:3.8:compile
+[INFO] |  |  +- org.apache.poi:poi-ooxml-schemas:jar:3.8:compile
+[INFO] |  |  \- dom4j:dom4j:jar:1.6.1:provided (scope managed from compile)
+[INFO] |  +- org.apache.xmlbeans:xmlbeans:jar:2.4.0:compile
+[INFO] |  +- org.apache.poi:ooxml-schemas:jar:1.1:compile
+[INFO] |  +- org.apache.tika:tika-core:jar:1.10:compile (version managed from 1.2)
+[INFO] |  \- org.apache.tika:tika-parsers:jar:1.10:compile (version managed from 1.2)
+[INFO] |     +- org.gagravarr:vorbis-java-tika:jar:0.6:compile
+[INFO] |     +- com.healthmarketscience.jackcess:jackcess:jar:2.1.2:compile
+[INFO] |     +- com.healthmarketscience.jackcess:jackcess-encrypt:jar:2.1.0:compile
+[INFO] |     +- net.sourceforge.jmatio:jmatio:jar:1.0:compile
+[INFO] |     +- org.apache.james:apache-mime4j-core:jar:0.7.2:compile
+[INFO] |     +- org.apache.james:apache-mime4j-dom:jar:0.7.2:compile
+[INFO] |     +- org.apache.commons:commons-compress:jar:1.9:compile
+[INFO] |     +- org.tukaani:xz:jar:1.5:compile
+[INFO] |     +- org.apache.pdfbox:pdfbox:jar:1.8.10:compile
+[INFO] |     |  +- org.apache.pdfbox:fontbox:jar:1.8.10:compile
+[INFO] |     |  \- org.apache.pdfbox:jempbox:jar:1.8.10:compile
+[INFO] |     +- org.bouncycastle:bcmail-jdk15on:jar:1.52:compile
+[INFO] |     |  \- org.bouncycastle:bcpkix-jdk15on:jar:1.52:compile
+[INFO] |     +- org.bouncycastle:bcprov-jdk15on:jar:1.52:compile
+[INFO] |     +- org.apache.poi:poi-scratchpad:jar:3.13-beta1:compile
+[INFO] |     +- org.ccil.cowan.tagsoup:tagsoup:jar:1.2.1:compile
+[INFO] |     +- com.googlecode.mp4parser:isoparser:jar:1.0.2:compile
+[INFO] |     |  \- org.aspectj:aspectjrt:jar:1.8.0:compile
+[INFO] |     +- com.drewnoakes:metadata-extractor:jar:2.8.0:compile
+[INFO] |     |  \- com.adobe.xmp:xmpcore:jar:5.1.2:compile
+[INFO] |     +- rome:rome:jar:1.0:compile
+[INFO] |     |  \- jdom:jdom:jar:1.0:provided (scope managed from compile)
+[INFO] |     +- org.gagravarr:vorbis-java-core:jar:0.6:compile
+[INFO] |     +- com.googlecode.juniversalchardet:juniversalchardet:jar:1.0.3:compile
+[INFO] |     +- org.codelibs:jhighlight:jar:1.0.2:compile
+[INFO] |     +- com.pff:java-libpst:jar:0.8.1:compile
+[INFO] |     +- com.github.junrar:junrar:jar:0.7:compile
+[INFO] |     |  +- commons-logging:commons-logging-api:jar:1.1:compile
+[INFO] |     |  \- org.apache.commons:commons-vfs2:jar:2.0:compile
+[INFO] |     |     +- org.apache.maven.scm:maven-scm-api:jar:1.4:compile
+[INFO] |     |     |  \- org.codehaus.plexus:plexus-utils:jar:1.5.6:compile
+[INFO] |     |     \- org.apache.maven.scm:maven-scm-provider-svnexe:jar:1.4:compile
+[INFO] |     |        +- org.apache.maven.scm:maven-scm-provider-svn-commons:jar:1.4:compile
+[INFO] |     |        \- regexp:regexp:jar:1.3:compile
+[INFO] |     +- org.apache.opennlp:opennlp-tools:jar:1.5.3:compile
+[INFO] |     |  +- org.apache.opennlp:opennlp-maxent:jar:3.0.3:compile
+[INFO] |     |  \- net.sf.jwordnet:jwnl:jar:1.3.3:compile
+[INFO] |     +- commons-io:commons-io:jar:2.4:provided (scope managed from compile)
+[INFO] |     +- org.apache.commons:commons-exec:jar:1.3:compile
+[INFO] |     +- com.googlecode.json-simple:json-simple:jar:1.1.1:compile
+[INFO] |     +- edu.ucar:netcdf4:jar:4.5.5:compile
+[INFO] |     |  +- net.jcip:jcip-annotations:jar:1.0:compile
+[INFO] |     |  \- net.java.dev.jna:jna:jar:4.1.0:provided (scope managed from compile)
+[INFO] |     +- edu.ucar:grib:jar:4.5.5:compile
+[INFO] |     |  +- com.google.protobuf:protobuf-java:jar:2.5.0:compile
+[INFO] |     |  +- org.jdom:jdom2:jar:2.0.4:compile
+[INFO] |     |  +- org.jsoup:jsoup:jar:1.7.3:compile
+[INFO] |     |  +- edu.ucar:jj2000:jar:5.2:compile
+[INFO] |     |  \- org.itadaki:bzip2:jar:0.9.1:compile
+[INFO] |     +- edu.ucar:cdm:jar:4.5.5:compile
+[INFO] |     |  +- edu.ucar:udunits:jar:4.5.5:compile
+[INFO] |     |  +- org.apache.httpcomponents:httpcore:jar:4.2.5:compile
+[INFO] |     |  +- joda-time:joda-time:jar:2.2:compile
+[INFO] |     |  +- org.quartz-scheduler:quartz:jar:2.2.1:provided (version managed from 2.2.0; scope managed from compile)
+[INFO] |     |  |  \- c3p0:c3p0:jar:0.9.1.1:provided
+[INFO] |     |  \- com.beust:jcommander:jar:1.35:compile
+[INFO] |     +- edu.ucar:httpservices:jar:4.5.5:compile
+[INFO] |     |  +- org.apache.httpcomponents:httpclient:jar:4.2.6:compile
+[INFO] |     |  \- org.apache.httpcomponents:httpmime:jar:4.2.6:compile
+[INFO] |     +- com.google.guava:guava:jar:16.0.1:compile
+[INFO] |     |  \- com.google.code.findbugs:jsr305:jar:2.0.3:compile
+[INFO] |     +- org.apache.commons:commons-csv:jar:1.0:compile
+[INFO] |     +- org.apache.sis.core:sis-utility:jar:0.5:compile
+[INFO] |     +- org.apache.sis.storage:sis-netcdf:jar:0.5:compile
+[INFO] |     |  +- org.apache.sis.storage:sis-storage:jar:0.5:compile
+[INFO] |     |  \- org.apache.sis.core:sis-referencing:jar:0.5:compile
+[INFO] |     +- org.apache.sis.core:sis-metadata:jar:0.5:compile
+[INFO] |     \- org.opengis:geoapi:jar:3.0.0:compile
+[INFO] |        \- javax.measure:jsr-275:jar:0.9.3:compile
+[INFO] +- org.sakaiproject.gradebook2:gradebook2-shared:jar:1.9.0-SNAPSHOT:compile
+[INFO] +- org.springframework:spring-beans:jar:2.5.6:provided
+[INFO] |  \- commons-logging:commons-logging:jar:1.0.4:provided
+[INFO] +- org.springframework:spring-context:jar:2.5.6:provided
+[INFO] |  \- aopalliance:aopalliance:jar:1.0:provided
+[INFO] +- org.springframework:spring-core:jar:2.5.6:provided
+[INFO] +- org.springframework:spring-web:jar:2.5.6:provided
+[INFO] +- com.google.gwt:gwt-servlet:jar:2.5.0:runtime
+[INFO] +- com.google.gwt:gwt-user:jar:2.5.0:provided
+[INFO] |  +- javax.validation:validation-api:jar:1.0.0.GA:provided
+[INFO] |  +- javax.validation:validation-api:jar:sources:1.0.0.GA:provided
+[INFO] |  \- org.json:json:jar:20090211:provided
+[INFO] +- com.extjs:gxt:jar:2.2.5-gwt22:provided
+[INFO] +- com.sencha.gxt:gxt:jar:3.0.1:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-hibernate:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.gradebook:gradebook-service-impl:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.sakaiproject.edu-services.sections:sections-integrationsupport:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.apache.myfaces.core:myfaces-api:jar:1.1.5:provided
+[INFO] |  |  +- commons-lang:commons-lang:jar:2.6:provided
+[INFO] |  |  \- javax.servlet:jstl:jar:1.1.2:provided (version managed from 1.1.0)
+[INFO] |  +- org.apache.myfaces.core:myfaces-impl:jar:1.1.5:provided
+[INFO] |  |  \- commons-el:commons-el:jar:1.0:provided
+[INFO] |  +- org.apache.myfaces.tomahawk:tomahawk:jar:1.1.6:provided
+[INFO] |  |  +- commons-fileupload:commons-fileupload:jar:1.3.1:provided (version managed from 1.0)
+[INFO] |  |  \- oro:oro:jar:2.0.8:provided
+[INFO] |  +- jta:jta:jar:h2.1.8:provided
+[INFO] |  +- odmg:odmg:jar:3.0:provided
+[INFO] |  \- com.thoughtworks.xstream:xstream:jar:1.2.1:provided
+[INFO] |     \- xpp3:xpp3_min:jar:1.1.3.4.O:provided
+[INFO] +- org.sakaiproject.edu-services.course-management:coursemanagement-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.edu-services.sections:sections-api:jar:11-SNAPSHOT:provided
+[INFO] +- javax.servlet:servlet-api:jar:2.5:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-impl:jar:11-SNAPSHOT:provided
+[INFO] |  +- org.sakaiproject.kernel:sakai-kernel-storage-util:jar:11-SNAPSHOT:provided
+[INFO] |  +- commons-validator:commons-validator:jar:1.4.1:provided
+[INFO] |  +- org.azeckoski:reflectutils:jar:0.9.19:provided
+[INFO] |  +- org.jasypt:jasypt:jar:1.9.0:provided
+[INFO] |  +- com.ibm.icu:icu4j:jar:4.8.1:provided
+[INFO] |  \- org.owasp.antisamy:antisamy:jar:1.5.3:provided
+[INFO] |     +- org.apache.xmlgraphics:batik-css:jar:1.7:provided
+[INFO] |     |  +- org.apache.xmlgraphics:batik-ext:jar:1.7:provided
+[INFO] |     |  +- org.apache.xmlgraphics:batik-util:jar:1.7:provided
+[INFO] |     |  \- xml-apis:xml-apis-ext:jar:1.3.04:provided
+[INFO] |     +- net.sourceforge.nekohtml:nekohtml:jar:1.9.16:provided
+[INFO] |     |  \- xerces:xercesImpl:jar:2.6.2:provided (version managed from 2.9.1)
+[INFO] |     \- commons-httpclient:commons-httpclient:jar:3.1:provided
+[INFO] +- org.sakaiproject.common:archive-api:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.common:archive-impl:jar:11-SNAPSHOT:provided
+[INFO] |  \- commons-codec:commons-codec:jar:1.8:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-api:jar:11-SNAPSHOT:provided
+[INFO] |  \- com.zaxxer:HikariCP:jar:2.4.1:provided
+[INFO] |     \- org.slf4j:slf4j-api:jar:1.7.5:provided
+[INFO] +- org.sakaiproject.kernel:sakai-component-manager:jar:11-SNAPSHOT:provided
+[INFO] +- org.sakaiproject.kernel:sakai-kernel-util:jar:11-SNAPSHOT:compile
+[INFO] +- org.springframework:spring-webmvc:jar:4.1.8.RELEASE:compile
+[INFO] |  \- org.springframework:spring-expression:jar:4.1.8.RELEASE:provided (scope managed from compile)
+[INFO] +- net.sf.ehcache:ehcache-core:jar:2.6.6:provided
+[INFO] \- junit:junit:jar:4.1:test
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] Sakai Gradebook2 Project .......................... SUCCESS [1.787s]
+[INFO] Sakai Gradebook2 Shared Data Model ................ SUCCESS [0.253s]
+[INFO] Sakai Gradebook2 API .............................. SUCCESS [0.220s]
+[INFO] Sakai Gradebook2 Shared Classes ................... SUCCESS [0.264s]
+[INFO] Sakai Gradebook2 Server Side Code ................. SUCCESS [0.314s]
+[INFO] Sakai Gradebook2 Client ........................... SUCCESS [0.102s]
+[INFO] Sakai Gradebook2 War .............................. SUCCESS [0.362s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 4.549s
+[INFO] Finished at: Mon Dec 14 16:10:37 EST 2015
+[INFO] Final Memory: 23M/371M
+[INFO] ------------------------------------------------------------------------

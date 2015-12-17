@@ -1,0 +1,326 @@
+.commentIcon {
+	padding:3px;
+}
+
+.commentsIcon {
+	padding:3px;
+}
+
+.gbCheckBoxAlignLeft input {
+	left:0px !important;
+}
+
+.gbComboBoxWidth {
+	width:150px !important;
+}
+
+.gbDisableCheckbox {
+	opacity: 0.6 !important; 
+}
+.gbStudentChart {
+	padding: 0px 0px 5px 0px;
+}
+
+.gbStudentInformationPanel {
+	padding: 0px 5px 5px 0px;
+}
+
+.statisticsChartIconPanelContainer {
+	padding-top:5px;
+}
+
+.statisticsChartIcon {
+	padding:3px;
+}
+
+.gradeScaleInstructions {
+	font:14px tahoma, arial, helvetica;
+	color:red;
+	padding:10px;
+}
+
+.userFeedbackLabel {
+	opacity: 1 !important;
+	background-color:#FDF5E6;
+	position:absolute;
+	left:48%;
+	top:1px;
+	padding:3px;
+	border-radius:3px;
+	font: bold 12px tahoma, arial, helvetica;
+}
+
+.gbAdvice { 	
+  	color: #555555;
+  	font-size: 10pt;
+  	overflow: hidden;
+  	padding: 10px;
+  	zoom: 1;
+}
+
+.gbCellClickable {
+	color: blue;
+	cursor: pointer !important;
+	text-decoration: underline;
+}
+
+@sprite .gbCellCommented {
+	gwt-image: "commented";
+	background-color:transparent;
+	background-position:top right;
+	background-repeat:no-repeat;
+	height: auto;
+	width: auto;
+}
+
+.gbCellDropped {
+	color: red;
+	text-decoration: line-through;
+}
+
+.gbCellError {
+	color: red;	
+}
+
+.gbCellExtraCredit {
+	color: green;	
+}
+	
+
+@sprite .gbCellFailed {
+	gwt-image: "failed";
+	background-color:transparent;
+	background-position:top left;
+	background-repeat:no-repeat;
+}
+
+.gbCellFailedImport {
+	background-color: red;
+	color: white;
+	font-weight: bold;
+}
+
+.gbCellConvertedValueImport {
+	background-color: 66FFFF;
+	color: black;
+	font-weight: bold;
+}
+
+.gbCellStrong {
+	font-weight: bold;	
+}
+
+@sprite .gbCellSucceeded {
+	gwt-image: "modified";
+	background-color:transparent;
+	background-position:top left;
+	background-repeat:no-repeat;
+}
+
+.gbNotIncluded {
+	color: darkgray;
+	font-style: italic;	
+}
+
+.gbNotIncludedEC {
+	color: green;
+	font-style: italic;	
+}
+
+.gbReleased {
+	color: blue;
+	font-weight: bold;	
+}
+
+.gbReleasedEC {
+	color: green; 
+	font-weight: bold; 
+}
+
+.gbTabMargins {
+	height:325px;
+	margin: 10px;
+}
+
+.gbTextFieldInput {
+	font-size: 12pt !important;
+	/*height: 1.8em !important;*/
+	padding-top: 0px !important;
+	text-align: left;
+}
+
+.gbTextAreaInput {
+	font-size: 12pt !important;
+	padding-top: 2px !important;
+	text-align: left;
+}
+
+.gbNumericFieldInput {
+	font-size: 12pt !important;
+	/*height: 1.8em !important;*/
+	padding-right: 5px !important;
+	padding-top: 1px !important;
+	text-align: right;
+}
+
+.setupInstructionsLabelForCategory {
+	padding-top: 10px !important; 
+}
+
+.setupInstructionsLabelForGradeType {
+	padding-top: 10px !important; 
+}
+
+.gbHeading {
+	color: black;
+	text-decoration: underline;
+}
+
+.gbImpact {
+	color: darkblue;
+	padding-right: 10px;
+}
+
+.gbWarning {
+	color: red;
+	font-weight: bold;
+}
+
+.gbStudentInformation {
+	font-size: 12pt;
+	padding: 5px 5px 10px 5px;
+}
+
+.gbStatisticsInstructions {
+	padding-left: 10px;
+}
+
+.gbGradeScaleChartUpdateToggle {
+	padding-left: 10px;
+}
+
+.gbGradeScaleSeparatorToolItem {
+	padding-left: 10px;
+}
+
+.gbFinalGradeSubmissionStatus {
+	
+	color: black;
+	padding: 4px 5px 4px 5px;
+	margin-left: 10px;
+	background: #FDF5E6;
+	border-radius:3px;
+	font: normal 14px tahoma, arial, helvetica !important;
+}
+
+.gbFinalGradeSubmissionStatusDialog {
+	 text-align: center;
+	 padding: 15px 15px 15px 15px;
+	 background: #ffffff;
+	 margin: 0px;
+}
+
+.helpIcon {
+	border-style: solid;
+	border-color: transparent;
+	border-top-width: 3px;
+	border-bottom-width: 3px;
+	border-left-width: 2px;
+	border-right-width: 2px;
+}
+
+@sprite .gbItemIcon {
+	gwt-image: "table";	
+}
+
+@sprite .gbAddCategoryIcon {
+	gwt-image: "folder_add";	
+}
+
+@sprite .gbAddItemIcon {
+	gwt-image: "table_add";
+}
+
+@sprite .gbDeleteCategoryIcon {
+	gwt-image: "folder_delete";	
+}
+
+@sprite .gbDeleteItemIcon {
+	gwt-image: "table_delete";	
+}
+
+@sprite .gbEditCategoryIcon {
+	gwt-image: "folder_edit";	
+}
+
+@sprite .gbEditItemIcon {
+	gwt-image: "table_edit";
+}
+
+@sprite .gbExportItemIcon {
+	gwt-image: "page_white_put";
+}
+
+@sprite .gbImportItemIcon {
+	gwt-image: "page_white_get";
+}
+
+@sprite .gbGradeScaleButton {
+	gwt-image: "calculator_edit";	
+}
+
+@sprite .gbSetupButton {
+	gwt-image: "application_edit";
+}
+
+@sprite .gbGraderPermissionSettings {
+	gwt-image: "table_add";
+}
+
+@sprite .gbHistoryButton {
+	gwt-image: "calendar";
+}
+
+@sprite .gbStatisticsButton {
+	gwt-image: "chart_curve";
+}
+
+@sprite .gbStatisticsButtonLine {
+	gwt-image: "chart_line";
+}
+
+@sprite .gbStatisticsButtonPie {
+	gwt-image: "chart_pie";
+}
+
+@sprite .gbStatisticsButtonBar {
+	gwt-image: "chart_bar";
+}
+
+@sprite .helpIcon {
+	gwt-image: "help";
+}
+
+@sprite .loadingIndicator {
+	gwt-image: "large_loading";
+	width: 32;
+	height: 32;
+}
+
+/* GRBK-514 */
+.gbLeftAlignFlushNoWrapInput input {
+	left:0px !important;
+	white-space:nowrap;
+}
+
+/* GRBK-1278 */
+.importFormatInformationMessage {
+	padding-top: 10px !important; 
+	padding-bottom: 10px !important; 
+}
+
+/* GRBK-1290 */
+.exportFormatInformationMessage {
+	padding-top: 10px !important; 
+	padding-bottom: 10px !important; 
+}

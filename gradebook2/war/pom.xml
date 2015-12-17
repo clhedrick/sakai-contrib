@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>gradebook2-base</artifactId>
+		<groupId>org.sakaiproject.gradebook2</groupId>
+		<version>1.9.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<name>Sakai Gradebook2 War</name>
+	<artifactId>sakai-gradebook2</artifactId>
+	<groupId>org.sakaiproject.gradebook2</groupId>
+	<packaging>war</packaging>
+
+	<dependencies>
+		<!-- Project Dependencies -->
+		<dependency>
+			<groupId>org.sakaiproject.gradebook2</groupId>
+			<artifactId>gradebook2-server</artifactId>
+			<exclusions>
+			  <exclusion>
+			    <groupId>commons-logging</groupId>
+			    <artifactId>commons-logging-api</artifactId>
+			  </exclusion>
+			</exclusions> 
+		</dependency>
+		<dependency>
+			<groupId>org.sakaiproject.gradebook2</groupId>
+			<artifactId>gradebook2-shared</artifactId>
+		</dependency>
+			
+		<!-- Need this to prevent these spring artifacts from being placed in WEB-INF -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>2.5.6</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>2.5.6</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>2.5.6</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>2.5.6</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<directory>../war-target</directory>
+		<resources>
+		</resources>
+		<plugins>
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+					<warSourceDirectory>${basedir}</warSourceDirectory>
+					<warSourceExcludes>WEB-INF/*-hosted.xml,gradebook.tar.gz</warSourceExcludes>
+					<webResources>
+						<resource>
+							<directory>${basedir}</directory>
+							<excludes>
+								<exclude>WEB-INF/*-hosted.xml</exclude>
+								<exclude>gradebook.tar.gz</exclude>
+							</excludes>
+						</resource>
+					</webResources>
+					<webXml>WEB-INF/web.xml</webXml>
+				</configuration>
+			</plugin>
+			<!-- plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<tagbase>https://source.sakaiproject.org/svn-test/sakai/tags
+					</tagbase>
+					<preparationGoals>clean verify install</preparationGoals>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<useReleaseProfile>true</useReleaseProfile>
+				</configuration>
+			</plugin-->
+			<!-- This gets run if you choose the sakai2.7, sakai2.6, or sakai2.5
+				 profiles... sakai2.7+gwt, sakai2.6+gwt, and sakai2.5+gwt turn
+				 it off.
+			  -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<configuration>						
+							<tasks unless="gwt.unpack.skip">
+								<ant antfile = "${basedir}/build.xml"/>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+

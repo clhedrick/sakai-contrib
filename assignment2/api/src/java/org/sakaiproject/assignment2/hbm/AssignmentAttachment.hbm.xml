@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.sakaiproject.assignment2.model.AssignmentAttachmentBase" table="A2_ASSIGN_ATTACH_T">
+       
+        <id name="id" column="ASSIGN_ATTACH_ID" type="long">
+					<generator class="native">
+						<param name="sequence">A2_ASSIGN_ATTACH_S</param>
+					</generator>
+				</id>
+        
+        <discriminator>
+          <column name="ASSIGN_ATTACH_TYPE" length="1" index="ASSIGN_ATTACH_TYPE_I"/>
+        </discriminator>
+        
+        <version name="optimisticVersion" type="integer" column="VERSION"/>
+        
+        <!--  This maps to the A2_ASSIGNMENT_T table -->
+        <many-to-one name="assignment" column="ASSIGNMENT_ID"
+        	class="org.sakaiproject.assignment2.model.Assignment2"
+        	not-null="true" index="A2_ASSIGN_ATTACH_ASSIGN_I" 
+        	unique-key="ASSIGN_ID_ATTACH_REF" />
+
+        <!-- The reference for the attachment -->
+        <property name="attachmentReference" type="java.lang.String">
+            <column name="ATTACHMENT_REFERENCE" not-null="true" length="255" 
+            	unique-key="ASSIGN_ID_ATTACH_REF"/>
+        </property>
+        
+        
+        <subclass name="org.sakaiproject.assignment2.model.AssignmentAttachment"
+            extends="org.sakaiproject.assignment2.model.AssignmentAttachmentBase" 
+            discriminator-value="A">
+        </subclass>
+        
+        <subclass name="org.sakaiproject.assignment2.model.ModelAnswerAttachment"
+            extends="org.sakaiproject.assignment2.model.AssignmentAttachmentBase" 
+            discriminator-value="M">
+        </subclass>
+        
+    </class>
+</hibernate-mapping>

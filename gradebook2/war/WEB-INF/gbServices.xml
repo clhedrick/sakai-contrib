@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- the Gradebook2 service cache bean -->
+	<bean id="org.sakaiproject.gradebook.gwt.sakai.gradebookservice.cache"
+		class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref bean="org.sakaiproject.memory.api.MemoryService.cacheManager"/>
+		</property>
+		<property name="cacheName">
+			<value>org.sakaiproject.gradebook.gwt.sakai.gradebookservice.cache</value>
+		</property>
+		<property name="maxElementsInMemory" value="100000" />
+		<property name="diskPersistent" value="false" />
+		<property name="eternal" value="false" />
+		<!-- default is to expire elements in cache after 300 seconds -->
+		<property name="timeToLive" value="300" />
+		<property name="timeToIdle" value="300" />
+		<property name="overflowToDisk" value="false" />
+    </bean>
+    
+	<bean id="org.sakaiproject.gradebook.gwt.sakai.Gradebook2ComponentService" 
+		class="org.sakaiproject.gradebook.gwt.sakai.Gradebook2ComponentServiceImpl"
+		init-method="init">
+		<property name="businessLogic" ref="org.sakaiproject.gradebook.gwt.sakai.BusinessLogic"/>
+		<property name="gbService" ref="org.sakaiproject.gradebook.gwt.sakai.GradebookToolService"/> 
+		<property name="toolManager" ref="org.sakaiproject.tool.api.ToolManager"/>
+		<property name="userService" ref="org.sakaiproject.user.api.UserDirectoryService"/>
+		<property name="gradeCalculations" ref="org.sakaiproject.gradebook.gwt.sakai.GradeCalculations"/>
+		<property name="frameworkService" ref="org.sakaiproject.service.gradebook.GradebookFrameworkService" />
+		<property name="siteService" ref="org.sakaiproject.site.api.SiteService"/>
+		<property name="authz" ref="org.sakaiproject.gradebook.gwt.sakai.Gradebook2Authz"/>
+		<property name="sectionAwareness" ref="org.sakaiproject.section.api.SectionAwareness"/>
+		<property name="advisor" ref="org.sakaiproject.gradebook.gwt.sakai.api.SampleInstitutionalAdvisor"/>
+    	<property name="sessionManager" ref="org.sakaiproject.tool.api.SessionManager" />
+    	<property name="configService" ref="org.sakaiproject.component.api.ServerConfigurationService" />
+		<property name="eventTrackingService" ref="org.sakaiproject.event.api.EventTrackingService" />
+		<property name="i18n" ref="gradebook2.I18N" />
+		<property name="scale" value="50"/>
+		<!-- cache -->
+		<property name="cache" ref="org.sakaiproject.gradebook.gwt.sakai.gradebookservice.cache" />
+	</bean>
+	
+	<!-- Tool Service -->
+	<bean id="org.sakaiproject.gradebook.gwt.sakai.GradebookToolService" parent="alt.gradebookTxTemplate">
+		<property name="target">
+			<bean class="org.sakaiproject.gradebook.gwt.sakai.hibernate.GradebookToolServiceImpl">
+				<property name="sessionFactory"><ref bean="alt.gradebookSessionFactory"/></property>
+				<property name="sectionAwareness">
+					<ref bean="org.sakaiproject.section.api.SectionAwareness" />
+				</property>
+				<property name="authn">
+					<ref bean="org.sakaiproject.gradebook.gwt.sakai.Gradebook2Authn" />
+				</property>
+                <property name="eventTrackingService">
+                    <ref bean="org_sakaiproject_tool_gradebook_facades_EventTrackingService"/>
+                </property>
+                <property name="gradeCalculations">
+                	<ref bean="org.sakaiproject.gradebook.gwt.sakai.GradeCalculations"/>
+                </property>
+            </bean>
+		</property>
+	</bean>
+	
+	<!--  GRBK-149 -->
+	<bean id="gradebook2.EntityProducerTransferrer" 
+		class="org.sakaiproject.gradebook.entity.Gradebook2EntityProducerTransferAgent"
+		init-method="init"> 
+		<property name="entityManager" ref="org.sakaiproject.entity.api.EntityManager" />
+		<property name="componentService" ref="org.sakaiproject.gradebook.gwt.sakai.Gradebook2ComponentService" />
+		<property name="toolService" ref="org.sakaiproject.gradebook.gwt.sakai.GradebookToolService" />
+		<property name="label"><value>gradebook2</value></property>
+		<property name="myToolIds">
+			<set>
+				<value>sakai.gradebook.gwt.rpc</value>
+			</set>	
+		</property>
+		<property name="importExportUtil" ref="org.sakaiproject.gradebook.gwt.server.ImportExportUtility" />	
+		<property name="frameworkService" ref="org.sakaiproject.service.gradebook.GradebookFrameworkService"/>
+		<property name="i18n" ref="gradebook2.I18N"/>
+	</bean>
+	
+	<bean id="gradebook2.EntityProducerContextListener" 
+		class="org.sakaiproject.gradebook.entity.AssureGradebookContextObserver"> 
+		<property name="myToolIds">
+			<set>
+				<value>sakai.gradebook.gwt.rpc</value>
+			</set>	
+		</property>
+		<property name="frameworkService" ref="org.sakaiproject.service.gradebook.GradebookFrameworkService"/>
+		
+	</bean>
+	
+	<bean id="gradebook2.I18N" class="org.sakaiproject.util.ResourceLoader">
+		<property name="baseName" value="org.sakaiproject.gradebook.gwt.client.I18nConstants" />
+	</bean>
+	
+</beans>

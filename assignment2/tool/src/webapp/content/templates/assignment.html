@@ -1,0 +1,608 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:rsf="http://ponder.org.uk/rsf" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <title rsf:id="msg=assignment2.title">Assignments</title>
+	<link href="/sakai-assignment2-tool/content/css/assignmentsv4.css" type="text/css" rel="stylesheet" media="all" />
+</head>
+
+<body>
+<!--  everything outside of rsf:id="page:" is set in Layout.html using outerPageTemplates -->
+
+<div rsf:id="page:" class="portletBody">
+	
+	<ul class="breadCrumb">
+		<li><a rsf:id="breadcrumb">Assignment List</a></li>
+		<li rsf:id="last_breadcrumb" class="lastCrumb">Add Assignment</li>
+	</ul>
+	
+
+	<div class="generalErrors">
+		<ul rsf:id="message-for:*" style="margin:0px;">
+			<li>Message for user here</li>
+		</ul>
+	</div>
+	
+	<div class="generalErrors">
+        <div style="display:inline">
+            <ul style="margin:0;padding:0;display:inline;">
+                <li style="display:none" id="assignment_title_empty" rsf:id="msg=assignment2.assignment_title_empty" class="alertMessageInline">Adding an Assignment requires a title.</li>
+                <li style="display:none" id="assignment_graded_no_gb_item" rsf:id="assignment_graded_no_gb_item" class="alertMessageInline">You must select a Gradebook Item.</li>
+                <li style="display:none" id="assignment_due_before_open" rsf:id="msg=assignment2.assignment_due_before_open" class="alertMessageInline">The Due Date must be after the Open Date.</li>
+                <li style="display:none" id="assignment_accept_before_open" rsf:id="msg=assignment2.assignment_accept_before_open" class="alertMessageInline">The Accept Until Date must be after the Open Date.</li> 
+                <li style="display:none" id="assignment_accept_before_due" rsf:id="msg=assignment2.assignment_accept_before_due" class="alertMessageInline">The Accept Until Date must be after the Due Date.</li>
+                <li style="display:none" id="assignment_check_against" rsf:id="msg=assignment2.turnitin.asnnedit.error.check_against" class="alertMessageInline">You must check at least one thing to check against!</li>
+            </ul>
+        </div>
+    </div>
+	
+	<p rsf:id="no_gb_item" class="alertMessage">Gb item deleted!</p>
+	<p rsf:id="deleted_group" class="alertMessage">Group was deleted!</p>
+	
+	<h2 rsf:id="page-title">Add Assignment Title</h2>
+	<p rsf:id="instructions" class="instruction">Complete the form and choose an action below. <span class="reqStar">*</span> Indicates required information.</p>
+
+	<form rsf:id="assignment_form">
+	<input type="hidden" rsf:id="csrf" />
+	
+	<fieldset rsf:id="access-selection-area">
+		<legend rsf:id="access_legend">Access</legend>
+		<span rsf:id="access_select" />
+		<fieldset>
+
+				<div class="liItem" rsf:id="access_row:">
+					<input rsf:id="access_choice" id="access_choice" type="radio" />
+					<label for="access_choice" rsf:id="access_label">Display to site!</label>
+				</div>
+        <div rsf:id="access_groups_only" class="asnn_subsection liItem">
+          <span rsf:id="msg=assignment2.assignment_add.access.restricted_only"></span>
+        </div>
+				<div id="groups_table_li" class="indent">
+					<table id="groupTable" class="listHier lines" cellpadding="0" cellspacing="0" border="0">
+						<tr>
+							<th><input type="checkbox" title="Select all" onclick="toggle_group_checkboxes(this)" /></th>
+							<th rsf:id="msg=assignment2.assignment_add.sections.title">Title!</th>
+							<th rsf:id="msg=assignment2.assignment_add.sections.description">Description!</th>
+						</tr>
+						<tr rsf:id="groups_row:">
+							<td>
+								<input rsf:id="group_check" type="checkbox" />
+							</td>
+							<td>
+								<label rsf:id="group_label">Blue Cohort</label>	
+							</td>
+							<td rsf:id="group_description">Group Description</td>
+						</tr>
+					</table></div>
+
+		</fieldset>
+	</fieldset>
+	
+        <fieldset>
+            <legend rsf:id="msg=assignment2.assignment_add.assignment_details_legend">Assignment Details</legend>
+            	<div class="liItem">
+                    <label for="title" rsf:id="title_label" id="title_label"><span class="reqStarInline">*</span> Title</label> 
+                    <input id="title" rsf:id="title" type="text" size="30" maxlength="100"/>
+                    <span rsf:id="message-for:title">This is an example error: Adding an assignment requires a title</span>
+                </div>
+                <div class="liItem">
+                    <label rsf:id="msg=assignment2.assignment_add.assignment_instructions" class="block">Assignment Instructions</label>
+                    <p rsf:id="message-for:instructions"></p>
+                    <div rsf:id="instructions:">
+                        <textarea name="something" cols="80" rows="20" wrap="virtual"></textarea>
+                        <!-- this should be the FCKEditor -->
+                    </div>
+                </div>
+                <div class="liItem">
+                    <fieldset id="attachmentsFieldset">
+                        <span rsf:id="msg=assignment2.assignment_add.attachments_legend">Attachments</span>
+                        <span><a rsf:id="add_attachments" class="thickbox">Add Attachments</a></span>
+                        <ol class="fragment-attachments-container" rsf:id="attachment_list:">
+                            <li></li>
+                        </ol>
+                    </fieldset>
+                </div>
+                <div class="liItem">
+                    <input id="modelAnswerEnabled" rsf:id="modelAnswerEnabled" type="checkbox" />
+                    <label for="model_answer" rsf:id="msg=assignment2.assignment_add.add_model_answer"> Add Model Answer!!!!!?</label>
+                    <div id="model_answer_area">
+                        <div class="liItem">
+                            <label rsf:id="msg=assignment2.assignment_add.model_answer_text" class="block">Model Answer Text</label>
+                            <p rsf:id="message-for:modelAnswerText"></p>
+                            <div rsf:id="modelAnswerText:">
+                                <textarea name="modelAnswerText" cols="80" rows="20" wrap="virtual"></textarea>
+                                <!-- this should be the FCKEditor -->
+                            </div>
+                            <fieldset id="modelAnswerFieldset">
+                                <span rsf:id="msg=assignment2.assignment_add.model_answer_attachments_legend">Model Answer Attachments!!!!!</span>
+                                <span><a rsf:id="model_add_attachments" class="thickbox">Add</a></span>
+                                <ol class="fragment-attachments-container" rsf:id="model_attachment_list:">
+                                    <li></li>
+                                </ol>
+                            </fieldset>
+                        </div>
+                        <div class="liItem">
+                            <label rsf:id="msg=assignment2.assignment_add.model_answer_display">Display model answer to student!!!!!</label>
+                            <select rsf:id="modelAnswerDisplayRule"></select>
+                            <p rsf:id="message-for:modelAnswerDisplayRule"></p>
+                            <div id="model_alert">
+                                <span style="display:none;" class="messageContent" rsf:id="model_warning_submission" id="model_warning_submission">
+                                Submissions are no longer required.  Please verify the option selected for you.!!!!!!!!
+                                </span>
+                                <span style="display:none;" class="messageContent" rsf:id="model_warning_due_date" id="model_warning_due_date">
+                                Due date has been removed.  Please verify the option selected for you.!!!!!!!!
+                                </span>
+                                <span style="display:none;" class="messageContent" rsf:id="model_warning_accept_until" id="model_warning_accept_until">
+                                Accept until date has been removed.  Please verify the option selected for you.!!!!!!!!
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </fieldset>
+	
+	   <fieldset>
+        <legend rsf:id="msg=assignment2.assignment_add.other_legend">Submission Details</legend>
+        <div style="clear:both" class="asnnOption">
+            <div class="asnnOptionsLabel">
+                <input id="require_submissions" rsf:id="require_submissions" type="checkbox" />
+                <label for="require_submissions" rsf:id="msg=assignment2.assignment_add.require_submissions"> Require Submissions?</label>
+            </div>
+        </div>
+        <div style="clear:both" class="asnnOption">
+            <label class="asnnOptionsLabel" rsf:id="msg=assignment2.assignment_add.student_submissions">Submission Format</label>
+            <div class="asnnOptionsEdit">
+                <select rsf:id="submission_type">
+                </select>
+                <p rsf:id="message-for:submission_type"></p>
+            </div>
+        </div>
+        <div style="clear:both" class="asnnOption">
+            <label class="asnnOptionsLabel" rsf:id="msg=assignment2.assignment_add.allow_number">Number of Submissions</label>
+            <div class="asnnOptionsEdit">
+                <select rsf:id="number_submissions"></select>
+            </div>
+        </div>
+        <div style="clear:both" class="asnnOption">
+            <div class="asnnOptionsLabel">
+                <input rsf:id="honor_pledge" id="honor_pledge" type="checkbox" />
+                <label for="honor_pledge" rsf:id="msg=assignment2.assignment_add.honor_pledge">Add honor pledge</label>
+            </div>
+            <p class="asnnOptionsEdit">
+            </p>
+        </div>
+    </fieldset>
+
+	
+	<fieldset>
+		<legend rsf:id="msg=assignment2.assignment_add.availability_details">Availability Details</legend>
+		 
+		<!-- Test for new styles
+		<div>
+			<p class="asnnOptionsLabel"><label><span class="reqStar">*</span> Open Date</label></p>
+			<p class="asnnOptionsEdit"><input type="text" value="abcde" /></p>
+		</div>
+		<div>
+			<p class="asnnOptionsLabel"><input type="checkbox" /><label>Due Date</label></p>
+			<p class="asnnOptionsEdit"><input type="text" value="abcde" /></p>
+		</div>
+		-->
+		
+		<div style="clear:both">
+			<label class="asnnOptionsLabel" rsf:id="open_date_label"><span class="reqStar">*</span> Open Date</label>
+			<div class="asnnOptionsEdit">
+			  <input class="asnnOptionsEdit" rsf:id="open_date:"  />
+	          <p rsf:id="message-for:open_date"></p>
+			  <span rsf:id="add_announcement_container" class="indent">
+    			  <input rsf:id="announcement" id="announcement" type="checkbox" />
+    			  <label for="announcement" rsf:id="msg=assignment2.assignment_add.announcement">Post Open Date to Announcements on Open Date</label> 
+			  </span>
+			</div>
+		</div>
+		
+		<div>
+			<div class="asnnOptionsLabel">
+				<input id="require_due_date" rsf:id="require_due_date" type="checkbox" />
+				<label for="require_due_date" rsf:id="msg=assignment2.assignment_add.require_due_date">Due Date</label>
+			</div>
+			<div class="asnnOptionsEdit">
+				<div rsf:id="require_due_date_container" id="require_due_date_container">
+					<input rsf:id="due_date:" value="12/31/2007"/>
+					<p rsf:id="message-for:due_date"></p>
+					<span rsf:id="add_to_schedule_container" class="indent">
+						<input rsf:id="schedule" id="schedule" type="checkbox" /> 
+						<label for="schedule" rsf:id="msg=assignment2.assignment_add.schedule">Post Due Date to Schedule</label>
+					</span>
+				</div>
+			</div>
+		</div>
+		
+		
+		    <div style="clear:both">
+                        <div class="asnnOptionsLabel">
+                            <input id="require_accept_until" rsf:id="require_accept_until" type="checkbox" />
+                            <label for="require_accept_until" rsf:id="msg=assignment2.assignment_add.require_accept_until">Set Accept Until Date?</label>
+                        </div>
+                        
+                        <div class="asnnOptionsEdit">
+                            <div rsf:id="accept_until_container" id="accept_until_container">
+                                <input rsf:id="accept_until:" value="12/31/2007"/>
+                            </div>
+                            <p rsf:id="message-for:accept_until"></p>   
+                        </div>
+                        
+                    </div>
+              
+	</fieldset>
+	
+	<fieldset id="grading">
+        <legend rsf:id="msg=assignment2.assignment_add.grading_legend">Grading</legend>
+        <div rsf:id="cannot_edit_grading" class="instruction">You can't change these settings.</div>
+        <div rsf:id="grade_settings">
+            <div class="liItem"><span rsf:id="graded-radios" />
+                <fieldset>
+                    <div id="grading_section">
+                      <span style="display:none;" class="messageContent" rsf:id="grading_warning" id="grading_warning">
+                      If this assignment will be graded, select an existing Gradebook item or create a new one. Otherwise, select 'This assignment is not graded'.!!!!!!!!!!!!!!!
+                      </span>
+                      <div id="grading_options">
+                        <div class="liItem">
+                            <input rsf:id="select_ungraded" id="select_ungraded" name="graded" type="radio" onclick="asnn2.showHideGradeSettingError();enableDisableGradebookPoints();"/> 
+                            <label for="select_ungraded" rsf:id="select_ungraded_label">This assignment is ungraded</label>
+                        </div>
+                        <div class="liItem">
+                            <input rsf:id="select_graded" id="select_graded" name="graded" type="radio" onclick="asnn2.showHideGradeSettingError();enableDisableGradebookPoints();asnn2.populateGradebookPoints()"/> 
+                            <label for="select_graded" rsf:id="select_graded_label">This assignment is graded</label>
+                            <span rsf:id="msg=assignment2.assignment_add.gradebook_associated"> and is associated with a Gradebook Item:</span> 
+                                <select rsf:id="gradebook_item" onchange="asnn2.selectGraded();asnn2.populateTitleWithGbItemName();asnn2.showHideGradeSettingError();asnn2.populateGradebookPoints();">
+                                    <option value="">Select a Gradebook Item</option>
+                                    <option value="GB Item 1">GB Item 1</option>
+                                    <option value="GB Item 2">GB Item 2</option>
+                                    <option value="GB Item 3">GB Item 3</option>
+                                    <option value="GB Item 4">GB Item 4</option>
+                                </select>
+                                &nbsp;
+                                <span>
+                                    <label for="gradebook_points" id="gradebook_points_label" rsf:id="gradebook_points_label">Points:</label>
+                                    <input id="gradebook_points" rsf:id="gradebook_points" size="8" value="0" />
+                                </span>
+                                <script rsf:id="contextId" type="text/javascript" />
+                                
+                                <div class="indent" rsf:id="create_new_gb_item">
+                                    <span rsf:id="msg=assignment2.assignment_add.gradebook_or"> -or- </span>
+                                    <a rsf:id="gradebook_item_new_helper" id="gradebook_item_new_helper" class="thickbox" onclick="asnn2.update_new_gb_item_helper_url();">Create a new Gradebook Item</a>
+                                    <!-- hidden anchor contains the ref to the gb helper without the name attr -->
+                                    <a rsf:id="gradebook_url_without_name" id="gradebook_url_without_name" style="display:none;"></a>
+                                </div>
+                        </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <p rsf:id="message-for:gradebook_item"></p>
+            </div>
+        </div>
+    </fieldset>
+	
+	<fieldset id="notifications">
+	    <legend rsf:id="msg=assignment2.assignment_add.notification_legend">Submission Notifications</legend>
+		<div class="asnnOptionsLabel" style="width:90%">
+    		<input rsf:id="sub_notif" id="sub_notif" type="checkbox" />
+    		<label for="sub_notif" rsf:id="msg=assignment2.assignment_add.notification">Send email notifications for student submissions</label>
+		</div>
+	</fieldset>
+	
+	<fieldset rsf:id="tii_content_review_area" id="">
+        <legend rsf:id="assignment2.contentreview.asnnedit.title" class="contentReviewName">Turnitin</legend>
+
+        <div rsf:id="tii_errors" class="generalErrors">
+          <div style="display:inline">
+            <ul style="margin:0;padding:0;display:inline;">
+              <li rsf:id="tii_errormsg:" class="alertMessageInline">My apologies, but there seems to have been an error. Please note the time/date and the server you are on (located in the footer) and contact the support center for assistance resolving this problem.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="tii_enabled_area" rsf:id="tii_enabled_area" style="clear:both">
+            <div class="asnnOptionsSubsection">
+              <input type="checkbox" rsf:id="use_tii" id="use_tii" />
+              <label for="use_tii" rsf:id="assignment2.turnitin.asnnedit.use_turnitin" id="">Use Turnitin</label>
+              <a rsf:id="tii_supported_formats" class="supported_formats_link" target="_blank">Supported Formats!</a>
+              <span class="inlineMessage messageConfirmation" style="display: none;" id="tii_attach_warning" rsf:id="msg=assignment2.turnitin.asnnedit.attachment.warning">Turnitin supports attachments only. Reports will not be generated for text-only submissions!!</span>
+            </div>
+            
+        </div>
+        <div id="contentReview_properties" rsf:id="contentReview_properties" style="clear:both; display: none;">
+          <div class="asnnOptionsSubsection">
+              <div class="liItem">
+              	  <div class="liItem">
+                      <input type="checkbox" rsf:id="allow_students_to_see_originality_checkbox" id="allow_students_to_see_originality_checkbox" />
+                      <label for="allow_students_to_see_originality_checkbox" rsf:id="msg=assignment2.turnitin.asnnedit.allow_students_to_see_originality_reports">Allow students to see originality reports</label>
+                  </div>
+              </div>
+           </div>
+        </div>
+        <div id="tii_properties" rsf:id="tii_properties" style="clear:both; display: none;">
+          <div class="asnnOptionsSubsection">
+              <div class="liItem">
+              	  <div class="liItem">
+                      <input type="checkbox" rsf:id="allow_students_to_see_originality_checkbox" id="allow_students_to_see_originality_checkbox" />
+                      <label for="allow_students_to_see_originality_checkbox" rsf:id="msg=assignment2.turnitin.asnnedit.allow_students_to_see_originality_reports">Allow students to see originality reports</label>
+                  </div>
+              </div>
+              <div class="liItem" rsf:id="submit_to_options">
+                <div rsf:id="msg=assignment2.turnitin.asnnedit.submit_papers_to" class="asnnOption">Submit papers to </div>
+                <span rsf:id="submit_to_repo_radios" />
+                <div class="liItem" rsf:id="submit_papers_to:">
+                    <input rsf:id="submit_to_option" id="submit_to_option" type="radio" /> 
+                    <label for="submit_to_option" rsf:id="submit_to_label">No repo</label>
+                </div>
+              </div>
+              <div class="liItem" rsf:id="submit_to_single_repository">
+                  <span rsf:id="submit_to_repository" class="instruction">Submitting to this repo!</span>
+              </div>
+              
+              <div class="liItem">
+                  <div rsf:id="msg=assignment2.turnitin.asnnedit.generate_originality_reports" class="asnnOption">Generate Originality Reports! </div>
+                  <span rsf:id="generate_report_radios" />
+                  <div class="liItem">
+                      <input rsf:id="gen_report_immediately" id="gen_report_immediately" name="gen_reports" type="radio" />
+                      <label for="gen_report_immediately" rsf:id="gen_report_immediately_label">Immediately!</label>
+                  </div>
+                  <div class="liItem">
+                      <input rsf:id="gen_report_on_due_date" id="gen_report_on_due_date" name="gen_reports" type="radio" onchange="asnn2.showHideGradeSettingError();"/> 
+                      <label for="gen_report_on_due_date" rsf:id="gen_report_on_due_date_label">On due date!</label><span rsf:id="msg=assignment2.turnitin.asnnedit.generate_originality_reports.no_due_date" id="gen_reports_no_due_date" class="messageConfirmation">No due date was set!</span>
+                  </div>
+              </div>
+              <div class="liItem">
+                  <span rsf:id="msg=assignment2.turnitin.asnnedit.check_originality_against">Check originality against:</span><span style="display:none" id="assignment_check_against2" rsf:id="msg=assignment2.turnitin.asnnedit.error.check_against2" class="messageError">Select one!</span>
+                  <div class="liItem">
+                      <input type="checkbox" rsf:id="check_against_student_repo_checkbox" id="check_against_student_repo_checkbox" />
+                      <label for="check_against_student_repo_checkbox" rsf:id="msg=assignment2.turnitin.asnnedit.student_paper_repository">Student paper repository</label>
+                  </div>
+                  <div class="liItem">
+                      <input type="checkbox" rsf:id="check_against_internet_repo_checkbox" id="check_against_internet_repo_checkbox" />
+                      <label for="check_against_internet_repo_checkbox"  rsf:id="msg=assignment2.turnitin.asnnedit.internet_repository">Current and archived internet</label>
+                  </div>
+                  <div class="liItem">
+                      <input type="checkbox" rsf:id="check_against_journal_repo_checkbox" id="check_against_journal_repo_checkbox" />
+                      <label for="check_against_journal_repo_checkbox" rsf:id="msg=assignment2.turnitin.asnnedit.journal_repository">Periodicals, journals, and publications</label>
+                  </div>
+                  <div class="liItem">
+                      <input type="checkbox" rsf:id="check_against_institution_repo_checkbox" id="check_against_institution_repo_checkbox" />
+                      <label for="check_against_institution_repo_checkbox" rsf:id="check_institution_repo_text">Institution-specific repository!</label>
+                  </div>
+              </div>
+              
+
+              <div rsf:id="erater_available">
+                  <div class="liItem">
+                      <input type="checkbox" rsf:id="erater_checkbox" id="erater_checkbox" />
+                      <label for="erater_checkbox" rsf:id="msg=assignment2.turnitin.assnedit.erater.use_erater" id="">Use ETS e-rater</label>
+                      <span class="inlineMessage messageConfirmation" style="display: none;" id="tii_erater_warning" rsf:id="msg=assignment2.turnitin.assnedit.erater.warning">ensure e-rater is enabled on your Turnitin account</span>
+                  </div>
+    
+                  <div id="erater_enabled" class="liItem" rsf:id="erater_enabled" style="clear:both; display: none;">
+         
+                      <div class="liItem">
+                          <div style="clear:both" class="asnnOption">
+                              <label class="" rsf:id="msg=assignment2.turnitin.assnedit.erater.handbook.title">ETS Handbook</label>
+                              <select rsf:id="ets_handbook">
+                              </select>
+                          </div>
+                      </div>
+                      <div class="liItem">
+                          <div style="clear:both" class="asnnOption">
+                              <label class="" rsf:id="msg=assignment2.turnitin.assnedit.erater.dictionary.title">e-rater Dictionary</label>
+                              <select rsf:id="ets_dictionary">
+                              </select>
+                          </div>
+                      </div>
+    
+                      <div class="liItem">
+                          <span rsf:id="msg=assignment2.turnitin.assnedit.erater.categories.title">e-rater Categories:</span>
+                      </div>
+    
+                      <div class="liItem">
+    
+                          <div class="liItem">
+                              <input type="checkbox" rsf:id="ets_spelling_checkbox" id="ets_spelling_checkbox" />
+                              <label for="ets_spelling_checkbox" rsf:id="msg=assignment2.turnitin.assnedit.erater.categories.spelling">Spelling</label>
+                          </div>
+                          <div class="liItem">
+                              <input type="checkbox" rsf:id="ets_style_checkbox" id="ets_style_checkbox" />
+                              <label for="ets_style_checkbox"  rsf:id="msg=assignment2.turnitin.assnedit.erater.categories.style">Style</label>
+                          </div>
+                          <div class="liItem">
+                              <input type="checkbox" rsf:id="ets_grammar_checkbox" id="ets_grammar_checkbox" />
+                              <label for="ets_grammar_checkbox"  rsf:id="msg=assignment2.turnitin.assnedit.erater.categories.grammar">Grammar</label>
+                          </div>
+                          <div class="liItem">
+                              <input type="checkbox" rsf:id="ets_mechanics_checkbox" id="ets_mechanics_checkbox" />
+                              <label for="ets_mechanics_checkbox"  rsf:id="msg=assignment2.turnitin.assnedit.erater.categories.mechanics">Mechanics</label>
+                          </div>
+                          <div class="liItem">
+                              <input type="checkbox" rsf:id="ets_usage_checkbox" id="ets_usage_checkbox" />
+                              <label for="ets_usage_checkbox"  rsf:id="msg=assignment2.turnitin.assnedit.erater.categories.usage">Usage</label>
+                          </div>
+                      </div>
+                  </div> 
+              </div>
+           </div>
+        </div>
+    </fieldset>
+	
+	<fieldset class="submit">
+		<input onclick="return validateAsnn()" rsf:id="post_assignment" accesskey="s" type="submit" class="active" value="Post"/>
+		<input onclick="return validateAsnn()" rsf:id="save_draft" accesskey="d" type="submit" value="Save Draft"/>
+		<input rsf:id="preview_assignment" title="Preview Assignment" accesskey="v" type="submit" value="Preview"/> <!-- class="preview_button thickbox" -->
+		<input rsf:id="cancel_assignment" accesskey="x" type="submit" value="Cancel"/>
+	</fieldset>
+</form>
+
+	<div style="display: none" id="edit-assign-confirm-dialog">
+		<ul style="margin: 0; padding: 0; display: inline;">
+			<li class="alertMessage" rsf:id="msg=assignment2.assignment_add.edit.confirm.msg">Are you	sure you want to submit this?!!</li>
+		</ul>
+		<fieldset class="submit">
+			<input id="submission-confirm-button" accesskey="s" type="button"	class="active"	rsf:id="msg=assignment2.assignment_add.edit.confirm.continue" /> 
+			<input id="submission-cancel-button" accesskey="x" type="button"	rsf:id="msg=assignment2.assignment_add.edit.confirm.cancel" />
+		</fieldset>
+	</div>
+	
+    
+<script type="text/javascript" rsf:id="gradebook_items_data">
+
+</script>
+<script type="text/javascript" rsf:id="attachment-ajax-init">
+//done in producer
+// otpkey = some value
+// fragPath = some string
+</script>
+<script type="text/javascript">
+//<![CDATA[
+function validateAsnn() {
+    return asnn2editpage.validate();
+}
+  
+function refresh_ajax(){
+	if(fragGBPath != ""){
+		oldSelect=jQuery("select[name='page-replace\:\:gradebook_item-selection']").get(0).selectedIndex;
+		jQuery.ajax({
+			type: "GET",
+			cache: false,
+			url: fragGBPath,
+			success: function(html){
+				jQuery("select[name='page-replace\:\:gradebook_item-selection']").html(
+					html.substring(html.indexOf('<option'),
+						html.lastIndexOf('</option>') + 9));
+			    jQuery.globalEval(
+			    	html.substring(
+			    		html.indexOf('var gradebook'),
+			    		html.indexOf('</script',html.indexOf('var gradebook'))));
+			    jQuery("select[name='page-replace\:\:gradebook_item-selection']").get(0).selectedIndex=oldSelect;
+			    asnn2.changeValue();
+			}
+		});
+	}
+}
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+jQuery(document).ready(function(){
+	//Groups init
+	jQuery("input[type='radio'][name='page-replace\:\:access_select-selection']").each(function(){
+		this.onclick = groups_toggle;
+	});
+	groups_toggle();
+	
+	//Init require due date checkboxes
+	var due_date_container = jQuery('#page-replace\\:\\:require_due_date_container').get(0);
+    var due_date = jQuery("input[name='page-replace\:\:require_due_date']").get(0);
+    jQuery(due_date).click(function(){
+        asnn2.showHideByCheckbox(this, due_date_container);
+        asnn2editpage.tii_dueDateOptions();
+        asnn2.modelAnswerIntegrity("due_date");
+    });
+
+    asnn2.showHideByCheckbox(due_date, due_date_container);
+    
+	//Init require accept until date checkboxes
+    var accept_until_container = jQuery('#page-replace\\:\\:accept_until_container').get(0);
+    var accept_until = jQuery("input[name='page-replace\:\:require_accept_until']").get(0);
+    jQuery(accept_until).click(function(){
+        asnn2.showHideByCheckbox(this, accept_until_container);
+        asnn2.modelAnswerIntegrity("accept_until");
+    });
+
+	asnn2.showHideByCheckbox(accept_until, accept_until_container);
+	
+	// Require Submissions checkbox
+    var tii_content = jQuery('#page-replace\\:\\:tii_content_review_area').get(0);
+    var acceptuntil = jQuery('#page-replace\\:\\:tii_content_review_area').get(0);
+        jQuery("input[name='page-replace\:\:require_submissions']").click(function(){
+                asnn2.showHideSiblings(this.parentNode.parentNode, this.checked);
+                asnn2.modelAnswerIntegrity("require_submissions");
+
+        // if this assignment does not require submission, hide the TII display
+        if (tii_content) {
+          asnn2.showHideByCheckbox(this, tii_content);
+        }
+        });
+	var requireSubInput = jQuery("input[name='page-replace\:\:require_submissions']").get(0);
+    asnn2.showHideSiblings(requireSubInput.parentNode.parentNode, requireSubInput.checked);
+    
+    var modelAnswerEnabled = jQuery("input[name='page-replace\:\:modelAnswerEnabled']").get(0);
+    var modelAnswerArea = jQuery('#model_answer_area').get(0);
+    jQuery(modelAnswerEnabled).click(function(){
+        asnn2.showHideByCheckbox(this, modelAnswerArea);
+    });
+    asnn2.showHideByCheckbox(modelAnswerEnabled,modelAnswerArea);
+
+
+    // show/hide the turnitin section upon load
+    if (tii_content) {
+      asnn2.showHideByCheckbox(requireSubInput, tii_content);
+      asnn2editpage.tii_dueDateOptions();
+    }
+    
+    // we need to bind this to both the change and blur events since the due date
+    // may be updated via the return from the gb helper or by the calendar widget
+    // or manually entered text
+    jQuery("input[name='page-replace\:\:due_date\:1\:date-field']").bind("change blur",
+            function() { asnn2.populate_accept_until_with_due_date();}
+            );
+    jQuery("input[name='page-replace\:\:due_date\:1\:time-field']").bind("change blur",
+            function() { asnn2.populate_accept_until_time_with_due_time();}
+            );
+
+    // Make sure the title is focused on load.
+    jQuery("input[name='page-replace\:\:title']").focus();
+
+    // Init TII area
+    var contentReview_options = jQuery('#page-replace\\:\\:contentReview_properties').get(0);
+    var tii_options = jQuery('#page-replace\\:\\:tii_properties').get(0);
+    var tii = jQuery("input[name='page-replace\:\:use_tii']").get(0);
+    var erater_options = jQuery('#page-replace\\:\\:erater_enabled').get(0);
+    var erater_checkbox = jQuery("input[name='page-replace\:\:erater_checkbox']").get(0);
+    jQuery(tii).click(function(){
+        asnn2.showHideByCheckbox(this, tii_options);
+        asnn2.showHideByCheckbox(this, contentReview_options);
+        asnn2editpage.tii_attachWarning(); // display the warning about text submissions if appropriate
+    });
+    // initialize the TII display
+    asnn2.showHideByCheckbox(tii, tii_options);
+    asnn2.showHideByCheckbox(tii, contentReview_options);
+
+    jQuery(erater_checkbox).click(function(){
+        asnn2.showHideByCheckbox(this, erater_options);
+        asnn2editpage.tii_eraterWarning();
+    });
+
+    asnn2.showHideByCheckbox(erater_checkbox, erater_options);
+
+    // we may also need to display/hide tii options based upon the submission type setting
+    if (tii_content) {
+      var subTypeSelect = jQuery("select[name='page-replace::submission_type-selection']");
+      // the allowed options are "Text and Attachments" and "Attachments only"
+      var allowedOptions = new Array("1","2");
+      jQuery(subTypeSelect).change(function(){
+        asnn2.showHideBySelect(this, allowedOptions, tii_content);
+        asnn2editpage.tii_attachWarning(); // display the warning about text submissions if appropriate
+      });
+      asnn2.showHideBySelect(subTypeSelect, allowedOptions, tii_content);
+
+   		// if tii enabled and submission accepts text and attachments, display warning
+      asnn2editpage.tii_attachWarning();
+    }
+
+    asnn2.showHideGradeSettingError();
+    asnn2.modelAnswerIntegrity("init");
+});
+//]]>
+</script>
+</div>
+</body>
+</html>

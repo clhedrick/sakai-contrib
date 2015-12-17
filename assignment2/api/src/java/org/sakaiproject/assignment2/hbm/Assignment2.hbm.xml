@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.sakaiproject.assignment2.model.Assignment2" table="A2_ASSIGNMENT_T">
+       
+        <id name="id" column="ASSIGNMENT_ID" type="long">
+					<generator class="native">
+						<param name="sequence">A2_ASSIGNMENT_S</param>
+					</generator>
+				</id>
+        
+        <version name="optimisticVersion" type="integer" column="VERSION"/>
+        
+       	<property name="gradebookItemId" type="java.lang.Long">
+            <column name="GRADEBOOK_ITEM_ID" not-null="false"  />
+        </property>
+
+        <property name="contextId" type="java.lang.String">
+            <column name="CONTEXT" not-null="true" length="99" 
+            	index="A2_ASSIGN_CONTEXT_I"/>
+        </property>
+        <!-- the title of this assignment -->
+        <property name="title" type="java.lang.String">
+            <column name="TITLE" not-null="true" length="255" />
+        </property>
+        <!-- the draft status for this assignment -->
+        <property name="draft" type="boolean">
+            <column name="DRAFT"  />
+        </property>
+        <!-- the index used for ordering assignments in the UI -->
+        <property name="sortIndex" type="integer">
+            <column name="SORT_INDEX" not-null="true" />
+        </property>
+        <!-- The first date and time at which the assignment can be viewed -->
+        <property name="openDate" type="java.util.Date">
+            <column name="OPEN_DATE" not-null="true" />
+        </property>
+        <!-- The date and time after which responses to this assignment are no longer accepted -->
+        <property name="acceptUntilDate" type="java.util.Date">
+            <column name="ACCEPT_UNTIL_DATE" />
+        </property>
+        <!-- if true, this assignment is graded and linked to the gradebook.
+        if false, this assignment is not graded and will not be linked to GB -->
+        <property name="graded" type="boolean">
+            <column name="GRADED" />
+        </property>
+        <!-- stores due date for assignment - optional 
+        The date and time after which responses to this assignment are no longer accepted-->
+        <property name="dueDate" type="java.util.Date">
+            <column name="DUE_DATE" />
+        </property>
+        <!-- true if assignment requires student to agree to honor pledge -->
+        <property name="honorPledge" type="boolean">
+            <column name="HONOR_PLEDGE" />
+        </property>
+        <!-- assignment instructions -->
+        <property name="instructions" type="text">
+            <column name="INSTRUCTIONS" />
+        </property>
+        <!-- if true, this assignment will have submissions -->
+        <property name="requiresSubmission" type="boolean">
+            <column name="REQUIRES_SUBMISSION" />
+        </property>
+        <!-- submission type: inline, non-electronic, etc.  -->
+        <property name="submissionType" type="integer" >
+            <column name="SUBMISSION_TYPE" not-null="true"/>
+        </property>
+        <!-- true if we need to send submission notifications for this assignment  -->
+        <property name="sendSubmissionNotifications" type="boolean" >
+            <column name="SEND_SUBMISSION_NOTIF" />
+        </property>
+        <property name="hasAnnouncement" type="boolean">
+        	<column name="HAS_ANNOUNCEMENT" />
+        </property>
+        <!-- used if assignment open date is added as an announcement  -->
+        <property name="announcementId" type="java.lang.String">
+        	<column name="ANNOUNCEMENT_ID" length="99" />
+        </property>
+        <!-- used if assignment due date has been added to the Schedule (aka Calendar) tool  -->
+        <property name="addedToSchedule" type="boolean">
+        	<column name="ADDED_TO_SCHEDULE" />
+        </property>
+        <!-- used if assignment due date has been added to the Schedule (aka Calendar) tool.this is
+        the id of the event in the Schedule tool  -->
+        <property name="eventId" type="java.lang.String">
+        	<column name="EVENT_ID" length="99" />
+        </property>
+        <!-- restrict num submissions allowed  -->
+        <property name="numSubmissionsAllowed" type="integer" >
+            <column name="NUM_SUB_ALLOWED" not-null="true" />
+        </property>
+        <!-- true if content review has been enabled for this assignment -->
+        <property name="contentReviewEnabled" type="boolean">
+        	<column name="CONTENT_REVIEW_ENABLED" />
+        </property>
+       	<!-- true if content review allows students to view their own reports -->
+        <property name="contentReviewStudentViewReport" type="java.lang.Boolean">
+        	<column name="CONTENT_REVIEW_STU_VIEW_REPORT" />
+        </property>
+        <!-- a reference for the content review service item associated with this
+             assignment -->
+        <property name="contentReviewRef" type="java.lang.String" >
+            <column name="CONTENT_REVIEW_REF" length="255" not-null="false" />
+        </property>
+        <!-- Whether this assignment is using a model answer -->
+        <property name="modelAnswerEnabled" type="boolean">
+            <column name="MODEL_ANSWER_ENABLED" />
+        </property>
+        <!-- Model Answer Text -->
+        <property name="modelAnswerText" type="text">
+            <column name="MODEL_ANSWER_TEXT" />
+        </property>
+        <property name="modelAnswerDisplayRule" type="integer">
+            <column name="MODEL_ANSWER_DISPLAY_RULE" />
+        </property>
+        <!-- assignment creator  -->
+        <property name="creator" type="java.lang.String" >
+            <column name="CREATOR" length="99" not-null="true" />
+        </property>
+        <!-- assignment create date and time  -->
+        <property name="createDate" type="java.util.Date" >
+            <column name="CREATE_DATE" not-null="true" />
+        </property>
+        <!-- assignment last modifier  -->
+        <property name="modifiedBy" type="java.lang.String" >
+            <column name="MODIFIED_BY" length="99" />
+        </property>
+        <!-- last modified date and time  -->
+        <property name="modifiedDate" type="java.util.Date" >
+            <column name="MODIFIED_DATE" />
+        </property>
+        <!-- true if this assignment was deleted -->
+        <property name="removed" type="boolean" >
+        		<column name="REMOVED" index="A2_ASSIGN_REMOVED_I"/>
+        </property>
+        
+        <set name="submissionsSet" lazy="true" inverse="true" cascade="none">
+	        <key column="ASSIGNMENT_ID"/>                        
+	        <one-to-many class="org.sakaiproject.assignment2.model.AssignmentSubmission"/>            
+    		</set>
+        
+        <set name="attachmentSet" lazy="true" where="ASSIGN_ATTACH_TYPE = 'A'" inverse="true" cascade="none">
+            <key column="ASSIGNMENT_ID"/>                        
+            <one-to-many class="org.sakaiproject.assignment2.model.AssignmentAttachment"/>            
+        </set>
+        
+        <set name="modelAnswerAttachmentSet" lazy="true" where="ASSIGN_ATTACH_TYPE = 'M'" inverse="true" cascade="none">
+            <key column="ASSIGNMENT_ID"/>                        
+            <one-to-many class="org.sakaiproject.assignment2.model.ModelAnswerAttachment"/>            
+        </set>
+              
+        <set name="assignmentGroupSet" lazy="true" inverse="true" cascade="none">
+	        <key column="ASSIGNMENT_ID"/>                        
+	        <one-to-many class="org.sakaiproject.assignment2.model.AssignmentGroup"/>            
+    		</set>
+    </class>
+    
+    <query name="findAssignmentsByIdList">
+    <![CDATA[from org.sakaiproject.assignment2.model.Assignment2 assignment
+             left join fetch assignment.assignmentGroupSet
+             left join fetch assignment.attachmentSet
+             left join fetch assignment.modelAnswerAttachmentSet
+             where assignment.id in (:assignmentIdList)]]>
+  	</query>
+    
+    <query name="findAllAssignmentsWithGroupsAndAttachments">
+    <![CDATA[from org.sakaiproject.assignment2.model.Assignment2 assignment
+             left join fetch assignment.assignmentGroupSet
+             left join fetch assignment.attachmentSet
+             left join fetch assignment.modelAnswerAttachmentSet
+             where assignment.contextId = :contextId
+             order by assignment.sortIndex]]>
+  	</query>
+  	
+  	<query name="findAssignmentByIdWithGroupsAndAttachments">
+    <![CDATA[from org.sakaiproject.assignment2.model.Assignment2 assignment
+             left join fetch assignment.assignmentGroupSet
+             left join fetch assignment.attachmentSet
+             left join fetch assignment.modelAnswerAttachmentSet
+             where assignment.id = :assignmentId]]>
+  	</query>
+  	
+  	<query name="findAssignmentByIdWithGroups">
+    <![CDATA[from org.sakaiproject.assignment2.model.Assignment2 assignment
+             left join fetch assignment.assignmentGroupSet
+             where assignment.id = :assignmentId]]>
+  	</query>
+  	
+  	<query name="findAssignmentsByGradebookItemId">
+  	<![CDATA[from org.sakaiproject.assignment2.model.Assignment2 assignment
+  	         where assignment.gradebookItemId = :gradebookItemId and
+             assignment.removed = false]]>
+  	</query>
+</hibernate-mapping>

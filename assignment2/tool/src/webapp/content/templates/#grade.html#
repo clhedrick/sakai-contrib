@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:rsf="http://ponder.org.uk/rsf" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+   <title rsf:id="msg=assignment2.title">Assignments</title>
+    <link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all"/>
+    <link href="/library/skin/default/tool.css" type="text/css" rel="stylesheet" media="all"/>
+	<link href="/sakai-assignment2-tool/content/css/assignmentsv4.css" type="text/css" rel="stylesheet" media="all" />
+</head>
+
+<body>
+<!--  everything outside of rsf:id="page:" is set in Layout.html using outerPageTemplates -->
+
+<div rsf:id="page:" class="portletBody">
+	
+	<ul class="breadCrumb">
+		<li><a rsf:id="breadcrumb">Assignment List</a></li>
+		<li><a rsf:id="breadcrumb2">View Submissions for "{0}"</a></li>
+		<li rsf:id="last_breadcrumb" class="lastCrumb">Submissions for "{0}"</li>
+	</ul>
+	
+	<p rsf:id="no_gb_item" class="alertMessage">Gb item deleted!</p>
+
+	<div class="generalErrors">
+		<ul rsf:id="message-for:*" style="margin:0px;">
+			<li>Message for user here</li>
+		</ul>
+	</div>
+	<div style="display:none" id="save-grading-dialog">
+        <h3 rsf:id="save-grading-title">Save Grading for Previous Assignment</h3>
+        <ul class="ui-dialog-msg-list">
+            <li rsf:id="save-grading-message" class="alertMessage">You have unsaved changes. Would you like to save your changes?</li>
+        </ul>
+        <fieldset class="submit">
+            <input id="" rsf:id="save-grading-save" accesskey="s" type="button" class="active" value="Save"/>
+            <input id="" rsf:id="save-grading-saveAndRelease" accesskey="r" type="button" class="active" value="Save and Release Feedback"/>
+            <input id="" rsf:id="save-grading-clear" accesskey="x" type="button" value="Clear"/>
+            <input id="" rsf:id="save-grading-cancel" type="button" value="Cancel!" />
+        </fieldset>
+    </div>
+    <form name="gradeForm" rsf:id="form" method="post">
+    <input name="gradingInfoChanged" id="gradingInfoChanged" rsf:id="gradingInfoChanged" type="hidden" value="false" />
+    <input name="numSubmittedVersions" id="numSubmittedVersions" rsf:id="numSubmittedVersions" type="hidden" value="" />
+    
+    <div>
+    <div style="float:left;">
+        <h3 rsf:id="heading">Submission for Name</h3>
+    </div>
+    <div style="float:right; border: thin #838383 solid; width: 30%; text-align: center;">
+        <div style="padding: 2px; border-bottom: thin #838383 solid; background: #d9d9d9;">
+            <a class="returnToList_link" id="returnToList_link" rsf:id="returnToList_link">Return to Submission List</a>
+        </div>
+        <div style="padding: 2px;">
+            <a class="previous_link" id="previous_link" rsf:id="previous_link" >Previous</a>
+            <span rsf:id="previous_disabled" class="inactive">Previous</span>
+            <span class="separator">|</span>
+            <span rsf:id="current">Current User</span>
+            <span class="separator">|</span>
+            <a class="next_link" id="next_link" rsf:id="next_link" >Next</a>
+            <span rsf:id="next_disabled" class="inactive">Next</span>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+    </div>
+
+    <p rsf:id="status" class="subheading"></p>
+
+    <p rsf:id="non-electronic-submission" class="subheading"></p>
+
+  <!--  Instructions section -->
+  <div rsf:id="assignment-instructions:">
+      <!-- Assignment Instructions go here. -->
+  </div>
+  
+  <!-- Override Assignment-Level Settings Section -->
+  
+  <div rsf:id="resubmission_toggle_section:">
+    <!-- toggle header -->
+  </div>
+  <div id="resubmissionSection" style="display: none;" class="subsection1 toggleSubsection" >
+    <div rsf:id="resubmit_change">
+      <input id="override_settings" rsf:id="override_settings" type="checkbox" />
+      <label for="override_settings" rsf:id="msg=assignment2.assignment_grade.override_settings">Override assignment-level settings?</label>
+      <div id="override_settings_container">
+          <div class="override_settings_container_item liItem">
+              <span rsf:id="resubmission_curr_submissions">This assignment has 2 submissions.</span>
+          </div>
+          <div class="override_settings_container_item liItem">
+              <label rsf:id="msg=assignment2.assignment_grade.resubmission_allow_number">Additional Allowed Submissions Blah</label>
+              <select rsf:id="resubmission_additional"></select>
+          </div>
+          <div class="override_settings_container_item liItem">
+              <span rsf:id="original_due_date">Original Due Date: 3/25/09 5:00 PM!!!!!!!!!!!!!!!</span>
+          </div>
+          <div class="override_settings_container_item liItem" rsf:id="resubmission_dates">
+            
+              <input id="require_accept_until" rsf:id="require_accept_until" type="checkbox" />
+              <label for="require_accept_until" rsf:id="extend_accept_until">Set Accept Until Date? Blah</label>
+              <span id="accept_until_container">
+                  <span id="resubmission_due_section">
+                    <input id="accept_until" rsf:id="accept_until:" value="12/31/2007"/>
+                  </span>
+                  <span id="resubmission_due_read_only"></span>
+              </span>                      
+          </div>
+        </div>
+      </div>
+      <div rsf:id="resubmit_no_change">
+        <div class="liItem">
+            <span rsf:id="resub_curr_submissions_text">This assignment has 2 submissions.</span>
+        </div>
+        <div class="liItem">
+            <span rsf:id="resub_allowed_submissions_text">This assignment has 2 submissions.</span>
+        </div>
+        <div class="liItem">
+            <span rsf:id="resub_until_text">This assignment has 2 submissions.</span>                   
+        </div>
+      </div>
+  </div>
+
+  <!-- /Allow Resubmissions -->
+  
+  <!-- Feedback Section -->
+
+  <div rsf:id="feedback_section:">
+    
+    <div class="toggleHeader" rsf:id="version_toggle:">
+    </div>
+    
+    <div rsf:id="versionInformation" class="subsection1 toggleSubsection">
+      <!-- Inline Comments for submitted text -->
+      <div rsf:id="submitted_text_fieldset">
+        <h4 rsf:id="msg=assignment2.assignment_grade.annotated_submitted_text" class="subgroupHeading">Inline Text</h4>
+        <p rsf:id="inline_feedback_instructions" class="block instruction">Below is the submission from a student. You can insert comments into this text by clicking in the box, then type your comments.</p>
+        <div id="feedback_text" >
+        	<textarea rsf:id="feedback_text:" name="feedback_text" id="feedback_text" cols="80" rows="20" wrap="virtual"></textarea>
+        	<!-- this should be the FCKEditor -->
+        </div>
+    	</div>
+      
+      <!-- Submitted Attachments -->
+    	<div rsf:id="submitted_attachments_fieldset">
+    		<h4 rsf:id="msg=assignment2.assignment_grade.submitted_attachments" class="subgroupHeading">Attachments</h4>
+    		<ol class="attachList">
+    			<li rsf:id="submitted_attachment_list:">
+    				<img src="/sakai-assignment2-tool/content/images/page_white_word.png" target="_blank" width="16" height="16"/> <a href="">ExampleAttachment.doc</a> (52 KB)
+    			</li>
+    		</ol>
+    	</div>
+      
+      <!--  Additional Feedback Notes -->
+      <div id="feedback_notes">
+        <h4 rsf:id="msg=assignment2.assignment_grade.feedback_notes" class="subgroupHeading">Additional Feedback</h4>
+        <textarea  rsf:id="feedback_notes:" name="feedback_notes" id="feedback_notes" cols="80" rows="20" wrap="virtual"></textarea>
+        <!-- this should be the FCKEditor -->
+        <p rsf:id="feedback_notes_no_edit" class="nothingProvided"></p>
+      </div>	
+      
+      <!--  Feedback Attachments -->
+      <div id="attachmentsFieldset">
+        <h4 rsf:id="msg=assignment2.assignment_grade.feedback_attachments" class="subgroupHeading">Attachments</h4>
+        <!-- for read-only view of attachments -->
+        <ol class="attachList indnt1" rsf:id="feedback_attach_read_only">
+          <li rsf:id="feedback_attachment_list:">
+            <img src="/sakai-assignment2-tool/content/images/page_white_word.png" target="_blank" width="16" height="16"/> <a href="">ExampleAttachment.doc</a> (52 KB)
+          </li>
+        </ol>
+        <!-- editable view of attachments -->
+        <ol class="attachList" rsf:id="attachment_list:">
+          <li></li>
+        </ol>
+        <span class="indnt1" rsf:id="add_attach">
+          <img src="/../../library/image/silk/attach.png" />
+          <a rsf:id="add_attachments:" class="thickbox">Add Attachments</a>
+        </span>
+      </div>
+    </div>
+
+  </div>
+  
+  <div rsf:id="tagging-info-grading:">
+    <!-- this assignment's tag info will go here -->
+  </div>
+	
+	<!-- Grading Stuff -->
+	<div rsf:id="gradebook-details-container">
+    <h4 rsf:id="msg=assignment2.assignment_grade.gradebook_details" class="subgroupHeading">Gradebook Stuff</h4>
+    <div  class="gradingSection indnt1">
+      <div>
+        <label for="grade_input" rsf:id="grade_input_label" class="gradingLabel">Grade</label>
+        <input type="text" size="10" maxlength="8" rsf:id="grade_input" id="grade_input" class="gradeInput" />
+        <span rsf:id="grade_input_appender">(Out of X) or %</span>
+      </div>
+      <div>
+        <!--  for some reason, you can't use a label tag for a textarea -->
+        <p rsf:id="msg=assignment2.gradebook.grading.comments" class="gradingLabel">Comment</p>
+        <textarea rsf:id="grade_comment_input" id="grade_comment_input" name="grade_comment_input" cols="80" rows="5" wrap="virtual"></textarea>
+      </div>
+    </div>
+	</div>
+	<!-- /End Grading Stuff -->
+	
+	<div>
+	<fieldset style="float:left;" class="submit">
+	    <input name="submitOption" id="submitOption" rsf:id="submitOption" type="hidden" value="submit" />
+		<input name="save" id="save" rsf:id="submit" accesskey="s" type="submit" class="active" value="Save"/>
+	    <input name="release_feedback" id="release_feedback" rsf:id="release_feedback" type="submit" />
+		<input rsf:id="preview" accesskey="v" type="button" name="preview" value="Preview" class="preview_button thickbox" title="Preview" />
+		<input rsf:id="cancel" accesskey="x" type="submit" name="cancel" value="Cancel"/>
+	</fieldset>
+	
+	<div style="float:right; border: thin #838383 solid; width: 30%; text-align: center;">
+        <div style="padding: 2px; border-bottom: thin #838383 solid; background: #d9d9d9;">
+            <a class="returnToList_link" id = "returnToList_link" rsf:id="returnToList_link">Return to Submission List!</a>
+        </div>
+        <div style="padding: 2px;">
+            <a class="previous_link" id="previous_link" rsf:id="previous_link" >Previous!</a>
+            <span rsf:id="previous_disabled" class="inactive">Previous!</span>
+            <span class="separator">|</span>
+            <span rsf:id="current">Current User</span>
+            <span class="separator">|</span>
+            <a class="next_link" id="next_link" rsf:id="next_link" >Next!</a>
+            <span rsf:id="next_disabled" class="inactive">Next!</span>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+    </div>
+	</form>
+
+<script type="text/javascript" rsf:id="attachment-ajax-init">
+//done in producer
+// otpkey = some value
+</script>
+<script type="text/javascript">
+//<![CDATA[
+
+jQuery(document).ready(function(){
+	var change = false;
+    // initialize the toggles on the page
+    jQuery("div.toggleHeader").click(function () { 
+       asnn2.toggleSubsection(".toggleSubsection", this);
+     });
+    
+    //Init override assignment-level resubmission checkbox
+    jQuery("input[name='page-replace\:\:override_settings']").click(function(){
+        asnn2gradeview.override_submission_settings();;
+    });
+    asnn2gradeview.override_submission_settings();
+    
+    //Init resubmission set accept until checkbox
+    jQuery("input[name='page-replace\:\:require_accept_until']").click(function(){
+        asnn2gradeview.set_accept_until_on_submission_level();
+    });
+    asnn2gradeview.set_accept_until_on_submission_level();
+
+    jQuery('.previous_link').click(function() {
+        var that = jQuery(this);
+        var gradingChanged = asnn2gradeview.isGradingChanged();
+        var numSubmittedVersions = $('#page-replace\\:\\:numSubmittedVersions').val();	
+        if (gradingChanged)
+        {
+            asnn2gradeview.saveFeedback("PREV", that.attr('href')); 
+            return false;
+        }
+    });
+
+    jQuery('.next_link').click(function() {
+        var that = jQuery(this);
+        var gradingChanged = asnn2gradeview.isGradingChanged();
+        var numSubmittedVersions = $('#page-replace\\:\\:numSubmittedVersions').val();	
+        if (gradingChanged) {
+            asnn2gradeview.saveFeedback("NEXT", that.attr('href')); 
+            return false;
+        }
+    });
+
+    jQuery('.returnToList_link').click(function() {
+        var that = jQuery(this);
+        var gradingChanged = asnn2gradeview.isGradingChanged();
+        var numSubmittedVersions = $('#page-replace\\:\\:numSubmittedVersions').val();	
+        if (gradingChanged) {
+            asnn2gradeview.saveFeedback("RETURNTOLIST", that.attr('href')); 
+            return false;
+        }
+    });
+
+    var fadeSuccessMsg = function() {
+        jQuery('.success').fadeOut("slow");
+    }   
+    setTimeout(fadeSuccessMsg,10000);
+    
+    
+});
+
+//]]>
+
+</script>
+</div>
+</body>
+</html>

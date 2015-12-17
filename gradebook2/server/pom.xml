@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>gradebook2-base</artifactId>
+		<groupId>org.sakaiproject.gradebook2</groupId>
+		<version>1.9.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<name>Sakai Gradebook2 Server Side Code</name>
+	<groupId>org.sakaiproject.gradebook2</groupId>
+	<artifactId>gradebook2-server</artifactId>
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<!-- Project Dependencies -->
+		<dependency>
+			<groupId>org.sakaiproject.gradebook2</groupId>
+			<artifactId>gradebook2-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.sakaiproject.gradebook2</groupId>
+			<artifactId>gradebook2-model</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.sakaiproject.gradebook2</groupId>
+			<artifactId>gradebook2-shared</artifactId>
+		</dependency>
+
+		<!--  Google Web Toolkit Dependencies -->
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwt.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- Spring Dependency : Added this as part of the Jersey 1.7 upgrade -->
+		<dependency>
+			<groupId>${sakai.spring.groupId}</groupId>
+			<artifactId>${sakai.spring.artifactId}</artifactId>
+			<version>${sakai.spring.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>${sakai.spring.groupId}</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${sakai.spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${sakai.spring.groupId}</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${sakai.spring.version}</version>
+		</dependency>
+		
+		<!--
+		This dependency brings in stax-api v1.0.1 instead of v1.0-2 via jersey-json. Bellow, we
+		exclude stax-api so that we don't end up with two JARs in WEB-INF/lib
+		-->
+		<dependency>
+			<groupId>stax</groupId>
+			<artifactId>stax-api</artifactId>
+			<version>1.0.1</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<!-- Jersey JAX-RS Dependencies -->
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>${gb2.jersey.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.sun.jersey.contribs</groupId>
+		    <artifactId>jersey-spring</artifactId>
+		    <version>${gb2.jersey.version}</version>
+		    <exclusions>
+		    	<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-aop</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>${gb2.jersey.version}</version>
+			<exclusions> 
+        			<exclusion> 
+          				<groupId>javax.xml.stream</groupId> 
+         	 			<artifactId>stax-api</artifactId>
+        			</exclusion> 
+      			</exclusions> 
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-jaxrs</artifactId>
+			<version>${gb2.jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>${gb2.jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${gb2.jackson.version}</version>
+		</dependency>
+		
+		<!-- Other External Dependencies -->
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+			<version>1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${sakai.hibernate.groupId}</groupId>
+			<artifactId>${sakai.hibernate.artifactId}</artifactId>
+			<version>${sakai.hibernate.version}</version>
+		</dependency>
+		
+		<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-math</artifactId>
+				<version>2.1</version>
+				<scope>test</scope>
+			</dependency>
+			
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.8</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.4.0</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>ooxml-schemas</artifactId>
+			<version>1.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.tika</groupId>
+			<artifactId>tika-core</artifactId>
+			<version>1.2</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- NOTE the following is required to be on the classpath to enable
+		     subcontainer media detection eg, for OLE2 and OOXML files. 
+		     Without these libs the detect() method will return
+		     application/x-tika-msoffice and application/zip
+		     respectively -->
+		<dependency>
+			<groupId>org.apache.tika</groupId>
+			<artifactId>tika-parsers</artifactId>
+			<version>1.2</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<configuration>						
+							<tasks>
+								<ant antfile = "${basedir}/build.xml"/>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>${basedir}/src/java</directory>
+				<includes>
+					<include>**/VERSION.txt</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>${basedir}/src/test</directory>
+				<includes>
+					<include>**/*.dat</include>
+				</includes>
+			</resource>
+		</resources>
+	</build>
+</project>

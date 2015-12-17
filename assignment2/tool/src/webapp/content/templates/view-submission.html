@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:rsf="http://ponder.org.uk/rsf" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+   <title rsf:id="msg=assignment2.title">Assignments</title>
+    <link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all"/>
+    <link href="/library/skin/default/tool.css" type="text/css" rel="stylesheet" media="all"/>
+    <link href="/sakai-assignment2-tool/content/css/assignmentsv4.css" type="text/css" rel="stylesheet" media="all" />
+</head>
+
+<body>
+<!--  everything outside of rsf:id="page:" is set in Layout.html using outerPageTemplates -->
+
+<div rsf:id="page:" class="portletBody">
+    <h3 rsf:id="title">Assignment Title!!!</h3>
+    
+    <p rsf:id="dueDate" class="subheading">Date stuff!!!!!!</p>
+    <p rsf:id="submissionStatus" class="subheading">This assignment has not been submitted!!!!!!</p>
+    
+    <h3 rsf:id="msg=assignment2.details.heading">Details!</h3>
+    <table class="itemSummary infoTable indnt1" cellspacing="0" summary="Assignment Details">
+        <tr>
+            <th rsf:id="msg=assignment2.details.open_date">Open</th> 
+            <td rsf:id="open-date"></td>
+        </tr>
+        <tr>
+            <th rsf:id="graded">Graded?</th>
+            <td rsf:id="is-graded"></td>
+        </tr>
+        <tr rsf:id="points-possible-row">
+            <th rsf:id="msg=assignment2.details.gradebook.points_possible">Points Possible</th>
+            <td rsf:id="points-possible">25</td>
+        </tr>
+        <tr rsf:id="resubmission-allowed-row">
+            <th rsf:id="msg=assignment2.details.resubmission.allowed">Resubmissions Allowed</th>
+            <td rsf:id="resubmissions-allowed"></td>
+        </tr>
+        <tr rsf:id="assign-num-submissions-allowed-row">
+            <th rsf:id="msg=assignment2.details.resubmission.value">Resubmissions Allowed</th>
+            <td rsf:id="assign-num-submissions-allowed"></td>
+        </tr>
+    </table>
+    
+    <!--  Instructions section -->
+    <div rsf:id="instructions:">
+        <!-- Assignment Instructions go here. -->
+    </div>
+    
+    <div rsf:id="toggle-wrapper:">
+        <div rsf:id="version_toggle:"/>
+        <div class="subsection1 toggleSubsection" style="display: none;">
+            <!--  Submissions section -->
+            <div rsf:id="submission:">
+                <!-- Submissions go here. -->
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+  //<![CDATA[
+    // initialize the collapsible toggles
+    jQuery("div.toggleHeader").click(function () { 
+        asnn2.toggleSubsection(".toggleSubsection", this);
+    });
+  //]]>
+  </script>
+</div>
+</body>
+</html>

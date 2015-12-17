@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>assignment2</artifactId>
+        <groupId>org.sakaiproject.assignment2</groupId>
+        <version>1.2-SNAPSHOT</version>
+    </parent>
+
+    <name>sakai-assignment2-api</name>
+    <groupId>org.sakaiproject.assignment2</groupId>
+    <artifactId>sakai-assignment2-api</artifactId>
+    <organization>
+        <name>Sakai Project</name>
+        <url>http://www.sakaiproject.org/</url>
+    </organization>
+    <inceptionYear>2007</inceptionYear>
+    <packaging>jar</packaging>
+
+    <!-- you must deploy your API to shared or it will be inaccessible from 
+        your tool -->
+    <properties>
+        <deploy.target>shared</deploy.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.sakaiproject.kernel</groupId>
+            <artifactId>sakai-kernel-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.sakaiproject.kernel</groupId>
+            <artifactId>sakai-kernel-util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.sakaiproject.taggable</groupId>
+            <artifactId>sakai-taggable-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </dependency>
+        <!-- for Importable -->
+        <dependency>
+            <groupId>org.sakaiproject.common</groupId>
+            <artifactId>archive-api</artifactId>
+        </dependency>
+        <!-- for scheduled notifications -->
+        <dependency>
+            <groupId>org.sakaiproject.scheduler</groupId>
+            <artifactId>scheduler-api</artifactId>
+        </dependency>
+        <!-- end for scheduled notifications -->
+
+        <dependency>
+            <groupId>org.sakaiproject.contentreview</groupId>
+            <artifactId>contentreview-model-api</artifactId>
+        </dependency>
+
+        <!-- for integration with gradebook -->
+        <dependency>
+            <groupId>org.sakaiproject.edu-services.gradebook</groupId>
+            <artifactId>gradebook-service-api</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/java</sourceDirectory>
+        <resources>
+            <!-- include the readme.txt file and the java source files -->
+            <resource>
+                <directory>${basedir}</directory>
+                <includes>
+                    <include>*.txt</include>
+                    <include>src/**/*.java</include>
+                    <include>src/**/*.html</include>
+                    <include>src/**/*.xml</include>
+                    <include>src/**/*.properties</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+</project>

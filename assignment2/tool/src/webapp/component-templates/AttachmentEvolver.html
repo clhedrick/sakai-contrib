@@ -1,0 +1,43 @@
+<html>
+<head>
+</head>
+<body>
+<!--  Everything besides the li should go away -->
+<form>
+<div rsf:id="attachment-list:">
+
+    <span rsf:id="no_attachments_yet" class="instruction no_attachments_yet indnt1">No attachments yet</span>
+    
+    <ol rsf:id="attachment-list-core:">
+        <li rsf:id="attachment-list-row:">
+            <img rsf:id="attachment_image" width="16" height="16"/> 
+            <a rsf:id="attachment_link" target="_blank">ExampleAttachment.doc</a>
+            <input class="skip" rsf:id="attachment_item" />
+            <span rsf:id="attachment_size">(52 KB)</span>
+            <span rsf:id="attachment_remove">Remove</span>
+        </li>
+    </ol>
+    
+    <ol>
+        <li id="attachment-list-demo" class="skip">
+            <img  width="16" height="16" src=""/> 
+            <a  href="" target="_blank">demo</a>
+            <input value="" class="skip" name=""/>
+            <span >demo</span>
+            <span ><a href="#" onclick="asnn2.removeAttachmentConfirm(this);">Remove</a></span>
+        </li>
+    </ol>
+    <span style="display:none" rsf:id="attachments-binding-id"></span>
+    <span rsf:id="attachments-input" />
+    
+    <div style="display:none" id="remove-attachment-confirm-dialog">
+        <p class="alertMessageInline" rsf:id="msg=assignment2.dialogs.att_delete.msg">Are you sure you want to delete this attachment?!!</p>
+        <div class="dialog-submit">
+            <input class="att-delete-confirm-button active" accesskey="s" type="button" rsf:id="msg=assignment2.dialogs.att_delete.confirm"/>
+            <input class="att-delete-cancel-button" accesskey="x" type="button" rsf:id="msg=assignment2.dialogs.att_delete.cancel"/>
+        </div>
+    </div>
+</div>
+</form>
+</body>
+</html>

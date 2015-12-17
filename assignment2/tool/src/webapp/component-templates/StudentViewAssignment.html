@@ -1,0 +1,116 @@
+<div rsf:id="student-view-assignment-area:" class="portletBody">
+
+	<ul class="breadCrumb">
+		<li><a rsf:id="breadcrumb">Assignment List</a></li>
+		<li rsf:id="student-submit-heading" class="lastCrumb">View Details and Submit</li>
+		<li rsf:id="add_edit_breadcrumb">Add/Edit Assignment!!!!!!</li>
+		<li rsf:id="preview_breadcrumb" class="lastCrumb">Preview as Student!!!!!!!!!!</li>
+	</ul>
+
+	<div class="generalErrors">
+		<ul rsf:id="message-for:*" style="margin:0px;">
+			<li>Message for user here</li>
+		</ul>
+	</div>
+	
+	<div rsf:id="assignment-status:">
+	    <!-- Assignment Status will go here. -->
+	</div>
+	
+	  
+  <div rsf:id="grade-details-top:">
+    <!-- Grade Details go here. -->
+  </div>
+      
+  <div rsf:id="assignment-details-top:">
+      <!-- Assignment Details go here. -->
+  </div>
+    
+  <div rsf:id="assignment-instructions-top:">
+      <!-- Assignment Instructions go here.-->
+  </div>
+	
+	<div rsf:id="assignment-previous-submissions:">
+	    <!-- Students previous submissions will be rendered. This is a collapsable tree containing the versions. -->
+	</div>
+   
+    <div rsf:id="assignment-edit-submission:">
+        <!-- Rich text editor and/or attachments for editing submission -->
+        <!-- and honor pledge and save/cancel buttons. -->
+    </div>
+    
+    <div rsf:id="assignment-single-version:">
+    <!-- A single submission version will be displayed text-only. This should -->
+    <!-- never appear at the same time as assignment-edit-submission -->
+    </div>
+    
+    <div rsf:id="asnn-details-bottom:">
+    <!-- placeholder for a toggleable assignment details section -->
+    </div>
+    
+    <div rsf:id="asnn-instructions-bottom:">
+    <!-- placeholder for a toggleable assignment instructions section -->
+    </div>
+    
+    <div rsf:id="asnn-tags-bottom:">
+    <!-- placeholder for a toggleable tags section -->
+    </div>
+	
+	<div rsf:id="student-preview-submission-confirm-buttons">
+		<p>These are the preview submit buttons!</p>
+	</div>
+	
+	<div rsf:id="view-submission-buttons">
+	    <form method="get" rsf:id="view-submission-form">
+	          <fieldset class="submit">
+                <input rsf:id="return-button" accesskey="s" type="submit" class="active" value="Return to List"/>
+                <input rsf:id="resubmit-button" accesskey="s" type="submit" class="active" value="Resubmit assignment!"/>
+            </fieldset>
+        </form>
+	</div>
+    
+<script type="text/javascript">
+//<![CDATA[
+    // initialize the collapsible toggles
+    jQuery("div.toggleHeader").click(function () { 
+        asnn2.toggleSubsection(".toggleSubsection", this);
+    });
+  //]]>
+  </script>
+	
+	<!-- 
+	<fieldset>
+		<legend>
+			<img src="/sakai-assignment2-tool/content/images/expand.png" border="0" alt="Open, click to close assignment instruction" style="cursor:pointer" 
+				onclick="slideFieldset(this)" />
+			<span rsf:id="msg=assignment2.student-submit.previous_submissions" onclick="slideFieldset(jQuery(this).prev('img').get(0));" style="cursor:pointer">Previous Submissions</span>
+		</legend>
+		<ol style="display:none">
+			<li rsf:id="no_history">No Submissions Yet</li>
+			<li rsf:id="previous_submissions:">
+				<span rsf:id="previous_date"></span>
+				<span rsf:id="current_version">Current Version</span>
+				<a rsf:id="previous_link" class="thickbox">View Submission</a>
+			</li>
+		</ol>
+		
+	</fieldset>
+	-->
+	
+	<!-- I think this is deprecated..
+	<script type="text/javascript">
+	//<![CDATA[
+	function slide_submission(img){
+		jQuery(img).parent('h4').next('div').toggle();
+		if(img.src.match('collapse')){
+			img.src=img.src.replace(/collapse/, 'expand');
+		}else{
+			img.src=img.src.replace(/expand/, 'collapse');
+		}
+	}
+	//]]>
+		
+	</script>
+	-->
+
+</div>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+		<!-- add the bundle logic here since we need it to init but don't want to include everything in logic-beans.xml -->
+	<bean id="org.sakaiproject.assignment2.logic.AssignmentBundleLogic" class="org.sakaiproject.assignment2.logic.impl.AssignmentBundleLogicImpl" init-method="init">
+   </bean>
+
+</beans>

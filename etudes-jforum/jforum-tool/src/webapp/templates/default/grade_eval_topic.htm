@@ -1,0 +1,678 @@
+<#--
+/**********************************************************************************
+ * $URL: https://source.sakaiproject.org/contrib/etudes/sakai-jforum/tags/2.9.11/jforum-tool/src/webapp/templates/default/grade_eval_topic.htm $
+ * $Id: grade_eval_topic.htm 83559 2013-04-30 19:03:29Z murthy@etudes.org $ 
+ *********************************************************************************** 
+ * 
+ * Copyright (c) 2008, 2009, 2010, 2011, 2012, 2013 Etudes, Inc. 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * 
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License. 
+ * 
+ * Portions completed before July 1, 2004 Copyright (c) 2003, 2004 Rafael Steil, All rights reserved, licensed under the BSD license. 
+ * http://www.opensource.org/licenses/bsd-license.php 
+ * 
+ * Redistribution and use in source and binary forms, 
+ * with or without modification, are permitted provided 
+ * that the following conditions are met: 
+ * 
+ * 1) Redistributions of source code must retain the above 
+ * copyright notice, this list of conditions and the 
+ * following disclaimer. 
+ * 2) Redistributions in binary form must reproduce the 
+ * above copyright notice, this list of conditions and 
+ * the following disclaimer in the documentation and/or 
+ * other materials provided with the distribution. 
+ * 3) Neither the name of "Rafael Steil" nor 
+ * the names of its contributors may be used to endorse 
+ * or promote products derived from this software without 
+ * specific prior written permission. 
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT 
+ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, 
+ * BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
+ * THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE 
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER 
+ * IN CONTRACT, STRICT LIABILITY, OR TORT 
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE 
+ ***********************************************************************************/
+ -->
+<#include "header.htm"/>
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="${JForumContext.encodeURL("/rss/forumTopics/${forum.id}")}" />
+
+<form action="${JForumContext.encodeURL("/jforum")}" method="post" name="form1" id="form1" accept-charset="${encoding}">
+<input type="hidden" name="action" value="evaluateTopic" />
+<input type="hidden" name="module" value="${moduleName}" />
+<input type="hidden" name="securityHash" value="${securityHash}" />
+<input type="hidden" name="topic_id" value="${topic.id}" />
+<input type="hidden" name="grade_id" value="${grade.id}" />
+
+<script language="javascript">
+
+var toggleOn = new Image();
+toggleOn.src = "${contextPath}/templates/${templateName}/images/collapse-expand.gif";
+
+var toggleOff = new Image();
+toggleOff.src = "${contextPath}/templates/${templateName}/images/expand-collapse.gif";
+
+var blockTxtAreas = true;
+
+function toggleAllComments(eleImg)
+{	
+	eleImg.src = blockTxtAreas ? toggleOn.src : toggleOff.src;
+		
+	
+	var alltxtareas = document.body.getElementsByTagName("textarea");
+	
+	for (var i = 1; i < alltxtareas.length; i++) {
+		var ele = alltxtareas[i];
+		if (blockTxtAreas)
+			ele.style.display = 'block';
+		else
+			ele.style.display = 'none';
+	}
+	if (blockTxtAreas) {
+		blockTxtAreas = false;
+		${JForumContext.sakaiWinHeightJSFunction()}
+	} else
+		blockTxtAreas = true; 
+}
+
+function toggleComments(id) 
+{
+	var ele = document.getElementById(id)
+	if (ele == null) return;
+	
+	if (ele.style.display == 'block')
+		ele.style.display = 'none';
+	else if (ele.style.display == 'none')
+		ele.style.display = 'block';
+}
+
+var addToGradebook = false;
+
+function toggleSendToGradeBook()
+{
+	var elecol = document.getElementsByName('send_to_grade_book');
+	for (var i=0; i < elecol.length; i++)
+	{
+		if (addToGradebook)
+			elecol[i].checked = false;
+		else
+			elecol[i].checked = true;
+	}
+	if (addToGradebook)
+		addToGradebook = false;
+	else
+		addToGradebook = true;
+}
+
+function validateNumbers() {
+ 	var eleTxt = document.getElementsByTagName("input");
+
+ 	for (i=0; i<eleTxt.length; i++) {
+ 		if (eleTxt[i].type == "text" && eleTxt[i].value.replace(/^\s*|\s*$/g, "").length > 0) {
+ 			if (eleTxt[i].value < 0) {
+				alert("${I18n.getMessage("Grade.Points.NegativeNumber")}");
+				eleTxt[i].focus();
+				return false;
+			}	
+ 		}
+ 	}
+ 	return true;
+}
+
+function releaseAll(id)
+{
+	var ele = document.getElementById(id);
+	ele.value = '1';
+}
+</script>
+
+<#if grade.isAddToGradeBook()>
+	<script language="javascript">
+		addToGradebook = true;
+	</script>
+</#if>
+<input type="hidden" name="releaseall" id="releaseall" value="0" />
+<table cellspacing="0" cellpadding="10" width="100%" align="center" border="0">
+	<tr>
+		<td valign="top">
+			<table cellspacing="2" cellpadding="2" width="100%" align="center" border="0">
+				<tr>
+					<td valign="bottom" align="left" colspan="2">
+						<a class="maintitle" href="${JForumContext.encodeURL("/posts/list/${topic.id}")}">${topic.title}</a>
+					</td> 
+				</tr>
+				<tr>
+					<td height="10"><img src="${contextPath}/templates/${templateName}/images/spacer.gif" alt="" width="1" height="10" /></td>
+				</tr>
+				<tr>
+					<td valign="center" align="left" width="100%" colspan="${colspan?default("0")}">
+						<span class="gen">
+							<a class="gen" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> -&gt;  <a class="gen" href="${JForumContext.encodeURL("/forums/list")}#${category.id}">${category.title}</a> -&gt;  <a class="gen" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name}</a>
+						</span>
+					</td>
+				</tr>
+				<#--
+				<tr>
+					<td height="5"><img src="${contextPath}/templates/${templateName}/images/spacer.gif" alt="" width="1" height="5" /></td>
+				</tr>
+				<#if facilitator>
+				<tr>
+					<td valign="center" align="left">
+						<span class="gen">
+					  		<a class="gen" href="#" onclick="document.form1.submit();" rel="nofollow" ><img class="imgicon" src="${contextPath}/templates/${templateName}/images/save_grades.png" alt="${I18n.getMessage("save-category-grades-description")}" title="${I18n.getMessage("save-access-description")}"/>${I18n.getMessage("Grade.save")}</a>
+						</span>
+					</td>
+				</tr>
+				</#if>
+				-->
+			</table>
+			<br/>
+			
+			<table class="forumline" cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
+				<tr>
+					<td width="50%">			
+						<table cellspacing="1" cellpadding="4" width="100%" align="center" border="0">
+							<tr>
+								<td align="left" colspan="2">
+									<span class="gen">
+										<#setting locale="${I18n.getDefaultLocale()}">
+										${I18n.getMessage("Points.max")}: <#if grade?exists>${grade.points?string("####0.00")}</#if>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td align="left" colspan="2"><span class="gen"></span></td>
+							</tr>
+							<#if grade?? && grade.isMinimumPostsRequired()>
+							<tr>
+								<td align="left" colspan="2">
+									<span class="gen">
+										${I18n.getMessage("Grade.Topics.MinPostsNumber")}: ${grade.minimumPosts}
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td align="left" colspan="2"><span class="nav"></span></td>
+							</tr>
+							</#if>
+							<tr>
+								<td align="left" colspan="2">
+									<span class="gen">
+										<img src="${contextPath}/templates/${templateName}/images/active.png">
+										<a href="#" onclick="releaseAll('releaseall');document.form1.submit();return false;">${I18n.getMessage("Grade.releaseEvaluatedPosts")}</a>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td align="left" colspan="2"><span class="nav"></span></td>
+							</tr>
+							<tr>
+								<td align="left" colspan="2">
+									<span class="gen">
+										<img src="${contextPath}/templates/${templateName}/images/adjust_scores.png">
+										${I18n.getMessage("Grade.adjustScores")}
+										<input type="text" style="width:40px;text-align:right" maxlength="8" size="10" name="adjust_scores" value="" /> 
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td align="left" colspan="2"><span class="nav"></span></td>
+							</tr>
+							<tr>
+								<td align="left" colspan="2">
+									<table cellspacing="2" cellpadding="2" width="100%" align="center" border="0">
+										<tr>
+											<td nowrap="nowrap">
+												<span class="gen">
+													<img src="${contextPath}/templates/${templateName}/images/note.png">
+													<a href="#" onclick="toggleComments('adjust_comments');return false;">${I18n.getMessage("Grade.adjustComments")}</a>
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<td nowrap="nowrap">
+												<textarea name="adjust_comments" id="adjust_comments" style="display:none;width:300px" cols="40" rows="6"></textarea>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align="left" colspan="2"><span class="nav"></span></td>
+							</tr>
+						</table>
+					</td>
+					<#assign topicDates = false/>
+					<#if ((topic.accessDates??) && (topic.accessDates.openDate?? || topic.accessDates.dueDate?? || topic.accessDates.allowUntilDate??))>
+						<#assign topicDates = true/>
+					</#if>
+					
+					<#assign forumDates = false/>
+					<#if !topicDates>
+						<#if ((forum.accessDates??) && (forum.accessDates.openDate?? || forum.accessDates.dueDate?? || forum.accessDates.allowUntilDate??))>
+						<#assign forumDates = true/>
+						</#if>
+					</#if>
+					
+					<#assign categoryDates = false/>
+					<#if !topicDates && !forumDates>
+						<#if ((category.accessDates??) && (category.accessDates.openDate?? || category.accessDates.dueDate?? || category.accessDates.allowUntilDate??))>
+						<#assign categoryDates = true/>
+						</#if>
+					</#if>
+					<td width="50%" valign="top" style="border-left:#c8d1d7 2px solid;">
+						<span class="gen">
+						<table cellspacing="1" cellpadding="4" width="100%" align="center" border="0">
+							<tr>
+								<td width="5%" nowrap="nowrap">
+									${I18n.getMessage("Grade.startDate")}:
+								</td>
+								<td width="45%" nowrap="nowrap">
+									<#if topicDates>
+										<#if topic.accessDates.openDate??>
+											${DateUtil.getStringFromDate(topic.accessDates.openDate)}
+										<#else>
+											<i>${I18n.getMessage("Grade.itemDatesNotSet")}</i>
+										</#if>
+									<#elseif forumDates>
+										<#if forum.accessDates.openDate??>
+											${DateUtil.getStringFromDate(forum.accessDates.openDate)}
+										<#else>
+											<i>${I18n.getMessage("Grade.itemDatesNotSet")}</i>
+										</#if>
+									<#elseif categoryDates>
+										<#if category.accessDates.openDate??>
+											${DateUtil.getStringFromDate(category.accessDates.openDate)}
+										<#else>
+											<i>${I18n.getMessage("Grade.itemDatesNotSet")}</i>
+										</#if>
+									<#else>
+										<i>${I18n.getMessage("Grade.itemDatesNotSet")}</i>								
+									</#if>
+								</td>
+							</tr>
+							<tr>
+								<td nowrap="nowrap">							
+									${I18n.getMessage("Grade.endDate")}:
+								</td>
+								<td nowrap="nowrap">
+									<#if topicDates>
+										<#if topic.accessDates.dueDate??>
+											${DateUtil.getStringFromDate(topic.accessDates.dueDate)}
+										<#else>
+											<i>${I18n.getMessage("Grade.itemDatesNotSet")}</i>
+										</#if>
+									<#elseif forumDates>
+										<#if forum.accessDates.dueDate??>
+											${DateUtil.getStringFromDate(forum.accessDates.dueDate)}
+										<#else>
+											<i>${I18n.getMessage("Grade.itemDatesNotSet")}</i>
+										</#if>
+									<#elseif categoryDates>
+										<#if category.accessDates.dueDate??>
+											${DateUtil.getStringFromDate(category.accessDates.dueDate)}
+										<#else>
+											<i>${I18n.getMessage("Grade.itemDatesNotSet")}</i>
+										</#if>
+									<#else>
+										<i>${I18n.getMessage("Grade.itemDatesNotSet")}</i>								
+									</#if>
+								</td>
+							</tr>
+							<tr>
+								<td nowrap="nowrap">							
+									${I18n.getMessage("Grade.allowUntil")}:
+								</td>
+								<td nowrap="nowrap">
+									<#if topicDates>
+										<#if topic.accessDates.allowUntilDate??>
+											${DateUtil.getStringFromDate(topic.accessDates.allowUntilDate)}
+										<#else>
+											<i>${I18n.getMessage("Grade.itemDatesNotSet")}</i>
+										</#if>
+									<#elseif forumDates>
+										<#if forum.accessDates.allowUntilDate??>
+											${DateUtil.getStringFromDate(forum.accessDates.allowUntilDate)}
+										<#else>
+											<i>${I18n.getMessage("Grade.itemDatesNotSet")}</i>
+										</#if>
+									<#elseif categoryDates>
+										<#if category.accessDates.allowUntilDate??>
+											${DateUtil.getStringFromDate(category.accessDates.allowUntilDate)}
+										<#else>
+											<i>${I18n.getMessage("Grade.itemDatesNotSet")}</i>
+										</#if>
+									<#else>
+										<i>${I18n.getMessage("Grade.itemDatesNotSet")}</i>								
+									</#if>
+								</td>
+							</tr>
+						</table>
+						</span>
+					</td>
+				</tr>
+			</table>
+			<#if errorMessage?exists>
+			<table cellspacing="1" cellpadding="4" width="100%" border="0">
+				<tr>
+					<td align="center"><span class="redclass">${errorMessage}</span></td>
+				</tr>
+			</table>
+			</#if>
+			<br/>
+			<table class="forumline" cellspacing="1" cellpadding="4" width="100%" border="0">
+				<tr align="left">
+					<td class="cat" colspan="7" height="28">
+						<#if addToGradebook?exists && addToGradebook>
+						&nbsp;
+						<span class="gen">
+							<input type="checkbox" name="send_to_grade_book" id="send_to_grade_book" onclick="toggleSendToGradeBook()" value="1" <#if grade.isAddToGradeBook()>checked</#if> />${I18n.getMessage("Grade.sendToGradebook")}
+						</span>
+						</#if>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<#--input class="mainoption" type="submit" value="${I18n.getMessage("Forums.Form.ClickToUpdate")}" name="grades_submit" accesskey="${I18n.getMessage("save-access")}" title="${I18n.getMessage("save-access-description")}"/-->
+						<a class="gen" href="#" rel="nofollow" onclick="document.form1.submit();"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/save.png" accesskey="${I18n.getMessage("save-access")}" title="${I18n.getMessage("save-access-description")}"/>${I18n.getMessage("Grade.update")}</a>
+					</td>
+				</tr>
+				<tr>
+					<th class="thCornerL" nowrap="nowrap" align="left" height="25">
+						<#if (sort_column?contains("name")) >
+							<#if (sort_direction?contains("a")) >
+								<a href="${JForumContext.encodeURL("/gradeForum/evalTopicList/${topic.id}/name/d")}">
+								${I18n.getMessage("Grade.userName")}&nbsp;
+								<img src="${contextPath}/templates/${templateName}/images/sort_ascending.gif"/>
+								</a>
+							<#elseif (sort_direction?contains("d"))>
+								<a href="${JForumContext.encodeURL("/gradeForum/evalTopicList/${topic.id}/name/a")}">
+								${I18n.getMessage("Grade.userName")}&nbsp;
+								<img src="${contextPath}/templates/${templateName}/images/sort_descending.gif"/>
+								</a>
+							</#if>
+						<#else>
+							<a href="${JForumContext.encodeURL("/gradeForum/evalTopicList/${topic.id}/name/a")}">
+								${I18n.getMessage("Grade.userName")}
+							</a>
+						</#if>
+					</th>
+					<th class="thTop" nowrap="nowrap" align="left" width="150">
+						${I18n.getMessage("Grade.lastPostDate")}&nbsp;
+					</th>
+					<th class="thTop" nowrap="nowrap" align="left" width="55">						
+						<#if (sort_column?contains("posts")) >
+							<#if (sort_direction?contains("a")) >
+								<a href="${JForumContext.encodeURL("/gradeForum/evalTopicList/${topic.id}/posts/d")}">
+								${I18n.getMessage("Grade.userAnswers")}&nbsp;
+								<img src="${contextPath}/templates/${templateName}/images/sort_ascending.gif"/>
+								</a>
+							<#elseif (sort_direction?contains("d"))>
+								<a href="${JForumContext.encodeURL("/gradeForum/evalTopicList/${topic.id}/posts/a")}">
+								${I18n.getMessage("Grade.userAnswers")}&nbsp;
+								<img src="${contextPath}/templates/${templateName}/images/sort_descending.gif"/>
+								</a>
+							</#if>
+						<#else>
+							<a href="${JForumContext.encodeURL("/gradeForum/evalTopicList/${topic.id}/posts/a")}">
+							${I18n.getMessage("Grade.userAnswers")}
+							</a>
+						</#if>
+					</th>
+					<th class="thTop" nowrap="nowrap" align="left" width="130">
+						&nbsp;<#--<img src="${contextPath}/templates/${templateName}/images/grade_by_forum.gif"/>&nbsp;-->
+						<#if (sort_column?contains("scores")) >
+							<#if (sort_direction?contains("a")) >
+								<a href="${JForumContext.encodeURL("/gradeForum/evalTopicList/${topic.id}/scores/d")}">
+								<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png"/>${I18n.getMessage("Grade.gradeTopic")}&nbsp;
+								<img src="${contextPath}/templates/${templateName}/images/sort_ascending.gif"/>
+								</a>
+							<#elseif (sort_direction?contains("d"))>
+								<a href="${JForumContext.encodeURL("/gradeForum/evalTopicList/${topic.id}/scores/a")}">
+								<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png"/>${I18n.getMessage("Grade.gradeTopic")}&nbsp;
+								<img src="${contextPath}/templates/${templateName}/images/sort_descending.gif"/>
+								</a>
+							</#if>
+						<#else>
+							<a href="${JForumContext.encodeURL("/gradeForum/evalTopicList/${topic.id}/scores/a")}">
+								<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png"/>${I18n.getMessage("Grade.gradeTopic")}&nbsp;
+							</a>
+						</#if>
+					</th>
+					<th class="thTop" nowrap="nowrap" align="left" width="60">
+						&nbsp;${I18n.getMessage("Grade.evaluationReleased")}&nbsp;
+					</th>					
+					<#if topicDates>
+					<th class="thTop" nowrap="nowrap" align="center" width="35">
+						&nbsp;
+					</th>
+					</#if>
+					<#if sakaiSiteGroupUserIds??>
+					<th class="thTop" nowrap="nowrap" align="center" width="100">
+						<#if (sort_column?contains("grouptitle")) >
+							<#if (sort_direction?contains("a")) >
+								<a href="${JForumContext.encodeURL("/gradeForum/evalTopicList/${topic.id}/grouptitle/d")}">
+								${I18n.getMessage("Grade.Group.Title")}&nbsp;
+								<img src="${contextPath}/templates/${templateName}/images/sort_ascending.gif"/>
+								</a>
+							<#elseif (sort_direction?contains("d"))>
+								<a href="${JForumContext.encodeURL("/gradeForum/evalTopicList/${topic.id}/grouptitle/a")}">
+								${I18n.getMessage("Grade.Group.Title")}&nbsp;
+								<img src="${contextPath}/templates/${templateName}/images/sort_descending.gif"/>
+								</a>
+							</#if>
+						<#else>
+							<a href="${JForumContext.encodeURL("/gradeForum/evalTopicList/${topic.id}/grouptitle/a")}">
+								${I18n.getMessage("Grade.Group.Title")}&nbsp;
+							</a>
+						</#if>
+					</th>
+					</#if>
+					<th class="thCornerR" nowrap="nowrap" align="left" width="200">&nbsp;<img src="${contextPath}/templates/${templateName}/images/expand-collapse.gif" onclick="toggleAllComments(this)" title="${I18n.getMessage("Grade.ExpandCollapseAll")}"/>&nbsp;${I18n.getMessage("Grade.evaluationComments")}&nbsp;</th>
+				</tr>
+				<#assign zdivindex = 500/>
+				<#-- evaluations listing -->
+				<#list evaluations as evaluation>
+				<tr>
+					<td align="left" valign="top" nowrap="nowrap">
+						<span class="gen">
+							<#if (evaluation.totalPosts > 0) >
+								<a class="gen" href="${JForumContext.encodeURL("/gradeForum/showUserTopicReplies/${topic.id}/${evaluation.userId}/")}">${evaluation.userLastName?default("")},&nbsp;${evaluation.userFirstName?default("")}</a>&nbsp;(${evaluation.sakaiDisplayId})<#if evaluation.isLate()><span class="genred">&nbsp;-&nbsp;${I18n.getMessage("Grade.evaluationLate")}</span></#if>
+							<#else>
+								${evaluation.userLastName?default("")},&nbsp;${evaluation.userFirstName?default("")}&nbsp;(${evaluation.sakaiDisplayId})
+							</#if>							
+						</span>
+					</td>
+					<td align="center" valign="top">
+						<span class="gen">
+							<#if evaluation.lastPostTime??>${DateUtil.getStringFromDate(evaluation.lastPostTime)}</#if>
+						</span>
+					</td>
+					<td align="center" valign="top">
+						<span class="gen">
+							<#--/grade_id/evalution_id/jforum_user_id/totalposts-->
+							<input type="hidden" name="${grade.id}_${evaluation.id}_${evaluation.userId}_totalposts" value="${evaluation.totalPosts}">
+							<#--sakai_user_id-->
+							<input type="hidden" name="sakUserId_${evaluation.userId}" value="${evaluation.sakaiUserId}">
+							${evaluation.totalPosts}
+						</span>
+					</td>
+					<td align="center" valign="top">
+						<span class="gen">
+						<#--/grade_id/evalution_id/jforum_user_id/score-->
+						<#setting locale="${I18n.getDefaultLocale()}">
+						<input type="text" style="width:80px;text-align: right" maxlength="8" size="15" name="${grade.id}_${evaluation.id}_${evaluation.userId}_score" value="<#if evaluation.score?exists>${evaluation.score?string("####0.00")}</#if>" />
+						</span>
+					</td>
+					<td align="center" valign="top">
+						<span class="gen">
+							<input type="checkbox" name="${grade.id}_${evaluation.id}_${evaluation.userId}_release" id="${grade.id}_${evaluation.id}_${evaluation.userId}_release" value="1" <#if evaluation.isReleased()>checked</#if> />
+						</span>
+					</td>
+					<#if topicDates>
+					<td align="center" valign="top">
+						<#if (topic.specialAccess??) && (topic.specialAccess.size() > 0)>
+							<#assign found=false/>
+							<#assign userId=-1/>
+							<#assign specialAccessId=-1/>
+							<#assign invalidSpecialAccessDate=false/>
+							<#list topic.specialAccess as specialAccess>
+								<#if specialAccess.userIds?seq_contains(evaluation.userId)>
+									<#assign found=true/>
+									<#assign userId=evaluation.userId/>
+									<#assign specialAccessId=specialAccess.id/>
+									<#if !specialAccess.isTopicSpecialAccessDatesValid(topic)>
+										<#assign invalidSpecialAccessDate = true/>
+									</#if>
+									<#--if ((specialAccess.isOverrideStartDate()) && (specialAccess.isOverrideEndDate()))>
+										<#if ((specialAccess.accessDates.openDate??) && (specialAccess.accessDates.dueDate??) && (specialAccess.accessDates.openDate > specialAccess.accessDates.dueDate))>
+											<#assign invalidSpecialAccessDate = true/>
+										</#if>
+									<#elseif ((specialAccess.isOverrideStartDate()) && (!specialAccess.isOverrideEndDate()))>
+										<#if ((specialAccess.accessDates.openDate??) && (topic.accessDates.dueDate??) && (specialAccess.accessDates.openDate > topic.accessDates.dueDate))>
+											<#assign invalidSpecialAccessDate = true/>
+										</#if>
+									<#elseif ((!specialAccess.isOverrideStartDate()) && (specialAccess.isOverrideEndDate()))>
+										<#if ((topic.accessDates.openDate??) && (specialAccess.accessDates.dueDate??) && (topic.accessDates.openDate > specialAccess.accessDates.dueDate))>
+											<#assign invalidSpecialAccessDate = true/>
+										</#if>
+									<#elseif ((!specialAccess.isOverrideStartDate()) && (!specialAccess.isOverrideEndDate()))>
+										<#if ((topic.accessDates.openDate??) && (topic.accessDates.dueDate??) && (topic.accessDates.openDate > topic.accessDates.dueDate))>
+											<#assign invalidSpecialAccessDate = true/>
+										</#if>
+									</#if-->
+									<#break>
+								</#if>
+							</#list>
+							
+							<#if found>
+								<#if invalidSpecialAccessDate>
+									<#assign zdivindex = zdivindex - 1/>
+									<span class="confirmpanel1" style="z-index:${zdivindex}">
+									<span class="gen">
+									<a href="#" onclick="showElement('frm_dt_invalid_${specialAccessId}');return false;"><img src="${contextPath}/templates/${templateName}/images/warning.png" alt="${I18n.getMessage("dates-invalid")}" title="${I18n.getMessage("dates-invalid")}"/></a>
+									</span>
+									<#assign zdivindex = zdivindex - 1/>
+									<span class="confirmpanel4" style="display:none;z-index:${zdivindex}" id="frm_dt_invalid_${specialAccessId}">
+									<table cellpadding="2" cellspacing="0" width="100%">
+									<tr>
+										<td colspan="2">
+											&nbsp;
+										</td>
+									</tr>
+									<tr>									
+										<td colspan="2" align="left">
+											<span class="gen">
+												&nbsp;&nbsp;
+												${I18n.getMessage("Dates.Invalid.Alert")}
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td width="50">
+											&nbsp;
+										</td>
+										<td style="" align="left">
+											&nbsp;&nbsp;<input type="button" value="OK" onclick="hideElement('frm_dt_invalid_${specialAccessId}');return false;" style="padding-left:2em; background: #eee url('${contextPath}/templates/${templateName}/images/ok.png') .2em no-repeat;"/>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											&nbsp;
+										</td>
+									</tr>
+									</table>
+									</span>
+									
+									</span>
+								</#if>
+								<a href="${JForumContext.encodeURL("/specialAccess/editTopicUser/${topic.id}/${specialAccessId}/${userId}")}" title="${I18n.getMessage("SpecialAccess.Edit.Title")}"><img src="${contextPath}/templates/${templateName}/images/special_access_view.png" alt="${I18n.getMessage("SpecialAccess.Edit.Title")}"/></a>
+							<#else>
+								<#if sakaiSiteGroupUserIds??>
+									<#if sakaiSiteGroupUserIds?seq_contains(evaluation.sakaiUserId)>
+										<a href="${JForumContext.encodeURL("/specialAccess/addTopicUser/${topic.id}/${evaluation.userId}")}" title="${I18n.getMessage("SpecialAccess.Add.Title")}"><img src="${contextPath}/templates/${templateName}/images/special_access_add.png" alt="${I18n.getMessage("SpecialAccess.Add.Title")}"/></a>
+									</#if>
+								<#else>
+									<a href="${JForumContext.encodeURL("/specialAccess/addTopicUser/${topic.id}/${evaluation.userId}")}" title="${I18n.getMessage("SpecialAccess.Add.Title")}"><img src="${contextPath}/templates/${templateName}/images/special_access_add.png" alt="${I18n.getMessage("SpecialAccess.Add.Title")}"/></a>
+								</#if>
+							</#if>
+						<#else>
+							<#if sakaiSiteGroupUserIds??>
+								<#if sakaiSiteGroupUserIds?seq_contains(evaluation.sakaiUserId)>
+									<a href="${JForumContext.encodeURL("/specialAccess/addTopicUser/${topic.id}/${evaluation.userId}")}" title="${I18n.getMessage("SpecialAccess.Add.Title")}"><img src="${contextPath}/templates/${templateName}/images/special_access_add.png" alt="${I18n.getMessage("SpecialAccess.Add.Title")}"/></a>
+								</#if>
+							<#else>
+								<a href="${JForumContext.encodeURL("/specialAccess/addTopicUser/${topic.id}/${evaluation.userId}")}" title="${I18n.getMessage("SpecialAccess.Add.Title")}"><img src="${contextPath}/templates/${templateName}/images/special_access_add.png" alt="${I18n.getMessage("SpecialAccess.Add.Title")}"/></a>
+							</#if>
+						</#if>
+					</td>
+					</#if>
+					<#if sakaiSiteGroupUserIds??>
+					<td align="left" valign="top">
+						<span class="gen">
+							${evaluation.userSakaiGroupName}
+						</span>
+					</td>
+					</#if>
+					<td align="center" valign="top">
+						<table class="" border="0" cellspacing='1' cellpadding='3'  width="100%">
+							<tr>
+								<td align="left" width="100%">
+									<span class="gen">
+										<img src="${contextPath}/templates/${templateName}/images/note.png"><a href="#" onclick="toggleComments('${grade.id}_${evaluation.id}_${evaluation.userId}_comments');return false;">${I18n.getMessage("Grade.GraderComments")}</a>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td align="left">
+									<span class="gen">
+										<textarea name="${grade.id}_${evaluation.id}_${evaluation.userId}_comments" id="${grade.id}_${evaluation.id}_${evaluation.userId}_comments" style="display:none;width:260px" cols="32" rows="6">${evaluation.comments?default("")}</textarea>
+									</span>
+								</td>
+							</tr>
+						</table>
+					</td>					
+				</tr>
+				</#list>		
+				<#-- END OF evaluations listing -->
+				<tr align="left">
+					<td class="catBottom" colspan="7" height="28">
+						<#if addToGradebook?exists && addToGradebook>
+						&nbsp;
+						<span class="gen">
+							<input type="checkbox" name="send_to_grade_book" id="send_to_grade_book" onclick="toggleSendToGradeBook()" value="1" <#if grade.isAddToGradeBook()>checked</#if> />${I18n.getMessage("Grade.sendToGradebook")}
+						</span>
+						</#if>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<#--input class="mainoption" type="submit" value="${I18n.getMessage("Forums.Form.ClickToUpdate")}" name="grades_submit" title="${I18n.getMessage("save-access-description")}"/-->
+						<a class="gen" href="#" rel="nofollow" onclick="document.form1.submit();"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/save.png" accesskey="${I18n.getMessage("save-access")}" title="${I18n.getMessage("save-access-description")}"/>${I18n.getMessage("Grade.update")}</a>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+</form>
+
+<#include "bottom.htm"/>

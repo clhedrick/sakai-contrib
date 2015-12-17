@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- these mapping resource paths must point to your hibernate template files (.hbm.xml),
+            this should be the classpath location (typically after the src directory) -->
+        <mapping resource="org/sakaiproject/assignment2/hbm/Assignment2.hbm.xml" />
+        <mapping resource="org/sakaiproject/assignment2/hbm/AssignmentAttachment.hbm.xml" />
+        <mapping resource="org/sakaiproject/assignment2/hbm/AssignmentGroup.hbm.xml" />
+        <mapping resource="org/sakaiproject/assignment2/hbm/AssignmentSubmission.hbm.xml" />
+        <mapping resource="org/sakaiproject/assignment2/hbm/AssignmentSubmissionVersion.hbm.xml" />
+        <mapping resource="org/sakaiproject/assignment2/hbm/SubmissionAttachmentBase.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

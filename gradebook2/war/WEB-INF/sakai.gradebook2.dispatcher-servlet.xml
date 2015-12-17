@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    	<property name="mappings">
+    		<map>
+    			<entry key="/**/import" value-ref="ImportWrappingController" />
+    			<entry key="/*" value-ref="RestWrappingController" />
+    		</map>
+        </property>
+   	</bean>
+ 	
+	<bean id="RestWrappingController"
+		  class="org.sakaiproject.gradebook.gwt.server.ServletWrappingController"
+		  init-method="init">
+   		<property name="servletClass">
+     		<value>org.sakaiproject.gradebook.gwt.server.RestServlet</value>
+   		</property>
+  	 	<property name="servletName">
+    		<value>sakai.gradebook.rest.servlet</value>
+   		</property>
+   		<property name="initParameters">
+     	<props>
+       		<prop key="com.sun.jersey.config.property.packages">managed</prop>
+       		<prop key="com.sun.jersey.spi.container.ContainerRequestFilters">com.sun.jersey.api.container.filter.PostReplaceFilter</prop>
+    	</props>
+   		</property>
+   		<property name="sessionManager" ref="org.sakaiproject.tool.api.SessionManager"/>
+   		<property name="configService" ref="org.sakaiproject.component.api.ServerConfigurationService" />
+ 	</bean>
+ 	
+ 	<bean id="ImportWrappingController"
+		  class="org.sakaiproject.gradebook.gwt.server.ServletWrappingController"
+		  init-method="init">
+   		<property name="initParameters">
+     	<props>
+       		<prop key="com.sun.jersey.config.property.packages">managed</prop>
+       		<prop key="com.sun.jersey.spi.container.ContainerRequestFilters">com.sun.jersey.api.container.filter.PostReplaceFilter</prop>
+    	</props>
+   		</property>
+   		<property name="sessionManager" ref="org.sakaiproject.tool.api.SessionManager"/>
+   		<property name="configService" ref="org.sakaiproject.component.api.ServerConfigurationService" />
+   		<property name="useControllerBean"><value>true</value></property>
+       	<property name="controllerBeanName"><value>GradebookImportService</value></property>
+ 	</bean>
+ 	
+
+</beans>

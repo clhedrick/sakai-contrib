@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:rsf="http://ponder.org.uk/rsf" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+   <title>Assignments</title>
+
+	<script type="text/javascript" language="JavaScript" src="/library/js/headscripts.js"></script>
+	<!-- vm/editor/FCKeditor/sakai_header.vm -->
+	<script type="text/javascript" src="/library/editor/FCKeditor/fckeditor.js"></script> 
+
+   <link href="tool_base.css" type="text/css" rel="stylesheet" media="all"/>   
+	<link href="tool.css" type="text/css" rel="stylesheet" media="all"/>
+	<link href="assignmentsv4.css" type="text/css" rel="stylesheet" media="all"/>
+
+</head>
+
+<body>
+
+<div class="portletBody">
+	<ul class="navIntraTool">
+		<li><a href="#" title="Add Assignment">Add</a></li>
+		<li><a href="#" title="Assignment List">Assignment List</a></li>
+		<li><a href="#" title="Grade Report">Grade Report</a></li>
+		<li class="last"><a href="#" title="Permissions">Permissions</a></li>
+	</ul>
+
+	<h3>Upload All</h3>
+	<p class="instruction">Select an archive file to upload, choose options, and then click 'Upload' at the bottom. Required items marked with <span class="reqStar">*</span>.</p>
+	<p class="instruction">The archive file should contain a folder for each student. Each folder can contain a comments.txt file, the student's submission with instructor comments you have added, and other files you want to return with the student's submission.</p>
+
+	<form>
+	<div class="highlightPanel">
+		<fieldset>
+			<legend>Choose file</legend>
+			<ol>
+				<li>
+					<label for="file">File:</label>
+					<input type="file" name="file" id="file" class="upload" />
+				</li>
+			</ol>
+		</fieldset>
+		<fieldset>
+			<legend>Choose which elements in the archive file to upload</legend>
+			<ol>
+				<li>
+					<fieldset>
+						<ol>
+							<li><input id="" name="" type="checkbox" value=""/> <label for="">Student submission text (original student submitted text, possibly containing instructor added comments)</label></li>
+							<li><input id="" name="" type="checkbox" value=""/> <label for="">Student submission attachment(s)</label></li>
+							<li><input id="" name="" type="checkbox" value=""/> <label for="">Grade file (grades.csv file at top level of archive)</label></li>
+							<li><input id="" name="" type="checkbox" value=""/> <label for="">Feedback text (the inline comments with student submission)</label></li>
+							<li><input id="" name="" type="checkbox" value=""/> <label for="">Feedback comments (comments.txt file if available in student's folder. Comments are put into the Instructor Comments field for each student's submission)</label></li>
+							<li><input id="" name="" type="checkbox" value=""/> <label for="">Feedback attachment(s)</label></li>
+						</ol>
+					</fieldset>
+				</li>
+			</ol>
+		</fieldset>
+	
+		<fieldset>
+			<legend>Select release option</legend>
+			<ol>
+				<li>
+					<fieldset>
+						<ol>
+							<li><input type="radio" name="" id="" value="" /> <label for="">Release uploaded information to students</label></li>
+							<li><input type="radio" name="" id="" value="" checked /> <label for="">Do not release uploaded information - I'll release it later</label></li>
+						</ol>
+					</fieldset>
+				</li>
+			</ol>
+		</fieldset>
+	</div>
+
+
+	<fieldset class="submit">
+		<input accesskey="s" type="button" class="active" name="upload" value="Upload"/>
+		<input accesskey="x" type="button" name="cancel" value="Cancel"/>
+		<div class="error">
+			<p>You may be overwriting existing information. Are you sure you want to upload? <input type="button" value="Yes, continue"/> <a href="#">Cancel the upload</a></p>
+		</div>
+
+
+		<input type="hidden" name="assignmentId" value=""/>
+		<input type="hidden" name="assignmentContentId" value=""/>
+		<input type="hidden" name="eventSubmit_doAssignment_form" value=""/>
+		<input type="hidden" name="option" id="option" value=""/>
+		<input type="hidden" name="view" id="view" value=""/>
+		<input type="hidden" name="new_assignment_order" id="new_assignment_order" value=""/>
+	</fieldset>													
+	</form>
+</div>
+</body>
+</html>

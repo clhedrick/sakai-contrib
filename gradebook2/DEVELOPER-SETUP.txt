@@ -1,0 +1,135 @@
+===================
+* DEVELOPER SETUP *
+===================
+
+This file provides some basic information for developers to set up their
+development environment to make modifications to the Gradebook 2 project. In
+order to simply build and deploy the project in Sakai, refer to the
+"sakai/[version]/INSTALL.txt" file. 
+
+
+
+============================
+* RUNNING DEVELOPMENT MODE *
+============================
+
+If you're in a 64 bit OS, you'll need to use a 32 bit Java for the Run
+command. 
+
+Our suggestion is that you use the Google Plugin for Eclipse, which provides 
+IDE support for the Google Web Toolkit
+
+If you are already familiar with installing Eclipse plugins, you can just use the 
+update site URL below for your version of Eclipse.
+
+Eclipse 3.7 (Indigo)
+http://dl.google.com/eclipse/plugin/3.7
+
+Eclipse 3.6 (Helios)
+http://dl.google.com/eclipse/plugin/3.6
+
+Eclipse 3.5 (Galileo)
+http://dl.google.com/eclipse/plugin/3.5
+
+Eclipse 3.4 (Ganymede)
+http://dl.google.com/eclipse/plugin/3.4
+
+Eclipse 3.3 (Europa)
+http://dl.google.com/eclipse/plugin/3.3
+
+To create a run configuration, right-click on the gradebook2 eclipse project, 
+select 'Run As...' -> 'Run Configurations...'. That should create a new 
+Web Application run configuration. If not, double click on 'Web Application'
+
+
+You will also need to include the following VM args in the Run Configuration:
+
+-Xmx1028m
+-XX:PermSize=256m
+-XX:MaxPermSize=400m
+-Dgb2.mode=hosted
+-Dgb2.role=admin
+-Dgb2.enable.scaled.extra.credit=admin
+-Dgb2.limit.scaled.extra.credit=categories
+-Dgb2.gradable.role.names=Student,access
+-Dgb2.enabled.grade.types=points,percentages,letters
+-Dgb2.import.delete.missing.grades=true
+-Dgb2.security.enabled=false
+-DportalPath=/portal/
+-Dgb2.dev.mockItems=true
+-Dgb2.locale=en_US (optional)
+
+portalPath is really ignored in DEV mode now and the portal path is 
+set to "" for security checks if gb2.security.enabled=true
+
+Additional DEV mode configurations:
+- By default, the gradebook is populated with test data in DEV mode.
+  This can be turned off via : -Dgb2.dev.mockItems=false 
+- An optional argument gb2.mockuser.oldnames can be added by -Dgb2.mockuser.oldnames=true and this will cause the user first and last names to be determined by a random shuffle, see createUserRecord in UserDirectoryServiceMock.java for details.  You may want to use this if you want to test sorting/searching with a more realistic data set in developer mode.  You don't want to use this if you plan on using the data for anything as there exists the possibility of a random name colliding with a real student.  It is recommended to not run with this argument enabled.  
+
+(if you are building with a version other than trunk, you'll need a property for the point release: add -Dsakai2.6 or -Dsakai2.5, for example.)
+
+Select the '(x)= Arguments' tab and in the 'VM' field, paste the above as one long line of text.
+
+Eclipse classpath:
+- DEV mode requires access to implementations in order to instantiate spring beans 
+  for services etc. And, since circa the start of 2.9 in Sakai trunk, some of these 
+  implementations do not get installed in the maven repo (~/.m2/repository by default). 
+  Archive service is one example. So the eclipse .classpath that is in the svn repository 
+  now includes a TOMCAT classpath var and relative paths to ArchiveService jars... make
+  sure to run 'mvn clean install sakai:deploy' in the Sakai trunk to install them there. 
+
+Why is .classpath in the svn repo?
+- While gradebook2 is has multiple parts with individual POMs, we like to have one eclipse 
+  project to rule the all. the eclipse:ecliplse goal of the eclipse maven plugin will 
+  not create a .project and .classpath at the root level since the artifact type there is 'pom'. 
+
+
+Finally, you will need to configure your browser to support GWT development mode. In Firefox, 
+simply install the GWT Developer Plugin for Firefox: https://dl-ssl.google.com/gwt/plugins/firefox/gwt-dev-plugin.xpi
+You can also just access the DEV URL that is shown once you start Gradebook2. If the GWT Developer
+plugin is not installed, it will prompt you to do so.
+
+
+
+=======================
+* Logging in DEV Mode *
+=======================
+
+Adjust the Log4J settings for DEV mode using 
+dev/src/java/log4j.properties
+
+Example edit:
+
+	To enable DEBUG level logging for class ImportExportUtility add the line
+
+log4j.logger.org.sakaiproject.gradebook.gwt.server.ImportExportUtility=DEBUG
+
+Default setting send INFO level logs to 
+war/logs/hosted-log4j.log
+
+Each run will roll the logs:
+./war/logs/hosted-log4j.log
+./war/logs/hosted-log4j.log.1
+./war/logs/hosted-log4j.log.2
+./war/logs/hosted-log4j.log.3
+
+
+=======
+* FAQ *
+=======
+
+1. I am getting 'java.lang.NoClassDefFoundError: javax/activation/DataSource' in eclipse
+   mvn eclipse:eclipse doesn't pick up the need for activation.jar for some reason 
+   (add instructions for downloading adding to classpath)
+
+2. I am getting 'Illegal constant pool index' errors in the construction of the web application class
+   see http://code.google.com/p/google-web-toolkit/issues/detail?id=4254
+
+
+
+
+
+
+
+

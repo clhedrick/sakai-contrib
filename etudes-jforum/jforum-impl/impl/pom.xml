@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**********************************************************************************
+ * $URL: https://source.sakaiproject.org/contrib/etudes/sakai-jforum/tags/2.9.11/jforum-impl/impl/pom.xml $ 
+ * $Id: pom.xml 83559 2013-04-30 19:03:29Z murthy@etudes.org $ 
+ *********************************************************************************** 
+ * Copyright (c) 2008, 2009, 2010, 2011, 2012, 2013 Etudes, Inc. 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * 
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License. 
+ ***********************************************************************************/
+ -->
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>etudes-jforum-base</artifactId>
+		<groupId>org.etudes</groupId>
+		<version>pom</version>
+	</parent>
+
+	<name>Etudes JForum Impl</name>
+	<groupId>org.etudes</groupId>
+	<artifactId>etudes-jforum-impl</artifactId>
+	<version>${etudes.jforum.version}</version>
+
+	<packaging>jar</packaging>
+
+	<dependencies>
+	
+		<dependency>
+			<groupId>org.etudes</groupId>
+			<artifactId>etudes-jforum-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.sakaiproject.kernel</groupId>
+			<artifactId>sakai-kernel-util</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.sakaiproject.kernel</groupId>
+			<artifactId>sakai-kernel-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.sakaiproject.kernel</groupId>
+			<artifactId>sakai-component-manager</artifactId>
+		</dependency>
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+
+		<dependency>
+			<groupId>org.etudes</groupId>
+			<artifactId>etudes-util-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.etudes</groupId>
+			<artifactId>etudes-util-util</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.sakaiproject.edu-services.gradebook</groupId>
+			<artifactId>gradebook-service-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+		
+	</dependencies>
+	
+	<build>
+
+		<sourceDirectory>src/java</sourceDirectory>
+
+		<resources>
+
+			<resource>
+				<directory>${basedir}/src/config</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.txt</include>
+				</includes>
+			</resource>
+			
+			<resource>
+				<directory>${basedir}/src/jforumglobals</directory>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+
+			<resource>
+				<directory>${basedir}/src/bundle</directory>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+			
+
+		</resources>
+
+	</build>
+
+</project>

@@ -1,0 +1,23 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+
+    <class name="org.sakaiproject.gradebook.gwt.sakai.model.RealmGroup"
+    	table="SAKAI_REALM_RL_GR" mutable="false">
+
+    	<cache usage="read-only" />
+        
+        <composite-id class="org.sakaiproject.gradebook.gwt.sakai.model.RealmRlGroupId" mapped="true">
+	        <key-property name="userId" column="USER_ID"/>
+	        <key-property name="roleKey" column="ROLE_KEY"/>
+	        <key-property name="realmKey" column="REALM_KEY"/>
+	    </composite-id>
+	    
+
+       	<property name="active" column="ACTIVE"/>
+    </class>
+    	
+</hibernate-mapping>
+

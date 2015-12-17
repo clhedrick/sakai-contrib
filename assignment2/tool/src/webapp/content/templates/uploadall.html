@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:rsf="http://ponder.org.uk/rsf" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title rsf:id="msg=assignment2.title">Assignments</title>
+		<link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" />
+		<link href="/library/skin/default/tool.css" type="text/css"rel="stylesheet" media="all" />
+		<link href="../css/assignmentsv4.css" type="text/css" rel="stylesheet" media="all" />
+	</head>
+	<body>
+		<!--  everything outside of rsf:id="page:" is set in Layout.html using outerPageTemplates -->
+		<div rsf:id="page:" class="portletBody">
+			<ul class="breadCrumb">
+				<li><a rsf:id="breadcrumb_asnn_list">Assignment List</a></li>
+				<li><a rsf:id="breadcrumb_asnn_submissions">Submissions for Homework 1</a></li>
+				<li rsf:id="breadcrumb_title" class="lastCrumb">Upload All</li>
+			</ul>
+		
+			<h2 rsf:id="upload_title">Upload All</h2>
+
+			<div class="generalErrors">
+				<ul rsf:id="message-for:*" style="margin: 0px;">
+					<li>Message for user here</li>
+				</ul>
+			</div>
+
+			<p class="instruction" rsf:id="uploadInstructions">
+				Select an archive file to upload, choose options, and then
+				click 'Upload' at the bottom.
+			</p>
+
+			<form method="post" rsf:id="upload_form" enctype="multipart/form-data">
+				<input type="hidden" rsf:id="csrf" />
+				<div class="highlightPanel">
+					<p class="shorttext">
+						<label rsf:id="msg=assignment2.upload_grades.choose_file" for="file">File:</label>
+						<input type="file" name="file" id="file" class="upload" />
+					</p>
+					
+					<fieldset>
+						<legend rsf:id="msg=assignment2.uploadall.release.feedback.title">Release Feedback</legend>
+						<span rsf:id="release_feedback_select" />
+						<div class="liItem" rsf:id="release_feedback:">
+							<input rsf:id="release_option" id="release_option" type="radio" />
+							<label for="release_option" rsf:id="release_label">Release Feedback</label>
+						</div>
+					</fieldset>
+					
+					<fieldset rsf:id="release_grades_section">
+						<legend rsf:id="msg=assignment2.uploadall.release.grades.title">Release Grades</legend>
+						<span rsf:id="release_grades_select" />
+						<div class="liItem" rsf:id="release_grades:">
+							<input rsf:id="release_grades_option" id="release_grades_option" type="radio" />
+							<label for="release_grades_option" rsf:id="release_grades_label">Release Feedback</label>
+						</div>
+					</fieldset>
+					
+					<p class="act">
+						<input rsf:id="uploadButton" type="submit" name="uploadButton" id="uploadButton" accesskey="s" value="Upload" />
+						<input rsf:id="cancelButton" type="submit" name="cancelButton" id="cancelButton" accesskey="x" value="Cancel" />
+					</p>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

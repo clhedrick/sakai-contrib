@@ -1,0 +1,757 @@
+<#--
+/**********************************************************************************
+ * $URL: https://source.sakaiproject.org/contrib/etudes/sakai-jforum/tags/2.9.11/jforum-tool/src/webapp/templates/default/forum_list.htm $
+ * $Id: forum_list.htm 83559 2013-04-30 19:03:29Z murthy@etudes.org $ 
+ *********************************************************************************** 
+ * 
+ * Copyright (c) 2008, 2009, 2010, 2011, 2012 Etudes, Inc. 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * 
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License. 
+ * 
+ * Portions completed before July 1, 2004 Copyright (c) 2003, 2004 Rafael Steil, All rights reserved, licensed under the BSD license. 
+ * http://www.opensource.org/licenses/bsd-license.php 
+ * 
+ * Redistribution and use in source and binary forms, 
+ * with or without modification, are permitted provided 
+ * that the following conditions are met: 
+ * 
+ * 1) Redistributions of source code must retain the above 
+ * copyright notice, this list of conditions and the 
+ * following disclaimer. 
+ * 2) Redistributions in binary form must reproduce the 
+ * above copyright notice, this list of conditions and 
+ * the following disclaimer in the documentation and/or 
+ * other materials provided with the distribution. 
+ * 3) Neither the name of "Rafael Steil" nor 
+ * the names of its contributors may be used to endorse 
+ * or promote products derived from this software without 
+ * specific prior written permission. 
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT 
+ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, 
+ * BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
+ * THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE 
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER 
+ * IN CONTRACT, STRICT LIABILITY, OR TORT 
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE 
+ ***********************************************************************************/
+ -->
+<#include "header.htm"/>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="${contextPath}/rss/forums${extension}" />
+
+<table width="100%" align="center">
+	<tr>
+		<td width="100%" height="318" valign="top">
+			<table cellspacing="0" cellpadding="2" width="100%" align="center" border="0">
+				<tr>
+					<td valign="bottom" align="left">
+						<#if logged><span class="gensmall">${I18n.getMessage("ForumListing.lastVisit")}:<#if lastVisit??>${DateUtil.getStringFromDate(lastVisit)}</#if></span><br/></#if>
+						<span class="gensmall">${I18n.getMessage("ForumListing.date")}: ${DateUtil.getStringFromDate(now)}</span>
+						<#--span class="cattitle"><a class="cattitle" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a></span-->
+					</td>
+				</tr>
+				<tr>
+					<td height="10"><img src="${contextPath}/templates/${templateName}/images/spacer.gif" alt="" width="1" height="10" /></td>
+				</tr>
+			</table>
+
+			<table class="forumline" cellspacing="1" cellpadding="2" width="100%" border="0">
+				<#assign zdivindex = 500/>
+				<tr>
+					<th class="thCornerL" nowrap="nowrap" colspan="2" height="25" align="center" valign="center">&nbsp;${I18n.getMessage("ForumListing.forums")}&nbsp;</th>
+					<#if !facilitator>
+					<th class="thTop" nowrap="nowrap" width="60">&nbsp;</th>
+					</#if>
+					<#if (gradingExis??)>
+						<th class="thTop" nowrap="nowrap" width="145">&nbsp;${I18n.getMessage("ForumListing.scores")}&nbsp;</th>
+					</#if>
+					<th class="thTop" nowrap="nowrap" width="50">&nbsp;${I18n.getMessage("ForumListing.totalTopics")}&nbsp;</th>
+					<th class="thTop" nowrap="nowrap" width="140">&nbsp;${I18n.getMessage("ForumListing.totalMessages")}&nbsp;</th>
+					<th class="thCornerR" nowrap="nowrap">&nbsp;${I18n.getMessage("ForumListing.lastMessage")}&nbsp;</th>
+				</tr>
+
+				<!-- START FORUM LISTING -->
+				<#list allCategories as category>
+										
+					<tr>
+						<#if facilitator>
+							<td class="catLeft" colspan="2" height="28">
+								<#if (category.accessDates?? && category.accessDates.openDate??) && (category.accessDates.openDate?datetime gt nowDate?datetime)>
+									<#--img src="${contextPath}/templates/${templateName}/images/not_yet_open.gif" width="19" height="18" alt="not yet open category access icon" title="${I18n.getMessage("not-yet-open-title")}"/-->
+									<#if (category.accessDates.isHideUntilOpen())>
+									<img src="${contextPath}/templates/${templateName}/images/item_invisible.png" alt="not yet open - invisible icon" title="${I18n.getMessage("not-yet-open-invisible-title")}"/>
+									<#else>
+									<img src="${contextPath}/templates/${templateName}/images/item_not_yet_open.png" alt="not yet open icon" title="${I18n.getMessage("not-yet-open-title")}"/>
+									</#if>
+								<#elseif (category.accessDates.allowUntilDate??)>
+									<#if (category.accessDates.allowUntilDate?datetime lt nowDate?datetime)>
+										<#--img src="${contextPath}/templates/${templateName}/images/read_only_forum.gif" width="19" height="18" alt="read only icon" title="${I18n.getMessage("read-only-title")}"/-->
+										<img src="${contextPath}/templates/${templateName}/images/read_only_lock.png" alt="read only icon" title="${I18n.getMessage("read-only-title")}"/>
+									</#if>
+								<#elseif (category.accessDates.dueDate??) && (category.accessDates.dueDate?datetime lt nowDate?datetime)>
+									<#--img src="${contextPath}/templates/${templateName}/images/read_only_forum.gif" width="19" height="18" alt="read only icon" title="${I18n.getMessage("read-only-title")}"/-->
+									<img src="${contextPath}/templates/${templateName}/images/read_only_lock.png" alt="read only icon" title="${I18n.getMessage("read-only-title")}"/>
+								</#if>
+								<#if (category.accessDates?? && !category.accessDates.isDatesValid())>
+									<#assign zdivindex = zdivindex - 1/>
+									<span class="confirmpanel1" style="z-index:${zdivindex}">
+									<span class="gensmaller">
+									<a href="#" onclick="showElement('cat_dt_invalid_${category.id}');return false;"><img src="${contextPath}/templates/${templateName}/images/warning.png" alt="${I18n.getMessage("dates-invalid")}" title="${I18n.getMessage("dates-invalid")}"/></a>
+									</span>
+									<#assign zdivindex = zdivindex - 1/>
+									<span class="confirmpanel3" style="display:none;z-index:${zdivindex}" id="cat_dt_invalid_${category.id}">
+									<table cellpadding="2" cellspacing="0" width="100%">
+									<tr>
+										<td colspan="2">
+											&nbsp;
+										</td>
+									</tr>
+									<tr>									
+										<td colspan="2" align="left">
+											<span class="gen">
+												&nbsp;&nbsp;
+												${I18n.getMessage("Dates.Invalid.Alert")}
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td width="50">
+											&nbsp;
+										</td>
+										<td style="" align="left">
+											&nbsp;&nbsp;<input type="button" value="OK" onclick="hideElement('cat_dt_invalid_${category.id}');return false;" style="padding-left:2em; background: #eee url('${contextPath}/templates/${templateName}/images/ok.png') .2em no-repeat;"/>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											&nbsp;
+										</td>
+									</tr>
+									</table>
+									</span>
+									
+									</span>								
+								</#if>						
+								<span class="gen"><a name="${category.id}" href="#" onclick="return false;">${category.title}</a></span>
+								
+								<span class="gen">
+									<#if category.accessDates?? && category.accessDates.openDate??>
+										<#--if (category.accessDates.openDate?datetime gt nowDate?datetime)-->
+											- ${I18n.getMessage("Forum.startDate")}&nbsp;${DateUtil.getStringFromDate(category.accessDates.openDate)}
+										<#--/#if-->
+									</#if>
+									<#if category.accessDates?? && category.accessDates.dueDate??>
+										- ${I18n.getMessage("Forum.endDate")}&nbsp;${DateUtil.getStringFromDate(category.accessDates.dueDate)}
+									</#if>
+									<#if category.grade?? && category.grade.isMinimumPostsRequired()>
+										&nbsp;(${I18n.getMessage("Grade.MinPostsNumber.Show", category.grade.minimumPosts)})
+									</#if>
+								</span>
+							</td>
+						<#else>
+							<#--special access user - show categories as the user may have access to some forums-->
+							<td class="catLeft" colspan="2" height="28">
+								<#if (category.accessDates?? && category.accessDates.openDate??) && (category.accessDates.openDate?datetime gt nowDate?datetime)>
+									<#--img src="${contextPath}/templates/${templateName}/images/not_yet_open.gif" width="19" height="18" alt="not yet open category access icon" title="${I18n.getMessage("not-yet-open-title")}"/-->
+									<#if (category.accessDates.isHideUntilOpen())>
+									<img src="${contextPath}/templates/${templateName}/images/item_invisible.png" alt="not yet open - invisible icon" title="${I18n.getMessage("not-yet-open-invisible-title")}"/>
+									<#else>
+									<img src="${contextPath}/templates/${templateName}/images/item_not_yet_open.png" alt="not yet open icon" title="${I18n.getMessage("not-yet-open-title")}"/>
+									</#if>
+								<#elseif (category.accessDates.allowUntilDate??)>
+									<#if (category.accessDates.allowUntilDate?datetime lt nowDate?datetime)>
+										<#--img src="${contextPath}/templates/${templateName}/images/read_only_forum.gif" width="19" height="18" alt="read only icon" title="${I18n.getMessage("read-only-title")}"/-->
+										<img src="${contextPath}/templates/${templateName}/images/read_only_lock.png" alt="read only icon" title="${I18n.getMessage("read-only-title")}"/>
+									</#if>
+								<#elseif (category.accessDates.dueDate??) && (category.accessDates.dueDate?datetime lt nowDate?datetime)>
+									<#--img src="${contextPath}/templates/${templateName}/images/read_only_forum.gif" width="19" height="18" alt="read only icon" title="${I18n.getMessage("read-only-title")}"/-->
+									<img src="${contextPath}/templates/${templateName}/images/read_only_lock.png" alt="read only icon" title="${I18n.getMessage("read-only-title")}"/>
+								</#if>
+								<span class="gen"><a name="${category.id}" href="#" onclick="return false;">${category.title}</a></span>
+								<span class="gen">
+								<#if category.accessDates?? && category.accessDates.openDate??>
+									- ${I18n.getMessage("Forum.startDate")}&nbsp;${DateUtil.getStringFromDate(category.accessDates.openDate)}
+								</#if>
+								<#--if category.accessDates?? && category.accessDates.dueDate?? && (category.accessDates.dueDate?datetime gt nowDate?datetime)-->
+								<#if category.accessDates?? && category.accessDates.dueDate??>
+										- ${I18n.getMessage("Forum.endDate")}&nbsp;${DateUtil.getStringFromDate(category.accessDates.dueDate)}
+								</#if>
+								<#if category.grade?? && category.grade.isMinimumPostsRequired()>
+									&nbsp;(${I18n.getMessage("Grade.MinPostsNumber.Show", category.grade.minimumPosts)})
+								</#if>
+								</span>								
+							</td>
+						</#if>
+						
+						<#if !facilitator>
+						<td class="catCenter" align="middle" nowrap="nowrap">
+							<#if (category.getBlocked())>
+								<#assign zdivindex = zdivindex - 1/>
+								<div class="confirmpanel1" style="z-index:${zdivindex}">
+								<span class="gensmall">
+								<a href="#" onclick="showElement('cat_pre_req_${category.id}');return false;"><img src="${contextPath}/templates/${templateName}/images/lock.png" alt="${I18n.getMessage("Prerequisite.Title")}" title="${I18n.getMessage("prerequisite-title")}"/></br>${I18n.getMessage("Prerequisite.Title")}</a>
+								</span>
+								
+								<#assign zdivindex = zdivindex - 1/>
+								<div class="confirmpanel2" style="display:none;z-index:${zdivindex}" id="cat_pre_req_${category.id}">
+								<table cellpadding="2" cellspacing="2" width="100%">
+								<tr>
+									<td colspan="2" align="left">
+										<span class="gen">
+											${I18n.getMessage("Prerequisite.Alert")}<#if category.blockedByDetails??>&nbsp;${category.blockedByDetails}</#if>:
+											<ul>
+												<#if category.blockedByTitle??>
+												<li>${category.blockedByTitle}</li>
+												</#if>
+											</ul>
+										</span>
+									</td>
+								</tr>
+								<tr>
+									<td width="50">
+										&nbsp;
+									</td>
+									<td style="" align="left">
+										&nbsp;&nbsp;<input type="button" value="OK" onclick="hideElement('cat_pre_req_${category.id}');return false;" style="padding-left:2em; background: #eee url('${contextPath}/templates/${templateName}/images/ok.png') .2em no-repeat;"/>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										&nbsp;
+									</td>
+								</tr>
+								</table>
+								</div>
+								
+								</div>
+							<#else>
+								&nbsp;
+							</#if>
+						</td>
+						</#if>
+						
+						<#if (gradingExis??)>
+							<td class="catCenter" align="middle" colspan="1" nowrap="nowrap">
+								<span class="gen">
+									<#if (category.isGradable())>
+										<#if facilitator>
+											<#--img src="${contextPath}/templates/${templateName}/images/grade_by_category.gif" alt="grade category" title="${I18n.getMessage("grade-category-title")}"/-->
+											<a href="${JForumContext.encodeURL("/gradeForum/evalCategoryList/${category.id}/name/a")}">
+												<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("grade-category-title")}"/>${I18n.getMessage("ForumListing.gradeCategory")}
+											</a>
+										<#else>
+											<#--img src="${contextPath}/templates/${templateName}/images/grade_by_category.gif" alt="view category grade" title="${I18n.getMessage("view-category-grade-title")}"/-->
+											<#if (category.getBlocked())>
+												<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("view-category-grade-title")}"/>${I18n.getMessage("ForumListing.viewCategoryGrade")}
+											<#else>
+												<#if (category.accessDates?? && category.accessDates.openDate??) && (category.accessDates.openDate?datetime gt nowDate?datetime)>
+													<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("view-category-grade-title")}"/>${I18n.getMessage("ForumListing.viewCategoryGrade")}
+												<#else>
+													<a href="${JForumContext.encodeURL("/gradeForum/viewCategoryGrade/${category.id}")}">
+													<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("view-category-grade-title")}"/>${I18n.getMessage("ForumListing.viewCategoryGrade")}
+													</a>
+												</#if>
+											</#if>
+										</#if>
+									</#if>
+								</span>
+							</td>
+							<td class="rowpic" align="left" colspan="3">&nbsp;</td>
+						<#else>
+							<td class="rowpic" align="left" colspan="4">&nbsp;</td>
+						</#if>
+					</tr>
+										
+					<#list category.getForums() as forum>
+										
+					<#assign forumSpecialAccessUser = false/>
+					<#if (!facilitator) && (forum.specialAccess.size() == 1)>							
+							<#assign forumSpecialAccessUser = true/>
+							
+							<#assign specialAccess = forum.specialAccess.get(0)>
+					</#if>
+					
+					<#--assign lpi = fir.getLastPostInfo(forum.id)/-->
+					<tr>
+						<td class="row1" valign="top" align="middle" height="40">
+							<#if forum.getUserDiplayStatus() == "FOLDER">
+								<#--img src="${contextPath}/templates/${templateName}/images/folder.gif" width="19" height="18" alt="message icon" title="${I18n.getMessage("message-title")}"/-->
+								<img src="${contextPath}/templates/${templateName}/images/folder.png" alt="message icon" title="${I18n.getMessage("message-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "FOLDER_NEW">
+								<#--img src="${contextPath}/templates/${templateName}/images/folder_new.gif" width="19" height="18" alt="unread message icon" title="${I18n.getMessage("unread-message-title")}"/-->
+								<img src="${contextPath}/templates/${templateName}/images/folder_new.png" alt="unread message icon" title="${I18n.getMessage("unread-message-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "DENY_ACCESS">
+								<#--img src="${contextPath}/templates/${templateName}/images/deny_access_forum.gif" width="19" height="18" alt="deny forum access icon" title="${I18n.getMessage("deny-forum-access-read-title")}"/-->
+								<img src="${contextPath}/templates/${templateName}/images/deny_access.png" alt="deny access icon" title="${I18n.getMessage("deny-forum-access-read-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "DENY_ACCESS_NEW">
+								<#--img src="${contextPath}/templates/${templateName}/images/deny_access_forum_new.gif" width="19" height="18" alt="deny forum access - unread message - icon" title="${I18n.getMessage("deny-forum-access-unread-title")}"/-->
+								<img src="${contextPath}/templates/${templateName}/images/deny_access_new.png" alt="deny access - unread message - icon" title="${I18n.getMessage("deny-forum-access-unread-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "GROUP">
+								<#--img src="${contextPath}/templates/${templateName}/images/select_group_forum.gif" width="19" height="18" alt="group forum icon" title="${I18n.getMessage("group-forum-title")}"/-->
+								<img src="${contextPath}/templates/${templateName}/images/forum_group.png" alt="group forum icon" title="${I18n.getMessage("group-forum-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "GROUP_NEW">
+								<#--img src="${contextPath}/templates/${templateName}/images/select_group_forum_new.gif" width="19" height="18" alt="group forum - unread message icon" title="${I18n.getMessage("group-forum-unread-title")}"/-->
+								<img src="${contextPath}/templates/${templateName}/images/forum_group_new.png" alt="group forum - unread message icon" title="${I18n.getMessage("group-forum-unread-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "GROUP_READ_ONLY">
+								<img src="${contextPath}/templates/${templateName}/images/forum_group_read_only.png" alt="group forum read only icon" title="${I18n.getMessage("group-forum-read-only-read-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "GROUP_READ_ONLY_NEW">
+								<img src="${contextPath}/templates/${templateName}/images/forum_group_read_only_new.png" alt="group forum read only - unread message icon" title="${I18n.getMessage("group-forum-read-only-unread-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "GROUP_REPLY_ONLY">
+								<img src="${contextPath}/templates/${templateName}/images/folder_group_reply_only.png" alt="group forum reply only icon" title="${I18n.getMessage("group-forum-reply-only-read-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "GROUP_REPLY_ONLY_NEW">
+								<img src="${contextPath}/templates/${templateName}/images/folder_group_reply_only_new.png" alt="group forum reply only - unread message icon" title="${I18n.getMessage("group-forum-reply-only-unread-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "LOCKED">
+								<#--img src="${contextPath}/templates/${templateName}/images/read_only_forum.gif" width="19" height="18" alt="locked forum icon" title="${I18n.getMessage("locked-forum-read-title")}"/-->
+								<img src="${contextPath}/templates/${templateName}/images/read_only_lock.png" alt="read only icon" title="${I18n.getMessage("read-only-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "LOCKED_NEW">
+								<#--img src="${contextPath}/templates/${templateName}/images/read_only_forum_new.gif" width="19" height="18" alt="locked forum - unread message icon" title="${I18n.getMessage("locked-forum-unread-title")}"/-->
+								<img src="${contextPath}/templates/${templateName}/images/read_only_lock_new.png" alt="read only - unread message icon" title="${I18n.getMessage("read-only-unread-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "NOT_YET_OPEN">
+								<#--img src="${contextPath}/templates/${templateName}/images/not_yet_open.gif" width="19" height="18" alt="not yet open forum access icon" title="${I18n.getMessage("not-yet-open-forum-read-title")}"/-->
+								<img src="${contextPath}/templates/${templateName}/images/item_not_yet_open.png" alt="not yet open icon" title="${I18n.getMessage("not-yet-open-forum-read-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "NOT_YET_OPEN_NEW">
+								<#--img src="${contextPath}/templates/${templateName}/images/not_yet_open_new.gif" width="19" height="18" alt="not yet open forum - unread message icon" title="${I18n.getMessage("not-yet-open-forum-unread-title")}"/-->
+								<img src="${contextPath}/templates/${templateName}/images/item_not_yet_open_new.png" alt="not yet open - unread message icon" title="${I18n.getMessage("not-yet-open-forum-unread-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "NOT_YET_OPEN_INVISIBLE">
+								<img src="${contextPath}/templates/${templateName}/images/item_invisible.png" alt="not yet open - invisible icon" title="${I18n.getMessage("not-yet-open-invisible-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "READ_ONLY">
+								<#--img src="${contextPath}/templates/${templateName}/images/read_only_forum.gif" width="19" height="18" alt="read only forum icon" title="${I18n.getMessage("read-only-forum-read-title")}"/-->
+								<img src="${contextPath}/templates/${templateName}/images/read_only_lock.png" alt="read only icon" title="${I18n.getMessage("read-only-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "READ_ONLY_NEW">
+								<#--img src="${contextPath}/templates/${templateName}/images/read_only_forum_new.gif" width="19" height="18" alt="read only forum icon - unread message icon" title="${I18n.getMessage("read-only-forum-unread-title")}"/-->
+								<img src="${contextPath}/templates/${templateName}/images/read_only_lock_new.png" alt="read only - unread message icon" title="${I18n.getMessage("read-only-unread-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "REPLY_ONLY">
+								<#--img src="${contextPath}/templates/${templateName}/images/reply_only_forum.gif" width="19" height="18" alt="reply only forum icon" title="${I18n.getMessage("reply-only-forum-read-title")}"/-->
+								<img src="${contextPath}/templates/${templateName}/images/reply_only_forum.png" alt="reply only icon" title="${I18n.getMessage("reply-only-forum-read-title")}"/>
+							<#elseif forum.getUserDiplayStatus() == "REPLY_ONLY_NEW">
+								<#--img src="${contextPath}/templates/${templateName}/images/reply_only_forum_new.gif" width="19" height="18" alt="reply only forum - unread message icon" title="${I18n.getMessage("reply-only-forum-unread-title")}"/-->
+								<img src="${contextPath}/templates/${templateName}/images/reply_only_forum_new.png" alt="reply only - unread message icon" title="${I18n.getMessage("reply-only-forum-unread-title")}"/>
+							</#if>
+						</td>
+						<td class="row1" width="100%" height="40" valign="top">
+							<#if (facilitator) && (forum.accessDates.openDate?? && !forum.accessDates.isDatesValid())>
+								<#assign zdivindex = zdivindex - 1/>
+								<span class="confirmpanel1" style="z-index:${zdivindex}">
+								<span class="gensmaller">
+								<a href="#" onclick="showElement('frm_dt_invalid_${forum.id}');return false;"><img src="${contextPath}/templates/${templateName}/images/warning.png" alt="${I18n.getMessage("dates-invalid")}" title="${I18n.getMessage("dates-invalid")}"/></a>
+								</span>
+								<#assign zdivindex = zdivindex - 1/>
+								<span class="confirmpanel3" style="display:none;z-index:${zdivindex}" id="frm_dt_invalid_${forum.id}">
+								<table cellpadding="2" cellspacing="0" width="100%">
+								<tr>
+									<td colspan="2">
+										&nbsp;
+									</td>
+								</tr>
+								<tr>									
+									<td colspan="2" align="left">
+										<span class="gen">
+											&nbsp;&nbsp;
+											${I18n.getMessage("Dates.Invalid.Alert")}
+										</span>
+									</td>
+								</tr>
+								<tr>
+									<td width="50">
+										&nbsp;
+									</td>
+									<td style="" align="left">
+										&nbsp;&nbsp;<input type="button" value="OK" onclick="hideElement('frm_dt_invalid_${forum.id}');return false;" style="padding-left:2em; background: #eee url('${contextPath}/templates/${templateName}/images/ok.png') .2em no-repeat;"/>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										&nbsp;
+									</td>
+								</tr>
+								</table>
+								</span>
+								
+								</span>
+							</#if>
+							<#if (!facilitator && category.getBlocked())>
+								<span class="gen">${forum.name}</span>
+							<#else>
+								<#if (facilitator)>
+									<span class="forumlink"><a class="forumlink" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name}</a></span>									
+								<#else>
+									<#if ((forum.gradeType == gradeForum) && (forum.getBlocked()))>
+										<span class="gen">${forum.name}</span>
+									<#elseif (category.accessDates?? && category.accessDates.openDate??) && (category.accessDates.openDate?datetime gt nowDate?datetime)>
+										<span class="gen">${forum.name}</span>
+									<#elseif (forumSpecialAccessUser && specialAccess??)>
+										<#if (specialAccess.accessDates?? && specialAccess.accessDates.openDate?? && specialAccess.accessDates.openDate?datetime gt nowDate?datetime)>
+											<span class="gen">${forum.name}</span>
+										<#else>
+											<span class="forumlink"><a class="forumlink" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name}</a></span>
+										</#if>
+									<#elseif (forum.accessDates?? && forum.accessDates.openDate??) && (forum.accessDates.openDate?datetime gt nowDate?datetime)>
+										<span class="gen">${forum.name}</span>
+									<#else>
+										<span class="gen"><a class="gen" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name}</a></span>
+									</#if>
+								</#if>
+							</#if>
+							<#-- 06/22/06 Murthy - added text for forums with end date-->
+							<span class="gen">
+								<#if (forumSpecialAccessUser)>
+									<#if specialAccess.accessDates?? && specialAccess.accessDates.openDate??>
+										- ${I18n.getMessage("Forum.SpecialAccess.startDate")}&nbsp;${DateUtil.getStringFromDate(specialAccess.accessDates.openDate)}
+									</#if>
+									<#if specialAccess.accessDates?? && specialAccess.accessDates.dueDate??>
+										<#--if forum.type != 2-->
+											- ${I18n.getMessage("Forum.SpecialAccess.endDate")}&nbsp;${DateUtil.getStringFromDate(specialAccess.accessDates.dueDate)}
+										<#--/#if-->
+									</#if>
+								<#else>
+									<#if forum.accessDates.openDate??>
+										<#--if (forum.accessDates.openDate?datetime gt nowDate?datetime)-->
+											- ${I18n.getMessage("Forum.startDate")}&nbsp;${DateUtil.getStringFromDate(forum.accessDates.openDate)}
+										<#--/#if-->
+									</#if>
+									<#if forum.accessDates.dueDate??>
+										<#--if forum.type != 2-->
+											- ${I18n.getMessage("Forum.endDate")}&nbsp;${DateUtil.getStringFromDate(forum.accessDates.dueDate)}
+										<#--/#if-->
+									</#if>
+								</#if>
+							</span>
+							<#if forum.description??>
+								<br />
+								<#if forum.description?trim?length < 150>
+									<span class="gen">${forum.description?default("")}</span>
+								<#else>
+									
+									<#assign zdivindex = zdivindex - 1/>
+									<div class="confirmpanel1" style="z-index:${zdivindex}">
+									<span class="gen">
+										${(forum.description?trim?substring(0, 150))}...&nbsp;
+										<a href="#" onclick="showElement('frm_desc_${forum.id}');return false;">${I18n.getMessage("Forum.Description.More")}...</a>
+									</span>
+									<#assign zdivindex = zdivindex - 1/>
+									<#if forum.description?trim?length < 600>
+									<div class="confirmpanel5" style="display:none;z-index:${zdivindex}" id="frm_desc_${forum.id}">
+									<#else>
+									<div class="confirmpanel6" style="display:none;z-index:${zdivindex}" id="frm_desc_${forum.id}">
+									</#if>
+									<table cellpadding="2" cellspacing="2" width="100%">
+										<tr>
+											<td width="100%" rowspan="2">
+												<span class="gen">
+												${forum.description}
+												</span>
+											</td>									
+											<td width="2" nowrap="nowrap" align="right" valign="top">
+												<a><img src="${contextPath}/templates/${templateName}/images/delete.png" alt="${I18n.getMessage("Frame.Close")}" title="${I18n.getMessage("Frame.Close")}" onclick="hideElement('frm_desc_${forum.id}');return false;"></a>
+											</td>
+										</tr>
+										<tr>									
+											<td>&nbsp;</td>
+										</tr>
+										<tr>
+											<td colspan="2" style="" align="left">
+												&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="OK" onclick="hideElement('frm_desc_${forum.id}');return false;" style="padding-left:2em; background: #eee url('${contextPath}/templates/${templateName}/images/ok.png') .2em no-repeat;"/>
+											</td>
+										</tr>
+									</table>
+									</div>								
+									</div>
+								</#if>
+							</#if>
+						</td>
+						<#if !facilitator>
+						<td class="row2" valign="top" align="middle">
+							<#if ((forum.gradeType == gradeForum) && (forum.getBlocked()))>
+								<#assign zdivindex = zdivindex - 1/>
+								<div class="confirmpanel1" style="z-index:${zdivindex}">
+								<span class="gen">
+								<a href="#" onclick="showElement('frm_pre_req_${forum.id}');return false;"><img src="${contextPath}/templates/${templateName}/images/lock.png" alt="${I18n.getMessage("Prerequisite.Title")}" title="${I18n.getMessage("prerequisite-title")}"/></br>${I18n.getMessage("Prerequisite.Title")}</a>
+								</span>
+								<#assign zdivindex = zdivindex - 1/>
+								<div class="confirmpanel2" style="display:none;z-index:${zdivindex}" id="frm_pre_req_${forum.id}">
+								<table cellpadding="2" cellspacing="2" width="100%">
+								<tr>									
+									<td colspan="2" align="left">
+										<span class="gen">
+											${I18n.getMessage("Prerequisite.Alert")}<#if forum.blockedByDetails??>&nbsp;${forum.blockedByDetails}</#if>:
+											<ul>
+												<#if forum.blockedByTitle??>
+												<li>${forum.blockedByTitle}</li>
+												</#if>
+											</ul>
+										</span>
+									</td>
+								</tr>
+								<tr>
+									<td width="50">
+										&nbsp;
+									</td>
+									<td style="" align="left">
+										&nbsp;&nbsp;<input type="button" value="OK" onclick="hideElement('frm_pre_req_${forum.id}');return false;" style="padding-left:2em; background: #eee url('${contextPath}/templates/${templateName}/images/ok.png') .2em no-repeat;"/>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										&nbsp;
+									</td>
+								</tr>
+								</table>
+								</div>
+								
+								</div>
+							<#else>
+								&nbsp;
+							</#if>
+						</td>
+						</#if>
+						<#if (gradingExis??)>
+							<td class="row2" valign="top" align="middle" height="40" nowrap="nowrap">
+							<span class="gen">
+							<#if (forum.gradeType == gradeTopic)>
+								<#if facilitator>
+									<#--img src="${contextPath}/templates/${templateName}/images/grade_by_topic.gif" alt="grade topics" title="${I18n.getMessage("grade-topic-title")}"/-->
+									<a href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">
+									<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("grade-topic-title")}"/>${I18n.getMessage("ForumListing.gradeTopics")}
+									</a>
+								<#else>
+									<#if (category.getBlocked())>
+										<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("view-topic-grade-title")}"/>${I18n.getMessage("ForumListing.viewTopicsGrade")}
+									<#else>
+										<#if ((forum.gradeType == gradeForum) && (forum.getBlocked()))>
+											<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("view-topic-grade-title")}"/>${I18n.getMessage("ForumListing.viewTopicsGrade")}
+										<#else>
+											<#--img src="${contextPath}/templates/${templateName}/images/grade_by_topic.gif" alt="view topics grade" title="${I18n.getMessage("view-topic-grade-title")}"/-->
+											<#if (forumSpecialAccessUser && specialAccess??)>
+												<#if (specialAccess.accessDates?? && specialAccess.accessDates.openDate??) && (specialAccess.accessDates.openDate?datetime gt nowDate?datetime)>
+													<a href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">
+													<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("view-topic-grade-title")}"/>${I18n.getMessage("ForumListing.viewTopicsGrade")}
+													</a>
+												<#else>
+													<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("view-topic-grade-title")}"/>${I18n.getMessage("ForumListing.viewTopicsGrade")}													
+												</#if>
+											<#else>
+												<#if (forum.accessDates?? && forum.accessDates.openDate??) && (forum.accessDates.openDate?datetime gt nowDate?datetime)>
+													<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("view-topic-grade-title")}"/>${I18n.getMessage("ForumListing.viewTopicsGrade")}
+												<#else>
+													<a href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">
+													<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("view-topic-grade-title")}"/>${I18n.getMessage("ForumListing.viewTopicsGrade")}
+													</a>
+												</#if>
+											</#if>
+										</#if>
+									</#if>
+								</#if>
+							<#else> 
+								<#if (forum.gradeType == gradeForum)>
+									<#if facilitator>
+										<#--img src="${contextPath}/templates/${templateName}/images/grade_by_forum.gif" alt="grade forum" title="${I18n.getMessage("grade-forum-title")}"/-->
+										<a href="${JForumContext.encodeURL("/gradeForum/evalForumList/${forum.id}/name/a")}">
+										<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("grade-forum-title")}"/>${I18n.getMessage("ForumListing.gradeForum")}
+										</a>
+									<#else>
+										<#if (category.getBlocked())>
+											${I18n.getMessage("ForumListing.viewForumGrade")}
+										<#else>
+											<#if ((forum.gradeType == gradeForum) && (forum.getBlocked()))>
+												<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("view-forum-grade-title")}"/>${I18n.getMessage("ForumListing.viewForumGrade")}
+											<#else>
+												<#--img src="${contextPath}/templates/${templateName}/images/grade_by_forum.gif" alt="view forum grade" title="${I18n.getMessage("view-forum-grade-title")}"/-->
+												<#if (forumSpecialAccessUser && specialAccess??)>
+													<#if (specialAccess.accessDates?? && specialAccess.accessDates.openDate??) && (specialAccess.accessDates.openDate?datetime gt nowDate?datetime)>
+														<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("view-forum-grade-title")}"/>${I18n.getMessage("ForumListing.viewForumGrade")}
+													<#else>
+														<a href="${JForumContext.encodeURL("/gradeForum/viewForumGrade/${forum.id}")}">
+														<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("view-forum-grade-title")}"/>${I18n.getMessage("ForumListing.viewForumGrade")}
+														</a>
+													</#if>
+												<#else>
+													<#if (forum.accessDates?? && forum.accessDates.openDate??) && (forum.accessDates.openDate?datetime gt nowDate?datetime)>
+														<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("view-forum-grade-title")}"/>${I18n.getMessage("ForumListing.viewForumGrade")}
+													<#else>
+														<a href="${JForumContext.encodeURL("/gradeForum/viewForumGrade/${forum.id}")}">
+														<img class="imgicon" src="${contextPath}/templates/${templateName}/images/grade.png" alt="grade icon" title="${I18n.getMessage("view-forum-grade-title")}"/>${I18n.getMessage("ForumListing.viewForumGrade")}
+														</a>														
+													</#if>
+												</#if>												
+											</#if>
+										</#if>
+									</#if>
+								</#if>
+							</#if>
+							</span>
+							</td>
+						</#if>					
+						<td class="row2" valign="top" align="middle" height="40"><span class="gen">${forum.totalTopics}</span></td>
+						<td class="row2" valign="top" align="middle" nowrap="nowrap" height="40"><span class="gen"><#if (forum.totalPosts > 0)>${forum.totalPosts}<#else>${I18n.getMessage("ForumListing.noMessages")}</#if></span></td>
+						<td class="row2" valign="top" nowrap="nowrap" align="middle" height="40">
+							<span class="gen">
+							<#--if (lpi?? && lpi.postTimeMillis > 0)-->
+							<#if forum.getUserLastPostInfo()??>
+								<#assign lpi = forum.getUserLastPostInfo()/>
+								${DateUtil.getStringFromDate(lpi.postDate)}<br />
+								<#if (lpi.userId > 0)>
+									<#if (!facilitator && category.getBlocked())>
+										${lpi.firstName?default("")}&nbsp;${lpi.lastName?default("")}
+									<#else>
+										<#if (!facilitator && (forum.gradeType == gradeForum) && (forum.getBlocked()))>
+											${lpi.firstName?default("")}&nbsp;${lpi.lastName?default("")}
+										<#else>
+											<a href="${JForumContext.encodeURL("/user/profile/${lpi.userId}")}">
+												${lpi.firstName?default("")}&nbsp;${lpi.lastName?default("")}
+											</a>
+										</#if>
+									</#if>
+								</#if>
+
+								<#assign startPage = ""/>
+								<#if (lpi.topicReplies + 1 > topicsPerPage)>
+									<#assign startPage = ((lpi.topicReplies / topicsPerPage)?int * topicsPerPage) +"/"/>
+								</#if>
+
+								<#assign url = JForumContext.encodeURL("/posts/list/${startPage}${lpi.topicId}") + "#" + lpi.postId/>
+								<#if (!facilitator && category.getBlocked())>
+								
+								<#else>
+									<#if (!facilitator && (forum.gradeType == gradeForum) && (forum.getBlocked()))>
+									<#else>
+										<#if (!facilitator) && (category.accessDates?? && category.accessDates.openDate??) && (category.accessDates.openDate?datetime gt nowDate?datetime)>
+										<#elseif (forumSpecialAccessUser && specialAccess??)>
+											<#if (specialAccess.accessDates?? && specialAccess.accessDates.openDate??) && (specialAccess.accessDates.openDate?datetime gt nowDate?datetime)>
+										
+											<#else>
+												<a href="${url}"><img src="${contextPath}/templates/${templateName}/images/icon_latest_reply.gif" width="18" height="9" border="0" alt="last reply icon" title="${I18n.getMessage("last-reply-title")}"/></a>
+											</#if>
+										<#else>
+											<#if (forum.accessDates?? && forum.accessDates.openDate??) && (forum.accessDates.openDate?datetime gt nowDate?datetime)>
+												
+											<#else>
+												<a href="${url}"><img src="${contextPath}/templates/${templateName}/images/icon_latest_reply.gif" width="18" height="9" border="0" alt="last reply icon" title="${I18n.getMessage("last-reply-title")}"/></a>
+											</#if>
+										</#if>										
+									</#if>
+								</#if>
+							<#else>
+								${I18n.getMessage("ForumListing.noMessages")}
+							</#if>
+							</span>
+						</td>
+					</tr>
+				
+										
+					</#list>
+
+				</#list>				
+				
+				<!-- END OF FORUM LISTING -->
+			</table>
+
+			<table cellspacing="0" cellpadding="2" width="100%" align="center" border="0">
+				<tr>
+					<td align="left"><span class="gensmall"><a class="gensmall" href="">&nbsp;</a></span><span class="gensmall">&nbsp;</span></td>
+				</tr>
+			</table>
+			
+			<br/>
+
+			<table cellspacing="3" cellpadding="0" align="center" border="0">
+				<tr>
+					<td align="middle" width="20">
+						<#--img src="${contextPath}/templates/${templateName}/images/folder_new.gif" width="19" height="18" alt="new message icon" title="${I18n.getMessage("unread-message-title")}"/-->
+						<img src="${contextPath}/templates/${templateName}/images/folder_new.png" alt="new message icon" title="${I18n.getMessage("unread-message-title")}"/>
+					</td>
+					<td><span class="gensmall">${I18n.getMessage("ForumListing.newMessages")}</span></td>
+					<td>&nbsp;&nbsp;</td>
+					<#--
+					<td align="middle" width="20">
+						<!--img src="${contextPath}/templates/${templateName}/images/folder.gif" width="19" height="18" alt="message icon" title="${I18n.getMessage("message-title")}"/->
+						<img src="${contextPath}/templates/${templateName}/images/folder.png" alt="message icon" title="${I18n.getMessage("message-title")}"/>
+					</td>
+					<td><span class="gensmall">${I18n.getMessage("ForumListing.noNewMessages")}</span></td>
+					<td>&nbsp;&nbsp;</td>
+					-->
+					<td align="middle" width="20">
+						<#--img src="${contextPath}/templates/${templateName}/images/not_yet_open.gif" alt="not yet open icon" title="${I18n.getMessage("not-yet-open-forum-read-title")}"/-->
+						<img src="${contextPath}/templates/${templateName}/images/item_not_yet_open.png" alt="not yet open icon" title="${I18n.getMessage("not-yet-open-forum-read-title")}"/>
+					</td>
+					<td><span class="gensmall">${I18n.getMessage("ForumListing.NotOpen")}</span></td>
+					<td>&nbsp;&nbsp;</td>
+					<td align="middle" width="20">
+						<#--img src="${contextPath}/templates/${templateName}/images/read_only_forum.gif" width="19" height="18" alt="read only forum icon" title="${I18n.getMessage("read-only-title")}"/-->
+						<img src="${contextPath}/templates/${templateName}/images/read_only_lock.png" alt="read only icon" title="${I18n.getMessage("read-only-title")}"/>
+					</td>
+					<td><span class="gensmall">${I18n.getMessage("ForumListing.ReadOnly")}</span></td>
+				</tr>
+				<tr>
+					<td align="middle" width="20">
+						<#--img src="${contextPath}/templates/${templateName}/images/reply_only_forum.gif" width="19" height="18" alt="reply only forum icon" title="${I18n.getMessage("reply-only-forum-read-title")}"/-->
+						<img src="${contextPath}/templates/${templateName}/images/reply_only_forum.png" alt="reply only icon" title="${I18n.getMessage("reply-only-forum-read-title")}"/>
+					</td>
+					<td><span class="gensmall">${I18n.getMessage("ForumListing.ReplyOnly")}</span></td>
+					<td>&nbsp;&nbsp;</td>
+					<#if facilitator>
+						<td align="middle" width="20">
+							<#--img src="${contextPath}/templates/${templateName}/images/select_group_forum.gif" width="19" height="18" alt="select group forum icon" title="${I18n.getMessage("group-forum-title")}"/-->
+							<img src="${contextPath}/templates/${templateName}/images/forum_group.png" alt="group forum icon" title="${I18n.getMessage("group-forum-title")}"/>
+						</td>
+						<td><span class="gensmall">${I18n.getMessage("ForumListing.ForumGroups")}</span></td>
+					<#else>
+						<td align="middle" width="20">
+							<#--img src="${contextPath}/templates/${templateName}/images/select_group_forum.gif" width="19" height="18" alt="select group forum icon" title="${I18n.getMessage("group-forum-title")}"/-->
+							<img src="${contextPath}/templates/${templateName}/images/forum_group.png" alt="group forum icon" title="${I18n.getMessage("group-forum-title")}"/>
+						</td>
+						<td><span class="gensmall">${I18n.getMessage("ForumListing.ForumGroups")}</span></td>
+					</#if>
+					<#if facilitator>
+						<td>&nbsp;&nbsp;</td>
+						<td align="middle" width="20">
+							<#--img src="${contextPath}/templates/${templateName}/images/deny_access_forum.gif" width="19" height="18" alt="deny forum access icon" title="${I18n.getMessage("deny-forum-access-read-title")}"/-->
+							<img src="${contextPath}/templates/${templateName}/images/deny_access.png" alt="deny access icon" title="${I18n.getMessage("deny-forum-access-read-title")}"/>
+						</td>
+						<td><span class="gensmall">${I18n.getMessage("ForumListing.DenyAccess")}</span></td>
+					<#else>
+						<td colspan="3">&nbsp;&nbsp;</td>
+						<#--
+						<td>&nbsp;&nbsp;</td>
+						<td align="middle" width="20">
+							<!--img src="${contextPath}/templates/${templateName}/images/not_yet_open.gif" alt="not yet open icon" title="${I18n.getMessage("not-yet-open-forum-read-title")}"/->
+							<img src="${contextPath}/templates/${templateName}/images/item_not_yet_open.png" alt="not yet open icon" title="${I18n.getMessage("not-yet-open-forum-read-title")}"/>
+						</td>
+						<td><span class="gensmall">${I18n.getMessage("ForumListing.NotOpen")}</span></td>
+						-->
+					</#if>
+				</tr>
+				<#if facilitator>
+				<tr>
+					<td align="middle" width="20">
+						<img src="${contextPath}/templates/${templateName}/images/item_invisible.png" alt="not yet open - invisible icon" title="${I18n.getMessage("not-yet-open-invisible-title")}"/>
+					</td>
+					<td><span class="gensmall">${I18n.getMessage("ForumListing.Invisible")}</span></td>
+					<td colspan="6">&nbsp;&nbsp;</td>			
+				</tr>
+				</#if>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<#include "bottom.htm"/>

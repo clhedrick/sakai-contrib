@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:rsf="http://ponder.org.uk/rsf" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <title rsf:id="msg=assignment2.title">Assignments</title>
+	<link href="/sakai-assignment2-tool/content/css/assignmentsv4.css" type="text/css" rel="stylesheet" media="all" />
+	<script src="../js/import-assignments.js" type="text/javascript"></script>
+</head>
+
+<body>
+<!--  everything outside of rsf:id="page:" is set in Layout.html using outerPageTemplates -->
+
+<div rsf:id="page:" class="portletBody">
+	
+	<ul class="breadCrumb">
+		<li><a rsf:id="breadcrumb">Assignment List</a></li>
+		<li rsf:id="last_breadcrumb" class="lastCrumb">Import from Assignments</li>
+	</ul>
+	    
+    <h2 rsf:id="page-title">Import from Assignments</h2>
+    <p rsf:id="instructions" class="instruction">Check the box next to each site that contains assignments you want to import and click Import.</p>
+    
+    <form rsf:id="import-assignments-form">
+        <fieldset class="submit">
+            <input rsf:id="import-top" class="importButton" accesskey="s" type="submit" value="Import" disabled="true"/>
+            <input rsf:id="cancel-import-top" accesskey="x" type="submit" value="Cancel"/>
+        </fieldset>
+        <fieldset rsf:id="import-selection-area">
+        
+        	<ul>
+        		<li rsf:id="import_row:">	
+        			<input rsf:id="import_check" type="checkbox" class="importToggle" onclick="asnn2.importAssignments.toggleImportButton();"/>&nbsp;&nbsp;
+        			<label rsf:id="import_label">Blue Cohort</label>	
+        		</li>
+        	</ul>
+        
+      
+    	</fieldset>
+        <fieldset class="submit">
+            <input rsf:id="import-bottom" class="importButton" accesskey="s" type="submit" value="Import" disabled="true"/>
+            <input rsf:id="cancel-import-bottom" class="cancel-import-bottom" accesskey="x" type="submit" value="Cancel"/>
+        </fieldset>
+    </form>
+</div>
+</body>
+
+<script>
+	function 
+if(checkbox.checked)
+	anyChecked = true;
+else{
+	jQuery("tr:gt(0)").each(function(){
+		try{
+			if($(this.cells)[0].tagName != 'TH'){
+				if(jQuery("input:eq(" + i + ")", this).get(0).checked){
+					anyChecked = true;
+				}
+			}
+		}catch(err){
+		}
+	});
+}
+</script>
+</html>

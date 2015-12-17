@@ -1,0 +1,252 @@
+<?xml version="1.0"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>assignment2</artifactId>
+        <groupId>org.sakaiproject.assignment2</groupId>
+        <version>1.2-SNAPSHOT</version>
+    </parent>
+
+    <name>sakai-assignment2-impl</name>
+    <groupId>org.sakaiproject.assignment2</groupId>
+    <artifactId>sakai-assignment2-impl</artifactId>
+    <organization>
+        <name>Sakai Project</name>
+        <url>http://www.sakaiproject.org/</url>
+    </organization>
+    <inceptionYear>2007</inceptionYear>
+    <!-- the logic should be deployed as a jar and included in the pack, 
+        not to shared -->
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.sakaiproject.entitybroker</groupId>
+            <artifactId>entitybroker-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.sakaiproject.entitybroker</groupId>
+            <artifactId>entitybroker-utils</artifactId>
+        </dependency>
+
+        <!-- Assignment2 dependencies -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>sakai-assignment2-api</artifactId>
+        </dependency>
+
+        <!-- other project dependencies -->
+        <dependency>
+            <groupId>org.sakaiproject.kernel</groupId>
+            <artifactId>sakai-kernel-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.sakaiproject.kernel</groupId>
+            <artifactId>sakai-component-manager</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.sakaiproject.kernel</groupId>
+            <artifactId>sakai-kernel-util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </dependency>
+        <!-- generic-dao -->
+	<dependency>
+	  <groupId>org.sakaiproject.genericdao</groupId>
+	  <artifactId>generic-dao</artifactId>
+	</dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
+        <!-- needed by hibernate unit tests -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>uk.org.ponder</groupId>
+            <artifactId>ponderutilcore</artifactId>
+            <version>1.2.4</version>
+        </dependency>
+
+        <!-- notifications -->
+        <dependency>
+            <groupId>org.sakaiproject.scheduler</groupId>
+            <artifactId>scheduler-api</artifactId>
+        </dependency>
+
+        <!-- for integration with gradebook -->
+        <dependency>
+            <groupId>org.sakaiproject.edu-services.gradebook</groupId>
+            <artifactId>gradebook-service-api</artifactId>
+        </dependency>
+
+        <!-- Required for announcements integration -->
+        <dependency>
+            <groupId>org.sakaiproject.announcement</groupId>
+            <artifactId>sakai-announcement-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.sakaiproject.message</groupId>
+            <artifactId>sakai-message-api</artifactId>
+        </dependency>
+
+        <!-- Schedule/Calendar integration -->
+        <dependency>
+            <groupId>org.sakaiproject.calendar</groupId>
+            <artifactId>sakai-calendar-api</artifactId>
+        </dependency>
+
+        <!-- for the import/export -->
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sakaiproject.common</groupId>
+            <artifactId>archive-api</artifactId>
+        </dependency>
+        <!-- for importing from the original assignments tool -->
+        <dependency>
+            <groupId>org.sakaiproject.assignment</groupId>
+            <artifactId>sakai-assignment-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.sakaiproject.taggable</groupId>
+            <artifactId>sakai-taggable-api</artifactId>
+        </dependency>
+        <!-- for upload/download all -->
+        <dependency>
+            <groupId>commons-vfs</groupId>
+            <artifactId>commons-vfs</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <!-- for content review integration -->
+        <dependency>
+            <groupId>org.sakaiproject.contentreview</groupId>
+            <artifactId>contentreview-model-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.sakaiproject.contentreview</groupId>
+            <artifactId>contentreview-service-api</artifactId>
+        </dependency>
+        <!-- testing dependencies -->
+        <!-- <dependency> <groupId>${sakai.spring.groupId}</groupId> <artifactId>${sakai.spring.mock.artifactId}</artifactId> 
+            <version>${sakai.spring.mock.version}</version> </dependency> -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>jta</groupId>
+            <artifactId>jta</artifactId>
+            <version>h2.1.8</version>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>${basedir}/../bundle</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <sourceDirectory>src/java</sourceDirectory>
+
+        <!-- unit testing -->
+        <testSourceDirectory>src/test</testSourceDirectory>
+        <testResources>
+            <testResource>
+                <directory>${basedir}/../pack/src/webapp/WEB-INF</directory>
+                <includes>
+                    <include>spring-hibernate.xml</include>
+                </includes>
+            </testResource>
+            <testResource>
+                <directory>${basedir}/src/test</directory>
+                <includes>
+                    <include>hibernate-test.xml</include>
+                    <include>hibernate.properties</include>
+                    <include>logic-beans-test.xml</include>
+                </includes>
+            </testResource>
+            <!--includes: include: **/*Test.java -->
+        </testResources>
+    </build>
+</project>

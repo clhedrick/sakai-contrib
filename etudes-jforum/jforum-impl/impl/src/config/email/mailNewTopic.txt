@@ -1,0 +1,14 @@
+A topic has been updated in the <a href="site.url"><b>site.title</b></a> site at Etudes (portal.url)
+<br /><br />
+-----------------------------
+<br />
+From: topic.from
+<br />
+Subject: post.subject
+<br /><br />
+post.text
+<br /><br />
+-----------------------------
+<br /><br />
+This notification message was sent by Etudes(portal.url) from the site.title site. 
+You can modify how you receive notifications at Discussions & Private Messages >> My Profile.

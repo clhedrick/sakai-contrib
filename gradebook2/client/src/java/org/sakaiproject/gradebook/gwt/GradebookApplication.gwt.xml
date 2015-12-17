@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='gradebook'>
+
+	<!-- Inherit the core Web Toolkit stuff. -->
+	<inherits name='com.google.gwt.user.User'/>
+	
+	<!-- Inherit the GWT Visualization library -->
+	<inherits name="com.google.gwt.visualization.Visualization" />
+	
+	<inherits name='com.google.gwt.json.JSON'/>
+	
+	<!-- Inherit internationalization -->
+	<inherits name='com.google.gwt.i18n.I18N'/>
+	<inherits name="com.google.gwt.resources.Resources" />
+	
+	<!-- Inherit the Ext-GWT Toolkit library -->
+	<inherits name='com.extjs.gxt.ui.GXT'/>
+	
+	<!-- Inherit the Sencha GXT v3+ -->
+	<inherits name='com.sencha.gxt.ui.GXT' />
+	
+	<!-- GIN -->
+	<inherits name="com.google.gwt.inject.Inject"/>
+	
+	<!-- Gradeboook2 api for client -->
+	<inherits name="org.sakaiproject.gradebook.gwt.client.API"/>
+
+	
+	<!-- Specify the app entry point class.                   -->
+	<entry-point class='org.sakaiproject.gradebook.gwt.client.GradebookApplication'/>
+
+	<extend-property name="locale" values="es"/>
+	
+	<!-- 
+		GRBK-1268 : Commented out the following translations because 
+		they are not maintained. Enable them at your own risk. -->
+	<!--
+	<extend-property name="locale" values="de"/>
+	<extend-property name="locale" values="fr"/>
+	<extend-property name="locale" values="it"/>
+	<extend-property name="locale" values="ja"/>
+	<extend-property name="locale" values="nl_NL"/>
+	-->
+
+	<set-property-fallback name="locale" value="default"/>s
+
+</module>

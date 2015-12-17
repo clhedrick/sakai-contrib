@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="jforum-api/src/java"/>
+	<classpathentry kind="src" path="jforum-impl/impl/src/java"/>
+	<classpathentry kind="src" path="jforum-tool/src/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.4/servlet-api-2.4.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/mail/mail/1.3.1/mail-1.3.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/htmlparser/htmlparser/1.5/htmlparser-1.5.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/octo/captcha/jcaptcha-all/1.0-RC-2.0.1/jcaptcha-all-1.0-RC-2.0.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/jboss/jboss-cache/1.3.0.SP2/jboss-cache-1.3.0.SP2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/jgroups/jgroups-all/2.2.7/jgroups-all-2.2.7.jar"/>
+	<classpathentry kind="var" path="M2_REPO/jboss/jboss-common/4.0.2/jboss-common-4.0.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/jboss/jboss-j2ee/4.0.2/jboss-j2ee-4.0.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/jboss/jboss-jmx/4.0.2/jboss-jmx-4.0.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/jboss/jboss-minimal/4.0.2/jboss-minimal-4.0.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/jboss/jboss-system/4.0.2/jboss-system-4.0.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/freemarker/freemarker/2.3.8/freemarker-2.3.8.jar"/>
+	<classpathentry kind="var" path="M2_REPO/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-io/commons-io/1.2/commons-io-1.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.1/commons-lang-2.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sakai-component-manager"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sakai-kernel-api"/>
+	<classpathentry kind="var" path="M2_REPO/quartz/quartz/1.4.0/quartz-1.4.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/etudes-util"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/etudes-util-api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sakai-kernel-util"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

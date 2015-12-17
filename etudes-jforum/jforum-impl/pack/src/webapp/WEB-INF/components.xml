@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**********************************************************************************
+ * $URL: https://source.sakaiproject.org/contrib/etudes/sakai-jforum/tags/2.9.11/jforum-impl/pack/src/webapp/WEB-INF/components.xml $ 
+ * $Id: components.xml 83559 2013-04-30 19:03:29Z murthy@etudes.org $ 
+ *********************************************************************************** 
+ * Copyright (c) 2008, 2009, 2010, 2011, 2012, 2013 Etudes, Inc. 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * 
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License. 
+ ***********************************************************************************/
+ -->
+ 
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="org.etudes.api.app.jforum.JForumTransferService"
+		class="org.etudes.component.app.jforum.JForumTransferServiceImpl"
+		singleton="true" init-method="init" destroy-method="destroy">
+
+		<property name="jforumDataService">
+			<ref bean="org.etudes.api.app.jforum.JforumDataService" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.api.app.jforum.JforumDataService" 
+		class="org.etudes.component.app.jforum.JforumDataServiceImpl"
+		singleton="true" init-method="init" destroy-method="destroy">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+		
+		<property name="jforumCategoryService">
+			<ref bean="org.etudes.api.app.jforum.JForumCategoryService" />
+		</property>
+		
+		<property name="jforumPostService">
+			<ref bean="org.etudes.api.app.jforum.JForumPostService" />
+		</property>
+		
+		<property name="jforumUserService">
+			<ref bean="org.etudes.api.app.jforum.JForumUserService" />
+		</property>
+		
+		<property name="jforumForumService">
+			<ref bean="org.etudes.api.app.jforum.JForumForumService" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.api.app.jforum.JForumGBService" 
+		class="org.etudes.component.app.jforum.JForumGBServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="gradebookService">
+			<ref bean="org.sakaiproject.service.gradebook.GradebookService" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.api.app.jforum.JForumSynopticService"
+		class="org.etudes.component.app.jforum.JForumSynopticServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+		
+		<property name="toolManager">
+			<ref bean="org.sakaiproject.tool.api.ToolManager" />
+		</property>
+
+		<property name="siteService">
+			<ref bean="org.sakaiproject.site.api.SiteService" />
+		</property>
+		
+		<property name="jforumPrivateMessageService">
+			<ref bean="org.etudes.api.app.jforum.JForumPrivateMessageService" />
+		</property>
+		
+		<property name="jforumCategoryService">
+			<ref bean="org.etudes.api.app.jforum.JForumCategoryService" />
+		</property>
+		
+	</bean>
+
+	<bean id="org.etudes.api.app.jforum.JForumBaseDateService"
+		class="org.etudes.component.app.jforum.JForumBaseDateServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+
+		<property name="jforumGBService">
+			<ref bean="org.etudes.api.app.jforum.JForumGBService" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.api.app.jforum.JForumService" 
+		class="org.etudes.component.app.jforum.JForumServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+
+		<property name="siteService">
+			<ref bean="org.sakaiproject.site.api.SiteService" />
+		</property>
+
+		<property name="jforumCategoryService">
+			<ref bean="org.etudes.api.app.jforum.JForumCategoryService" />
+		</property>
+
+		<property name="jforumForumService">
+			<ref bean="org.etudes.api.app.jforum.JForumForumService" />
+		</property>
+
+		<property name="jforumSpecialAccessService">
+			<ref bean="org.etudes.api.app.jforum.JForumSpecialAccessService" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.api.app.jforum.JForumSecurityService"
+		class="org.etudes.component.app.jforum.JForumSecurityServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="securityService">
+			<ref bean="org.sakaiproject.authz.api.SecurityService" />
+		</property>
+		
+		<property name="sessionManager">
+			<ref bean="org.sakaiproject.tool.api.SessionManager" />
+		</property>
+		
+		<property name="siteService">
+			<ref bean="org.sakaiproject.site.api.SiteService" />
+		</property>
+		
+		<property name="toolManager">
+			<ref bean="org.sakaiproject.tool.api.ToolManager" />
+		</property>
+		
+		<property name="threadLocalManager">
+			<ref bean="org.sakaiproject.thread_local.api.ThreadLocalManager" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.api.app.jforum.JForumCategoryService"
+		class="org.etudes.component.app.jforum.JForumCategoryServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="jforumPostService">
+			<ref bean="org.etudes.api.app.jforum.JForumPostService" />
+		</property>
+
+		<property name="jforumForumService">
+			<ref bean="org.etudes.api.app.jforum.JForumForumService" />
+		</property>
+
+		<property name="jforumGradeService">
+			<ref bean="org.etudes.api.app.jforum.JForumGradeService" />
+		</property>
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+
+		<property name="threadLocalManager">
+			<ref bean="org.sakaiproject.thread_local.api.ThreadLocalManager" />
+		</property>
+
+		<property name="categoryDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.CategoryDaoMysql" />
+		</property>
+
+		<property name="jforumSecurityService">
+			<ref bean="org.etudes.api.app.jforum.JForumSecurityService" />
+		</property>
+
+		<property name="siteService">
+			<ref bean="org.sakaiproject.site.api.SiteService" />
+		</property>
+
+		<property name="jforumSpecialAccessService">
+			<ref bean="org.etudes.api.app.jforum.JForumSpecialAccessService" />
+		</property>
+
+		<property name="jforumUserService">
+			<ref bean="org.etudes.api.app.jforum.JForumUserService" />
+		</property>
+
+		<property name="userDirectoryService">
+			<ref bean="org.sakaiproject.user.api.UserDirectoryService" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.api.app.jforum.JForumForumService" 
+		class="org.etudes.component.app.jforum.JForumForumServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+
+		<property name="jforumGradeService">
+			<ref bean="org.etudes.api.app.jforum.JForumGradeService" />
+		</property>
+
+		<property name="jforumSpecialAccessService">
+			<ref bean="org.etudes.api.app.jforum.JForumSpecialAccessService" />
+		</property>
+		
+		<property name="jforumSecurityService">
+			<ref bean="org.etudes.api.app.jforum.JForumSecurityService" />
+		</property>
+
+		<property name="threadLocalManager">
+			<ref bean="org.sakaiproject.thread_local.api.ThreadLocalManager" />
+		</property>
+
+		<property name="forumDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.ForumDaoMysql" />
+		</property>
+		
+		<property name="categoryDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.CategoryDaoMysql" />
+		</property>
+		
+		<property name="siteService">
+			<ref bean="org.sakaiproject.site.api.SiteService" />
+		</property>
+		
+		<property name="jforumUserService">
+			<ref bean="org.etudes.api.app.jforum.JForumUserService" />
+		</property>
+		
+		<property name="jforumPostService">
+			<ref bean="org.etudes.api.app.jforum.JForumPostService" />
+		</property> 
+		
+		<property name="jforumGBService">
+			<ref bean="org.etudes.api.app.jforum.JForumGBService" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.api.app.jforum.JForumPostService" 
+		class="org.etudes.component.app.jforum.JForumPostServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+
+		<property name="jforumSpecialAccessService">
+			<ref bean="org.etudes.api.app.jforum.JForumSpecialAccessService" />
+		</property>
+
+		<property name="jforumGradeService">
+			<ref bean="org.etudes.api.app.jforum.JForumGradeService" />
+		</property>
+		
+		<property name="jforumGBService">
+			<ref bean="org.etudes.api.app.jforum.JForumGBService" />
+		</property>
+
+		<property name="jforumUserService">
+			<ref bean="org.etudes.api.app.jforum.JForumUserService" />
+		</property>
+
+		<property name="jforumSecurityService">
+			<ref bean="org.etudes.api.app.jforum.JForumSecurityService" />
+		</property>
+		
+		<property name="jforumEmailExecutorService">
+			<ref bean="org.etudes.api.app.jforum.JForumEmailExecutorService" />
+		</property>
+		
+		<property name="jforumSearchIndexingExecutorService">
+			<ref bean="org.etudes.api.app.jforum.JForumSearchIndexingExecutorService" />
+		</property>
+		
+		<property name="siteService">
+			<ref bean="org.sakaiproject.site.api.SiteService" />
+		</property>
+
+		<property name="topicDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.TopicDaoMysql" />
+		</property>
+
+		<property name="forumDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.ForumDaoMysql" />
+		</property>
+
+		<property name="categoryDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.CategoryDaoMysql" />
+		</property>
+		
+		<property name="attachmentDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.AttachmentDaoMysql" />
+		</property>
+		
+		<property name="jforumAttachmentService">
+			<ref bean="org.etudes.api.app.jforum.JForumAttachmentService" />
+		</property>
+		
+		<property name="threadLocalManager">
+			<ref bean="org.sakaiproject.thread_local.api.ThreadLocalManager" />
+		</property>
+		
+		<property name="jforumCategoryService">
+			<ref bean="org.etudes.api.app.jforum.JForumCategoryService" />
+		</property>
+
+		<property name="jforumForumService">
+			<ref bean="org.etudes.api.app.jforum.JForumForumService" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.api.app.jforum.JForumGradeService" 
+		class="org.etudes.component.app.jforum.JForumGradeServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="gradeDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.GradeDaoMysql" />
+		</property>
+
+		<property name="jforumGBService">
+			<ref bean="org.etudes.api.app.jforum.JForumGBService" />
+		</property>
+		
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" /> 
+		</property>
+		
+		<property name="jforumForumService">
+			<ref bean="org.etudes.api.app.jforum.JForumForumService" />
+		</property>
+		
+		<property name="jforumCategoryService">
+			<ref bean="org.etudes.api.app.jforum.JForumCategoryService" />
+		</property>
+		
+		<property name="jforumPostService">
+			<ref bean="org.etudes.api.app.jforum.JForumPostService" />
+		</property>
+		
+		<property name="jforumUserService">
+			<ref bean="org.etudes.api.app.jforum.JForumUserService" />
+		</property>
+		
+		<property name="jforumSecurityService">
+			<ref bean="org.etudes.api.app.jforum.JForumSecurityService" />
+		</property>
+		
+		<property name="siteService">
+			<ref bean="org.sakaiproject.site.api.SiteService" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.api.app.jforum.JForumSpecialAccessService"
+		class="org.etudes.component.app.jforum.JForumSpecialAccessServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+		
+		<property name="specialAccessDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.SpecialAccessDaoMysql" />
+		</property>
+		
+		<property name="jforumUserService">
+			<ref bean="org.etudes.api.app.jforum.JForumUserService" />
+		</property>
+	</bean>
+
+
+	<bean id="org.etudes.api.app.jforum.JForumUserService" 
+		class="org.etudes.component.app.jforum.JForumUserServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="userDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.UserDaoMysql" />
+		</property>
+		
+		<property name="userDirectoryService">
+			<ref bean="org.sakaiproject.user.api.UserDirectoryService" />
+		</property>
+		
+		<property name="siteService">
+			<ref bean="org.sakaiproject.site.api.SiteService" />
+		</property>
+		
+		<property name="threadLocalManager">
+			<ref bean="org.sakaiproject.thread_local.api.ThreadLocalManager" />
+		</property>
+		
+		<property name="jforumSecurityService">
+			<ref bean="org.etudes.api.app.jforum.JForumSecurityService" />
+		</property>
+	</bean>
+
+
+	<bean id="org.etudes.api.app.jforum.JForumPrivateMessageService"
+		class="org.etudes.component.app.jforum.JForumPrivateMessageServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+		
+		<property name="privateMessageDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.PrivateMessageDaoMysql" />
+		</property>
+		
+		<property name="jforumUserService">
+			<ref bean="org.etudes.api.app.jforum.JForumUserService" />
+		</property>
+		
+		<property name="jforumEmailExecutorService">
+			<ref bean="org.etudes.api.app.jforum.JForumEmailExecutorService" />
+		</property>
+		
+		<property name="siteService">
+			<ref bean="org.sakaiproject.site.api.SiteService" />
+		</property>
+		
+		<property name="attachmentDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.AttachmentDaoMysql" />
+		</property>
+		
+		<property name="jforumAttachmentService">
+			<ref bean="org.etudes.api.app.jforum.JForumAttachmentService" />
+		</property>
+		
+		<property name="jforumSecurityService">
+			<ref bean="org.etudes.api.app.jforum.JForumSecurityService" />
+		</property>
+	</bean>
+	
+	<bean id="org.etudes.api.app.jforum.JForumEmailService"
+		class="org.etudes.component.app.jforum.JForumEmailServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+		
+		<lookup-method name="emailService" bean="org.sakaiproject.email.api.EmailService" />
+		<lookup-method name="serverConfigurationService" bean="org.sakaiproject.component.api.ServerConfigurationService" />
+	</bean>
+	
+	<bean id="org.etudes.api.app.jforum.JForumEmailExecutorService"
+		class="org.etudes.component.app.jforum.JForumEmailExecutorServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+		
+		<property name="jforumEmailService">
+			<ref bean="org.etudes.api.app.jforum.JForumEmailService" />
+		</property>		
+	</bean>
+	
+	<bean id="org.etudes.api.app.jforum.JForumAttachmentService"
+		class="org.etudes.component.app.jforum.JForumAttachmentServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+		
+		<property name="attachmentDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.AttachmentDaoMysql" />
+		</property>
+		
+		<property name="threadLocalManager">
+			<ref bean="org.sakaiproject.thread_local.api.ThreadLocalManager" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.component.app.jforum.dao.mysql.CategoryDaoMysql"
+		class="org.etudes.component.app.jforum.dao.mysql.CategoryDaoMysql"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+		<property name="forumDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.ForumDaoMysql" />
+		</property>
+		<property name="gradeDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.GradeDaoMysql" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.component.app.jforum.dao.mysql.ForumDaoMysql"
+		class="org.etudes.component.app.jforum.dao.mysql.ForumDaoMysql"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+		
+		<property name="specialAccessDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.SpecialAccessDaoMysql" />
+		</property>
+		
+		<property name="gradeDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.GradeDaoMysql" />
+		</property>
+		
+		<property name="topicDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.TopicDaoMysql" />
+		</property>
+		
+		<property name="categoryDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.CategoryDaoMysql" />
+		</property>
+				
+		<property name="jforumPostService">
+			<ref bean="org.etudes.api.app.jforum.JForumPostService" />
+		</property>
+		
+		<property name="jforumCategoryService">
+			<ref bean="org.etudes.api.app.jforum.JForumCategoryService" />
+		</property>
+		
+		<property name="jforumSecurityService">
+			<ref bean="org.etudes.api.app.jforum.JForumSecurityService" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.component.app.jforum.dao.mysql.GradeDaoMysql"
+		class="org.etudes.component.app.jforum.dao.mysql.GradeDaoMysql"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+		
+		<property name="categoryDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.CategoryDaoMysql" />
+		</property>
+		
+		<property name="userDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.UserDaoMysql" />
+		</property>
+		
+		<property name="forumDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.ForumDaoMysql" />
+		</property>
+		
+		<property name="topicDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.TopicDaoMysql" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.component.app.jforum.dao.mysql.UserDaoMysql"
+		class="org.etudes.component.app.jforum.dao.mysql.UserDaoMysql"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+		
+		<property name="topicDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.TopicDaoMysql" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.component.app.jforum.dao.mysql.SpecialAccessDaoMysql"
+		class="org.etudes.component.app.jforum.dao.mysql.SpecialAccessDaoMysql"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.component.app.jforum.dao.mysql.TopicDaoMysql"
+		class="org.etudes.component.app.jforum.dao.mysql.TopicDaoMysql"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+		
+		<property name="specialAccessDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.SpecialAccessDaoMysql" />
+		</property>
+		
+		<property name="gradeDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.GradeDaoMysql" />
+		</property>
+		
+		<property name="postDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.PostDaoMysql" />
+		</property>
+		
+		<property name="forumDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.ForumDaoMysql" />
+		</property>
+		
+		<property name="jforumPostService">
+			<ref bean="org.etudes.api.app.jforum.JForumPostService" />
+		</property>
+		
+		<property name="jforumForumService">
+			<ref bean="org.etudes.api.app.jforum.JForumForumService" />
+		</property>
+		
+		<property name="attachmentDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.AttachmentDaoMysql" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.component.app.jforum.dao.mysql.PostDaoMysql"
+		class="org.etudes.component.app.jforum.dao.mysql.PostDaoMysql"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+	</bean>
+
+	<bean id="org.etudes.component.app.jforum.dao.mysql.PrivateMessageDaoMysql"
+		class="org.etudes.component.app.jforum.dao.mysql.PrivateMessageDaoMysql"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="attachmentDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.AttachmentDaoMysql" />
+		</property>
+		
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+		
+		<property name="userDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.UserDaoMysql" />
+		</property>
+	</bean>
+	
+	<bean id="org.etudes.api.app.jforum.JForumSearchIndexingExecutorService"
+		class="org.etudes.component.app.jforum.JForumSearchIndexingExecutorServiceImpl"
+		init-method="init" destroy-method="destroy" singleton="true">
+		
+		<property name="searchIndexerDao">
+			<ref bean="org.etudes.component.app.jforum.dao.mysql.SearchIndexerDaoMysql" />
+		</property>
+		
+	</bean>
+	
+	<bean id="org.etudes.component.app.jforum.dao.mysql.SearchIndexerDaoMysql"
+		class="org.etudes.component.app.jforum.dao.mysql.SearchIndexerDaoMysql"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+	</bean>
+	
+	<bean id="org.etudes.component.app.jforum.dao.mysql.AttachmentDaoMysql"
+		class="org.etudes.component.app.jforum.dao.mysql.AttachmentDaoMysql"
+		init-method="init" destroy-method="destroy" singleton="true">
+
+		<property name="sqlService">
+			<ref bean="org.sakaiproject.db.api.SqlService" />
+		</property>
+	</bean>
+</beans>

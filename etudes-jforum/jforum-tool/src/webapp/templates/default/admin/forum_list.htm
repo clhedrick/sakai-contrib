@@ -1,0 +1,420 @@
+<#--
+/**********************************************************************************
+ * $URL: https://source.sakaiproject.org/contrib/etudes/sakai-jforum/tags/2.9.11/jforum-tool/src/webapp/templates/default/admin/forum_list.htm $
+ * $Id: forum_list.htm 83559 2013-04-30 19:03:29Z murthy@etudes.org $ 
+ *********************************************************************************** 
+ * 
+ * Copyright (c) 2008, 2009, 2010, 2011, 2012 Etudes, Inc. 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * 
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License. 
+ * 
+ * Portions completed before July 1, 2004 Copyright (c) 2003, 2004 Rafael Steil, All rights reserved, licensed under the BSD license. 
+ * http://www.opensource.org/licenses/bsd-license.php 
+ * 
+ * Redistribution and use in source and binary forms, 
+ * with or without modification, are permitted provided 
+ * that the following conditions are met: 
+ * 
+ * 1) Redistributions of source code must retain the above 
+ * copyright notice, this list of conditions and the 
+ * following disclaimer. 
+ * 2) Redistributions in binary form must reproduce the 
+ * above copyright notice, this list of conditions and 
+ * the following disclaimer in the documentation and/or 
+ * other materials provided with the distribution. 
+ * 3) Neither the name of "Rafael Steil" nor 
+ * the names of its contributors may be used to endorse 
+ * or promote products derived from this software without 
+ * specific prior written permission. 
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT 
+ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, 
+ * BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
+ * THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE 
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER 
+ * IN CONTRACT, STRICT LIABILITY, OR TORT 
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE 
+ ***********************************************************************************/
+ -->
+<#include "header.htm"/>
+
+<script language="javascript">
+<#include "../js/calendar2.js"/>
+
+<#--
+function validateDates()
+{
+	var form = document.form;
+	
+	var eleTxt = document.getElementsByTagName("input");
+
+ 	for (i=0; i<eleTxt.length; i++) {
+ 		if (eleTxt[i].type == "text" && eleTxt[i].value.replace(/^\s*|\s*$/g, "").length > 0) 
+ 	 	{
+ 	 	 	var sdate = eleTxt[i];
+ 	 	 	if ((sdate.id).indexOf("startdate_") != -1)
+ 	 	 	{
+				if (!compareDates(sdate))
+				{
+	 				eleTxt[i].focus();
+					return false;
+				}
+ 	 	 	}	
+ 		}
+ 	}
+ 	return true;
+}
+
+
+function compareDates(sdate)
+{
+	var sdatearr = (sdate.id).split("_");
+
+	if (sdatearr.length != 2)
+	{
+		return false;
+	}
+	
+	var edate = document.getElementById("enddate_"+ sdatearr[1]);
+
+	var audate = document.getElementById("allowuntildate_"+ sdatearr[1]);
+		
+	var blnStartDate = true, blnEndDate = true, blnAllowUntilDate = true;
+	
+	if (sdate.length == 0) 
+ 	{
+		blnStartDate = false;
+ 	}
+	
+ 	if (edate.length == 0) 
+ 	{
+ 		blnEndDate = false;
+ 	}
+ 	
+ 	if (audate.length == 0) 
+ 	{
+ 		blnAllowUntilDate = false;
+ 	}
+ 	
+ 	if (blnStartDate && blnEndDate && blnAllowUntilDate)
+ 	{
+	 	if ((Date.parse(sdate.value) > Date.parse(edate.value)) || (Date.parse(sdate.value) > Date.parse(audate.value))
+	 				|| (Date.parse(edate.value) > Date.parse(audate.value))) 
+	 	{
+	   		alert("${I18n.getMessage("Forums.Form.DateError")}");
+	   		return false;
+	 	}
+ 	}
+ 	else if (blnStartDate && blnEndDate && !blnAllowUntilDate)
+	{
+ 		if ((Date.parse(sdate.value) > Date.parse(edate.value))) 
+	 	{
+	   		alert("${I18n.getMessage("Forums.Form.DateError")}");
+	   		return false;
+	 	}
+	}
+ 	else if (!blnStartDate && blnEndDate && blnAllowUntilDate)
+	{
+ 		if (Date.parse(edate.value) > Date.parse(audate.value)) 
+	 	{
+	   		alert("${I18n.getMessage("Forums.Form.DateError")}");
+	   		return false;
+	 	}
+	}
+ 	else if (blnStartDate && !blnEndDate && blnAllowUntilDate)
+ 	{
+	 	if (Date.parse(sdate.value) > Date.parse(audate.value)) 
+	 	{
+	   		alert("${I18n.getMessage("Forums.Form.DateError")}");
+	   		return false;
+	 	}
+ 	}
+
+ 	return true;
+}
+-->
+
+function moveForum(order, id)
+{
+	document.form.elements['action'].value = order;
+	document.form.elements['forum_id_1'].value = id;
+	document.form.submit();
+}
+
+</script>
+
+<form action="${contextPath}/jforum${extension}" method="post" name="form" id="form" accept-charset="${encoding}">
+<input type="hidden" name="action" value="applyChanges" />
+<input type="hidden" name="module" value="${moduleName}" />
+<input type="hidden" name="securityHash" value="${securityHash}" />
+<input type="hidden" name="autosavenav" id="autosavenav" value="forumlist" />
+<input type="hidden" name="navid" id="navid" value="" />
+<input type="hidden" id="actionMode" name="actionMode" value="saveForums"/>
+
+<table class="forumline" cellspacing="1" cellpadding="3" width="100%" border="0">
+	<#--
+	<tr>
+		<th class="thHead" valign="center" colspan="6" height="25">${I18n.getMessage("Forums.List.Title")}</th>
+	</tr>
+	-->
+	<!--1/5/06 - Mallika -adding error msg-->
+    <#if errorMessage?exists>
+		<tr>
+			<td align="center" colspan="6"><span class="redclass">${errorMessage}</span></td>
+		</tr>
+	</#if>
+	
+	<tr align="left">
+		<td class="catBottom" colspan="6" height="28" valign="middle">
+			<span class="gen">
+			<#--input class="mainoption" type="button" value="${I18n.getMessage("Forums.List.ClickToNew")}" id="btn_insert" name="button" onclick="javascript:navtoedit('foruminsert', '');return false;" title="${I18n.getMessage("add-forum-access-description")}" /-->
+			<a href="#" onclick="javascript:navtoedit('foruminsert', '');return false;" accesskey="${I18n.getMessage("new-access")}" title="${I18n.getMessage("add-forum-access-description")}">
+				<img class="imgicon" src="${contextPath}/templates/${templateName}/images/add.png" alt="add icon" title="${I18n.getMessage("add-forum-access-description")}"/>${I18n.getMessage("Forums.List.ClickToNew")}
+			</a>
+			&nbsp;&nbsp;
+			<#--input class="mainoption" type="submit" value="${I18n.getMessage("Forums.List.ClickToSave")}" name="saveForums" title="${I18n.getMessage("save-access-description")}" onclick="return validateDates();"/-->
+			<a id="saveForums" href="#" onclick="forumListSave();return false;" title="${I18n.getMessage("save-access-description")}" accesskey="${I18n.getMessage("save-access")}">
+				<img class="imgicon" src="${contextPath}/templates/${templateName}/images/save.png" alt="save icon" title="${I18n.getMessage("Forums.List.ClickToSave")}"/>${I18n.getMessage("Forums.List.ClickToSave")}
+			</a>
+			&nbsp;&nbsp;
+			<#--input class="mainoption" type="submit" value="${I18n.getMessage("Forums.List.ClickToDelete")}" name="deleteForums" title="${I18n.getMessage("delete-access-description")}" /-->
+			<a href="#" onclick="forumDelete();return false;" title="${I18n.getMessage("delete-access-description")}" accesskey="${I18n.getMessage("delete-access")}">
+				<img class="imgicon" src="${contextPath}/templates/${templateName}/images/delete.png" alt="delete icon" title="${I18n.getMessage("delete-access-description")}"/>${I18n.getMessage("Forums.List.ClickToDelete")}
+			</a>
+			</span>
+		</td>
+	</tr>
+	<input type="hidden" name="forum_id_1" value=""/>
+	<#assign zdivindex = 500/>
+	<!--Mallika end new code -->
+	<#list categories as category>
+
+			<tr>
+				<td colspan="4" class="catleft">
+					<span class="cattitle">${category.title}</span>
+				</td>
+				<td class="catleft">&nbsp;</td>
+				<td class="catleft">&nbsp;</td>
+			</tr>
+
+			<#assign counter = 1/>
+			<#assign forums = category.forums/>
+			<#list forums as forum>
+				<#assign catDates = false />
+				<#assign forumTopicDates = false />
+				<#assign forumDates = false />
+				<#if ((category.accessDates??) && (category.accessDates.openDate?? || category.accessDates.dueDate?? || category.accessDates.allowUntilDate??))>
+					<#assign catDates = true />
+				</#if>
+				
+				<#if (repository.isForumTopicDates(forum.id))>
+					<#assign forumTopicDates = true />
+				</#if>
+				
+				<#if ((forum.accessDates??) && (forum.accessDates.openDate?? || forum.accessDates.dueDate?? || forum.accessDates.allowUntilDate??))>
+					<#assign forumDates = true />
+				</#if>
+				<tr>
+					<td width="10" class="row1">&nbsp;</td>
+					<td class="row2" width="2%"><input type="checkbox" name="forum_id" value="${forum.id}" /></td>
+					<td class="row1" width="2%">
+						<#--if (forum.accessDates?? && forum.accessDates.openDate?? && forum.accessDates.dueDate??) && (forum.accessDates.openDate > forum.accessDates.dueDate)-->
+						<#if (forum.accessDates?? && !forum.accessDates.isDatesValid())>
+							<#assign zdivindex = zdivindex - 1/>
+							<span class="confirmpanel1" style="z-index:${zdivindex}">
+							<span class="gensmaller">
+							<a href="#" onclick="showElement('frm_dt_invalid_${forum.id}');return false;"><img src="${contextPath}/templates/${templateName}/images/warning.png" alt="${I18n.getMessage("dates-invalid")}" title="${I18n.getMessage("dates-invalid")}"/></a>
+							</span>
+							<#assign zdivindex = zdivindex - 1/>
+							<span class="confirmpanel3" style="display:none;z-index:${zdivindex}" id="frm_dt_invalid_${forum.id}">
+							<table cellpadding="2" cellspacing="0" width="100%">
+							<tr>
+								<td colspan="2">
+									&nbsp;
+								</td>
+							</tr>
+							<tr>									
+								<td colspan="2" align="left">
+									<span class="gen">
+										&nbsp;&nbsp;
+										${I18n.getMessage("Dates.Invalid.Alert")}
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td width="50">
+									&nbsp;
+								</td>
+								<td style="" align="left">
+									&nbsp;&nbsp;<input type="button" value="OK" onclick="hideElement('frm_dt_invalid_${forum.id}');return false;" style="padding-left:2em; background: #eee url('${contextPath}/templates/${templateName}/images/ok.png') .2em no-repeat;"/>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									&nbsp;
+								</td>
+							</tr>
+							</table>
+							</span>
+							
+							</span>
+						<#else>
+							&nbsp;	
+						</#if>
+					</td>
+					<td class="row1" width="86%">
+						<span class="forumlink">
+							&nbsp;<a class="forumlink" id="forumEdit" href="#" onclick="javascript:navtoedit('frmedit', ${forum.id});return false;">${forum.name}</a>
+						</span>
+					</td>
+					<td class="row2" align="center" width="3%" nowrap>
+						<#--if (!catDates && !forumTopicDates)>
+							<#if forumDates>							
+								<#if (forum.specialAccess.size() > 0)>
+									<a href="${JForumContext.encodeURL("/specialAccess/showForumList/${forum.id}")}" title="${I18n.getMessage("SpecialAccess.Edit.Title")}"><img src="${contextPath}/templates/${templateName}/images/special_access_view.png" alt="${I18n.getMessage("SpecialAccess.Edit.Title")}"/></a>
+								<#else>
+									<a href="${JForumContext.encodeURL("/specialAccess/showForumList/${forum.id}")}" title="${I18n.getMessage("SpecialAccess.Add.Title")}"><img src="${contextPath}/templates/${templateName}/images/special_access_add.png" alt="${I18n.getMessage("SpecialAccess.Add.Title")}"/></a>
+								</#if>						
+							</#if>
+						</#if-->
+					</td>					
+					<td class="row2" align="center" width="7%" nowrap>
+						<span class="gen">
+						<select id="frmreorder_${forum.id}" name="frmreorder_${forum.id}" onchange="javascript:navtoedit('frmreorder', ${forum.id});return false;" title="">
+							<#assign orderSize = forums.size()>
+							<#list 1..orderSize as order>
+								<#if counter == order>
+									<option value="${order}" selected="selected">${order}</option>
+								<#else>
+									<option value="${order}">${order}</option>
+								</#if>					  
+							</#list>
+						</select>
+						</span>
+					</td>
+				</tr>				
+				<#--display dates-->
+				<#if (catDates)>
+					<tr>
+						<td>&nbsp;</td>
+						<td colspan="5">
+							<span class="gen">
+								&nbsp;&nbsp;&nbsp;${I18n.getMessage("Forums.Form.CategoryDatesSet")}
+							</span>
+						</td>
+					</tr>					
+				<#elseif (forumTopicDates)>
+					<tr>
+						<td>&nbsp;</td>
+						<td colspan="5">
+							<span class="gen">
+								&nbsp;&nbsp;&nbsp;${I18n.getMessage("Forums.Form.TopicDatesSet")}
+							</span>
+						</td>
+					</tr>
+				<#else>
+					<tr>
+						<td class="row1" colspan="2">&nbsp;</td>
+						<td class="row1" colspan="3" nowrap>
+							<span class="gen">
+								&nbsp;${I18n.getMessage("Forums.List.StartDate")}
+								&nbsp;<input type="text" style="WIDTH: 140px" maxlength="50" name="startdate_${forum.id}" id="startdate_${forum.id}" value="<#if forum?exists><#if forum.accessDates?? && forum.accessDates.openDate??>${DateUtil.getStringFromDate(forum.accessDates.openDate)}</#if></#if>" /><input type="image" id="sdateCal" onclick="showCal('startdate_${forum.id}','8','0','AM');return false;" width="20" height="20" src="${contextPath}/templates/${templateName}/images/date-time_preferences.gif" styleClass="ImgSpace"/>
+							</span>
+							&nbsp;
+							<span class="gen">
+								&nbsp;${I18n.getMessage("Forums.List.EndDate")}
+								&nbsp;<input type="text" style="WIDTH: 140px" maxlength="50" name="enddate_${forum.id}" id="enddate_${forum.id}" value="<#if forum?exists><#if forum.accessDates?? && forum.accessDates.dueDate??>${DateUtil.getStringFromDate(forum.accessDates.dueDate)}</#if></#if>" /><input type="image" id="edateCal" onclick="showCal('enddate_${forum.id}','11','59','PM');return false;" width="20" height="20" src="${contextPath}/templates/${templateName}/images/date-time_preferences.gif" styleClass="ImgSpace"/>
+							</span>
+							&nbsp;
+							<span class="gen">
+								&nbsp;${I18n.getMessage("Forums.List.AllowUntil")}
+								&nbsp;<input type="text" style="WIDTH: 140px" maxlength="50" name="allowuntildate_${forum.id}" id="allowuntildate_${forum.id}" value="<#if forum?exists><#if forum.accessDates?? && forum.accessDates.allowUntilDate??>${DateUtil.getStringFromDate(forum.accessDates.allowUntilDate)}</#if></#if>" /><input type="image" id="edateCal" onclick="showCal('allowuntildate_${forum.id}','11','59','PM');return false;" width="20" height="20" src="${contextPath}/templates/${templateName}/images/date-time_preferences.gif" styleClass="ImgSpace"/>
+							</span>
+						</td>
+						<td class="row2" align="center" nowrap>
+							<#if (!catDates && !forumTopicDates)>
+								<#if forumDates>							
+									<#if (forum.specialAccess.size() > 0)>
+										<a href="${JForumContext.encodeURL("/specialAccess/showForumList/${forum.id}")}" title="${I18n.getMessage("SpecialAccess.Edit.Title")}"><img src="${contextPath}/templates/${templateName}/images/special_access_view.png" alt="${I18n.getMessage("SpecialAccess.Edit.Title")}"/></a>
+									<#else>
+										<a href="${JForumContext.encodeURL("/specialAccess/showForumList/${forum.id}")}" title="${I18n.getMessage("SpecialAccess.Add.Title")}"><img src="${contextPath}/templates/${templateName}/images/special_access_add.png" alt="${I18n.getMessage("SpecialAccess.Add.Title")}"/></a>
+									</#if>						
+								</#if>
+							</#if>
+						</td>
+					</tr>
+					<tr>
+					<td class="row1" colspan="2">&nbsp;</td>
+					<td class="row1" colspan="4">
+							<span class="gen">
+									<input type="checkbox" name="hideuntilopen_${forum.id}" id="hideuntilopen_${forum.id}" value="1" <#if forum??><#if forum.accessDates?? && forum.accessDates.isHideUntilOpen()>checked</#if></#if> />
+							&nbsp;${I18n.getMessage("Forums.List.HideUntilOpen")}
+							</span>
+						</td>
+					</tr>
+					<#--
+					<tr>
+						<td class="row1" colspan="2">&nbsp;</td>
+						<td class="row1" colspan="4">
+							<span class="gen">
+								<input type="checkbox" name="lockforum_${forum.id}" id="lockforum_${forum.id}" value="1" <#if forum?exists><#if forum.accessDates?? && forum.accessDates.isLocked()>checked</#if></#if> />
+								&nbsp;${I18n.getMessage("Forums.List.LockForum")}
+							</span>
+						</td>
+					</tr>
+					-->
+				</#if>
+				<tr>
+					<td colspan="6">&nbsp;</td>
+				</tr>
+
+				<#assign counter = counter + 1/>
+			</#list>
+
+	</#list>
+	
+
+	<tr align="left">
+		<td class="catBottom" colspan="6" height="28">
+			<span class="gen">
+			<#--input class="mainoption" type="button" value="${I18n.getMessage("Forums.List.ClickToNew")}" id="btn_insert" name="button" onclick="javascript:navtoedit('foruminsert', '');return false;" title="${I18n.getMessage("add-forum-access-description")}" /-->
+			<a href="#" onclick="javascript:navtoedit('foruminsert', '');return false;" accesskey="${I18n.getMessage("new-access")}" title="${I18n.getMessage("add-forum-access-description")}">
+				<img class="imgicon" src="${contextPath}/templates/${templateName}/images/add.png" alt="add icon" title="${I18n.getMessage("add-forum-access-description")}"/>${I18n.getMessage("Forums.List.ClickToNew")}
+			</a>
+			&nbsp;&nbsp;
+			<#--input class="mainoption" type="submit" value="${I18n.getMessage("Forums.List.ClickToSave")}" name="saveForums" title="${I18n.getMessage("save-access-description")}" onclick="return validateDates();"/-->
+			<a id="saveForums" href="#" onclick="forumListSave();return false;" title="${I18n.getMessage("save-access-description")}" accesskey="${I18n.getMessage("save-access")}">
+				<img class="imgicon" src="${contextPath}/templates/${templateName}/images/save.png" alt="save icon" title="${I18n.getMessage("Forums.List.ClickToSave")}"/>${I18n.getMessage("Forums.List.ClickToSave")}
+			</a>
+			&nbsp;&nbsp;
+			<#--input class="mainoption" type="submit" value="${I18n.getMessage("Forums.List.ClickToDelete")}" name="deleteForums" title="${I18n.getMessage("delete-access-description")}" /-->
+			<a href="#" onclick="forumDelete();return false;" title="${I18n.getMessage("delete-access-description")}" accesskey="${I18n.getMessage("delete-access")}">
+				<img class="imgicon" src="${contextPath}/templates/${templateName}/images/delete.png" alt="delete icon" title="${I18n.getMessage("delete-access-description")}"/>${I18n.getMessage("Forums.List.ClickToDelete")}
+			</a>
+			</span>
+		</td>
+	</tr>
+</table>
+</form>
+
+<#include "bottom.htm"/>

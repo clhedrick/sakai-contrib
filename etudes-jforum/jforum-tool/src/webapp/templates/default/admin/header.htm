@@ -1,0 +1,106 @@
+<#--
+/***********************************************************************************
+ * $URL: https://source.sakaiproject.org/contrib/etudes/sakai-jforum/tags/2.9.11/jforum-tool/src/webapp/templates/default/admin/header.htm $
+ * $Id: header.htm 83559 2013-04-30 19:03:29Z murthy@etudes.org $ 
+ *********************************************************************************** 
+ * 
+ * Copyright (c) 2009, 2010, 2011 Etudes, Inc. 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * 
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License. 
+ * 
+ ***********************************************************************************/
+ -->
+<#setting number_format = "#"/>
+<#setting datetime_format = dateTimeFormat/>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+<meta http-equiv="Cache-Control" content="no-cache">
+<style type="text/css">@import url( ${contextPath}/templates/${templateName}/admin/style.css );</style>
+${JForumContext.sakaiHeadJSScriptTag()}
+
+<title>${pageTitle?default("JForum")}</title>
+<script type="text/javascript"><#include "js/utils.js"/></script>
+<script type="text/javascript"><#include "js/autosave.js"/></script>
+</head>
+<body onload="${JForumContext.sakaiWinHeightJSFunction()}" text="#000000" vlink="#5493b4" link="#006699" bgcolor="#e5e5e5">
+
+<table width="100%" border="0">
+	<tr>
+		<td align="middle">
+			<table class="forumline" cellspacing="1" cellpadding="4" width="100%" border="0">
+				<#--
+				<tr>
+					<td class="maintitle" height="25">${I18n.getMessage("Admin.administration")}</td>
+				</tr>
+				-->
+				<tr>
+					<td align="center" nowrap="nowrap">
+						<#--&nbsp;<img src="${contextPath}/templates/${templateName}/images/dicussion-home.gif"><a id="forumIndex" class="nav" href="${contextPath}/forums/list${extension}">${I18n.getMessage("Admin.forumIndex")}</a>-->
+						<#--&nbsp;<img src="${contextPath}/templates/${templateName}/images/dicussion-home.gif"><a id="forumIndex" class="nav" href="#" onclick="javascript:savechanges('discussionlist');return false;">${I18n.getMessage("Admin.forumIndex")}</a-->
+						&nbsp;<a id="forumIndex" class="gen" href="#" onclick="javascript:savechanges('discussionlist');return false;"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/home.png" alt="discussion home icon"/>${I18n.getMessage("Admin.forumIndex")}</a>
+						<#--&nbsp;&nbsp;&nbsp;<img src="${contextPath}/templates/${templateName}/images/manage_categories.png"><a id="categories" class="nav" href="${contextPath}/adminCategories/list${extension}">${I18n.getMessage("Admin.categories")}</a-->
+						<#--&nbsp;&nbsp;&nbsp;<img src="${contextPath}/templates/${templateName}/images/manage_categories.png"><a id="categories" class="nav"  href="#" onclick="javascript:savechanges('categories');return false;">${I18n.getMessage("Admin.categories")}</a-->
+						&nbsp;&nbsp;&nbsp;<a id="categories" class="gen"  href="#" onclick="javascript:savechanges('categories');return false;"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/folder_category.png" alt="manage categories icon"/>${I18n.getMessage("Admin.categories")}</a>
+						<#--&nbsp;&nbsp;&nbsp;<img src="${contextPath}/templates/${templateName}/images/manage_forums.png"><a id="forums" class="nav" href="${contextPath}/adminForums/list${extension}">${I18n.getMessage("Admin.forums")}</a>-->
+						<#--&nbsp;&nbsp;&nbsp;<img src="${contextPath}/templates/${templateName}/images/manage_forums.png"><a id="forums" class="nav" href="#" onclick="javascript:savechanges('forums');return false;">${I18n.getMessage("Admin.forums")}</a-->
+						&nbsp;&nbsp;&nbsp;<a id="forums" class="gen" href="#" onclick="javascript:savechanges('forums');return false;"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/folder_forums.png" alt="manage forums icon"/>${I18n.getMessage("Admin.forums")}</a>
+						<#--&nbsp;&nbsp;&nbsp;<img src="${contextPath}/templates/${templateName}/images/import.gif"><a id="importexport" class="nav" href="${contextPath}/adminImportExport/list${extension}">${I18n.getMessage("Admin.importexport")}</a>-->
+						<#--&nbsp;&nbsp;&nbsp;<img src="${contextPath}/templates/${templateName}/images/import.gif"><a id="importexport" class="nav" href="#" onclick="javascript:savechanges('importexport');return false;">${I18n.getMessage("Admin.importexport")}</a-->
+						&nbsp;&nbsp;&nbsp;<a id="importexport" class="gen" href="#" onclick="javascript:savechanges('importexport');return false;"><img class="imgicon" src="${contextPath}/templates/${templateName}/images/import.png" alt="import export icon"/>${I18n.getMessage("Admin.importexport")}</a>
+
+			
+					  	<#if  session.isSakaiAdmin()>
+					  		</br>
+					  		&nbsp;<img src="${contextPath}/templates/${templateName}/images/attachment-groups.png"><a id="attachments" class="nav" href="${contextPath}/adminAttachments/extensionGroups${extension}" >${I18n.getMessage("Admin.attachExtensionGroups")}</a>
+					  		&nbsp;&nbsp;&nbsp;<img src="${contextPath}/templates/${templateName}/images/attachment-extensions.png"><a id="attachments" class="nav" href="${contextPath}/adminAttachments/extensions${extension}" >${I18n.getMessage("Admin.attachExtensions")}</a>
+							<#--&nbsp;&nbsp;&nbsp;<a id="configurations" class="nav" href="${contextPath}/adminCache/list${extension}" >${I18n.getMessage("Admin.cache")}</a-->
+					 	</#if>
+				
+					
+					</td>
+				</tr>
+				<tr>
+					<td><img src="${contextPath}/templates/${templateName}/images/spacer.gif" alt="" width="1" height="6" /></td>  
+				</tr>
+				<tr>
+					<td>
+						<span class="maintitle">
+							<#if viewTitleManageCatg?exists && viewTitleManageCatg>
+								<img class="imgicon" src="${contextPath}/templates/${templateName}/images/folder_category.png">${I18n.getMessage("Admin.categories")}
+							<#elseif viewTitleManageForums?exists && viewTitleManageForums>
+								<img class="imgicon" src="${contextPath}/templates/${templateName}/images/folder_forums.png">${I18n.getMessage("Admin.forums")}
+							<#elseif viewTitleImportExport?exists && viewTitleImportExport>
+								<img class="imgicon" src="${contextPath}/templates/${templateName}/images/import.png">${I18n.getMessage("Admin.importexport")}
+							<#elseif viewTitleManageAttachExtensions?exists && viewTitleManageAttachExtensions>
+								<img class="imgicon" src="${contextPath}/templates/${templateName}/images/attachment-extensions.png">${I18n.getMessage("Admin.manageAttachExtensions")}
+							<#elseif viewTitleManageAttachExtensionGroups?exists && viewTitleManageAttachExtensionGroups>
+								<img class="imgicon" src="${contextPath}/templates/${templateName}/images/attachment-groups.png">${I18n.getMessage("Admin.manageAttachExtensionGroups")}
+							<#elseif viewTitleManageCache?exists && viewTitleManageCache>
+								${I18n.getMessage("Admin.manageCache")}
+							</#if>
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="${contextPath}/templates/${templateName}/images/spacer.gif" alt="" width="1" height="6" /></td>  
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>

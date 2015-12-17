@@ -1,0 +1,39 @@
+<div rsf:id="assn2-assignment-tags-widget:">
+
+    <div rsf:id="provider-section:">
+        <div rsf:id="provider_toggle_section:">
+        <!-- this is for the collapsible toggle for displaying the tag info from this provider -->
+        </div>
+        <div rsf:id="provider_details" class="toggleSubsection">
+            <div id="tag_header">
+                <h3 rsf:id="provider-heading" style="display: inline;">Provider 1</h3>
+                <a class="tagDescription" href="" onclick="return false;" rsf:id="provider-description">What is this??</a>
+                
+            </div>
+            
+            <p class="instruction indnt1" rsf:id="provider-instruction">instructions</p>
+                        
+            <table class="tagTable indnt1">
+                <tr>
+                    <th rsf:id="tag-heading:">Site</th>
+                </tr>
+                <tr rsf:id="tag-data-row:">
+                    <td rsf:id="tag-data:">EPORT 101</td>
+                </tr>
+            </table>
+            
+            <script type="text/javascript">
+              //<![CDATA[
+              jQuery(document).ready(function(){
+                 $('#tag_header a').tooltip({
+                     track: true,
+                     showURL: false,
+                     fade: 250
+                   });
+              });
+              //]]>
+            </script>
+        </div>
+    </div>
+</div>
+

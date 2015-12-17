@@ -1,0 +1,145 @@
+body {
+  padding: 5px;	
+}
+
+#asnn-list-table {
+  width: 100%;
+}
+
+
+#asnn-list-table th {
+  text-align: left;
+}
+
+.asnntitle, .titleedit {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.opendatelabel, .duedatelabel, .groupslabel, .sortbylabel {
+  font-weight: bold;
+}
+
+.asnninfolist {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.removeAsnn {
+    text-align: right; 
+    width: 92%; 
+    margin-top: 20px; 
+    margin-left: 2.3em; 
+}
+
+/* This is to accomodate FLUID-2739 for the meanwhile.  We are making our own
+ * simplified dragging avatar.
+ */
+.asnn-drag-avatar {
+  width:70%;
+  background-color: #eee;
+  border: solid 1px #333333;
+  opacity: 0.80;
+  padding: 5px 0 0 30px;
+}
+
+/*
+ *  These are for the cells like have borders or other decoration and show
+ *  information assignment. The hidden column that only shows up on hover will
+ *  not use this.
+ */
+.asnn-decorated-cell, .asnn-decorated-heading {
+  border-bottom: solid 2px #cccccc;
+  padding: 7px 0;
+}
+
+.asnn-title-cell {
+    width: 75%;
+}
+
+
+.asnn-decorated-heading {
+  vertical-align: top;
+}
+
+
+.asnn-hover {
+  background-color: #feffcc;
+}
+
+/* End Asnn Table Classes */
+
+
+/* Start Sorting Bar Classes */
+
+.sort-bar {
+  margin: 0 0 0 2px;
+  padding: 0;
+}
+
+.sort-bar, .sort-item {
+  display: inline;
+}
+
+/* Inline Editing */
+
+.fl-inlineEdit-tooltip {
+    position    : absolute;
+    background  : lightyellow;
+    border      : 1px solid #999;
+    font        : normal 80% sans-serif;
+    padding     : 3px 5px;
+}
+
+/* :hover */
+.fl-inlineEdit-invitation {
+    border      : 1px solid #999;
+    /* background  : lightyellow; */
+    background  : #ccffed;
+    cursor      : pointer;
+    padding     : 1px 1px 0px 1px;
+    margin      : 0px;
+    /*margin      : -1px;*/
+}
+
+/* No assignments section */
+.noAsnnInfo {
+    color: #5E5E5E;
+    padding: 1.2em;
+}
+
+.noAsnnHeading {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.generalErrors {
+    margin-left: 40px;
+    margin-bottom: 15px;
+}
+
+.actionLink {
+    font-size: 1.1em;
+}
+
+.actionImage {
+    vertical-align: bottom;
+}
+
+/* action bar/pager styling */
+#actionBar {
+    text-align: left; 
+    float: left; 
+    width: 70%;
+    word-wrap: break-word;
+}
+
+#top-pager-area {
+    text-align: right; 
+    float: right; 
+    width: 30%;
+}
+.actionBarNoPager {
+    width: 98% !important;
+}

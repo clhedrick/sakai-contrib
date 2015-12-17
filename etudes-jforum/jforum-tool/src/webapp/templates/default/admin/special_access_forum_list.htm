@@ -1,0 +1,264 @@
+<#--
+/**********************************************************************************
+ * $URL: https://source.sakaiproject.org/contrib/etudes/sakai-jforum/tags/2.9.11/jforum-tool/src/webapp/templates/default/admin/special_access_forum_list.htm $
+ * $Id: special_access_forum_list.htm 83559 2013-04-30 19:03:29Z murthy@etudes.org $
+ ***********************************************************************************
+ *
+ * Copyright (c) 2008, 2009, 2010, 2011, 2012, 2013 Etudes, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ***********************************************************************************/
+ -->
+<#include "header.htm"/>
+
+<form action="${contextPath}/jforum${extension}" method="post" name="form" id="form" accept-charset="${encoding}">
+<input type="hidden" name="action" value="${action}" />
+<input type="hidden" name="module" value="${moduleName}" />
+<input type="hidden" name="forum_id" value="${forum.id}" />
+<input type="hidden" name="mode" value="forum_sa" />
+<input type="hidden" name="securityHash" value="${securityHash}" />
+
+<table class="forumline" cellspacing="1" cellpadding="3" width="100%" border="0">
+	<tr>
+		<th class="thHead" valign="center" colspan="6" height="25">
+			${I18n.getMessage("SpecialAccess.List.Title")}
+		</th>
+	</tr>
+
+	<#if errorMessage?exists>
+		<tr>
+			<td align="center" colspan="6"><span class="gensmall"><font color="#FF0000">${errorMessage}</font></span></td>
+		</tr>
+	</#if>
+
+	<tr align="center">
+		<td class="catBottom" valign="center" align="left" colspan="6" height="28">
+			<span class="cattitle">
+				${forum.name}
+			</span>
+		</td>
+	</tr>
+	<#assign zdivindex = 500/>
+	<#assign accessSize = forumspecialAccessList.size()/>
+	<#if (accessSize > 0)>	
+	<tr align="center">
+		<td class="catBottom" valign="center" align="center" colspan="6" height="28">
+			<input class="mainoption" type="button" value="${I18n.getMessage("SpecialAccess.List.Add")}" id="btn_insert" name="button" onclick="document.location = '${contextPath}/${moduleName}/insertForum/${forum.id}${extension}';" accesskey="${I18n.getMessage("add-access")}" title="${I18n.getMessage("add-category-special-access-description")}"/>
+			&nbsp;&nbsp;
+			<input class="mainoption" type="submit" value="${I18n.getMessage("SpecialAccess.List.Delete")}" name="deleteSpecialAccess" accesskey="${I18n.getMessage("delete-access")}" title="${I18n.getMessage("delete-access-description")}"/>
+		</td>
+	</tr>
+	</#if>
+	
+	<tr align="center" class="thHead">
+		<th class="thTop" style="white-space:nowrap" align="center" width="8%">
+			&nbsp;
+		</th>
+		<th class="thTop" style="white-space:nowrap" align="left" width="32%">
+			&nbsp;${I18n.getMessage("SpecialAccess.List.Name")}
+		</th>
+		<th class="thTop" style="white-space:nowrap" align="left" width="15%">
+			&nbsp;${I18n.getMessage("SpecialAccess.List.StartDate")}
+		</th>
+		<th class="thTop" style="white-space:nowrap" align="left" width="15%">
+			&nbsp;${I18n.getMessage("SpecialAccess.List.HideUntilOpen")}
+		</th>
+		<th class="thTop" style="white-space:nowrap" align="left" width="15%">
+			&nbsp;${I18n.getMessage("SpecialAccess.List.EndDate")}
+		</th>
+		<th class="thTop" style="white-space:nowrap" align="left" width="15%">
+			&nbsp;${I18n.getMessage("SpecialAccess.List.AllowUntil")}
+		</th>
+		<#--
+		<th class="thTop" style="white-space:nowrap" align="left" width="15%">
+			&nbsp;${I18n.getMessage("SpecialAccess.List.LockOnDue")}
+		</th>
+		-->
+	</tr>
+	<#list forumspecialAccessList as forumspecialAccess>
+	<#assign invalidSpecialAccessDate=false/>
+	<tr align="center">
+		<td class="row1" valign="center" align="left">
+			<input type="checkbox" name="special_access_id" value="${forumspecialAccess.id}" />
+			<#--if ((forumspecialAccess.isOverrideStartDate()) && (forumspecialAccess.isOverrideEndDate()))>
+				<#if ((forumspecialAccess.accessDates.openDate??) && (forumspecialAccess.accessDates.dueDate??) && (forumspecialAccess.accessDates.openDate > forumspecialAccess.accessDates.dueDate))>
+					<#assign invalidSpecialAccessDate = true/>
+				</#if>
+			<#elseif ((forumspecialAccess.isOverrideStartDate()) && (!forumspecialAccess.isOverrideEndDate()))>
+				<#if ((forumspecialAccess.accessDates.openDate??) && (forum.accessDates.dueDate??) && (forumspecialAccess.accessDates.openDate > forum.accessDates.dueDate))>
+					<#assign invalidSpecialAccessDate = true/>
+				</#if>
+			<#elseif ((!forumspecialAccess.isOverrideStartDate()) && (forumspecialAccess.isOverrideEndDate()))>
+				<#if ((forumspecialAccess.accessDates.openDate??) && (forumspecialAccess.accessDates.dueDate??) && (forum.accessDates.openDate > forumspecialAccess.accessDates.dueDate))>
+					<#assign invalidSpecialAccessDate = true/>
+				</#if>
+			<#elseif ((!forumspecialAccess.isOverrideStartDate()) && (!forumspecialAccess.isOverrideEndDate()))>
+				<#if ((forum.accessDates.openDate??) && (forum.accessDates.dueDate??) && (forum.accessDates.openDate?datetime > forum.accessDates.dueDate?datetime))>
+					<#assign invalidSpecialAccessDate = true/>
+				</#if>
+			</#if-->
+			<#--if invalidSpecialAccessDate-->
+			<#if !forumspecialAccess.isForumSpecialAccessDatesValid(forum)>
+				<#assign zdivindex = zdivindex - 1/>
+				<span class="confirmpanel1" style="z-index:${zdivindex}">
+				<span class="gensmaller">
+				<a href="#" onclick="showElement('frm_dt_invalid_${forumspecialAccess.id}');return false;"><img src="${contextPath}/templates/${templateName}/images/warning.png" alt="${I18n.getMessage("dates-invalid")}" title="${I18n.getMessage("dates-invalid")}"/></a>
+				</span>
+				<#assign zdivindex = zdivindex - 1/>
+				<span class="confirmpanel3" style="display:none;z-index:${zdivindex}" id="frm_dt_invalid_${forumspecialAccess.id}">
+				<table cellpadding="2" cellspacing="0" width="100%">
+				<tr>
+					<td colspan="2">
+						&nbsp;
+					</td>
+				</tr>
+				<tr>									
+					<td colspan="2" align="left">
+						<span class="gen">
+							&nbsp;&nbsp;
+							${I18n.getMessage("Dates.Invalid.Alert")}
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td width="50">
+						&nbsp;
+					</td>
+					<td style="" align="left">
+						&nbsp;&nbsp;<input type="button" value="OK" onclick="hideElement('frm_dt_invalid_${forumspecialAccess.id}');return false;" style="padding-left:2em; background: #eee url('${contextPath}/templates/${templateName}/images/ok.png') .2em no-repeat;"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						&nbsp;
+					</td>
+				</tr>
+				</table>
+				</span>
+				
+				</span>
+			</#if>		
+		</td>
+		<td class="row1" valign="center" align="left">
+			<span class="gen">
+				<#assign counter = 0/>
+				<a href="${JForumContext.encodeURL("/specialAccess/editForum/${forumspecialAccess.id}")}" title="">
+				<#list forumspecialAccess.getUsers() as user>
+					<#if (counter > 0)>
+						</br>
+					</#if>
+					${user.lastName?default("")}&nbsp;${user.firstName?default("")}
+					<#assign counter = counter + 1/>
+				</#list>
+				</a>
+			</span>
+		</td>
+		<td class="row1" valign="center" align="left">
+			<span class="gen">				
+				<#if (!forumspecialAccess.isOverrideStartDate())>
+					<i>${I18n.getMessage("SpecialAccess.List.Default")}</i>
+				<#else>
+					<#if (forumspecialAccess.accessDates.openDate?exists)>
+						${DateUtil.getStringFromDate(forumspecialAccess.accessDates.openDate)}
+					<#else>
+						<i>${I18n.getMessage("SpecialAccess.List.NoOpenDate")}</i>
+					</#if>
+				</#if>				
+			</span>
+		</td>
+		<td class="row1" valign="center" align="left">
+			<span class="gen">
+				<#if (forumspecialAccess.isOverrideHideUntilOpen())>
+					<#if (forumspecialAccess.accessDates.isHideUntilOpen())>
+						<i>${I18n.getMessage("SpecialAccess.List.HideUntilOpenYes")}</i>
+					<#else>
+						<i>${I18n.getMessage("SpecialAccess.List.HideUntilOpenNo")}</i>
+					</#if>
+				<#else>
+					<#if (forumspecialAccess.isOverrideStartDate())>
+						<#if (forumspecialAccess.accessDates.isHideUntilOpen())>
+							<i>${I18n.getMessage("SpecialAccess.List.HideUntilOpenYes")}</i>
+						<#else>
+							<i>${I18n.getMessage("SpecialAccess.List.HideUntilOpenNo")}</i>
+						</#if>
+					<#else>
+						<i>${I18n.getMessage("SpecialAccess.List.Default")}</i>
+					</#if>
+				</#if>
+			</span>
+		</td>
+		<td class="row1" valign="center" align="left">
+			<span class="gen">
+				<#if (!forumspecialAccess.isOverrideEndDate())>
+					<i>${I18n.getMessage("SpecialAccess.List.Default")}</i>
+				<#else>
+					<#if (forumspecialAccess.accessDates.dueDate?exists)>
+						${DateUtil.getStringFromDate(forumspecialAccess.accessDates.dueDate)}
+					<#else>
+						<i>${I18n.getMessage("SpecialAccess.List.NoDueDate")}</i>
+					</#if>
+				</#if>
+			</span>
+		</td>
+		<td class="row1" valign="center" align="left">
+			<span class="gen">
+				<#if (!forumspecialAccess.isOverrideAllowUntilDate())>
+					<i>${I18n.getMessage("SpecialAccess.List.Default")}</i>
+				<#else>
+					<#if (forumspecialAccess.accessDates.allowUntilDate?exists)>
+						${DateUtil.getStringFromDate(forumspecialAccess.accessDates.allowUntilDate)}
+					<#else>
+						<i>${I18n.getMessage("SpecialAccess.List.NoAllowUntilDate")}</i>
+					</#if>
+				</#if>
+			</span>
+		</td>
+		<#--
+		<td class="row1" valign="center" align="left">
+			<span class="gen">
+				<#if (forumspecialAccess.isOverrideLockEndDate())>
+					<#if (forumspecialAccess.accessDates.isLocked())>
+						<i>${I18n.getMessage("SpecialAccess.List.LockOnEndDateYes")}</i>
+					<#else>
+						<i>${I18n.getMessage("SpecialAccess.List.LockOnEndDateNo")}</i>
+					</#if>
+				<#else>
+					<#if (forumspecialAccess.isOverrideEndDate())>
+						<#if (forumspecialAccess.accessDates.isLocked())>
+							<i>${I18n.getMessage("SpecialAccess.List.LockOnEndDateYes")}</i>
+						<#else>
+							<i>${I18n.getMessage("SpecialAccess.List.LockOnEndDateNo")}</i>
+						</#if>
+					<#else>
+						<i>${I18n.getMessage("SpecialAccess.List.Default")}</i>
+					</#if>
+				</#if>
+			</span>
+		</td>
+		-->
+	</tr>
+	</#list>
+
+	<tr align="center">
+		<td class="catBottom" valign="center" align="center" colspan="6" height="28">
+			<input class="mainoption" type="button" value="${I18n.getMessage("SpecialAccess.List.Add")}" id="btn_insert" name="button" onclick="document.location = '${contextPath}/${moduleName}/insertForum/${forum.id}${extension}';" accesskey="${I18n.getMessage("add-access")}" title="${I18n.getMessage("add-category-special-access-description")}"/>
+			&nbsp;&nbsp;
+			<#if (accessSize > 0)>
+			<input class="mainoption" type="submit" value="${I18n.getMessage("SpecialAccess.List.Delete")}" name="deleteSpecialAccess" accesskey="${I18n.getMessage("delete-access")}" title="${I18n.getMessage("delete-access-description")}"/>
+			</#if>
+		</td>
+	</tr>
+</table>
+
+</form>
+<#include "bottom.htm"/>
